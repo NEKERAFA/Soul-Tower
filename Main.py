@@ -5,7 +5,7 @@
 import pygame
 import GameManager
 from GameManager import *
-from MainMenu import Menu
+from InitialStage import *
 
 if __name__ == '__main__':
     # Inicializamos la libreria de pygame
@@ -13,7 +13,7 @@ if __name__ == '__main__':
     # Creamos el director
     gameManager = GameManager()
     # Creamos la escena con la pantalla inicial
-    scene = Menu(gameManager)
+    scene = InitialStage(gameManager)
     # Le decimos al director que apile esta escena
     gameManager.scene_stack(scene)
     # Y ejecutamos el juego
