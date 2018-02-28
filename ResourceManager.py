@@ -3,9 +3,8 @@
 import pygame, sys, os
 from pygame.locals import *
 
-
 # -------------------------------------------------
-# Clase resourceManager
+# Clase ResourceManager
 
 # En este caso se implementa como una clase vacía, solo con métodos de clase
 class ResourceManager(object):

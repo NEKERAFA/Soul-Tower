@@ -7,9 +7,10 @@ import sys
 from Scene import *
 from pygame.locals import *
 
+# -------------------------------------------------
+# Clase GameManager
 
-class GameManager():
-
+class GameManager(object):
     def __init__(self):
         # Inicializamos la pantalla y el modo grafico
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -21,17 +22,13 @@ class GameManager():
         # Reloj
         self.clock = pygame.time.Clock()
 
-
     def loop(self, scene):
-
         self.sceneExit = False
-
         # Eliminamos todos los eventos producidos antes de entrar en el loop
         pygame.event.clear()
 
         # El loop del juego, las acciones que se realicen se harán en cada escena
         while not self.sceneExit:
-
             # Sincronizar el juego a 60 fps
             elapsedTime = self.clock.tick(60)
 
@@ -45,18 +42,14 @@ class GameManager():
             scene.draw(self.screen)
             pygame.display.flip()
 
-
     def run(self):
-
         # Mientras haya escenas en la pila, ejecutaremos la de arriba
         while (len(self.stack)>0):
-
             # Se coge la escena a ejecutar como la que este en la cima de la pila
             scene = self.stack[len(self.stack)-1]
 
             # Ejecutamos el loop de eventos hasta que termine la escena
             self.loop(scene)
-
 
     def scene_exit(self):
         # Indicamos en el flag que se quiere salir de la escena

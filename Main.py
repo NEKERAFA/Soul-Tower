@@ -8,7 +8,6 @@ from GameManager import *
 from MainMenu import Menu
 
 if __name__ == '__main__':
-
     # Inicializamos la libreria de pygame
     pygame.init()
     # Creamos el director

@@ -4,10 +4,9 @@ SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
 # -------------------------------------------------
-# Clase Escena con lo metodos abstractos
+# Clase Scene con lo metodos abstractos
 
-class Scene:
-
+class Scene(object):
     def __init__(self, gameManager):
         self.gameManager = gameManager
 
