@@ -1,11 +1,9 @@
 # -*- encoding: utf-8 -*-
 
 # Modulos
-import pygame
-import sys
-#import scene
-from Scene import *
+import pygame, sys
 from pygame.locals import *
+from scenes.Scene import *
 
 # -------------------------------------------------
 # Clase GameManager
@@ -14,6 +12,8 @@ class GameManager(object):
     def __init__(self):
         # Inicializamos la pantalla y el modo grafico
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+        # TODO: definir la surface para imprimir las cosas
+        # self.canvas = pygame.Surface((320, 180))
         pygame.display.set_caption("Juego con escenas")
         # Pila de escenas
         self.stack = []
@@ -39,7 +39,9 @@ class GameManager(object):
             scene.update(elapsedTime)
 
             # Se dibuja en pantalla
+            # TODO: dibujar con el surface creado
             scene.draw(self.screen)
+            # TODO: reescalar surface al pintar y mostrar en pantalla
             pygame.display.flip()
 
     def run(self):

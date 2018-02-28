@@ -1,16 +1,15 @@
 # -*- encoding: utf-8 -*-
 
-import pygame
-import pyganim
+import pygame, pyganim
+
 from pygame.locals import *
-from Scene import *
-from ResourceManager import *
+from src.scenes.Scene import *
+from src.ResourceManager import *
 
 # -------------------------------------------------
 # Clase Menu, la escena en sí
 
 class MainMenu(Scene):
-
     def __init__(self, gameManager):
         # Llamamos al constructor de la clase padre
         Scene.__init__(self, gameManager);

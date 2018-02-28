@@ -2,7 +2,7 @@
 # -------------------------------------------------
 # Clase Cielo
 
-class Background:
+class Background(object):
 	def __init__(self):
 		#self.map = ResourceManager.load_image('background.png', -1)
 		#self.map = pygame.transform.scale(self.map, (300, 200))
@@ -11,7 +11,7 @@ class Background:
 		#self.posicionx = 0 # El lado izquierdo de la subimagen que se esta visualizando
 		self.update(0)
 
-	def update(self, tiempo):
+	def update(self, time):
 		#self.posicionx += VELOCIDAD_SOL * tiempo
 		# if (self.posicionx - self.rect.width >= ANCHO_PANTALLA):
 		# 	self.posicionx = 0
@@ -24,7 +24,7 @@ class Background:
 		#self.backgroundColour = (100*ratio, 200*ratio, 255)
 		return
 
-	def draw(self,screen):
+	def draw(self, screen):
 		# Dibujamos el color del cielo
 		screen.fill(self.backgroundColour)
 		# Y ponemos el sol

@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 
-import pygame, Scene
-from Scene import *
-#from personajes import *
+import pygame
 from pygame.locals import *
-#from animaciones import *
-import Background
-from Background import *
+from src.scenes.Scene import *
+from src.scenes.Background import *
+from src.screens.Room import *
 
 # -------------------------------------------------
 # -------------------------------------------------
@@ -40,6 +38,8 @@ class InitialStage(Scene):
 		# Creamos el decorado y el fondo
 		#self.decorado = Decorado()
 		self.background = Background()
+		self.rooms = [Room('initialstage/floor_1.tmx', 'initialstage/floor_1.json')]
+		self.current_room = 0
 
 		# Que parte del decorado estamos visualizando
 		self.scroll = (0, 0)
@@ -193,6 +193,7 @@ class InitialStage(Scene):
 		# # Y por ultimo, dibujamos las animaciones por encima del decorado
 		# for animacion in self.animacionesDelante:
 		# 	animacion.dibujar(pantalla)
+		self.rooms[self.current_room].draw(screen)
 
 
 	def events(self, event_list):

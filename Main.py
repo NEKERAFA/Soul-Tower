@@ -3,9 +3,8 @@
 
 # Importar modulos
 import pygame
-import GameManager
-from GameManager import *
-from InitialStage import *
+from src.GameManager import *
+from src.scenes.InitialStage import *
 
 if __name__ == '__main__':
     # Inicializamos la libreria de pygame
