@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 
-import pyganim
+import lib.pyganim
 
 # -------------------------------------------------
 # Clase Animacion
