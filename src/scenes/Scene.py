@@ -1,7 +1,10 @@
 # -*- encoding: utf-8 -*-
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+SCREEN_WIDTH = 400
+SCREEN_HEIGHT = 300
+
+WINDOW_WIDTH = 800
+WINDOW_HEIGHT = 600
 
 # -------------------------------------------------
 # Clase Scene con lo metodos abstractos

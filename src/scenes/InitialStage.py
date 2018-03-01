@@ -19,6 +19,9 @@ from src.screens.Room import *
 # -------------------------------------------------
 # Clase Stage
 
+IMG_PATH = "rooms/initialstage"
+PATH = "initialstage"
+
 class InitialStage(Scene):
 	def __init__(self, gameManager):
 
@@ -38,7 +41,7 @@ class InitialStage(Scene):
 		# Creamos el decorado y el fondo
 		#self.decorado = Decorado()
 		self.background = Background()
-		self.rooms = [Room('initialstage/floor_1.tmx', 'initialstage/floor_1.json')]
+		self.rooms = [Room(IMG_PATH + '/floor_1.png', IMG_PATH + '/floor_1_mask.png', PATH + '/floor_1.json')]
 		self.current_room = 0
 
 		# Que parte del decorado estamos visualizando

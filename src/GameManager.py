@@ -11,9 +11,8 @@ from scenes.Scene import *
 class GameManager(object):
     def __init__(self):
         # Inicializamos la pantalla y el modo grafico
-        self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-        # TODO: definir la surface para imprimir las cosas
-        # self.canvas = pygame.Surface((320, 180))
+        self.render = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+        self.screen = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
         pygame.display.set_caption("Juego con escenas")
         # Pila de escenas
         self.stack = []
@@ -39,9 +38,8 @@ class GameManager(object):
             scene.update(elapsedTime)
 
             # Se dibuja en pantalla
-            # TODO: dibujar con el surface creado
             scene.draw(self.screen)
-            # TODO: reescalar surface al pintar y mostrar en pantalla
+            pygame.transform.scale(self.screen, (WINDOW_WIDTH, WINDOW_HEIGHT), self.render)
             pygame.display.flip()
 
     def run(self):

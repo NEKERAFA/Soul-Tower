@@ -2,28 +2,36 @@
 
 import pygame
 from pygame.locals import *
-from pytmx import TiledImageLayer
-from pytmx import TiledObjectGroup
-from pytmx import TiledTileLayer
-from src.ResourceManager import ResourceManager
+from src.ResourceManager import *
+from src.screens.Screen import *
 
 # -------------------------------------------------
 # Clase Room
 
-class Room(object):
-    def __init__(self, map_file, room_file):
-        # Llamamos al ResourceManager para cargar el mapa
-        self.data = ResourceManager.load_room(map_file, room_file)
-        #print(repr(self.data))
+class Room(Screen):
+    def __init__(self, map_file, mask_file, room_file):
+        Screen.__init__(self, map_file)
+        # Llamamos al ResourceManager para cargar la mascara del mapa
+        self.mask = ResourceManager.load_image(mask_file, -1)
+        self.mask = pygame.mask.from_surface(self.mask, 127)
 
-    def events(self, list_events):
-        pass
+        # Llamamos al ResourceManager para cargar el mapa
+        data = ResourceManager.load_room(mask_file, room_file)
+        self.x = data["x"]
+        self.y = data["y"]
+        self.width = data["width"]
+        self.height = data["height"]
+        self.connections = data["connections"]
 
     def draw(self, screen):
-        # Recorremos las capas visibles del mapa
-        for layer in self.data["map"].visible_layers:
-            # Si es una capa con información de tiles, se itera cada tile y se
-            # muestra en pantalla
-            if isinstance(layer, TiledTileLayer):
-                for i, j, tile in layer.tiles():
-                    screen.blit(tile, (i * self.data["map"].tilewidth, j * self.data["map"].tileheight))
+        Screen.draw(self, screen)
+
+        # Esto lo hago para mostrar las paredes que no se pueden atravesar
+        width, height = self.mask.get_size()
+        tilemask = pygame.Surface((width, height))
+        tilemask.set_alpha(128)
+        for i in range(0, width):
+            for j in range(0, height):
+                if self.mask.get_at((i, j)) == 0:
+                    tilemask.set_at((i, j), (0,0,0))
+        screen.blit(tilemask, (self.x, self.y))
