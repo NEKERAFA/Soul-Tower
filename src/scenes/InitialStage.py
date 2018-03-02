@@ -5,6 +5,7 @@ from pygame.locals import *
 from src.scenes.Scene import *
 from src.scenes.Background import *
 from src.screens.Room import *
+from src.Player import *
 
 # -------------------------------------------------
 # -------------------------------------------------
@@ -50,12 +51,12 @@ class InitialStage(Scene):
 		#  Si ademas lo hubiese vertical, seria self.scroll = (0, 0)
 
 		# Creamos los sprites de los jugadores
-		#self.jugador1 = Jugador()
+		self.jugador1 = Player()
 		#self.jugador2 = Jugador()
-		#self.grupoJugadores = pygame.sprite.Group( self.jugador1, self.jugador2 )
+		# self.grupoJugadores = pygame.sprite.Group( self.jugador1)
 
 		# Ponemos a los jugadores en sus posiciones iniciales
-		# self.jugador1.establecerPosicion((200, 551))
+		self.jugador1.change_global_position((100, 100))
 		# self.jugador2.establecerPosicion((400, 551))
 
 		# Creamos las plataformas del decorado
@@ -77,7 +78,7 @@ class InitialStage(Scene):
 		# #  En este caso, solo los personajes, pero podría haber más (proyectiles, etc.)
 		# self.grupoSpritesDinamicos = pygame.sprite.Group( self.jugador1, self.jugador2, enemigo1 )
 		# # Creamos otro grupo con todos los Sprites
-		# self.grupoSprites = pygame.sprite.Group( self.jugador1, self.jugador2, enemigo1, plataformaSuelo, plataformaCasa )
+		self.grupoSprites = pygame.sprite.Group( self.jugador1)
 		#
 		# # Creamos las animaciones de fuego,
 		# #  las que estan detras del decorado, y delante
@@ -175,7 +176,7 @@ class InitialStage(Scene):
 		# if pygame.sprite.groupcollide(self.grupoJugadores, self.grupoEnemigos, False, False)!={}:
 		# 	# Se le dice al director que salga de esta escena y ejecute la siguiente en la pila
 		# 	self.director.salirEscena()
-		#
+		self.grupoSprites.update(self.rooms[self.current_room], time)
 		# # Actualizamos el scroll
 		# self.actualizarScroll(self.jugador1, self.jugador2)
 		# # Actualizamos el fondo:
@@ -191,12 +192,13 @@ class InitialStage(Scene):
 		# 	animacion.dibujar(pantalla)
 		# # Después el decorado
 		# self.decorado.dibujar(pantalla)
-		# # Luego los Sprites
-		# self.grupoSprites.draw(pantalla)
+		
 		# # Y por ultimo, dibujamos las animaciones por encima del decorado
 		# for animacion in self.animacionesDelante:
 		# 	animacion.dibujar(pantalla)
 		self.rooms[self.current_room].draw(screen)
+		# # Luego los Sprites
+		self.grupoSprites.draw(screen)
 
 
 	def events(self, event_list):
@@ -208,6 +210,6 @@ class InitialStage(Scene):
 
 		# # Indicamos la acción a realizar segun la tecla pulsada para cada jugador
 		# teclasPulsadas = pygame.key.get_pressed()
-		# self.jugador1.mover(teclasPulsadas, K_UP, K_DOWN, K_LEFT, K_RIGHT)
+		self.jugador1.move()
 		# self.jugador2.mover(teclasPulsadas, K_w,  K_s,    K_a,    K_d)
 		return
