@@ -3,8 +3,8 @@
 import pygame
 from pygame.locals import *
 from src.scenes.Scene import *
-from src.scenes.Background import *
-from src.scenes.screens.Room import *
+from src.screens.scenes.Background import *
+from src.screens.Room import *
 
 # -------------------------------------------------
 # -------------------------------------------------
@@ -22,7 +22,7 @@ from src.scenes.screens.Room import *
 IMG_PATH = "rooms/initialstage"
 PATH = "initialstage"
 
-class InitialStage(Scene):
+class IlStage(Scene):
 	def __init__(self, gameManager):
 
 		# Habria que pasarle como parámetro el número de fase, a partir del cual se cargue

@@ -3,7 +3,7 @@
 import pygame
 from pygame.locals import *
 from src.ResourceManager import *
-from src.screens.Screen import *
+from src.scenes.screens.Screen import *
 
 # -------------------------------------------------
 # Clase Room
@@ -34,4 +34,6 @@ class Room(Screen):
             for j in range(0, height):
                 if self.mask.get_at((i, j)) == 0:
                     tilemask.set_at((i, j), (0,0,0))
+                else:
+                    tilemask.set_at((i, j), (255,255,255))
         screen.blit(tilemask, (self.x, self.y))
