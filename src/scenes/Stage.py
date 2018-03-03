@@ -34,7 +34,7 @@ class Stage(Scene):
 
         # Cargamos el sprite del jugador
         self.player = Player()
-        self.player.change_global_position((100, 100))
+        self.player.change_global_position((data["player_pos"][0], data["player_pos"][1]))
         self.spritesGroup = pygame.sprite.Group(self.player)
 
     def update(self, time):
@@ -56,6 +56,6 @@ class Stage(Scene):
         screen.fill((100, 200, 255))
         room = self.rooms[self.currentRoom]
         # Imprimo la escena
-        screen.blit(room.image, (room.x-self.scroll[0], room.y-self.scroll[1]))
+        room.draw(screen)
         # Luego los Sprites
         self.spritesGroup.draw(screen)

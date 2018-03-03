@@ -2,6 +2,7 @@
 
 import pygame
 from src.ResourceManager import *
+from src.scenes.Scene import *
 
 # -------------------------------------------------
 # Clase Screen
@@ -9,11 +10,11 @@ from src.ResourceManager import *
 class Screen(object):
     def __init__(self, path_image):
         self.image = ResourceManager.load_image(path_image, -1)
-        self.x = 0
-        self.y = 0
+        self.rect = self.image.get_rect()
+        self.subRect = pygame.Rect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
 
-    def events(self, list_events):
-        pass
+    def update(self, scroll):
+        self.subRect.left = scroll
 
     def draw(self, screen):
-        screen.blit(self.image, (self.x, self.y))
+        screen.blit(self.image, self.rect, self.subRect)
