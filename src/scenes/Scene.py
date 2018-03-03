@@ -3,8 +3,8 @@
 SCREEN_WIDTH = 400
 SCREEN_HEIGHT = 300
 
-WINDOW_WIDTH = 1200
-WINDOW_HEIGHT = 900
+WINDOW_WIDTH = SCREEN_WIDTH*2
+WINDOW_HEIGHT = SCREEN_HEIGHT*2
 
 # -------------------------------------------------
 # Clase Scene con lo metodos abstractos
