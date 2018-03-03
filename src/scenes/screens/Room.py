@@ -11,7 +11,7 @@ from src.scenes.screens.Screen import *
 class Room(Screen):
     def __init__(self, map_file, mask_file, room_file):
         Screen.__init__(self, map_file)
-        # Llamamos al ResourceManager para cargar la mascara del mapa
+        # Llamamos al ResourceManager para cargar la máscara del mapa
         self.mask = ResourceManager.load_image(mask_file, -1)
         self.mask = pygame.mask.from_surface(self.mask, 127)
 
