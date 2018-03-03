@@ -1,7 +1,7 @@
 import pygame
-from ControlManager import *
-from pygame.locals import *
 import math as m
+from pygame.locals import *
+from src.ControlManager import *
 
 class KeyboardMouseControl(ControlManager):
 	def __init__(self):

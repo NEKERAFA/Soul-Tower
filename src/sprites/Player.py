@@ -2,7 +2,7 @@
 
 import pygame, sys, os
 from pygame.locals import *
-from Character import *
+from src.sprites.Character import *
 
 # -------------------------------------------------
 # -------------------------------------------------
@@ -29,7 +29,7 @@ PLAYER_ANIMATION_DELAY = 5 # updates que durará cada imagen del Character
 class Player(Character):
     def __init__(self):
         # Invocamos al constructor de la clase padre con la configuracion de este Character concreto
-        Character.__init__(self,'Jugador.png','coordJugador.txt', [6, 12, 6], PLAYER_SPEED, PLAYER_ANIMATION_DELAY);
+        Character.__init__(self, 'Jugador.png', 'coordJugador.txt', [6, 12, 6], PLAYER_SPEED, PLAYER_ANIMATION_DELAY);
         self.controlManager = KeyboardMouseControl()
         # para obtener el width y height de la animación en reposo
         width = self.sheetCoords[0][0][2]
@@ -59,4 +59,3 @@ class Player(Character):
             Character.move(self,S)
         else:
             Character.move(self,STILL)
-        

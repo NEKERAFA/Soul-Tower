@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 
 import pygame, sys, os
+import math as m
+
 from pygame.locals import *
 from src.ResourceManager import *
-import math as m
-from KeyboardMouseControl import *
-from MySprite import *
+from src.controls.KeyboardMouseControl import *
+from src.sprites.MySprite import *
 
 # -------------------------------------------------
 # -------------------------------------------------
@@ -158,7 +159,7 @@ class Character(MySprite):
         # Actualizamos la imagen a mostrar
         self.update_animation()
 
-        # Aplicamos la velocidad en cada eje      
+        # Aplicamos la velocidad en cada eje
         self.speed = (speedX, speedY)
 
         # Y llamamos al método de la superclase para que, según la velocidad y el tiempo
