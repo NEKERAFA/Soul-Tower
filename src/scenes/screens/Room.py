@@ -16,7 +16,7 @@ class Room(Screen):
         self.mask = pygame.mask.from_surface(self.mask, 127)
 
         # Llamamos al ResourceManager para cargar el mapa
-        data = ResourceManager.load_room(mask_file, room_file)
+        data = ResourceManager.load_room(room_file)
         self.x = data["x"]
         self.y = data["y"]
         self.width = data["width"]

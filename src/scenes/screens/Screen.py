@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import pygame
-from pygame.locals import *
 from src.ResourceManager import *
 
 # -------------------------------------------------
-# Clase screens
+# Clase Screen
 
 class Screen(object):
     def __init__(self, path_image):

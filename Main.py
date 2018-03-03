@@ -4,7 +4,7 @@
 # Importar modulos
 import pygame
 from src.GameManager import *
-from src.scenes.InitialStage import *
+from src.scenes.Stage import *
 
 if __name__ == '__main__':
     # Inicializamos la libreria de pygame
@@ -12,7 +12,7 @@ if __name__ == '__main__':
     # Creamos el director
     gameManager = GameManager()
     # Creamos la escena con la pantalla inicial
-    scene = InitialStage(gameManager)
+    scene = Stage('stage_0.json', gameManager)
     # Le decimos al director que apile esta escena
     gameManager.scene_stack(scene)
     # Y ejecutamos el juego
