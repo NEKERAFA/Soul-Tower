@@ -10,30 +10,21 @@ from src.scenes.screens.Screen import *
 
 class Room(Screen):
     def __init__(self, map_file, mask_file, room_file):
+        # Llamamos al constructor de la clase superior
         Screen.__init__(self, map_file)
-        # Llamamos al ResourceManager para cargar la máscara del mapa
-        self.mask = ResourceManager.load_image(mask_file, -1)
+
+        # Llamamos al ResourceManager para cargar la mascara del mapa
+        self.mask = ResourceManager.load_image(mask_file, (255, 0, 255))
         self.mask = pygame.mask.from_surface(self.mask, 127)
 
         # Llamamos al ResourceManager para cargar el mapa
         data = ResourceManager.load_room(room_file)
+        self.rect.left = data["x"]
         self.x = data["x"]
         self.y = data["y"]
         self.width = data["width"]
         self.height = data["height"]
         self.connections = data["connections"]
 
-    def draw(self, screen):
-        Screen.draw(self, screen)
-
-        # Esto lo hago para mostrar las paredes que no se pueden atravesar
-        width, height = self.mask.get_size()
-        tilemask = pygame.Surface((width, height))
-        tilemask.set_alpha(128)
-        for i in range(0, width):
-            for j in range(0, height):
-                if self.mask.get_at((i, j)) == 0:
-                    tilemask.set_at((i, j), (0,0,0))
-                else:
-                    tilemask.set_at((i, j), (255,255,255))
-        screen.blit(tilemask, (self.x, self.y))
+    def update(self, scroll):
+        self.subRect.left = scroll[0]
