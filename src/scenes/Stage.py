@@ -5,6 +5,7 @@ from src.ResourceManager import *
 from src.scenes.Scene import *
 from src.scenes.screens.Room import *
 from src.sprites.Player import *
+from src.scenes.InRoomState import *
 
 # -------------------------------------------------
 # Clase Stage
@@ -39,22 +40,18 @@ class Stage(Scene):
         self.player.change_global_position((data["player_pos"][0], data["player_pos"][1]))
         self.spritesGroup = pygame.sprite.Group(self.player)
 
-        # Calculamos el scroll inicial
-        #self.scroll = ((self.player.position[0] + self.player.offset[0]) - self.rooms[self.currentRoom].x, (self.player.position[1] + self.player.offset[1]) - self.rooms[self.currentRoom].y)
-        self.scroll = (0,0)
-
         # Inicializamos el viewport, que es un rectángulo del tamaño de la pantalla
         # que indicará qué porción de la sala se debe mostrar
         self.viewport = gameManager.screen.get_rect()
         self.viewport.center = self.player.rect.center
         self.viewport.clamp_ip(self.rooms[self.currentRoom].rect)
 
-    def update(self, time):
-        # Actualizamos los sprites
-        self.spritesGroup.update(self.rooms[self.currentRoom].mask, time)
+        # Empezamos en estado de dentro de sala
+        self.state = InRoomState()
 
-        # Actualizamos el scroll
-        self.updateScroll()
+    def update(self, time):
+        # Delegamos en el estado la actualización de la fase
+        self.state.update(time, self)
 
     def events(self, events):
         # Miramos a ver si hay algun evento de salir del programa
@@ -63,25 +60,14 @@ class Stage(Scene):
             if event.type == pygame.QUIT:
                 self.gameManager.program_exit()
                 return
-        # Indicamos la acción a realizar para el jugador
-        self.player.move()
+
+        # Delegamos en el estado la acción a realizar para el Jugador
+        self.state.events(events, self)
 
     def draw(self, screen):
-        # Muestro un color de fondo
-        screen.fill((100, 200, 255))
-        room = self.rooms[self.currentRoom]
+        # Delegamos en el estado el dibujado de la fase
+        self.state.draw(screen, self)
 
-        # Luego los Sprites sobre una copia del mapa de la sala
-        newRoom = room.image.copy()
-        self.spritesGroup.draw(newRoom)
-
-        # Se pinta la porción de la sala que coincide con el viewport
-        screen.blit(newRoom, (0,0), self.viewport)
-
-    # Alinea el viewport con el centro del jugador
-    # Si la pantalla se sale de la sala actual, la alinea para que encaje
-    # De este modo, el personaje siempre estará centrado, menos cuando se aproxime
-    # a los bordes de la sala
-    def updateScroll(self):
-        self.viewport.center = self.player.rect.center
-        self.viewport.clamp_ip(self.rooms[self.currentRoom].rect)
+    # Cambia el estado que controla el comportamiento del scroll
+    def setState(self, state):
+        self.state = state
