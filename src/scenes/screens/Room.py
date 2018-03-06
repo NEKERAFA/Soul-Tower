@@ -12,7 +12,7 @@ class Room(Screen):
     def __init__(self, map_file, mask_file, room_file):
         # Llamamos al constructor de la clase superior
         Screen.__init__(self, map_file)
-        self.rect = self.image.set_rect()
+        self.rect = self.image.get_rect()
         self.subRect = pygame.Rect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
 
         # Llamamos al ResourceManager para cargar la mascara del mapa
