@@ -54,6 +54,29 @@ class ResourceManager(object):
             return data
 
     @classmethod
+    def load_sprite_sheet(cls, name):
+        # Si el name de archivo está entre los resources ya cargados
+        if name in cls.resources:
+            # Se devuelve ese recurso
+            return cls.resources[name]
+        # Si no ha sido cargado anteriormente
+        else:
+            # Se carga el recurso indicando el name de su carpeta
+            fullname = os.path.join('assets/characters', name)
+            pfile = None
+            try:
+                pfile = open(fullname, 'r')
+            except IOError as e:
+                print 'Cannot load sprite sheet:', fullname
+                raise SystemExit, e.strerror
+            data = json.load(pfile)
+            pfile.close()
+            # Se almacena
+            cls.resources[name] = data
+            # Se devuelve
+            return data
+
+    @classmethod
     def load_room(cls, name):
         # Si el name de archivo está entre los resourroomsces ya cargados
         if name in cls.resources:
@@ -63,10 +86,14 @@ class ResourceManager(object):
         else:
             # Se carga el recurso indicando el name de su carpeta
             fullname = os.path.join('assets/rooms', name)
-            pfile=open(fullname,'r')
-            data_string=pfile.read()
+            pfile = None
+            try:
+                pfile = open(fullname, 'r')
+            except IOError as e:
+                print 'Cannot load room:', fullname
+                raise SystemExit, e.strerror
+            data = json.load(pfile)
             pfile.close()
-            data = json.loads(data_string)
             # Se almacena
             cls.resources[name] = data
             # Se devuelve
@@ -82,10 +109,14 @@ class ResourceManager(object):
         else:
             # Se carga el recurso indicando el name de su carpeta
             fullname = os.path.join('assets/stages', name)
-            pfile=open(fullname,'r')
-            data_string=pfile.read()
+            pfile = None
+            try:
+                pfile = open(fullname, 'r')
+            except IOError as e:
+                print 'Cannot load sprite sheet:', fullname
+                raise SystemExit, e.strerror
+            data = json.load(pfile)
             pfile.close()
-            data = json.loads(data_string)
             # Se almacena
             cls.resources[name] = data
             # Se devuelve

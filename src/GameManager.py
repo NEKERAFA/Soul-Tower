@@ -13,7 +13,7 @@ class GameManager(object):
         # Inicializamos la pantalla y el modo grafico
         self.render = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
         self.screen = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
-        pygame.display.set_caption("Juego con escenas")
+        pygame.display.set_caption("Soul Tower")
         # Pila de escenas
         self.stack = []
         # Flag que nos indica cuando quieren salir de la escena
