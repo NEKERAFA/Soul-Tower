@@ -50,7 +50,7 @@ class Stage(Scene):
 
     def update(self, time):
         # Actualizamos los sprites
-        self.spritesGroup.update(self.rooms[self.currentRoom], time) # TODO pasar la máscara
+        self.spritesGroup.update(self.rooms[self.currentRoom].mask, time)
 
         # Actualizamos el scroll
         self.updateScroll()
