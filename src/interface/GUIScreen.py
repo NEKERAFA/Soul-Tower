@@ -7,8 +7,9 @@ from src.scenes.Scene import *
 
 # -------------------------------------------------
 # Clase GUIScreen
-
-class GUIScreen:
+# La clase GUIScreen no hereda de Screen, ya que no tiene imagen propia a dibujar
+# TODO: maybe hacer que GUIScreen y Screen hereden de la misma clase (¿una "superscreen"?)
+class GUIScreen(object):
     def __init__(self):
         # Se tiene una lista de elementos GUI
         self.GUIElements = []
@@ -27,6 +28,9 @@ class GUIScreen:
                     if element.positionIsInElement(event.pos):
                         if (element == self.elementClick):
                             element.action()
+    def update(self, time):
+        for element in self.GUIElements:
+            element.update(time)
 
     def draw(self, screen):
         # Dibujamos las animaciones

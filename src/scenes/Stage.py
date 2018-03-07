@@ -57,6 +57,7 @@ class Stage(Scene):
     def update(self, time):
         # Delegamos en el estado la actualización de la fase
         self.state.update(time, self)
+        self.gui.update(time)
 
     def events(self, events):
         # Miramos a ver si hay algun evento de salir del programa
@@ -73,16 +74,9 @@ class Stage(Scene):
         # Delegamos en el estado el dibujado de la fase
         self.state.draw(screen, self)
 
+        #TODO: gui debería estar en un array, como Rooms
+        self.gui.draw(screen)
+
     # Cambia el estado que controla el comportamiento del scroll
     def setState(self, state):
         self.state = state
-        # Muestro un color de fondo
-        screen.fill((100, 200, 255))
-        room = self.rooms[self.currentRoom]
-        # Imprimo la escena
-        room.draw(screen)
-        # Luego los Sprites
-        self.spritesGroup.draw(screen)
-
-        #TODO: gui debería estar en un array, como Rooms
-        self.gui.draw(screen)

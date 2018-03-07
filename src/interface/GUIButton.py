@@ -5,9 +5,9 @@ from src.ResourceManager import *
 from src.interface.GUIElement import *
 
 # -------------------------------------------------
-# Clase GUIImage
+# Clase GUIButton
 
-class GUIImage(GUIElement):
+class GUIButton(GUIElement):
     def __init__(self, gui_screen, name, position, scale):
         #cargar imagen
         self.image = ResourceManager.load_image(name, -1)
@@ -19,11 +19,11 @@ class GUIImage(GUIElement):
         self.set_position(position)
 
     def update(self, time):
+        #TODO: cambiar imagen/estado del botón (pulsado/no pulsado)
         return
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
 
     def action(self):
-        #No hace nada (es una imagen)
-        return
+        raise NotImplemented("Tiene que implementar el metodo acción.")

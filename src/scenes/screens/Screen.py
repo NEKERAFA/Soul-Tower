@@ -6,10 +6,11 @@ from src.scenes.Scene import *
 
 # -------------------------------------------------
 # Clase Screen
+# TODO: maybe hacer que GUIScreen y Screen hereden de la misma clase (¿una "superscreen"?)
 
 class Screen(object):
-    def __init__(self, path_image):
-        self.image = ResourceManager.load_image(path_image, (255, 0, 255))
+    def __init__(self, pathImage):
+        self.image = ResourceManager.load_image(pathImage, (255, 0, 255))
 
     def update(self, scroll):
         pass
