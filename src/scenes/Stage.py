@@ -5,6 +5,7 @@ from src.ResourceManager import *
 from src.scenes.Scene import *
 from src.scenes.screens.Room import *
 from src.sprites.Player import *
+from src.sprites.Enemy import *
 
 # -------------------------------------------------
 # Clase Stage
@@ -37,7 +38,11 @@ class Stage(Scene):
         # Cargamos el sprite del jugador
         self.player = Player()
         self.player.change_global_position((data["player_pos"][0], data["player_pos"][1]))
-        self.spritesGroup = pygame.sprite.Group(self.player)
+    # ----------- Añadido para probar colisiones
+        self.enemy = Enemy()
+        self.enemy.change_global_position((data["player_pos"][0], data["player_pos"][1]))
+        self.spritesGroup = pygame.sprite.Group(self.player, self.enemy)
+    # -----------
 
         # Calculamos el scroll inicial
         #self.scroll = ((self.player.position[0] + self.player.offset[0]) - self.rooms[self.currentRoom].x, (self.player.position[1] + self.player.offset[1]) - self.rooms[self.currentRoom].y)
@@ -74,6 +79,19 @@ class Stage(Scene):
         # Luego los Sprites
         self.spritesGroup.draw(screen)
         self.player.melee_manager.draw(screen)
+        # ------ Colisiones melee
+        if (self.player.melee_manager.animating):
+            atk_mask = pygame.mask.from_surface(self.player.melee_manager.image)
+            enemy_mask = pygame.mask.from_surface(self.enemy.image)
+            (atk_pos_x, atk_pos_y) = self.player.melee_manager.position
+            (enemy_pos_x, enemy_pos_y) = self.enemy.position
+            enemy_pos_y -= self.enemy.sheetConf[0][0]['coords'][3]
+            offset = (int(enemy_pos_x - atk_pos_x), int(enemy_pos_y - atk_pos_y))
+            collision = atk_mask.overlap(enemy_mask, offset)
+            if collision is not None:
+                # print(atk_pos_x,atk_pos_y,' - ', enemy_pos_x, enemy_pos_y)
+                # print(offset)
+        # ------
 
     # TODO nuevo
     def updateScroll(self):

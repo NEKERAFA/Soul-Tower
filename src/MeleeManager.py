@@ -54,7 +54,6 @@ class MeleeManager(MySprite):
                 self.anim_time = 0
                 self.animating = 0
 
-
     def update(self, time):
         # Si ha pasado el tiempo suficiente y estamos atacando
         if ((self.elapsed_time > 250) and (self.attacking)):
