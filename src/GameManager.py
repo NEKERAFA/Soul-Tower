@@ -8,6 +8,9 @@ from scenes.Scene import *
 # -------------------------------------------------
 # Clase GameManager
 
+WINDOW_WIDTH = SCREEN_WIDTH*SCALE_FACTOR
+WINDOW_HEIGHT = SCREEN_HEIGHT*SCALE_FACTOR
+
 class GameManager(object):
     def __init__(self):
         # Inicializamos la pantalla y el modo grafico

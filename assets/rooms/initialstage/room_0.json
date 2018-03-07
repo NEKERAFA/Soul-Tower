@@ -3,5 +3,13 @@
     "y": 0,
     "width": 720,
     "height": 480,
-    "connections": [{}]
+    "connections": [
+        {
+            "x": 720,
+            "top": 240,
+            "bottom": 216,
+            "to": 1,
+            "direction": "right"
+        }
+    ]
 }

@@ -32,10 +32,10 @@ class Player(Character):
         Character.__init__(self, 'Jugador.png', 'coordJugador.txt', [6, 12, 6], PLAYER_SPEED, PLAYER_ANIMATION_DELAY);
         self.controlManager = KeyboardMouseControl()
         # para obtener el width y height de la animación en reposo
-        width = self.sheetCoords[0][0][2]
-        height = self.sheetCoords[0][0][3]
+        self.width = self.sheetCoords[0][0][2]
+        self.height = self.sheetCoords[0][0][3]
         # con ello calcular el offset al centro de la imagen
-        self.offset = (int(width/2),int(height/2))
+        self.offset = (int(self.width/2),int(self.height/2))
 
     def move(self):
         # Indicamos la acción a realizar segun la tecla pulsada para el jugador

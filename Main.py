@@ -10,6 +10,7 @@ if __name__ == '__main__':
     # Inicializamos la libreria de pygame
     pygame.init()
     # Creamos el director
+    # global gameManager
     gameManager = GameManager()
     # Creamos la escena con la pantalla inicial
     scene = Stage('stage_0.json', gameManager)

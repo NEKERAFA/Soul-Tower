@@ -1,5 +1,7 @@
 {
     "scroll": [0, 0],
     "player_pos": [100, 100],
-    "path": "initialstage"
+    "path": "initialstage",
+    "image": "stage_0.png",
+    "mask": "stage_0_mask.png"
 }

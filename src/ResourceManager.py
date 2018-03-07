@@ -55,7 +55,7 @@ class ResourceManager(object):
 
     @classmethod
     def load_room(cls, name):
-        # Si el name de archivo está entre los resourroomsces ya cargados
+        # Si el name de archivo está entre los resources ya cargados
         if name in cls.resources:
             # Se devuelve ese recurso
             return cls.resources[name]

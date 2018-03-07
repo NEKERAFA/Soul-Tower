@@ -166,11 +166,11 @@ class Character(MySprite):
         #  calcule la nueva posición del Sprite
         MySprite.update(self, time)
 
-        # Aquí se comprueba con la máscara si estás fuera del mapa 
+        # Aquí se comprueba con la máscara si estás fuera del mapa
         # y calculas la posición en la que deberías estar
         #TODO: se puede crear la playerMask en el init?
         playerMask = pygame.mask.from_surface(self.image)
-        x,y = self.position
+        x, y = self.position
         height = self.sheetCoords[0][0][3]
         x = int(x)
         y = int(y - height)
@@ -190,4 +190,3 @@ class Character(MySprite):
             x = int(x)
             y = int(y - height)
             dy = mapMask.overlap_area(playerMask,(x,y+1)) - mapMask.overlap_area(playerMask,(x,y-1))
-
