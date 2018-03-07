@@ -3,7 +3,7 @@
 from src.scenes.State import *
 from src.scenes.OnTransitionState import *
 
-class InRoomState(State):
+class SmallRoomState(State):
 
     def update(self, time, stage):
         # Actualizamos los sprites
@@ -17,13 +17,6 @@ class InRoomState(State):
         if exit is not None:
             stage.state = OnTransitionState(exit, stage.player)
             return
-
-        # Alinea el viewport con el centro del jugador
-        # Si la pantalla se sale de la sala actual, la alinea para que encaje
-        # De este modo, el personaje siempre estará centrado, menos cuando se aproxime
-        # a los bordes de la sala
-        stage.viewport.center = (stage.player.rect.center)
-        stage.viewport.clamp_ip(stage.rooms[stage.currentRoom].rect)
 
     def draw(self, screen, stage):
         # Muestro un color de fondo

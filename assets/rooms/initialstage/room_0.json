@@ -10,6 +10,13 @@
             "bottom": 216,
             "to": 1,
             "direction": "right"
+        },
+        {
+            "y": 480,
+            "left": 640,
+            "right": 680,
+            "to": 2,
+            "direction": "down"
         }
     ]
 }
