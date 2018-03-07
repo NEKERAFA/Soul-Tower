@@ -1,16 +1,15 @@
+# -*- encoding: utf-8 -*-
+
 import pygame
 from pygame.locals import *
 from src.ResourceManager import *
 from src.scenes.Scene import *
 
 # -------------------------------------------------
-# Clase PantallaGUI y las distintas pantallas
+# Clase GUIScreen
 
 class GUIScreen:
-    def __init__(self, imageName):
-        # Se carga la imagen de fondo
-        self.image = ResourceManager.load_image(imageName)
-        self.image = pygame.transform.scale(self.image, (SCREEN_WIDTH, SCREEN_HEIGHT))
+    def __init__(self):
         # Se tiene una lista de elementos GUI
         self.GUIElements = []
         # Se tiene una lista de animaciones
@@ -30,9 +29,7 @@ class GUIScreen:
                             element.action()
 
     def draw(self, screen):
-        # Dibujamos primero la imagen de fondo
-        screen.blit(self.image, self.image.get_rect())
-        # Después las animaciones
+        # Dibujamos las animaciones
         #for animation in self.animations:
         #    animation.draw(screen)
         # Después los botones

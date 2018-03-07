@@ -5,6 +5,7 @@ from src.ResourceManager import *
 from src.scenes.Scene import *
 from src.scenes.screens.Room import *
 from src.sprites.Player import *
+from src.interface.GUIPlayerScreen import *
 
 # -------------------------------------------------
 # Clase Stage
@@ -31,6 +32,10 @@ class Stage(Scene):
         pth = data["path"] + "/"
         self.rooms = [Room(pth_img + images[i*2], pth_img + images[i*2+1], pth + configs[i]) for i in range(0, len(configs))]
         self.currentRoom = 0
+
+        # Cargamos la interfaz del jugador
+        #TODO: meter datos de la interfaz en json, y hacerlo relativo a la sala en la que se encuentre el jugador
+        self.gui = GUIPlayerScreen()
 
         # Cargamos el sprite del jugador
         self.player = Player()
@@ -59,3 +64,6 @@ class Stage(Scene):
         room.draw(screen)
         # Luego los Sprites
         self.spritesGroup.draw(screen)
+
+        #TODO: gui debería estar en un array, como Rooms
+        self.gui.draw(screen)
