@@ -109,7 +109,7 @@ class Character(MySprite):
             elif self.looking == E:
                 self.image = pygame.transform.flip(self.sheet.subsurface(self.sheetCoords[self.animationNum][self.animationFrame]), 1, 0)
 
-    #TODO: cambiar mask de UML a mapMask
+
     def update(self, mapMask, time):
 
         # Las velocidades a las que iba hasta este momento
@@ -166,7 +166,28 @@ class Character(MySprite):
         #  calcule la nueva posición del Sprite
         MySprite.update(self, time)
 
-        #TODO:
-        # Aquí comprobarías con la máscara si estás fuera del mapa y con una función mágica calculas la posición en la que deberías estar
+        # Aquí se comprueba con la máscara si estás fuera del mapa 
+        # y calculas la posición en la que deberías estar
+        #TODO: se puede crear la playerMask en el init?
+        playerMask = pygame.mask.from_surface(self.image)
+        x,y = self.position
+        height = self.sheetCoords[0][0][3]
+        x = int(x)
+        y = int(y - height)
+        dx = mapMask.overlap_area(playerMask,(x+1,y)) - mapMask.overlap_area(playerMask,(x-1,y))
+        dy = mapMask.overlap_area(playerMask,(x,y+1)) - mapMask.overlap_area(playerMask,(x,y-1))
 
-        return
+        while(dx):
+            self.increment_position(((1 if dx>0 else -1), 0))
+            x,y = self.position
+            x = int(x)
+            y = int(y - height)
+            dx = mapMask.overlap_area(playerMask,(x+1,y)) - mapMask.overlap_area(playerMask,(x-1,y))
+
+        while(dy):
+            self.increment_position((0,(1 if dy>0 else -1)))
+            x,y = self.position
+            x = int(x)
+            y = int(y - height)
+            dy = mapMask.overlap_area(playerMask,(x,y+1)) - mapMask.overlap_area(playerMask,(x,y-1))
+

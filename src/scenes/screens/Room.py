@@ -22,6 +22,7 @@ class Room(Screen):
         # Llamamos al ResourceManager para cargar el mapa
         data = ResourceManager.load_room(room_file)
         self.rect.left = data["x"]
+        self.x = data["x"]
         self.y = data["y"]
         self.width = data["width"]
         self.height = data["height"]

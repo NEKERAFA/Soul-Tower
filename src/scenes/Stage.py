@@ -5,19 +5,22 @@ from src.ResourceManager import *
 from src.scenes.Scene import *
 from src.scenes.screens.Room import *
 from src.sprites.Player import *
+from src.scenes.InRoomState import *
 from src.interface.GUIPlayerScreen import *
 
 # -------------------------------------------------
 # Clase Stage
 
+SCREEN_CENTER_X = int(SCREEN_WIDTH / 2)
+
 class Stage(Scene):
     def __init__(self, stageFile, gameManager):
         # Primero invocamos al constructor de la clase padre
         Scene.__init__(self, gameManager)
+
         # Cargamos la configuración del nivel
         data = ResourceManager.load_stage(stageFile)
-        # Cargamos el scroll inicial
-        self.scroll = (data["scroll"][0], data["scroll"][1])
+
         # Cargamos las rutas de las salas
         images = os.listdir("assets/images/rooms/" + data["path"])
         images.sort(key=string.lower)
@@ -42,9 +45,18 @@ class Stage(Scene):
         self.player.change_global_position((data["player_pos"][0], data["player_pos"][1]))
         self.spritesGroup = pygame.sprite.Group(self.player)
 
+        # Inicializamos el viewport, que es un rectángulo del tamaño de la pantalla
+        # que indicará qué porción de la sala se debe mostrar
+        self.viewport = gameManager.screen.get_rect()
+        self.viewport.center = self.player.rect.center
+        self.viewport.clamp_ip(self.rooms[self.currentRoom].rect)
+
+        # Empezamos en estado de dentro de sala
+        self.state = InRoomState()
+
     def update(self, time):
-        # Actualizamos los sprites
-        self.spritesGroup.update(self.rooms[self.currentRoom], time)
+        # Delegamos en el estado la actualización de la fase
+        self.state.update(time, self)
 
     def events(self, events):
         # Miramos a ver si hay algun evento de salir del programa
@@ -53,10 +65,17 @@ class Stage(Scene):
             if event.type == pygame.QUIT:
                 self.gameManager.program_exit()
                 return
-        # Indicamos la acción a realizar para el jugador
-        self.player.move()
+
+        # Delegamos en el estado la acción a realizar para el Jugador
+        self.state.events(events, self)
 
     def draw(self, screen):
+        # Delegamos en el estado el dibujado de la fase
+        self.state.draw(screen, self)
+
+    # Cambia el estado que controla el comportamiento del scroll
+    def setState(self, state):
+        self.state = state
         # Muestro un color de fondo
         screen.fill((100, 200, 255))
         room = self.rooms[self.currentRoom]
