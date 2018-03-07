@@ -73,6 +73,7 @@ class Stage(Scene):
         room.draw(screen)
         # Luego los Sprites
         self.spritesGroup.draw(screen)
+        self.player.melee_manager.draw(screen)
 
     # TODO nuevo
     def updateScroll(self):

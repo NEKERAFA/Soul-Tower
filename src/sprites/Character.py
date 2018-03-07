@@ -7,6 +7,7 @@ from pygame.locals import *
 from src.ResourceManager import *
 from src.controls.KeyboardMouseControl import *
 from src.sprites.MySprite import *
+from src.MeleeManager import *
 
 # -------------------------------------------------
 # -------------------------------------------------
@@ -84,6 +85,9 @@ class Character(MySprite):
 
         # Y actualizamos la postura del Sprite inicial, llamando al metodo correspondiente
         self.update_animation(0)
+
+        # TODO: provisionalmente le pasa su propio sprite en lugar del de ataque
+        self.melee_manager = MeleeManager(self.sheet, self.sheetConf);
 
     # Metodo base para realizar el movement: simplemente se le indica cual va a hacer, y lo almacena
     def move(self, movement):
@@ -183,5 +187,7 @@ class Character(MySprite):
         #  calcule la nueva posición del Sprite
         MySprite.update(self, time)
 
-        #TODO:
+        #TODO (ya implementado en otra rama):
         # Aquí comprobarías con la máscara si estás fuera del mapa y con una función mágica calculas la posición en la que deberías estar
+        
+        self.melee_manager.update(time)
