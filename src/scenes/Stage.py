@@ -39,7 +39,7 @@ class Stage(Scene):
         self.player = Player()
         self.player.change_global_position((data["player_pos"][0], data["player_pos"][1]))
     # ----------- Añadido para probar colisiones
-        self.enemy = Enemy()
+        self.enemy = Enemy('characters/sorcerer.png', 'sorcerer.json')
         self.enemy.change_global_position((data["player_pos"][0], data["player_pos"][1]))
         self.spritesGroup = pygame.sprite.Group(self.player, self.enemy)
     # -----------
@@ -58,7 +58,7 @@ class Stage(Scene):
         self.spritesGroup.update(self.rooms[self.currentRoom], time) # TODO pasar la máscara
 
         # Actualizamos el scroll
-        self.updateScroll()
+        # self.updateScroll()
 
     def events(self, events):
         # Miramos a ver si hay algun evento de salir del programa
@@ -88,84 +88,11 @@ class Stage(Scene):
             enemy_pos_y -= self.enemy.sheetConf[0][0]['coords'][3]
             offset = (int(enemy_pos_x - atk_pos_x), int(enemy_pos_y - atk_pos_y))
             collision = atk_mask.overlap(enemy_mask, offset)
-            if collision is not None:
-                # print(atk_pos_x,atk_pos_y,' - ', enemy_pos_x, enemy_pos_y)
-                # print(offset)
-        # ------
-
-    # TODO nuevo
-    def updateScroll(self):
-        self.viewport.center = self.player.rect.center
-        self.viewport.clamp_ip(self.rooms[self.currentRoom].rect)
-
-    # TODO notas:
-    """
-    self.screen = pg.display.getSurface() <- pantalla
-    self.screen_rect = self.screen.get_rect() <- rectángulo de la pantalla
-    Este rectángulo se le pasaría a Stage en el constructor (viewport):
-    self.image = imagen del mapa
-    self.mask <- en principio si la detección de colisión se hace fuera aquí nada
-    self.rect = self.image.get_rect()
-    self.player
-    self.player.rect.center = self.rect.center
-    self.viewport
-
-    En update_viewport de Stage:
-    self.viewport.center = self.player.rect.center
-    self.viewport.clamp_ip(self.rect)
-
-    En update de Stage:
-    self.player.update(self.mask, keys)
-    self.update_viewport()
-
-    En draw de Stage:
-    new_image = self.image.copy()
-    self.player.draw(new_image)
-    surface.fill([whatever])
-    surface.blit(new_image, (0,0), self.viewport)
-
-    """
-
-    # def updateScroll(self, player):
-    #     changeScroll = False
-    #     leftLimit = self.rooms[self.currentRoom].x + SCREEN_CENTER_X
-    #     rightLimit = self.rooms[self.currentRoom].x + self.rooms[self.currentRoom].width - SCREEN_CENTER_X
-    #     playerCenter = player.position[0] + player.offset[0]
-    #     lastScrollX = self.scroll[0] + self.rooms[self.currentRoom].x + SCREEN_CENTER_X
-    #
-    #     scrollX = self.scroll[0]
-    #
-    #     # Si el personaje se ha movido hacia la izquierda
-    #     if (player.movement == W) or (player.movement == NW) or (player.movement == SW):
-    #         # Si el personaje está fuera de la zona derecha en la que no se hace scroll
-    #         if lastScrollX <= rightLimit:
-    #             # Si el escenario ya está a la izquierda del todo, no lo movemos más, pero actualizamos el scroll
-    #             if lastScrollX - SCREEN_CENTER_X <= self.rooms[self.currentRoom].x:
-    #                 scrollX = (player.position[0] + player.offset[0]) - self.rooms[self.currentRoom].x - SCREEN_CENTER_X # El scroll en x se corresponde con la distancia de la coordenada x del centro del personaje al borde izquierdo de la sala
-    #
-    #             # Si se puede hacer scroll a la izquierda
-    #             else:
-    #                 scrollX = (player.position[0] + player.offset[0]) - self.rooms[self.currentRoom].x - SCREEN_CENTER_X
-    #                 changeScroll = True
-    #
-    #     # Si el personaje se ha movido hacia la derecha
-    #     if (player.movement == E) or (player.movement == NE) or (player.movement == SE):
-    #         # Si el personaje está fuera de la zona izquierda en la que no se hace scroll
-    #         if lastScrollX >= leftLimit:
-    #             scrollX = playerCenter - self.rooms[self.currentRoom].x - SCREEN_CENTER_X
-    #             # Si el escenario ya está a la derecha del todo, no lo movemos más
-    #             if lastScrollX < rightLimit:
-    #                 changeScroll = True
-    #         else:
-    #             scroll = SCREEN_CENTER_X
-    #
-    #     #scrollX =   - self.rooms[self.currentRoom].x - SCREEN_CENTER_X # Si se comenta esta línea no va :3
-    #     self.scroll = (scrollX, self.scroll[1])
-    #     # Si se cambió el scroll, se desplazan todos los Sprites y el decorado
-    #     if changeScroll:
-    #         # Actualizamos la posición en pantalla de todos los Sprites según el scroll actual
-    #         for sprite in iter(self.spritesGroup):
-    #             sprite.change_screen_position(self.scroll)
-    #
-    #         # Además, actualizamos la sala para que se muestre una parte distinta
-    #         self.rooms[self.currentRoom].update(self.scroll)
+        #     if collision is not None:
+        #         # print(atk_pos_x,atk_pos_y,' - ', enemy_pos_x, enemy_pos_y)
+        #         # print(offset)
+        # # ------
+        # # # TODO nuevo
+        # # def updateScroll(self):
+        # #     self.viewport.center = self.player.rect.center
+        # #     self.viewport.clamp_ip(self.rooms[self.currentRoom].rect)

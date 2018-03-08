@@ -43,7 +43,7 @@ class Character(MySprite):
     #  Retardo para mostrar la animacion del personaje
     #def __init__(self, archivoImagen, archivoCoordenadas, numImagenes, speed, velocidadSalto, retardoAnimacion):
     # TODO: cambiar spritesheet en UML por spriteSheet e image por imageFile y speed por playerSpeed
-    def __init__(self, imageFile, spriteSheet, playerSpeed):
+    def __init__(self, imageFile, spriteSheet, speed):
         # Primero invocamos al constructor de la clase padre
         MySprite.__init__(self)
 
@@ -80,8 +80,8 @@ class Character(MySprite):
         self.rect = pygame.Rect(100, 100, self.sheetConf[self.animationNum][self.animationFrame]['coords'][2], self.sheetConf[self.animationNum][self.animationFrame]['coords'][3])
 
         # La velocidad de caminar en x e y (no diagonal)
-        self.playerSpeed = playerSpeed
-        self.diagonalSpeed = m.sqrt((playerSpeed * playerSpeed)/2.0)
+        self.playerSpeed = speed
+        self.diagonalSpeed = m.sqrt((speed * speed)/2.0)
 
         # Y actualizamos la postura del Sprite inicial, llamando al metodo correspondiente
         self.update_animation(0)
@@ -189,5 +189,5 @@ class Character(MySprite):
 
         #TODO (ya implementado en otra rama):
         # Aquí comprobarías con la máscara si estás fuera del mapa y con una función mágica calculas la posición en la que deberías estar
-        
+
         self.melee_manager.update(time)

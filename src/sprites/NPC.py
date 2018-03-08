@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 
-import pygame, sys, os
-from pygame.locals import *
+import pygame
 from Character import *
 
 class NPC(Character):
-    def __init__(self, imageFile, spriteSheet, playerSpeed):
-        Character.__init__(self, imageFile, spriteSheet, playerSpeed)
+    def __init__(self, imageFile, spriteSheet, speed):
+        Character.__init__(self, imageFile, spriteSheet, speed)
 
-    def move_npc(self, player):
-        #nada
-        return
+    def move_ia(self, player):
+        raise NotImplementedError('Error: Abstract class')
