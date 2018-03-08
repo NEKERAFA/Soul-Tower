@@ -21,7 +21,7 @@ NE = 6
 SW = 7
 SE = 8
 
-PLAYER_SPEED = 0.25 # Pixeles por milisegundo
+PLAYER_SPEED = 0.2 # Pixeles por milisegundo
 PLAYER_ANIMATION_DELAY = 5 # updates que durará cada imagen del Character
                 # debería de ser un valor distinto para cada postura
 # -------------------------------------------------
@@ -59,3 +59,11 @@ class Player(Character):
             Character.move(self,S)
         else:
             Character.move(self,STILL)
+
+        # control de ataque
+        if self.controlManager.primButton():
+            # calcular la posición del centro del sprite (de momento calcula el centro del primer sprite)
+            center_pos = (self.position[0]+self.offset[0],self.position[1]-self.offset[1])
+            self.melee_manager.startAttack(center_pos, self.controlManager.angle(center_pos))
+        else:
+            self.melee_manager.endAttack()
