@@ -19,3 +19,20 @@ class Room(object):
         self.height = data["height"]
         self.connections = data["connections"]
         self.rect = pygame.Rect(self.position, (self.width, self.height))
+        self.small = True if "small" in data else False
+
+    # Indica si el jugador está saliendo de la sala y devuelve la conexión que representa la salida
+    def isExiting(self, player):
+        (playerX, playerY) = player.rect.center
+        exit = None
+        for connection in self.connections:
+            if (connection["direction"] == "right" and playerX > connection["x"]) or (connection["direction"] == "left" and playerX < connection["x"]):
+                if playerY < connection["top"] and playerY > connection["bottom"]:
+                    exit = connection
+                    break
+            elif (connection["direction"] == "up" and playerY < connection["y"]) or (connection["direction"] == "down" and playerY > connection["y"]):
+                if playerX < connection["right"] and playerX > connection["left"]:
+                    exit = connection
+                    break
+
+        return exit

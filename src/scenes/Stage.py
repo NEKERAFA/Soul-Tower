@@ -6,6 +6,7 @@ from src.scenes.Scene import *
 from src.scenes.screens.Room import *
 from src.sprites.Player import *
 from src.scenes.InRoomState import *
+from src.scenes.SmallRoomState import *
 
 # -------------------------------------------------
 # Clase Stage
@@ -15,6 +16,7 @@ SCREEN_CENTER_X = int(SCREEN_WIDTH / 2)
 class Stage(Scene):
 
     inRoomState = InRoomState()
+    smallRoomState = SmallRoomState()
 
     def __init__(self, stageFile, gameManager):
         # Primero invocamos al constructor de la clase padre
@@ -25,6 +27,7 @@ class Stage(Scene):
 
         image_path = os.path.join('stages', data["image"])
         self.image = ResourceManager.load_image(image_path, (255, 0, 255))
+        self.image.convert_alpha()
         mask_path = os.path.join('stages', data["mask"])
         mask_image = ResourceManager.load_image(mask_path, (-1))
         self.mask = pygame.mask.from_surface(mask_image)

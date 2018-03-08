@@ -9,30 +9,73 @@ from src.scenes.Stage import *
 # Clase OnTransitionState
 
 class OnTransitionState(State):
-    def __init__(self, connection, playerWidth):
+    def __init__(self, connection, player):
         self.connection = connection
         self.scrollX = SCREEN_WIDTH
-        self.scrollPlayerX = playerWidth
-        self.speedX = 0.5
-        self.speedPlayerX = self.speedX*3/5
+        self.scrollY = SCREEN_HEIGHT
+        self.scrollPlayerX = player.rect.width
+        self.scrollPlayerY = player.rect.height
+        self.speed = 0.5
+        self.speedPlayer = self.speed*3/5
 
     def update(self, time, stage):
-        print(self.scrollX, stage.viewport.center)
+        if self.connection["direction"] == "left" or self.connection["direction"] == "right":
+            shiftX = int(self.speed*time)
+            shiftPlayerX = int(self.speedPlayer*time)
 
-        shiftX = int(self.speedX*time)
-        shiftPlayerX = int(self.speedPlayerX*time)
+            self.scrollX -= shiftX
 
-        self.scrollX -= shiftX
-        stage.viewport = stage.viewport.move(shiftX, 0)
-        self.scrollPlayerX -= shiftPlayerX
+            # Desplazamos el viewport en función de la dirección
+            if self.connection["direction"] == "right":
+                stage.viewport = stage.viewport.move(shiftX, 0)
+            else:
+                stage.viewport = stage.viewport.move(-shiftX, 0)
 
-        if self.scrollPlayerX > 0:
-            stage.player.increment_position((shiftPlayerX, 0))
+            # Desplazamos el jugador para que quede en la entrada de la nueva sala
+            self.scrollPlayerX -= shiftPlayerX
+            if self.scrollPlayerX > 0:
+                if self.connection["direction"] == "right":
+                    stage.player.increment_position((shiftPlayerX, 0))
+                else:
+                    stage.player.increment_position((-shiftPlayerX, 0))
 
-        if self.scrollX <= 0:
-            stage.state = stage.inRoomState
-            stage.currentRoom = self.connection["to"]
-            # stage.player.change_global_position((757, 247))
+            # Si hemos terminado de desplazar el mapa, volvemos al estado InRoomState y cambiamos la sala actual
+            if self.scrollX <= 0:
+                dstRoom = self.connection["to"]
+                if stage.rooms[dstRoom].small:
+                    stage.state = stage.smallRoomState
+                else:
+                    stage.state = stage.inRoomState
+                stage.currentRoom = dstRoom
+
+        else:
+            shiftY = int(self.speed*time)
+            shiftPlayerY = int(self.speedPlayer*time)
+
+            self.scrollY -= shiftY
+
+            # Desplazamos el viewport en función de la dirección
+            if self.connection["direction"] == "down":
+                stage.viewport = stage.viewport.move(0, shiftY)
+            else:
+                stage.viewport = stage.viewport.move(0, -shiftY)
+
+            # Desplazamos el jugador para que quede en la entrada de la nueva sala
+            self.scrollPlayerY -= shiftPlayerY
+            if self.scrollPlayerY > 0:
+                if self.connection["direction"] == "down":
+                    stage.player.increment_position((0, shiftPlayerY))
+                else:
+                    stage.player.increment_position((0, -shiftPlayerY))
+
+            # Si hemos terminado de desplazar el mapa, volvemos al estado InRoomState y cambiamos la sala actual
+            if self.scrollY <= 0:
+                dstRoom = self.connection["to"]
+                if stage.rooms[dstRoom].small:
+                    stage.state = stage.smallRoomState
+                else:
+                    stage.state = stage.inRoomState
+                stage.currentRoom = dstRoom
 
     def events(self, time, stage):
         pass
@@ -45,18 +88,3 @@ class OnTransitionState(State):
         stage.spritesGroup.draw(newImage)
         # Se pinta la porción de la sala que coincide con el viewport
         screen.blit(newImage, (0,0), stage.viewport)
-
-        # room1 = stage.rooms[stage.currentRoom]
-        # room2 = stage.rooms[self.connection["to"]]
-        # room1Top = min(int(SCREEN_HEIGHT/2) - (stage.player.rect.centery - room1.position[1]), 0)
-        # room2Top = min(int(SCREEN_HEIGHT/2) - (stage.player.rect.centery - room2.position[1]), 0)
-        #
-        # screen.blit(room1.image, pygame.Rect((self.scrollX-room1.width, room1Top), (self.scrollX, SCREEN_HEIGHT)))
-        # screen.blit(room2.image, pygame.Rect((self.scrollX, room2Top), (SCREEN_WIDTH-self.scrollX, SCREEN_HEIGHT)))
-
-        # Luego los Sprites sobre una copia del mapa de la sala
-        #newRoom = room.image.copy()
-        #stage.spritesGroup.draw(newRoom)
-
-        # Se pinta la porción de la sala que coincide con el viewport
-        #screen.blit(newRoom, (0,0), stage.viewport)
