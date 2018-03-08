@@ -29,7 +29,7 @@ PLAYER_ANIMATION_DELAY = 5 # updates que durará cada imagen del Character
 class Player(Character):
     def __init__(self):
         # Invocamos al constructor de la clase padre con la configuracion de este Character concreto
-        Character.__init__(self, 'characters/mage.png', 'mage.json', PLAYER_SPEED)
+        Character.__init__(self, 'characters/raven.png', 'raven.json', PLAYER_SPEED)
         self.controlManager = KeyboardMouseControl()
         # para obtener el width y height de la animación en reposo
         width = self.sheetConf[0][0]['coords'][2]
