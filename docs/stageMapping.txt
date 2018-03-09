@@ -1,0 +1,19 @@
+----- Instrucciones para hacer los mapas de las fases -----
+
+Cada fase se compone de varias salas, pero sólo hay un archivo de mapa. Dicho archivo se creará con el programa Tiled usando los tilesets que se encuentran en assets/rooms/tilesets_mapfiles. El archivo generado por el programa también se guardará en esta carpeta, ya que el programa necesita que el archivo y el tileset estén en el mismo directorio.
+La imagen del mapa, que será lo que finalmente se use, se guardará en assets/images/stages/stage_[número].png. Al exportar como imagen desde Tiled, aseguraos de que la opción de "usar el nivel actual de aumento" está DESMARCADA.
+
+Salas con indicaciones específicas:
+    -Para salas pequeñas (que caben en la pantalla), asegurarse de que sus límites estén "dentro" de la sala vecina y seguir instrucciones detalladas en roomConfig.txt. En el archivo images/stages/stage_0.png puede verse un ejemplo de cómo NO hacer una sala pequeña en lo que a los bordes se refiere.
+    -Para salas que no caben en una pantalla, pero que al entrar en ellas se vería el fondo en parte: No es recomendable hacerlas, pero bien montadas no hacen daño. No obstante, deben configurarse como se describe en roomConfig.txt, sección "Cómo engañar al scroll", para evitar que el scroll pegue un salto al entrar en ellas.
+
+Máscara de colisión de la fase:
+Cada imagen de fase debe ir acompañada de una máscara de colisión de la sala, guardada en assets/images/stages/stage_[número]_mask.png. Se trata de una imagen binaria donde el blanco indica por dónde se puede pasar y el negro por dónde no.
+Para hacerla:
+    -Abrir la imagen del mapa con GIMP.
+    -Crear una nueva capa.
+    -Pintar en blanco las zonas por las que se puede pasar y en negro lo demás. La herramienta de selección rectangular + rellenar lo hará más fácil.
+    -Exportar la imagen. CUIDADO NO VAYÁIS A SOBREESCRIBIR EL MAPA.
+
+Notas:
+    -Las paredes superiores deberían tener una porción blanca para que el personaje pueda estar cerca de la pared, concretamente TODO píxeles blancos.

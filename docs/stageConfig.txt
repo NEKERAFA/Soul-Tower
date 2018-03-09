@@ -1,0 +1,5 @@
+----- Instrucciones los archivos de configuración de las fases -----
+Cada fase debe contar con un archivo de configuración, assets/stages/stage_[número].json. Dicho archivo debe contar con los siguientes campos:
+    -"player_pos": [x,y]. Posición GLOBAL en la que empieza el jugador, referida a su esquina inferior izquierda.
+    -"path": Nombre de la carpeta en la que se encuentran los archivos de configuración de las salas que componen la fase.
+    -"number": Número de la fase, usado para localizar la imagen de mapa y de máscara de la fase. 
