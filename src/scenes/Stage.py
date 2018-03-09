@@ -36,11 +36,14 @@ class Stage(Scene):
         self.currentRoom = 0
 
         # Cargamos el sprite del jugador
-        self.player = Player()
+        self.enemies = []
+
+        self.player = Player(self.enemies)
         self.player.change_global_position((data["player_pos"][0], data["player_pos"][1]))
     # ----------- Añadido para probar colisiones
         self.enemy = Enemy('characters/sorcerer.png', 'sorcerer.json')
-        self.enemy.change_global_position((data["player_pos"][0], data["player_pos"][1]))
+        self.enemy.change_global_position((data["player_pos"][0]+100, data["player_pos"][1]+100))
+        self.enemies.append(self.enemy)
         self.spritesGroup = pygame.sprite.Group(self.player, self.enemy)
     # -----------
 
@@ -53,12 +56,21 @@ class Stage(Scene):
         self.viewport.center = self.player.rect.center
         self.viewport.clamp_ip(self.rooms[self.currentRoom].rect)
 
+        # TODO DEBUG: BORRAR CUANDO HAGA FALTA
+        self.font = pygame.font.Font(None, 16)
+        self.posMelee = self.font.render("x: " + str(int(self.player.meleeAttack.position[0])) + ", y: " + str(int(self.player.meleeAttack.position[1])), True, (0, 0, 0))
+        # TODO DEBUG: BORRAR CUANDO HAGA FALTA
+
     def update(self, time):
         # Actualizamos los sprites
-        self.spritesGroup.update(self.rooms[self.currentRoom], time) # TODO pasar la máscara
+        self.spritesGroup.update(self.rooms[self.currentRoom], time) # TODO pasar la mástmp = self.sheetConf[row]cara
 
         # Actualizamos el scroll
         # self.updateScroll()
+
+        # TODO DEBUG: BORRAR CUANDO HAGA FALTA
+        self.posMelee = self.font.render("x: " + str(int(self.player.meleeAttack.position[0])) + ", y: " + str(int(self.player.meleeAttack.position[1])), True, (0, 0, 0))
+        # TODO DEBUG: BORRAR CUANDO HAGA FALTA
 
     def events(self, events):
         # Miramos a ver si hay algun evento de salir del programa
@@ -78,21 +90,28 @@ class Stage(Scene):
         room.draw(screen)
         # Luego los Sprites
         self.spritesGroup.draw(screen)
-        self.player.melee_manager.draw(screen)
-        # ------ Colisiones melee
-        if (self.player.melee_manager.animating):
-            atk_mask = pygame.mask.from_surface(self.player.melee_manager.image)
-            enemy_mask = pygame.mask.from_surface(self.enemy.image)
-            (atk_pos_x, atk_pos_y) = self.player.melee_manager.position
-            (enemy_pos_x, enemy_pos_y) = self.enemy.position
-            enemy_pos_y -= self.enemy.sheetConf[0][0]['coords'][3]
-            offset = (int(enemy_pos_x - atk_pos_x), int(enemy_pos_y - atk_pos_y))
-            collision = atk_mask.overlap(enemy_mask, offset)
-        #     if collision is not None:
-        #         # print(atk_pos_x,atk_pos_y,' - ', enemy_pos_x, enemy_pos_y)
-        #         # print(offset)
-        # # ------
-        # # # TODO nuevo
-        # # def updateScroll(self):
-        # #     self.viewport.center = self.player.rect.center
-        # #     self.viewport.clamp_ip(self.rooms[self.currentRoom].rect)
+        self.player.meleeAttack.draw(screen)
+
+        # TODO DEBUG: BORRAR CUANDO HAGA FALTA
+        screen.blit(self.posMelee, (0, 0))
+        # TODO DEBUG: BORRAR CUANDO HAGA FALTA
+
+        # TODO
+        # self.player.melee_manager.draw(screen)
+        # # ------ Colisiones melee
+        # if (self.player.melee_manager.animating):
+        #     atk_mask = pygame.mask.from_surface(self.player.melee_manager.image)
+        #     enemy_mask = pygame.mask.from_surface(self.enemy.image)
+        #     (atk_pos_x, atk_pos_y) = self.player.melee_manager.position
+        #     (enemy_pos_x, enemy_pos_y) = self.enemy.position
+        #     enemy_pos_y -= self.enemy.sheetConf[0][0]['coords'][3]
+        #     offset = (int(enemy_pos_x - atk_pos_x), int(enemy_pos_y - atk_pos_y))
+        #     collision = atk_mask.overlap(enemy_mask, offset)
+        # #     if collision is not None:
+        # #         # print(atk_pos_x,atk_pos_y,' - ', enemy_pos_x, enemy_pos_y)
+        # #         # print(offset)
+        # # # ------
+        # # # # TODO nuevo
+        # # # def updateScroll(self):
+        # # #     self.viewport.center = self.player.rect.center
+        # # #     self.viewport.clamp_ip(self.rooms[self.currentRoom].rect)

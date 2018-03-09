@@ -3,6 +3,8 @@
 import pygame, sys, os
 from pygame.locals import *
 from src.sprites.Character import *
+from src.sprites.MeleeAttack import *
+from src.controls.KeyboardMouseControl import *
 
 # -------------------------------------------------
 # -------------------------------------------------
@@ -15,15 +17,16 @@ PLAYER_SPEED = 0.2 # Pixeles por milisegundo
 # -------------------------------------------------
 # Clase del Character jugable
 class Player(Character):
-    def __init__(self):
+    def __init__(self, enemies):
         # Invocamos al constructor de la clase padre con la configuracion de este Character concreto
-        Character.__init__(self, 'characters/bee_1.png', 'bee.json', PLAYER_SPEED)
+        Character.__init__(self, 'characters/slime.png', 'slime.json', PLAYER_SPEED)
         self.controlManager = KeyboardMouseControl()
         # para obtener el width y height de la animación en reposo
         width = self.sheetConf[0][0]['coords'][2]
         height = self.sheetConf[0][0]['coords'][3]
         # con ello calcular el offset al centro de la imagen
         self.offset = (int(width/2),int(height/2))
+        self.meleeAttack = MeleeAttack('characters/sorcerer.png', 'attack.json', 30, 250, enemies)
 
     def move(self):
         # Indicamos la acción a realizar segun la tecla pulsada para el jugador
@@ -51,7 +54,13 @@ class Player(Character):
         # control de ataque
         if self.controlManager.primButton():
             # calcular la posición del centro del sprite (de momento calcula el centro del primer sprite)
-            center_pos = (self.position[0]+self.offset[0],self.position[1]-self.offset[1])
-            self.melee_manager.startAttack(center_pos, self.controlManager.angle(center_pos))
+            #center_pos = (self.position[0]+self.offset[0],self.position[1]-self.offset[1])
+            center_pos = self.rect.center
+            # print(center_pos)
+            self.meleeAttack.startAttack(center_pos, self.controlManager.angle(center_pos))
         else:
-            self.melee_manager.endAttack()
+            self.meleeAttack.endAttack()
+
+    def update(self, mapMask, time):
+        Character.update(self, mapMask, time)
+        self.meleeAttack.update(time)

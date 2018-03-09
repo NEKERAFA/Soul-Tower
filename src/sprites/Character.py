@@ -5,9 +5,7 @@ import math as m
 
 from pygame.locals import *
 from src.ResourceManager import *
-from src.controls.KeyboardMouseControl import *
 from src.sprites.MySprite import *
-from src.MeleeManager import *
 
 # -------------------------------------------------
 # -------------------------------------------------
@@ -73,9 +71,6 @@ class Character(MySprite):
         self.animationNum = SPRITE_STILL
         self.animationFrame = 0
 
-        # Retraso actual entre animaciones. (Se va reiniciando cuando llega a animationDelay)
-        self.currentDelay = 0
-
         # El rectangulo del Sprite
         self.rect = pygame.Rect(100, 100, self.sheetConf[self.animationNum][self.animationFrame]['coords'][2], self.sheetConf[self.animationNum][self.animationFrame]['coords'][3])
 
@@ -83,11 +78,16 @@ class Character(MySprite):
         self.playerSpeed = speed
         self.diagonalSpeed = m.sqrt((speed * speed)/2.0)
 
-        # Y actualizamos la postura del Sprite inicial, llamando al metodo correspondiente
-        self.update_animation(0)
+        # Frame inicial
+        self.image = self.sheet.subsurface(self.sheetConf[self.animationNum][self.animationFrame]['coords'])
+
+        self.currentDelay = 0
+
+        # Máscara de la animación
+        self.mask = pygame.mask.from_surface(self.image)
 
         # TODO: provisionalmente le pasa su propio sprite en lugar del de ataque
-        self.melee_manager = MeleeManager(self.sheet, self.sheetConf);
+        # self.melee_manager = MeleeManager(self.sheet, self.sheetConf);
 
     # Metodo base para realizar el movement: simplemente se le indica cual va a hacer, y lo almacena
     def move(self, movement):
@@ -115,6 +115,9 @@ class Character(MySprite):
             # Si mira a la E, invertimos esa imagen
             if self.looking == E:
                 self.image = pygame.transform.flip(self.image, 1, 0)
+
+            # Máscara de la animación
+            self.mask = pygame.mask.from_surface(self.image)
 
     #TODO: cambiar mask de UML a mapMask
     def update(self, mapMask, time):
@@ -189,5 +192,3 @@ class Character(MySprite):
 
         #TODO (ya implementado en otra rama):
         # Aquí comprobarías con la máscara si estás fuera del mapa y con una función mágica calculas la posición en la que deberías estar
-
-        self.melee_manager.update(time)
