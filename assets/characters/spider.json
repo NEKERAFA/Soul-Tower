@@ -1,0 +1,32 @@
+[
+    [
+        {
+            "top": 1198,
+            "left": 1716,
+            "width": 148,
+            "height": 130,
+            "delay": 0.1
+        },
+        {
+            "top": 1347,
+            "left": 1716,
+            "width": 148,
+            "height": 130,
+            "delay": 0.1
+        },
+        {
+            "top": 1496,
+            "left": 1716,
+            "width": 148,
+            "height": 130,
+            "delay": 0.1
+        },
+        {
+            "top": 1645,
+            "left": 1716,
+            "width": 148,
+            "height": 130,
+            "delay": 0.1
+        }
+    ]
+]
