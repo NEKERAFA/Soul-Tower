@@ -7,6 +7,7 @@ from src.scenes.screens.Room import *
 from src.sprites.Player import *
 from src.scenes.InRoomState import *
 from src.scenes.SmallRoomState import *
+from src.sprites.Enemy import *
 
 # -------------------------------------------------
 # Clase Stage
@@ -42,9 +43,16 @@ class Stage(Scene):
         self.currentRoom = 0
 
         # Cargamos el sprite del jugador
-        self.player = Player()
+        self.enemies = []
+
+        self.player = Player(self.enemies)
         self.player.change_global_position((data["player_pos"][0], data["player_pos"][1]))
-        self.spritesGroup = pygame.sprite.Group(self.player)
+    # ----------- Añadido para probar colisiones
+        self.enemy = Enemy('characters/sorcerer.png', 'sorcerer.json')
+        self.enemy.change_global_position((data["player_pos"][0]+100, data["player_pos"][1]+100))
+        self.enemies.append(self.enemy)
+        self.spritesGroup = pygame.sprite.Group(self.player, self.enemy)
+    # -----------
 
         # Inicializamos el viewport, que es un rectángulo del tamaño de la pantalla
         # que indicará qué porción de la sala se debe mostrar
@@ -84,6 +92,7 @@ class Stage(Scene):
     def draw(self, screen):
         # Delegamos en el estado el dibujado de la fase
         self.state.draw(screen, self)
+        self.player.meleeAttack.draw(screen)
 
         # TODO DEBUG: BORRAR CUANDO HAGA FALTA
         screen.blit(self.posPlayer, (0, 0))

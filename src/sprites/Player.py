@@ -3,6 +3,8 @@
 import pygame, sys, os
 from pygame.locals import *
 from src.sprites.Character import *
+from src.sprites.MeleeAttack import *
+from src.controls.KeyboardMouseControl import *
 
 # -------------------------------------------------
 # -------------------------------------------------
@@ -10,32 +12,18 @@ from src.sprites.Character import *
 # -------------------------------------------------
 # -------------------------------------------------
 
-# movimientos
-STILL = 0
-W = 1
-E = 2
-N = 3
-S = 4
-NW = 5
-NE = 6
-SW = 7
-SE = 8
+PLAYER_SPEED = 0.2 # Pixeles por milisegundo
 
-PLAYER_SPEED = 0.25 # Pixeles por milisegundo
-PLAYER_ANIMATION_DELAY = 5 # updates que durará cada imagen del Character
-                # debería de ser un valor distinto para cada postura
 # -------------------------------------------------
 # Clase del Character jugable
 class Player(Character):
-    def __init__(self):
+    def __init__(self, enemies):
         # Invocamos al constructor de la clase padre con la configuracion de este Character concreto
-        Character.__init__(self, 'Jugador.png', 'coordJugador.txt', [6, 12, 6], PLAYER_SPEED, PLAYER_ANIMATION_DELAY);
+        Character.__init__(self, 'characters/slime.png', 'slime.json', PLAYER_SPEED)
         self.controlManager = KeyboardMouseControl()
-        # para obtener el width y height de la animación en reposo
-        self.width = self.sheetCoords[0][0][2]
-        self.height = self.sheetCoords[0][0][3]
         # con ello calcular el offset al centro de la imagen
-        self.offset = (int(self.width/2),int(self.height/2))
+        self.offset = (int(self.width/2), int(self.height/2))
+        self.meleeAttack = MeleeAttack('characters/sorcerer.png', 'attack.json', 30, 250, enemies)
 
     def move(self):
         # Indicamos la acción a realizar segun la tecla pulsada para el jugador
@@ -59,3 +47,17 @@ class Player(Character):
             Character.move(self,S)
         else:
             Character.move(self,STILL)
+
+        # control de ataque
+        if self.controlManager.primButton():
+            # calcular la posición del centro del sprite (de momento calcula el centro del primer sprite)
+            #center_pos = (self.position[0]+self.offset[0],self.position[1]-self.offset[1])
+            center_pos = self.rect.center
+            # print(center_pos)
+            self.meleeAttack.startAttack(center_pos, self.controlManager.angle(center_pos))
+        else:
+            self.meleeAttack.endAttack()
+
+    def update(self, mapMask, time):
+        Character.update(self, mapMask, time)
+        self.meleeAttack.update(time)

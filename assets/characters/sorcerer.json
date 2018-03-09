@@ -1,0 +1,111 @@
+[
+    [
+        {
+            "left" : 0,
+            "top" : 0,
+            "width" : 28,
+            "height" : 32,
+            "delay" : 0.1
+        },
+        {
+            "left" : 96,
+            "top" : 64,
+            "width" : 28,
+            "height" : 32,
+            "delay" : 5
+        }
+    ],
+
+    [
+        {
+            "left" : 0,
+            "top" : 32,
+            "width" : 28,
+            "height" : 32,
+            "delay" : 0.1
+        },
+        {
+            "left" : 33,
+            "top" : 32,
+            "width" : 28,
+            "height" : 32,
+            "delay" : 0.1
+        },
+        {
+            "left" : 0,
+            "top" : 32,
+            "width" : 28,
+            "height" : 32,
+            "delay" : 0.1
+        },
+        {
+            "left" : 63,
+            "top" : 32,
+            "width" : 28,
+            "height" : 32,
+            "delay" : 0.1
+        }
+    ],
+
+    [
+        {
+            "left" : 0,
+            "top" : 0,
+            "width" : 28,
+            "height" : 32,
+            "delay" : 0.1
+        },
+        {
+            "left" : 33,
+            "top" : 0,
+            "width" : 28,
+            "height" : 32,
+            "delay" : 0.1
+        },
+        {
+            "left" : 0,
+            "top" : 0,
+            "width" : 28,
+            "height" : 32,
+            "delay" : 0.1
+        },
+        {
+            "left" : 63,
+            "top" : 0,
+            "width" : 28,
+            "height" : 32,
+            "delay" : 0.1
+        }
+    ],
+
+    [
+        {
+            "left" : 0,
+            "top" : 64,
+            "width" : 28,
+            "height" : 32,
+            "delay" : 0.1
+        },
+        {
+            "left" : 33,
+            "top" : 64,
+            "width" : 28,
+            "height" : 32,
+            "delay" : 0.1
+        },
+        {
+            "left" : 0,
+            "top" : 64,
+            "width" : 28,
+            "height" : 32,
+            "delay" : 0.1
+        },
+        {
+            "left" : 63,
+            "top" : 64,
+            "width" : 28,
+            "height" : 32,
+            "delay" : 0.1
+        }
+    ]
+]

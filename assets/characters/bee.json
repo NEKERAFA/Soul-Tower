@@ -1,0 +1,97 @@
+[
+    [
+        {
+            "left" : 0,
+            "top" : 32,
+            "width" : 32,
+            "height" : 32,
+            "delay" : 0.1
+        },
+        {
+            "left" : 32,
+            "top" : 32,
+            "width" : 32,
+            "height" : 32,
+            "delay" : 0.1
+        },
+        {
+            "left" : 64,
+            "top" : 32,
+            "width" : 32,
+            "height" : 32,
+            "delay" : 0.1
+        }
+    ],
+
+    [
+        {
+            "left" : 0,
+            "top" : 96,
+            "width" : 32,
+            "height" : 32,
+            "delay" : 0.1
+        },
+        {
+            "left" : 32,
+            "top" : 96,
+            "width" : 32,
+            "height" : 32,
+            "delay" : 0.1
+        },
+        {
+            "left" : 64,
+            "top" : 96,
+            "width" : 32,
+            "height" : 32,
+            "delay" : 0.1
+        }
+    ],
+
+    [
+        {
+            "left" : 0,
+            "top" : 32,
+            "width" : 32,
+            "height" : 32,
+            "delay" : 0.1
+        },
+        {
+            "left" : 32,
+            "top" : 32,
+            "width" : 32,
+            "height" : 32,
+            "delay" : 0.1
+        },
+        {
+            "left" : 64,
+            "top" : 32,
+            "width" : 32,
+            "height" : 32,
+            "delay" : 0.1
+        }
+    ],
+
+    [
+        {
+            "left" : 0,
+            "top" : 64,
+            "width" : 32,
+            "height" : 32,
+            "delay" : 0.1
+        },
+        {
+            "left" : 32,
+            "top" : 64,
+            "width" : 32,
+            "height" : 32,
+            "delay" : 0.1
+        },
+        {
+            "left" : 64,
+            "top" : 64,
+            "width" : 32,
+            "height" : 32,
+            "delay" : 0.1
+        }
+    ]
+]
