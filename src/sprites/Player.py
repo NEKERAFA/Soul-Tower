@@ -22,7 +22,7 @@ class Player(Character):
         Character.__init__(self, 'characters/spider.png', 'spider.json', PLAYER_SPEED)
         self.controlManager = KeyboardMouseControl()
         # con ello calcular el offset al centro de la imagen
-        self.offset = (int(self.width/2), int(self.height/2))
+        # self.offset = (int(self.width/2), int(self.height/2))
         self.meleeAttack = MeleeAttack('characters/sorcerer.png', 'attack.json', 30, 250, enemies)
 
     def move(self):

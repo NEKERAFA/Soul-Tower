@@ -16,7 +16,7 @@ class MeleeAttack(Attack):
 
     def startAttack(self, characterPos, rotation):
         self.attacking = True
-        self.position = Attack.calcRotPos(rotation, self.radius, self.width, self.height, characterPos)
+        self.position = Attack.calcRotPos(rotation, self.radius, self.rect.width, self.rect.height, characterPos)
         self.rect.left = self.position[0]
         self.rect.top = self.position[1]
         self.image = pygame.transform.rotate(self.origImage, rotation)

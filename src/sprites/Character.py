@@ -73,12 +73,12 @@ class Character(MySprite):
         self.animationNum = SPRITE_STILL
         self.animationFrame = 0
 
-        # Para obtener el width y height de la animación en reposo
-        self.width = self.sheetConf[0][0]['coords'][2]
-        self.height = self.sheetConf[0][0]['coords'][3]
+        # # Para obtener el width y height de la animación en reposo
+        # self.width = self.sheetConf[0][0]['coords'][2]
+        # self.height = self.sheetConf[0][0]['coords'][3]
 
         # El rectangulo del Sprite
-        self.rect = pygame.Rect(100, 100, self.width, self.height)
+        self.rect = pygame.Rect(100, 100, self.sheetConf[0][0]['coords'][2], self.sheetConf[0][0]['coords'][3])
 
         # La velocidad de caminar en x e y (no diagonal)
         self.playerSpeed = speed
@@ -87,7 +87,7 @@ class Character(MySprite):
         # Frame inicial
         self.image = self.sheet.subsurface(self.sheetConf[0][0]['coords'])
 
-        # Delay actual
+        # Delay actual100
         self.currentDelay = self.sheetConf[0][0]['delay']
 
         # Máscara de la animación
@@ -202,7 +202,7 @@ class Character(MySprite):
         playerMask = pygame.mask.from_surface(self.image)
         x, y = self.position
         x = int(x)
-        y = int(y - self.height)
+        y = int(y - self.rect.height)
         dx = mapMask.overlap_area(playerMask,(x+1,y)) - mapMask.overlap_area(playerMask,(x-1,y))
         dy = mapMask.overlap_area(playerMask,(x,y+1)) - mapMask.overlap_area(playerMask,(x,y-1))
 
@@ -210,12 +210,12 @@ class Character(MySprite):
             self.increment_position(((1 if dx>0 else -1), 0))
             x,y = self.position
             x = int(x)
-            y = int(y - self.height)
+            y = int(y - self.rect.height)
             dx = mapMask.overlap_area(playerMask,(x+1,y)) - mapMask.overlap_area(playerMask,(x-1,y))
 
         while(dy):
             self.increment_position((0,(1 if dy>0 else -1)))
             x,y = self.position
             x = int(x)
-            y = int(y - self.height)
+            y = int(y - self.rect.height)
             dy = mapMask.overlap_area(playerMask,(x,y+1)) - mapMask.overlap_area(playerMask,(x,y-1))

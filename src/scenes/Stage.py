@@ -47,6 +47,7 @@ class Stage(Scene):
 
         self.player = Player(self.enemies)
         self.player.change_global_position((data["player_pos"][0], data["player_pos"][1]))
+
     # ----------- Añadido para probar colisiones
         self.enemy = Enemy('characters/sorcerer.png', 'sorcerer.json')
         self.enemy.change_global_position((data["player_pos"][0]+100, data["player_pos"][1]+100))

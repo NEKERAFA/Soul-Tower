@@ -56,10 +56,7 @@ class Attack(MySprite):
 
         self.drawAnimation = True
 
-        self.width = self.sheetConf[self.animationFrame]['coords'][2]
-        self.height = self.sheetConf[self.animationFrame]['coords'][3]
-        self.rect = pygame.Rect(0, 0, self.width, self.height)
-        self.rotation = 0
+        self.rect = pygame.Rect(0, 0, self.sheetConf[0]['coords'][2], self.sheetConf[0]['coords'][3])
 
         # Frame inicial
         self.origImage = self.sheet.subsurface(self.sheetConf[0]['coords'])
@@ -89,6 +86,10 @@ class Attack(MySprite):
 
                 # Actualiamos la imagen con el frame correspondiente
                 self.origImage = self.sheet.subsurface(self.sheetConf[self.animationFrame]['coords'])
+
+                self.rect.width = self.origImage.get_width()
+                self.rect.height = self.origImage.get_height()
+
                 self.mask = pygame.mask.from_surface(self.origImage)
 
     def update(self, time):
