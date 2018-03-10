@@ -21,14 +21,16 @@ class GUIScreen(object):
             if event.type == MOUSEBUTTONDOWN:
                 self.elementClick = None
                 for element in self.GUIElements:
-                    if element.positionIsInElement(event.pos):
+                    if element.position_is_in_element(event.pos):
                         self.elementClick = element
             if event.type == MOUSEBUTTONUP:
                 for element in self.GUIElements:
-                    if element.positionIsInElement(event.pos):
+                    if element.position_is_in_element(event.pos):
                         if (element == self.elementClick):
                             element.action()
+
     def update(self, time):
+        #Actualizar los elementos de la interfaz
         for element in self.GUIElements:
             element.update(time)
 

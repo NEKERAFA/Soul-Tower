@@ -16,7 +16,7 @@ class GUIElement(object):
         self.rect.bottom = positionY
 
     #Devuelve si la posición pasada como argumento (generalmente la del ratón) está encima del elemento o no
-    def positionIsInElement(self, position):
+    def position_is_in_element(self, position):
         (positionX, positionY) = position
         if (positionX>=self.rect.left) and (positionX<=self.rect.right) and (positionY>=self.rect.top) and (positionY<=self.rect.bottom):
             return True

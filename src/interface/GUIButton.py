@@ -2,19 +2,16 @@
 
 import pygame
 from src.ResourceManager import *
-from src.interface.GUIElement import *
+from src.interface.GUIImage import *
 
 # -------------------------------------------------
 # Clase GUIButton
 
-class GUIButton(GUIElement):
+class GUIButton(GUIImage):
     def __init__(self, gui_screen, name, position, scale):
-        #cargar imagen
-        self.image = ResourceManager.load_image(name, -1)
-        #cambiar escala
-        self.image = pygame.transform.scale(self.image, scale)
+        
         # Se llama al método de la clase padre con el rectángulo que ocupa el botón
-        GUIElement.__init__(self, gui_screen, self.image.get_rect())
+        GUIImage.__init__(self, gui_screen, name, position, scale)
         # Se coloca el rectangulo en su posicion
         self.set_position(position)
 

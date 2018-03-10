@@ -69,6 +69,7 @@ class Stage(Scene):
 
         # Delegamos en el estado la acción a realizar para el Jugador
         self.state.events(events, self)
+        self.gui.events(events)
 
     def draw(self, screen):
         # Delegamos en el estado el dibujado de la fase
