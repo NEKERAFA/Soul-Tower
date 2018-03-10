@@ -117,6 +117,8 @@ class Character(MySprite):
 
             # Actualiamos la imagen con el frame correspondiente
             self.image = self.sheet.subsurface(currentAnim[self.animationFrame]['coords'])
+            self.rect.width = self.image.get_width()
+            self.rect.height = self.image.get_height()
 
             # Si mira a la E, invertimos esa imagen
             if self.looking == E:
