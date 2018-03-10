@@ -62,16 +62,18 @@ class Character(MySprite):
             tmp = self.sheetConf[row]
             for col in range(0, len(data[row])):
                 cell = data[row][col]
-                #print(cell)
+                # Creamos las coordenadas
                 coords = pygame.Rect((int(cell['left']), int(cell['top'])), (int(cell['width']), int(cell['height'])))
+                # Cargamos el delay y lo convertimos en milisegundos
                 delay = float(cell['delay'])*1000
+                # Guardamos la configuración
                 tmp.append({'coords': coords, 'delay': delay})
 
         # Animación inicial
         self.animationNum = SPRITE_STILL
         self.animationFrame = 0
 
-        # para obtener el width y height de la animación en reposo
+        # Para obtener el width y height de la animación en reposo
         self.width = self.sheetConf[0][0]['coords'][2]
         self.height = self.sheetConf[0][0]['coords'][3]
 
@@ -83,17 +85,16 @@ class Character(MySprite):
         self.diagonalSpeed = m.sqrt((speed * speed)/2.0)
 
         # Frame inicial
-        self.image = self.sheet.subsurface(self.sheetConf[self.animationNum][self.animationFrame]['coords'])
+        self.image = self.sheet.subsurface(self.sheetConf[0][0]['coords'])
 
-        self.currentDelay = 0
+        # Delay actual
+        self.currentDelay = self.sheetConf[0][0]['delay']
 
         # Máscara de la animación
         self.mask = pygame.mask.from_surface(self.image)
 
-        # TODO: provisionalmente le pasa su propio sprite en lugar del de ataque
-        # self.melee_manager = MeleeManager(self.sheet, self.sheetConf);
-
-    # Metodo base para realizar el movement: simplemente se le indica cual va a hacer, y lo almacena
+    # Metodo base para realizar el movement: simplemente se le indica cual va
+    # a hacer, y lo almacena
     def move(self, movement):
         self.movement = movement
 
@@ -104,14 +105,15 @@ class Character(MySprite):
 
         # Miramos si ha pasado el retardo para dibujar una nueva postura
         if self.currentDelay < 0:
-            # Actualizamos el delay
-            self.currentDelay = currentAnim[self.animationFrame]['delay']
             # Actualizamos la postura
             self.animationFrame += 1
 
             # Reiniciamos la animación si nos hemos pasado de frames
             if self.animationFrame >= len(currentAnim):
                 self.animationFrame = 0
+
+            # Actualizamos el delay
+            self.currentDelay = currentAnim[self.animationFrame]['delay']
 
             # Actualiamos la imagen con el frame correspondiente
             self.image = self.sheet.subsurface(currentAnim[self.animationFrame]['coords'])
