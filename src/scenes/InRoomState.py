@@ -35,4 +35,4 @@ class InRoomState(State):
         screen.blit(newImage, (0,0), stage.viewport)
 
     def events(self, events, stage):
-        stage.player.move()
+        stage.player.move(stage.viewport)

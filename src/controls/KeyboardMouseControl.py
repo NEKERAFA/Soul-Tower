@@ -19,22 +19,22 @@ class KeyboardMouseControl(ControlManager):
     def right(self):
         return pygame.key.get_pressed()[self.rightButton]
     def angle(self, pos):
-        (player_x, player_y) = pos
-        (mouse_x, mouse_y) = pygame.mouse.get_pos()
+        (playerX, playerY) = pos
+        (mouseX, mouseY) = pygame.mouse.get_pos()
         # Escalado
-        mouse_x /= 2
-        mouse_y /= 2
-        ang = m.degrees(m.atan2(player_y - mouse_y, mouse_x - player_x))
+        mouseX /= 2
+        mouseY /= 2
+        ang = m.degrees(m.atan2(playerY - mouseY, mouseX - playerX))
         return ang
 
-    def primButton(self):
+    def prim_button(self):
         return pygame.mouse.get_pressed()[0]
 
-    def setKeyUp(self, newKey):
+    def set_key_up(self, newKey):
         self.upButton = newKey
-    def setKeyDown(self, newKey):
+    def set_key_down(self, newKey):
         self.upDown = newKey
-    def setKeyLeft(self, newKey):
+    def set_key_left(self, newKey):
         self.upLeft = newKey
-    def setKeyRight(self, newKey):
+    def set_key_right(self, newKey):
         self.upRight = newKey

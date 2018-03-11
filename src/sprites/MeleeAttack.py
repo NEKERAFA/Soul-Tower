@@ -14,19 +14,17 @@ class MeleeAttack(Attack):
         self.radius = radius
         self.attacking = False
 
-    def startAttack(self, characterPos, rotation):
+    def start_attack(self, characterPos, rotation):
         self.attacking = True
-        self.position = Attack.calcRotPos(rotation, self.radius, self.rect.width, self.rect.height, characterPos)
+        self.position = Attack.calc_rot_pos(rotation, self.radius, self.rect.width, self.rect.height, characterPos)
         self.rect.left = self.position[0]
         self.rect.top = self.position[1]
         self.image = pygame.transform.rotate(self.origImage, rotation)
 
-    def endAttack(self):
+    def end_attack(self):
         self.attacking = False
 
     def update(self, time):
-        #print(self.elapsedTime, self.delayTime, self.attacking, self.drawAnimation)
-
         # Si ha pasado el tiempo suficiente y estamos intentando atacar
         if (self.elapsedTime > self.delayTime) and self.attacking:
             self.drawAnimation = True
