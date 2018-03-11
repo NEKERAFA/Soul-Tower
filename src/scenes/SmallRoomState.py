@@ -7,7 +7,7 @@ class SmallRoomState(State):
 
     def update(self, time, stage):
         # Actualizamos los sprites
-        stage.spritesGroup.update(stage.mask, time)
+        stage.spritesGroup.update(stage.rooms[stage.currentRoom].rect, stage.mask, time)
 
         (playerX, playerY) = stage.player.rect.center
 

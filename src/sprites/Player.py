@@ -56,12 +56,12 @@ class Player(Character):
             centerPosX -= viewport.left
             centerPosY -= viewport.top
             centerPos = centerPosX,centerPosY
-            print(centerPos)
+            # print(centerPos)
             # print(center_pos)
             self.meleeAttack.start_attack(centerPos, self.controlManager.angle(centerPos))
         else:
             self.meleeAttack.end_attack()
 
-    def update(self, mapMask, time):
-        Character.update(self, mapMask, time)
+    def update(self, mapRect, mapMask, time):
+        Character.update(self, mapRect, mapMask, time)
         self.meleeAttack.update(time)
