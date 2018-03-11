@@ -33,37 +33,42 @@ SPRITE_WALKING = 3
 # -------------------------------------------------
 # Sprites de personajes
 class Character(MySprite):
-    # Parámetros pasados al constructor de esta clase:
-    #  Archivo con la sheet de Sprites
-    #  Archivo con las coordenadoas dentro de la sheet
-    #  Numero de imagenes en cada postura
-    #  Velocidad de caminar en los ejes x e y (no diagonal)
-    #  Retardo para mostrar la animacion del personaje
-    #def __init__(self, archivoImagen, archivoCoordenadas, numImagenes, speed, velocidadSalto, retardoAnimacion):
-    # TODO: cambiar spritesheet en UML por spriteSheet e image por imageFile y speed por playerSpeed
-    def __init__(self, imageFile, spriteSheet, speed):
+
+    '''
+        Parámetros pasados al constructor de esta clase:
+            * Nombre del sprite
+            * Velocidad de caminar en los ejes x e y (no diagonal)
+    '''
+    def __init__(self, spriteName, speed):
         # Primero invocamos al constructor de la clase padre
         MySprite.__init__(self)
 
+        # Obtenemos el nombre de la carpeta del sprite sheet y del archivo de configuración
+        fullname = os.path.join('characters', spriteName)
+        image_path = os.path.join('sprites', fullname) + '.png'
+
         # Cargar sheet de sprites
-        self.sheet = ResourceManager.load_image(imageFile,-1)
+        self.sheet = ResourceManager.load_image(image_path, -1)
         self.sheet = self.sheet.convert_alpha()
+
         # Movimiento actual
         self.movement = STILL
+
         # Lado hacia el que está mirando
         self.looking = W
 
-        # Leer coordenadas de fichero
-        data = ResourceManager.load_sprite_sheet(spriteSheet)
-        self.sheetConf = []
+        # Leer el fichero de configuración
+        data = ResourceManager.load_sprite_conf(fullname + '.json')
+
         # Cargamos los sprites
+        self.sheetConf = []
         for row in range(0, len(data)):
             self.sheetConf.append([])
             tmp = self.sheetConf[row]
             for col in range(0, len(data[row])):
                 cell = data[row][col]
                 # Creamos las coordenadas
-                coords = pygame.Rect((int(cell['left']), int(cell['top'])), (int(cell['width']), int(cell['height'])))
+                coords = pygame.Rect((int(cell['x']), int(cell['y'])), (int(cell['width']), int(cell['height'])))
                 # Cargamos el delay y lo convertimos en milisegundos
                 delay = float(cell['delay'])*1000
                 # Guardamos la configuración
@@ -73,21 +78,18 @@ class Character(MySprite):
         self.animationNum = SPRITE_STILL
         self.animationFrame = 0
 
-        # # Para obtener el width y height de la animación en reposo
-        # self.width = self.sheetConf[0][0]['coords'][2]
-        # self.height = self.sheetConf[0][0]['coords'][3]
-
         # El rectangulo del Sprite
-        self.rect = pygame.Rect(100, 100, self.sheetConf[0][0]['coords'][2], self.sheetConf[0][0]['coords'][3])
+        self.rect = pygame.Rect(0, 0, self.sheetConf[0][0]['coords'][2], self.sheetConf[0][0]['coords'][3])
 
         # La velocidad de caminar en x e y (no diagonal)
         self.playerSpeed = speed
+        # La velocidad de caminar en diagonal
         self.diagonalSpeed = m.sqrt((speed * speed)/2.0)
 
         # Frame inicial
         self.image = self.sheet.subsurface(self.sheetConf[0][0]['coords'])
 
-        # Delay actual100
+        # Delay actual
         self.currentDelay = self.sheetConf[0][0]['delay']
 
         # Máscara de la animación
@@ -194,30 +196,26 @@ class Character(MySprite):
         # Aplicamos la velocidad en cada eje
         self.speed = (speedX, speedY)
 
-        # Y llamamos al método de la superclase para que, según la velocidad y el tiempo
-        #  calcule la nueva posición del Sprite
+        # Y llamamos al método de la superclase para que, según la velocidad y el tiempo, calcule la nueva posición del Sprite
         MySprite.update(self, time)
 
-        # Aquí se comprueba con la máscara si estás fuera del mapa
-        # y calculas la posición en la que deberías estar
-        #TODO: se puede crear la playerMask en el init?
-        playerMask = pygame.mask.from_surface(self.image)
+        # Comprobamos las colisiones
         x, y = self.position
         x = int(x)
         y = int(y - self.rect.height)
-        dx = mapMask.overlap_area(playerMask,(x+1,y)) - mapMask.overlap_area(playerMask,(x-1,y))
-        dy = mapMask.overlap_area(playerMask,(x,y+1)) - mapMask.overlap_area(playerMask,(x,y-1))
+        dx = mapMask.overlap_area(self.mask, (x+1, y)) - mapMask.overlap_area(self.mask, (x-1, y))
+        dy = mapMask.overlap_area(self.mask, (x, y+1)) - mapMask.overlap_area(self.mask, (x, y-1))
 
         while(dx):
             self.increment_position(((1 if dx>0 else -1), 0))
             x,y = self.position
             x = int(x)
             y = int(y - self.rect.height)
-            dx = mapMask.overlap_area(playerMask,(x+1,y)) - mapMask.overlap_area(playerMask,(x-1,y))
+            dx = mapMask.overlap_area(self.mask, (x+1,y)) - mapMask.overlap_area(self.mask, (x-1,y))
 
         while(dy):
             self.increment_position((0,(1 if dy>0 else -1)))
             x,y = self.position
             x = int(x)
             y = int(y - self.rect.height)
-            dy = mapMask.overlap_area(playerMask,(x,y+1)) - mapMask.overlap_area(playerMask,(x,y-1))
+            dy = mapMask.overlap_area(self.mask, (x,y+1)) - mapMask.overlap_area(self.mask, (x,y-1))

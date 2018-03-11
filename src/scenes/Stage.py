@@ -12,51 +12,43 @@ from src.sprites.Enemy import *
 # -------------------------------------------------
 # Clase Stage
 
-SCREEN_CENTER_X = int(SCREEN_WIDTH / 2)
+SCREEN_CENTER_X = int(SCREEN_WIDTH/2)
 
 class Stage(Scene):
 
     inRoomState = InRoomState()
     smallRoomState = SmallRoomState()
 
-    def __init__(self, stageFile, gameManager):
+    def __init__(self, stageNum, gameManager):
         # Primero invocamos al constructor de la clase padre
         Scene.__init__(self, gameManager)
 
-        # Cargamos la configuración del nivel
-        data = ResourceManager.load_stage(stageFile)
+        # Obtenemos el nombre de la fase
+        fullname = 'stage_' + str(int(stageNum))
 
-        image_path = os.path.join('stages', data["image"])
-        self.image = ResourceManager.load_image(image_path, (255, 0, 255))
-        self.image.convert_alpha()
-        mask_path = os.path.join('stages', data["mask"])
-        mask_image = ResourceManager.load_image(mask_path, (-1))
+        # Cargamos la configuración del nivel
+        data = ResourceManager.load_stage(fullname + '.json')
+
+        # Cargamos la imagen y la máscara
+        image_path = os.path.join('stages', fullname + '.png')
+        self.image = ResourceManager.load_image(image_path)
+        mask_path = os.path.join('stages', fullname + '_mask.png')
+        mask_image = ResourceManager.load_image(mask_path, (0, 0, 0))
         self.mask = pygame.mask.from_surface(mask_image)
 
-        # Cargamos las rutas de las salas
-        configs = os.listdir("assets/rooms/" + data["path"])
-        configs.sort(key=string.lower)
-
         # Cargamos las salas
-        pth = data["path"] + "/"
-        self.rooms = [Room(pth + configs[i]) for i in range(0, len(configs))]
+        self.rooms = [Room(stageNum, i) for i in range(0, data['rooms'])]
         self.currentRoom = 0
 
         # Cargamos el sprite del jugador
-        self.enemies = []
+        # self.enemies = []
 
-        self.player = Player(self.enemies)
+        self.player = Player()
         self.player.change_global_position((data["player_pos"][0], data["player_pos"][1]))
 
-    # ----------- Añadido para probar colisiones
-        self.enemy = Enemy('characters/sorcerer.png', 'sorcerer.json')
-        self.enemy.change_global_position((data["player_pos"][0]+100, data["player_pos"][1]+100))
-        self.enemies.append(self.enemy)
-        self.spritesGroup = pygame.sprite.Group(self.player, self.enemy)
-    # -----------
+        self.spritesGroup = pygame.sprite.Group(self.player)
 
-        # Inicializamos el viewport, que es un rectángulo del tamaño de la pantalla
-        # que indicará qué porción de la sala se debe mostrar
+        # Inicializamos el viewport, que es un rectángulo del tamaño de la pantalla que indicará qué porción de la sala se debe mostrar
         self.viewport = gameManager.screen.get_rect()
         self.viewport.center = self.player.rect.center
         self.viewport.clamp_ip(self.rooms[self.currentRoom].rect)
@@ -93,7 +85,7 @@ class Stage(Scene):
     def draw(self, screen):
         # Delegamos en el estado el dibujado de la fase
         self.state.draw(screen, self)
-        self.player.meleeAttack.draw(screen)
+        # self.player.meleeAttack.draw(screen)
 
         # TODO DEBUG: BORRAR CUANDO HAGA FALTA
         screen.blit(self.posPlayer, (0, 0))
