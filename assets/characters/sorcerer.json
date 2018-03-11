@@ -5,14 +5,14 @@
             "top" : 0,
             "width" : 28,
             "height" : 32,
-            "delay" : 0.1
+            "delay" : 5
         },
         {
             "left" : 96,
             "top" : 64,
             "width" : 28,
             "height" : 32,
-            "delay" : 5
+            "delay" : 0.1
         }
     ],
 
