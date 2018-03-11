@@ -4,6 +4,7 @@ import pygame, sys, os
 from pygame.locals import *
 from src.sprites.Character import *
 from src.sprites.MeleeAttack import *
+from src.sprites.RangedAttack import *
 from src.controls.KeyboardMouseControl import *
 
 # -------------------------------------------------
@@ -24,6 +25,7 @@ class Player(Character):
         # con ello calcular el offset al centro de la imagen
         # self.offset = (int(self.width/2), int(self.height/2))
         self.meleeAttack = MeleeAttack('characters/sorcerer.png', 'attack.json', 30, 250, enemies)
+        self.rangedAttack = RangedAttack('characters/sorcerer.png', 'attack.json', 30, 250, enemies)
 
     def move(self, viewport):
         # Indicamos la acción a realizar segun la tecla pulsada para el jugador
@@ -59,9 +61,12 @@ class Player(Character):
             # print(centerPos)
             # print(center_pos)
             self.meleeAttack.start_attack(centerPos, self.controlManager.angle(centerPos))
+            self.rangedAttack.start_attack(centerPos, self.controlManager.angle(centerPos))
         else:
             self.meleeAttack.end_attack()
+            self.rangedAttack.end_attack()
 
     def update(self, mapRect, mapMask, time):
         Character.update(self, mapRect, mapMask, time)
         self.meleeAttack.update(time)
+        self.rangedAttack.update(time)

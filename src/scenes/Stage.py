@@ -94,6 +94,7 @@ class Stage(Scene):
         # Delegamos en el estado el dibujado de la fase
         self.state.draw(screen, self)
         self.player.meleeAttack.draw(screen)
+        self.player.rangedAttack.draw(screen)
 
         # TODO DEBUG: BORRAR CUANDO HAGA FALTA
         screen.blit(self.posPlayer, (0, 0))

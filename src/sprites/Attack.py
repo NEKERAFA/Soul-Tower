@@ -109,6 +109,7 @@ class Attack(MySprite):
 
     def draw(self, surface):
         if self.drawAnimation:
+            # print(self.rect)
             surface.blit(self.image, self.rect)
 
 # Método para calcular triángulos
