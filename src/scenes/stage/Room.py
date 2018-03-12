@@ -27,8 +27,15 @@ class Room(object):
         enemiesList = []
         if "enemies" in data:
             for enemy in data["enemies"]:
+                # Load sprite
                 enemySprite = Enemy(enemy["sprite_name"])
-                enemySprite.change_global_position((enemy["position"][0], enemy["position"][1]))
+                # Load position
+                posX = random.randint(self.position[0]+24, self.width-48)
+                posY = random.randint(self.position[1]+24, self.height-48)
+                if "position" in enemy:
+                    posX = enemy["position"][0]
+                    posY = enemy["position"][1]
+                enemySprite.change_global_position((posX, posY))
                 enemiesList.append(enemySprite)
         self.enemies = pygame.sprite.Group(enemiesList)
 

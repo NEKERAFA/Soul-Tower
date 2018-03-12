@@ -13,8 +13,8 @@ class OnTransitionState(State):
         self.connection = connection
         self.scrollX = SCREEN_WIDTH
         self.scrollY = SCREEN_HEIGHT
-        self.scrollPlayerX = player.rect.width
-        self.scrollPlayerY = player.rect.height
+        self.scrollPlayerX = player.rect.width+24
+        self.scrollPlayerY = player.rect.height+24
         self.speed = 0.5
         self.speedPlayer = self.speed*3/5
 

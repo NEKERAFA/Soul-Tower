@@ -2,11 +2,14 @@
 # -*- coding: utf-8 -*-
 
 # Importar modulos
-import pygame
+import pygame, random
+from datetime import datetime
 from src.GameManager import *
 from src.scenes.Stage import *
 
 if __name__ == '__main__':
+    # Iniciamos la semilla
+    random.seed(datetime.now())
     # Inicializamos la libreria de pygame
     pygame.init()
     # Creamos el director

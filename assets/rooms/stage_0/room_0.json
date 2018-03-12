@@ -5,14 +5,14 @@
     "height": 480,
     "connections": [
         {
-            "x": 720,
+            "x": 696,
             "top": 240,
             "bottom": 216,
             "to": 1,
             "direction": "right"
         },
         {
-            "y": 480,
+            "y": 456,
             "left": 640,
             "right": 680,
             "to": 2,
@@ -21,7 +21,6 @@
     ],
     "enemies": [
         {
-            "position": [150, 150],
             "sprite_name": "slime",
             "stats": {
                 "hp": 1,
