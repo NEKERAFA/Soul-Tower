@@ -9,26 +9,26 @@ from src.sprites.MySprite import *
 # Sprites de ataques
 class Attack(MySprite):
     @classmethod
-    def calcRotPos(cls, ang, r, width, height, Pj):
+    def calc_rot_pos(cls, ang, r, width, height, Pj):
         if (ang>=0):
             if (ang<90): # Cuadrante I
-                Pc = calcTriang(Pj, r, ang, 0, 1, -1)
-                Pl = calcTriang(Pc, width/2, ang, 1, -1, -1)
-                Pe = calcTriang(Pl, height, ang, 0, 0, -1)
+                Pc = calc_triang(Pj, r, ang, 0, 1, -1)
+                Pl = calc_triang(Pc, width/2, ang, 1, -1, -1)
+                Pe = calc_triang(Pl, height, ang, 0, 0, -1)
             else: # Cuadrante II
-                Pc = calcTriang(Pj, r, ang, 0, 1, -1)
-                Pl1 = calcTriang(Pc, width/2, ang, 1, -1, -1)
-                Pl2 = calcTriang(Pl1, height, ang, 0, 1, -1)
-                Pe = calcTriang(Pl2, height, ang, 1, 0, 1)
+                Pc = calc_triang(Pj, r, ang, 0, 1, -1)
+                Pl1 = calc_triang(Pc, width/2, ang, 1, -1, -1)
+                Pl2 = calc_triang(Pl1, height, ang, 0, 1, -1)
+                Pe = calc_triang(Pl2, height, ang, 1, 0, 1)
         else:
             if (ang>-90): # Cuadrante IV
-                Pc = calcTriang(Pj, r, ang, 0, 1, -1)
-                Pl = calcTriang(Pc, width/2, ang, 1, -1, -1)
-                Pe = calcTriang(Pl, height, ang, 1, 1, 0)
+                Pc = calc_triang(Pj, r, ang, 0, 1, -1)
+                Pl = calc_triang(Pc, width/2, ang, 1, -1, -1)
+                Pe = calc_triang(Pl, height, ang, 1, 1, 0)
             else: # Cuadrante III
-                Pc = calcTriang(Pj, r, ang, 0, 1, -1)
-                Pl = calcTriang(Pc, width/2, ang, 1, 1, 1)
-                Pe = calcTriang(Pl, height, ang, 0, 1, 0)
+                Pc = calc_triang(Pj, r, ang, 0, 1, -1)
+                Pl = calc_triang(Pc, width/2, ang, 1, 1, 1)
+                Pe = calc_triang(Pl, height, ang, 0, 1, 0)
         return Pe
 
     def __init__(self, imageFile, spriteSheet, enemyGroup):
@@ -45,7 +45,6 @@ class Attack(MySprite):
         # Cargamos los sprites
         for col in range(0, len(data)):
             cell = data[col]
-            #print(cell)
             coords = pygame.Rect((int(cell['left']), int(cell['top'])), (int(cell['width']), int(cell['height'])))
             delay = float(cell['delay'])*1000
             self.sheetConf.append({'coords': coords, 'delay': delay})
@@ -72,7 +71,7 @@ class Attack(MySprite):
             # Actualizamos el retardo
             self.currentDelay -= time
 
-            # Miramos si ha pasa[self.animationNum]do el retardo para dibujar una nueva postura
+            # Miramos si ha pasado el retardo para dibujar una nueva postura
             if self.currentDelay < 0:
                 # Actualizamos el delay
                 self.currentDelay = self.sheetConf[self.animationFrame]['delay']
@@ -111,20 +110,19 @@ class Attack(MySprite):
     def draw(self, surface):
         if self.drawAnimation:
             surface.blit(self.image, self.rect)
-            #print("drawing")
 
 # Método para calcular triángulos
-# recibe umn punto, la hipotenusa y el ángulo
+# recibe un punto, la hipotenusa y el ángulo
 # invAB es para utilizar el lado b en lugar del a y vice.
 # paramX e Y se multiplican por los lados para conseguir
 # diferentes configuraciones (sumar, restar, 0)
 # devuelve el punto calculado
-def calcTriang(P, h, ang, invAB, paramX, paramY):
-    lado_a = h * math.sin(math.radians(ang))
-    lado_b = h * math.cos(math.radians(ang))
+def calc_triang(P, h, ang, invAB, paramX, paramY):
+    ladoA = h * math.sin(math.radians(ang))
+    ladoB = h * math.cos(math.radians(ang))
     x,y = P
     if (invAB):
-        newP = (x+lado_a*paramX, y+lado_b*paramY)
+        newP = (x+ladoA*paramX, y+ladoB*paramY)
     else:
-        newP = (x+lado_b*paramX, y+lado_a*paramY)
+        newP = (x+ladoB*paramX, y+ladoA*paramY)
     return newP

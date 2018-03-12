@@ -25,7 +25,7 @@ class Player(Character):
         # self.offset = (int(self.width/2), int(self.height/2))
         # self.meleeAttack = MeleeAttack('characters/sorcerer.png', 'attack.json', 30, 250, enemies)
 
-    def move(self):
+    def move(self, viewport):
         # Indicamos la acción a realizar segun la tecla pulsada para el jugador
         if self.controlManager.left():
             if self.controlManager.up():
@@ -49,14 +49,18 @@ class Player(Character):
             Character.move(self, STILL)
 
         # control de ataque
-        # if self.controlManager.primButton():
+        # if self.controlManager.prim_button():
         #     # calcular la posición del centro del sprite (de momento calcula el centro del primer sprite)
         #     #center_pos = (self.position[0]+self.offset[0],self.position[1]-self.offset[1])
-        #     center_pos = self.rect.center
+        #     centerPosX, centerPosY = self.rect.center
+        #     centerPosX -= viewport.left
+        #     centerPosY -= viewport.top
+        #     centerPos = centerPosX,centerPosY
+        #     print(centerPos)
         #     # print(center_pos)
-        #     self.meleeAttack.startAttack(center_pos, self.controlManager.angle(center_pos))
+        #     self.meleeAttack.start_attack(centerPos, self.controlManager.angle(centerPos))
         # else:
-        #     self.meleeAttack.endAttack()
+        #     self.meleeAttack.end_attack()
 
     # def update(self, mapMask, time):
     #     Character.update(self, mapMask, time)

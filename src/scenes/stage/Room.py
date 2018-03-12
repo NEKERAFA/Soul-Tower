@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
-import pygame, os
+import pygame, os, random
 from src.ResourceManager import *
+from src.sprites.Enemy import *
 
 # -------------------------------------------------
 # Clase Room
@@ -11,14 +12,25 @@ class Room(object):
         # Obtenemos el nombre de la sala
         fullname = os.path.join('stage_' + str(int(stageNum)), 'room_' + str(int(roomNum)) + '.json')
 
-        # Llamamos al ResourceManager para cargar el mapa
+        # Llamamos al ResourceManager para cargar la sala
         data = ResourceManager.load_room(fullname)
+
+        # Cargamos los datos del mapa
         self.position = (data["x"], data["y"])
         self.width = data["width"]
         self.height = data["height"]
         self.connections = data["connections"]
         self.rect = pygame.Rect(self.position, (self.width, self.height))
         self.small = True if "small" in data else False
+
+        # Cargamos los enemigos de la sala si existien
+        enemiesList = []
+        if "enemies" in data:
+            for enemy in data["enemies"]:
+                enemySprite = Enemy(enemy["sprite_name"])
+                enemySprite.change_global_position((enemy["position"][0], enemy["position"][1]))
+                enemiesList.append(enemySprite)
+        self.enemies = pygame.sprite.Group(enemiesList)
 
     # Indica si el jugador está saliendo de la sala y devuelve la conexión que representa la salida
     def isExiting(self, player):

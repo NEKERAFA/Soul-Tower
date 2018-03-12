@@ -2,12 +2,14 @@
 
 import pygame, string, os
 from src.ResourceManager import *
-from src.scenes.Scene import *
-from src.scenes.screens.Room import *
+
 from src.sprites.Player import *
-from src.scenes.InRoomState import *
-from src.scenes.SmallRoomState import *
 from src.sprites.Enemy import *
+
+from src.scenes.Scene import *
+from src.scenes.stage.Room import *
+from src.scenes.stage.InRoomState import *
+from src.scenes.stage.SmallRoomState import *
 
 # -------------------------------------------------
 # Clase Stage
@@ -46,7 +48,7 @@ class Stage(Scene):
         self.player = Player()
         self.player.change_global_position((data["player_pos"][0], data["player_pos"][1]))
 
-        self.spritesGroup = pygame.sprite.Group(self.player)
+        self.spritesGroup = pygame.sprite.Group(self.player, self.rooms[self.currentRoom].enemies.sprites())
 
         # Inicializamos el viewport, que es un rectángulo del tamaño de la pantalla que indicará qué porción de la sala se debe mostrar
         self.viewport = gameManager.screen.get_rect()

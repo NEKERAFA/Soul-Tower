@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import pygame
-from src.scenes.State import *
 from src.scenes.Scene import *
 from src.scenes.Stage import *
+from src.scenes.stage.State import *
 
 # -------------------------------------------------
 # Clase OnTransitionState
@@ -47,6 +47,7 @@ class OnTransitionState(State):
                 else:
                     stage.state = stage.inRoomState
                 stage.currentRoom = dstRoom
+                stage.spritesGroup.add(stage.rooms[stage.currentRoom].enemies.sprites())
 
         else:
             shiftY = int(self.speed*time)
@@ -76,6 +77,7 @@ class OnTransitionState(State):
                 else:
                     stage.state = stage.inRoomState
                 stage.currentRoom = dstRoom
+                stage.spritesGroup.add(stage.rooms[stage.currentRoom].enemies.sprites())
 
     def events(self, time, stage):
         pass

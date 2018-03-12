@@ -18,5 +18,15 @@
             "to": 2,
             "direction": "down"
         }
+    ],
+    "enemies": [
+        {
+            "position": [150, 150],
+            "sprite_name": "slime",
+            "stats": {
+                "hp": 1,
+                "speed": 1
+            }
+        }
     ]
 }
