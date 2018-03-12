@@ -130,7 +130,7 @@ class Character(MySprite):
             self.mask = pygame.mask.from_surface(self.image)
 
 
-    def update(self, mapMask, time):
+    def update(self, mapRect, mapMask, time):
         # Las velocidades a las que iba hasta este momento
         (speedX, speedY) = self.speed
 
@@ -199,13 +199,24 @@ class Character(MySprite):
         # Y llamamos al método de la superclase para que, según la velocidad y el tiempo, calcule la nueva posición del Sprite
         MySprite.update(self, time)
 
-        # Comprobamos las colisiones
+        # Aquí se comprueba si estás fuera del mapa y si lo estás
+        # se calcula la posición en la que deberías estar
+        # Se empieza moviendo el rectángulo del jugador dentro de los límites de la sala
+        # y actualizando la nueva posición del personaje
+        self.rect.clamp_ip(mapRect)
+        self.change_global_position((self.rect.left, self.rect.bottom))
+
+        # Después se utiliza la máscara para un ajuste más preciso
+        playerMask = pygame.mask.from_surface(self.image)
         x, y = self.position
         x = int(x)
         y = int(y - self.rect.height)
-        dx = mapMask.overlap_area(self.mask, (x+1, y)) - mapMask.overlap_area(self.mask, (x-1, y))
-        dy = mapMask.overlap_area(self.mask, (x, y+1)) - mapMask.overlap_area(self.mask, (x, y-1))
+        # Se calculan los "gradientes" para conocer la dirección de la colisión
+        dx = mapMask.overlap_area(playerMask,(x+1,y)) - mapMask.overlap_area(playerMask,(x-1,y))
+        dy = mapMask.overlap_area(playerMask,(x,y+1)) - mapMask.overlap_area(playerMask,(x,y-1))
 
+        # Se desplaza el personaje en la dirección adecuada
+        # hasta que deje de colisionar
         while(dx):
             self.increment_position(((1 if dx>0 else -1), 0))
             x,y = self.position
