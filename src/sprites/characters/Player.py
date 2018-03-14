@@ -3,7 +3,7 @@
 import pygame, sys, os
 from pygame.locals import *
 from src.sprites.Character import *
-from src.sprites.MeleeAttack import *
+# from src.sprites.MeleeAttack import *
 from src.controls.KeyboardMouseControl import *
 
 # -------------------------------------------------
@@ -19,7 +19,7 @@ PLAYER_SPEED = 0.2 # Pixeles por milisegundo
 class Player(Character):
     def __init__(self):#, enemies):
         # Invocamos al constructor de la clase padre con la configuracion de este Character concreto
-        Character.__init__(self, 'sorcerer', PLAYER_SPEED)
+        Character.__init__(self, 'sorcerer')
         self.controlManager = KeyboardMouseControl()
         # con ello calcular el offset al centro de la imagen
         # self.offset = (int(self.width/2), int(self.height/2))

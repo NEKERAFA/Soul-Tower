@@ -8,21 +8,18 @@ El archivo de configuración de la sala debe contener los siguientes datos:
     - "height": Alto en píxeles de la sala (número de filas).
     - "connections": Lista con las salidas de la sala. Cada elemento de la lista tiene que aportar la siguiente información:
         - Si la salida es horizontal:
-            - "x": Coordenada x global de la salida.
-            - "top" y "bottom": Extremos superior e inferior de la salida. Debería haber una diferencia entre ellas de un mínimo de TODO la altura del personaje (en el caso de una salida de una sola tile).
+            - "x": Coordenada x global de la salida. Debe estar mínimo a 24px del borde de la sala (una tile).
+            - "top" y "bottom": Extremos superior e inferior de la salida. Debería haber una diferencia entre ellas de un mínimo de 48px (en el caso de una salida de una sola tile).
         - Si la salida es vertical:
-            - "y": Coordenada y global de la salida.
-            - "left" y "right": Extremos izquierdo y derecho de la salida. Debería haber una diferencia entre ellos de un mínimo de TODO una tile (el personaje debería caber en una tile).
+            - "y": Coordenada y global de la salida. Debe estar mínimo a 24px del borde de la sala (una tile).
+            - "left" y "right": Extremos izquierdo y derecho de la salida. Debería haber una diferencia entre ellos de un mínimo de 48px (en el caso de una salida de una sola tile).
         - En cualquier salida:
             - "to": Número de la sala con la que conecta.
             - "direction": Dirección de la salida ("up", "down", "left", "right").
     - "small": Sólo es necesario ponerlo en salas pequeñas que caben en la pantalla y, por tanto, no necesitan scroll. Como sólo se comprueba su existencia y no su valor, no es importante el valor que se le asigne, pero por coherencia/legibilidad se recomienda poner true.
     - "enemies": Lista de los enemigos que spawnean en la sala, contiene la siguiente información:
         - "position" [x, y]: Posición de spawn del enemigo. Si no está, se define una posición aleatoria.
-        - "sprite_name": Nombre del sprite del enemigo
-        - "stats": Contiene la información de estadísticas del enemigo:
-            - "hp": Entero con la vida total del enemigo
-            - "speed": Velocidad del enemigo
+        - "type": Nombre del tipo de enemigo. Corresponde con el nombre del sprite.
         - "drop": Objeto que droppea, contiene la siguiente información:
             - "type": Tipo de drop ("life" o "soul")
             - "ammount": Cantidad del drop una vez cogido
@@ -33,4 +30,4 @@ Cómo engañar al scroll:
 NOTAS:
     - Todas las coordenadas se escriben en píxeles NO EN TILES.
     - Todas las tiles son de 24x24 px.
-    - Las salidas deberían estar situadas a TODO 12px del borde de la sala (media tile).
+    - Las salidas deberían estar situadas a 24px del borde de la sala (una tile).

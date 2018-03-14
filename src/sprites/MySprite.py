@@ -9,21 +9,12 @@ class MySprite(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.position = (0, 0)
         self.speed = (0, 0)
-        self.scroll = (0, 0)
 
     # Cambia la posición en el mundo
     def change_global_position(self, position):
         self.position = position
-        self.rect.left = self.position[0] - self.scroll[0]
-        self.rect.bottom = self.position[1] - self.scroll[1]
-
-    # Cambia la posición solamente en la pantalla
-    def change_screen_position(self, scroll):
-        self.scroll = scroll;
-        (scrollX, scrollY) = self.scroll;
-        (posX, posY) = self.position;
-        self.rect.left = posX - scrollX;
-        self.rect.bottom = posY - scrollY;
+        self.rect.left = self.position[0]
+        self.rect.bottom = self.position[1]
 
     def increment_position(self, increment):
         (posX, posY) = self.position

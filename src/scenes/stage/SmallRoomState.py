@@ -15,6 +15,7 @@ class SmallRoomState(State):
         exit = stage.rooms[stage.currentRoom].isExiting(stage.player)
 
         if exit is not None:
+            stage.spritesGroup.add(stage.rooms[exit["to"]].enemies.sprites())
             stage.state = OnTransitionState(exit, stage.player)
             return
 

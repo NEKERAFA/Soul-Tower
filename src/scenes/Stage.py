@@ -3,8 +3,8 @@
 import pygame, string, os
 from src.ResourceManager import *
 
-from src.sprites.Player import *
-from src.sprites.Enemy import *
+from src.sprites.characters.Player import *
+from src.sprites.characters.Enemy import *
 
 from src.scenes.Scene import *
 from src.scenes.stage.Room import *

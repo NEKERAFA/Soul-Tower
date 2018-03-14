@@ -39,7 +39,7 @@ class Character(MySprite):
             * Nombre del sprite
             * Velocidad de caminar en los ejes x e y (no diagonal)
     '''
-    def __init__(self, spriteName, speed):
+    def __init__(self, spriteName):
         # Primero invocamos al constructor de la clase padre
         MySprite.__init__(self)
 
@@ -62,17 +62,19 @@ class Character(MySprite):
 
         # Cargamos los sprites
         self.sheetConf = []
-        for row in range(0, len(data)):
+        for row in range(0, len(data["frames"])):
             self.sheetConf.append([])
             tmp = self.sheetConf[row]
-            for col in range(0, len(data[row])):
-                cell = data[row][col]
+            for cell in data["frames"][row]:
                 # Creamos las coordenadas
                 coords = pygame.Rect((int(cell['x']), int(cell['y'])), (int(cell['width']), int(cell['height'])))
                 # Cargamos el delay y lo convertimos en milisegundos
                 delay = float(cell['delay'])*1000
                 # Guardamos la configuración
                 tmp.append({'coords': coords, 'delay': delay})
+
+        # Cargamos los stats
+        self.stats = data["stats"]
 
         # Animación inicial
         self.animationNum = SPRITE_STILL
@@ -81,10 +83,8 @@ class Character(MySprite):
         # El rectangulo del Sprite
         self.rect = pygame.Rect(0, 0, self.sheetConf[0][0]['coords'][2], self.sheetConf[0][0]['coords'][3])
 
-        # La velocidad de caminar en x e y (no diagonal)
-        self.playerSpeed = speed
         # La velocidad de caminar en diagonal
-        self.diagonalSpeed = m.sqrt((speed * speed)/2.0)
+        self.diagonalSpeed = m.sqrt((self.stats["spd"] * self.stats["spd"])/2.0)
 
         # Frame inicial
         self.image = self.sheet.subsurface(self.sheetConf[0][0]['coords'])
@@ -132,7 +132,8 @@ class Character(MySprite):
 
     def update(self, mapRect, mapMask, time):
         # Las velocidades a las que iba hasta este momento
-        (speedX, speedY) = self.speed
+        # (speedX, speedY) = self.speed
+        speedX, speedY = 0, 0
 
         # Primero diferenciamos quieto y caminando para la animación
         # Después, diferenciamos todas las direcciones para asignarles
@@ -143,27 +144,24 @@ class Character(MySprite):
                 self.animationNum = SPRITE_STILL
                 self.currentDelay = 0
                 self.animationFrame = 0
-            speedX = 0
-            speedY = 0
         elif (self.movement == N):
             if self.animationNum != SPRITE_WALKING_UP:
                 self.animationNum = SPRITE_WALKING_UP
                 self.currentDelay = 0
                 self.animationFrame = 0
-            speedX = 0
-            speedY = -self.playerSpeed
+            speedY = -self.stats["spd"]
         elif (self.movement == S):
             if self.animationNum != SPRITE_WALKING_DOWN:
                 self.animationNum = SPRITE_WALKING_DOWN
                 self.currentDelay = 0
                 self.animationFrame = 0
-            speedX = 0
-            speedY = self.playerSpeed
+            speedY = self.stats["spd"]
         else:
             if self.animationNum != SPRITE_WALKING:
                 self.animationNum = SPRITE_WALKING
                 self.currentDelay = 0
                 self.animationFrame = 0
+
             if (self.movement == NW):
                 self.looking = W
                 speedX = -self.diagonalSpeed
@@ -174,12 +172,10 @@ class Character(MySprite):
                 speedY = -self.diagonalSpeed
             elif (self.movement == W):
                 self.looking = W
-                speedX = -self.playerSpeed
-                speedY = 0;
+                speedX = -self.stats["spd"]
             elif (self.movement == E):
                 self.looking = E
-                speedX = self.playerSpeed
-                speedY = 0
+                speedX = self.stats["spd"]
             elif (self.movement == SW):
                 self.looking = W
                 speedX = -self.diagonalSpeed
@@ -188,7 +184,6 @@ class Character(MySprite):
                 self.looking = E
                 speedX = self.diagonalSpeed
                 speedY = self.diagonalSpeed
-
 
         # Actualizamos la imagen a mostrar
         self.update_animation(time)

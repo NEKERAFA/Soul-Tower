@@ -20,12 +20,16 @@
         }
     ],
     "enemies": [
-        {
-            "sprite_name": "slime",
-            "stats": {
-                "hp": 1,
-                "speed": 1
-            }
-        }
+        { "type": "slime" },
+        { "type": "slime" },
+        { "type": "slime" },
+        { "type": "slime" },
+        { "type": "slime" },
+        { "type": "slime" },
+        { "type": "slime" },
+        { "type": "slime" },
+        { "type": "slime" },
+        { "type": "slime" },
+        { "type": "slime" }
     ]
 }

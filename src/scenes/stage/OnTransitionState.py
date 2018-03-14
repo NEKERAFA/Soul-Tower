@@ -46,8 +46,8 @@ class OnTransitionState(State):
                     stage.state = stage.smallRoomState
                 else:
                     stage.state = stage.inRoomState
+                stage.spritesGroup.remove(stage.rooms[stage.currentRoom].enemies.sprites())
                 stage.currentRoom = dstRoom
-                stage.spritesGroup.add(stage.rooms[stage.currentRoom].enemies.sprites())
 
         else:
             shiftY = int(self.speed*time)
@@ -76,8 +76,8 @@ class OnTransitionState(State):
                     stage.state = stage.smallRoomState
                 else:
                     stage.state = stage.inRoomState
+                stage.spritesGroup.remove(stage.rooms[stage.currentRoom].enemies.sprites())
                 stage.currentRoom = dstRoom
-                stage.spritesGroup.add(stage.rooms[stage.currentRoom].enemies.sprites())
 
     def events(self, time, stage):
         pass

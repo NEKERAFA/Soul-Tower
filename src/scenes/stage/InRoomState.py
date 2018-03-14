@@ -6,6 +6,10 @@ from src.scenes.stage.OnTransitionState import *
 class InRoomState(State):
 
     def update(self, time, stage):
+        # Movemos los enemigos
+        for enemy in iter(stage.rooms[stage.currentRoom].enemies):
+            enemy.move_ai(stage.player)
+
         # Actualizamos los sprites
         stage.spritesGroup.update(stage.rooms[stage.currentRoom].rect, stage.mask, time)
 
@@ -15,8 +19,8 @@ class InRoomState(State):
         exit = stage.rooms[stage.currentRoom].isExiting(stage.player)
 
         if exit is not None:
+            stage.spritesGroup.add(stage.rooms[exit["to"]].enemies.sprites())
             stage.state = OnTransitionState(exit, stage.player)
-            stage.spritesGroup.remove(stage.rooms[stage.currentRoom].enemies.sprites())
             return
 
         # Alinea el viewport con el centro del jugador

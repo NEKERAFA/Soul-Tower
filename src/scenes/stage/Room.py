@@ -2,7 +2,7 @@
 
 import pygame, os, random
 from src.ResourceManager import *
-from src.sprites.Enemy import *
+from src.sprites.characters.Enemy import *
 
 # -------------------------------------------------
 # Clase Room
@@ -28,10 +28,10 @@ class Room(object):
         if "enemies" in data:
             for enemy in data["enemies"]:
                 # Load sprite
-                enemySprite = Enemy(enemy["sprite_name"])
+                enemySprite = Enemy(enemy["type"])
                 # Load position
-                posX = random.randint(self.position[0]+24, self.width-48)
-                posY = random.randint(self.position[1]+24, self.height-48)
+                posX = random.randint(self.position[0]+24, self.position[0]+self.width-48)
+                posY = random.randint(self.position[1]+24, self.position[1]+self.height-48)
                 if "position" in enemy:
                     posX = enemy["position"][0]
                     posY = enemy["position"][1]
