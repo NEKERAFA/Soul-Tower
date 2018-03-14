@@ -11,4 +11,3 @@ class ControlManager(object):
 		raise NotImplementedError('Error: Abstract class')
 	def angle(self, pos):
 		raise NotImplementedError('Error: Abstract class')
-

@@ -1,0 +1,11 @@
+----- Instrucciones para escribir los archivos de configuración de sprites -----
+
+Cada sprite debe tener un fichero de configuración en formato json. Estos archivos se guardan en assets/characters/[nombre del sprite].json. La sprite sheet se guardará en formato PNG en la ruta assets/images/characters/[nombre del sprite].png.
+
+El archivo de configuración debe contener los siguientes datos:
+    - TODO: documentat stats
+    - Cuatro listas de frames para las posiciones de estar quieto, caminando de espaldas, caminando de frente y caminando a la izquierda. Cada frame contiene lo siguiente:
+        - "x" e "y": Coordenadas de la esquina superior izquierda del frame en la sprite sheet.
+        - "width": Ancho en píxeles del frame.
+        - "height": Alto en píxeles del frame.
+        - "delay": Tiempo en segundos que dura el frame en pantalla.
