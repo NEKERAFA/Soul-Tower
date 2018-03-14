@@ -45,7 +45,7 @@ class Stage(Scene):
         self.currentRoom = 0
 
         # Cargamos la interfaz del jugador
-        #TODO: meter datos de la interfaz en json, y hacerlo relativo a la sala en la que se encuentre el jugador
+        #TODO: meter datos de la interfaz en json, y hacerlo dependiente de la sala en la que se encuentre el jugador
         self.gui = GUIPlayerScreen()
 
         # Cargamos el sprite del jugador
@@ -98,8 +98,8 @@ class Stage(Scene):
         # self.player.meleeAttack.draw(screen)
 
         # TODO DEBUG: BORRAR CUANDO HAGA FALTA
-        screen.blit(self.posPlayer, (0, 0))
-        screen.blit(self.posRoom, (0, 16))
+        screen.blit(self.posPlayer, (400-self.posPlayer.get_width(), 0))
+        screen.blit(self.posRoom, (400-self.posPlayer.get_width(), 16))
         # TODO DEBUG: BORRAR CUANDO HAGA FALTA
 
         #TODO: gui debería estar en un array, como Rooms

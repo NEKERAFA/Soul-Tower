@@ -28,6 +28,7 @@ class ResourceManager(object):
 
             # Convertimos el canal alpha
             image = image.convert_alpha()
+
             # Obtenemos el colorkey
             if colorkey is not None:
                 if colorkey is -1:

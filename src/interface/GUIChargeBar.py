@@ -15,7 +15,8 @@ class GUIChargeBar(GUIImage):
 
         # Porcentaje de rellenado de la barra; 1 -> la barra se dibuja por completo
         self.percent = 1.
-        self.speed = 1./1000. # 100% de la barra/1000ms = 100% en 1s
+        # Velocidad de llenado de la barra: 100% de la barra/1000ms = 100% en 1s
+        self.speed = 1./1000.
 
     def update(self, time):
         #TODO: esta "recarga" se debería tener en cuenta en el propio personaje, y
