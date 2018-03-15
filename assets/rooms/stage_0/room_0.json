@@ -20,16 +20,13 @@
         }
     ],
     "enemies": [
-        { "type": "slime" },
-        { "type": "slime" },
-        { "type": "slime" },
-        { "type": "slime" },
-        { "type": "slime" },
-        { "type": "slime" },
-        { "type": "slime" },
-        { "type": "slime" },
-        { "type": "slime" },
-        { "type": "slime" },
-        { "type": "slime" }
+        {
+            "position": [150, 150],
+            "type": "slime",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        }
     ]
 }
