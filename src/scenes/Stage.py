@@ -37,6 +37,7 @@ class Stage(Scene):
         mask_path = os.path.join('stages', fullname + '_mask.png')
         mask_image = ResourceManager.load_image(mask_path, (0, 0, 0))
         self.mask = pygame.mask.from_surface(mask_image)
+        self.mask.invert()
 
         # Cargamos las salas
         self.rooms = [Room(stageNum, i) for i in range(0, data['rooms'])]
