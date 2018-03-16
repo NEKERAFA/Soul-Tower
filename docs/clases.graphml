@@ -1005,7 +1005,7 @@ leftPortraitRect: pygame.Rect
 text: list&lt;list&lt;string&gt;&gt;
 index: int
 maxSize: int</y:AttributeLabel>
-            <y:MethodLabel>__init__(screen: pygame.Surface, name: String, position: (int, int), scale: (int, int), font: pygame.font.Font text: String, textSpeed: float = 0.02)
+            <y:MethodLabel>__init__(screen: pygame.Surface, name: String, position: (int, int), scale: (int, int), font: pygame.font.Font, intervention: dict, textSpeed: float = 0.02)
 isFinished(): boolean
 next(): void</y:MethodLabel>
           </y:UML>
