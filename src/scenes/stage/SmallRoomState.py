@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from src.scenes.stage.State import *
+from src.scenes.stage.StageState import *
 from src.scenes.stage.OnTransitionState import *
 from src.sprites.characters.Enemy import *
 
-class SmallRoomState(State):
+class SmallRoomState(StageState):
     def update(self, time, stage):
         currentRoom = stage.rooms[stage.currentRoom]
 

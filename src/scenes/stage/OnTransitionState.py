@@ -3,12 +3,12 @@
 import pygame
 from src.scenes.Scene import *
 from src.scenes.Stage import *
-from src.scenes.stage.State import *
+from src.scenes.stage.StageState import *
 
 # -------------------------------------------------
 # Clase OnTransitionState
 
-class OnTransitionState(State):
+class OnTransitionState(StageState):
     def __init__(self, connection, player):
         self.connection = connection
         self.scrollX = SCREEN_WIDTH

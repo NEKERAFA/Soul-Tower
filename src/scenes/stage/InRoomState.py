@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
-from src.scenes.stage.State import *
+from src.scenes.stage.StageState import *
 from src.scenes.stage.OnTransitionState import *
 from src.sprites.characters.Enemy import *
 from src.sprites.drops.Life import *
 from src.sprites.drops.Soul import *
 
-class InRoomState(State):
+class InRoomState(StageState):
     def update(self, time, stage):
         currentRoom = stage.rooms[stage.currentRoom]
 
