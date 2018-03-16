@@ -105,7 +105,7 @@ class Dashing(PlayerState):
         self.dist = distX,distY
 
 
-    def update_pos(self, player, mapRect, mapMask, time):
+    def update_pos(self, player, time, mapRect, mapMask):
         # Si estamos empezando a dashear, inicializamos todo
         if not self.dashing:
             Character.update_movement(player, time)

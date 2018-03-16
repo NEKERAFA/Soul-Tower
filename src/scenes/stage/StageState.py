@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-class State(object):
+class StageState(object):
 
     def __init__(self):
         pass

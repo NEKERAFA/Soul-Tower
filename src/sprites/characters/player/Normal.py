@@ -13,8 +13,8 @@ class Normal(PlayerState):
 		
 		self.__class__ = state
 
-	def update_pos(self, player, mapRect, mapMask, time):
-		Character.update(player, mapRect, mapMask, time)
+	def update_pos(self, player, time, mapRect, mapMask):
+		Character.update(player, time, mapRect, mapMask)
 
 	def debug(self):
 		print("PlayerState = ", self.name)

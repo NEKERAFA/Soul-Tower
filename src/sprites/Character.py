@@ -33,7 +33,6 @@ SPRITE_WALKING = 3
 # -------------------------------------------------
 # Sprites de personajes
 class Character(MySprite):
-
     '''
         Parámetros pasados al constructor de esta clase:
             * Nombre del sprite
@@ -45,10 +44,10 @@ class Character(MySprite):
 
         # Obtenemos el nombre de la carpeta del sprite sheet y del archivo de configuración
         fullname = os.path.join('characters', spriteName)
-        image_path = os.path.join('sprites', fullname) + '.png'
+        imagePath = os.path.join('sprites', fullname) + '.png'
 
         # Cargar sheet de sprites
-        self.sheet = ResourceManager.load_image(image_path, -1)
+        self.sheet = ResourceManager.load_image(imagePath, -1)
         self.sheet = self.sheet.convert_alpha()
 
         # Movimiento actual
@@ -130,8 +129,9 @@ class Character(MySprite):
             self.mask = pygame.mask.from_surface(self.image)
 
 
+
     def update_movement(self, time):
-         # Las velocidades a las que iba hasta este momento
+        # Las velocidades a las que iba hasta este momento
         # (speedX, speedY) = self.speed
         speedX, speedY = 0, 0
 
@@ -192,7 +192,7 @@ class Character(MySprite):
         self.speed = (speedX, speedY)
 
 
-    def update(self, mapRect, mapMask, time):
+    def update(self, time, mapRect, mapMask):
        
         # Actualizamos todo lo del movimiento y la animación
         self.update_movement(time)
@@ -203,6 +203,7 @@ class Character(MySprite):
         x, y = self.position
         x = int(x)
         y = int(y - self.rect.height)
+        
         # Se calculan los "gradientes" para conocer la dirección de la colisión
         dx = mapMask.overlap_area(self.mask,(x+1,y)) - mapMask.overlap_area(self.mask,(x-1,y))
         dy = mapMask.overlap_area(self.mask,(x,y+1)) - mapMask.overlap_area(self.mask,(x,y-1))
@@ -222,3 +223,12 @@ class Character(MySprite):
             x = int(x)
             y = int(y - self.rect.height)
             dy = mapMask.overlap_area(self.mask, (x,y+1)) - mapMask.overlap_area(self.mask, (x,y-1))
+
+    ############################################################################
+
+    # Recibe un daño y se realiza el daño. Si el personaje a muerto, LO MATA
+    def receive_damage(self, damage):
+        self.stats["hp"] -= damage
+
+        if self.stats["hp"] <= 0:
+            self.kill()

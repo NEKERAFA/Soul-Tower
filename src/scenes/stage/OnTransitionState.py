@@ -3,12 +3,12 @@
 import pygame
 from src.scenes.Scene import *
 from src.scenes.Stage import *
-from src.scenes.stage.State import *
+from src.scenes.stage.StageState import *
 
 # -------------------------------------------------
 # Clase OnTransitionState
 
-class OnTransitionState(State):
+class OnTransitionState(StageState):
     def __init__(self, connection, player):
         self.connection = connection
         self.scrollX = SCREEN_WIDTH
@@ -46,7 +46,6 @@ class OnTransitionState(State):
                     stage.state = stage.smallRoomState
                 else:
                     stage.state = stage.inRoomState
-                stage.spritesGroup.remove(stage.rooms[stage.currentRoom].enemies.sprites())
                 stage.currentRoom = dstRoom
 
         else:
@@ -76,17 +75,26 @@ class OnTransitionState(State):
                     stage.state = stage.smallRoomState
                 else:
                     stage.state = stage.inRoomState
-                stage.spritesGroup.remove(stage.rooms[stage.currentRoom].enemies.sprites())
                 stage.currentRoom = dstRoom
 
     def events(self, time, stage):
         pass
 
     def draw(self, screen, stage):
+        currentRoom = stage.rooms[stage.currentRoom]
+        nextRoom = stage.rooms[self.connection["to"]]
+
         # Muestro un color de fondo
         screen.fill((100, 200, 255))
         # Luego los Sprites sobre una copia del mapa de la sala
         newImage = stage.image.copy()
-        stage.spritesGroup.draw(newImage)
+        # Player
+        newImage.blit(stage.player.image, stage.player.rect)
+        # Enemigos
+        currentRoom.enemies.draw(newImage)
+        nextRoom.enemies.draw(newImage)
+        # Drops
+        currentRoom.drops.draw(newImage)
+        nextRoom.drops.draw(newImage)
         # Se pinta la porción de la sala que coincide con el viewport
         screen.blit(newImage, (0,0), stage.viewport)
