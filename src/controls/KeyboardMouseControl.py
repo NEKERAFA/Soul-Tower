@@ -3,22 +3,36 @@ import math as m
 from pygame.locals import *
 from src.ControlManager import *
 
+# TODO actualizar en UML
 class KeyboardMouseControl(ControlManager):
-    def __init__(self):
-        self.upButton = K_w
-        self.downButton = K_s
-        self.leftButton = K_a
-        self.rightButton = K_d
+    upButton = K_w
+    downButton = K_s
+    leftButton = K_a
+    rightButton = K_d
+    spaceBar = K_SPACE
 
-    def up(self):
-        return pygame.key.get_pressed()[self.upButton]
-    def down(self):
-        return pygame.key.get_pressed()[self.downButton]
-    def left(self):
-        return pygame.key.get_pressed()[self.leftButton]
-    def right(self):
-        return pygame.key.get_pressed()[self.rightButton]
-    def angle(self, pos):
+    @classmethod
+    def up(cls):
+        return pygame.key.get_pressed()[cls.upButton]
+
+    @classmethod
+    def down(cls):
+        return pygame.key.get_pressed()[cls.downButton]
+
+    @classmethod
+    def left(cls):
+        return pygame.key.get_pressed()[cls.leftButton]
+
+    @classmethod
+    def right(cls):
+        return pygame.key.get_pressed()[cls.rightButton]
+
+    @classmethod
+    def space(cls):
+        return pygame.key.get_pressed()[cls.spaceBar]
+
+    @classmethod
+    def angle(cls, pos):
         (playerX, playerY) = pos
         (mouseX, mouseY) = pygame.mouse.get_pos()
         # Escalado
@@ -27,14 +41,22 @@ class KeyboardMouseControl(ControlManager):
         ang = m.degrees(m.atan2(playerY - mouseY, mouseX - playerX))
         return ang
 
-    def prim_button(self):
+    @classmethod
+    def prim_button(cls):
         return pygame.mouse.get_pressed()[0]
 
-    def set_key_up(self, newKey):
-        self.upButton = newKey
-    def set_key_down(self, newKey):
-        self.upDown = newKey
-    def set_key_left(self, newKey):
-        self.upLeft = newKey
-    def set_key_right(self, newKey):
-        self.upRight = newKey
+    @classmethod
+    def set_key_up(cls, newKey):
+        cls.upButton = newKey
+
+    @classmethod
+    def set_key_down(cls, newKey):
+        cls.upDown = newKey
+
+    @classmethod
+    def set_key_left(cls, newKey):
+        cls.upLeft = newKey
+
+    @classmethod
+    def set_key_right(cls, newKey):
+        cls.upRight = newKey

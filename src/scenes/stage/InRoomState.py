@@ -2,6 +2,7 @@
 
 from src.scenes.stage.State import *
 from src.scenes.stage.OnTransitionState import *
+from src.scenes.stage.OnDialogueState import *
 
 class InRoomState(State):
 
@@ -30,14 +31,14 @@ class InRoomState(State):
         stage.viewport.center = (stage.player.rect.center)
         stage.viewport.clamp_ip(stage.rooms[stage.currentRoom].rect)
 
-    def draw(self, screen, stage):
-        # Muestro un color de fondo
-        screen.fill((100, 200, 255))
-        # Luego los Sprites sobre una copia del mapa de la sala
-        newImage = stage.image.copy()
-        stage.spritesGroup.draw(newImage)
-        # Se pinta la porción de la sala que coincide con el viewport
-        screen.blit(newImage, (0,0), stage.viewport)
+        # Si detecta colisión con un trigger, cambia de estado TODO cambiar a variable local currentRoom
+        trigger = pygame.sprite.spritecollideany(stage.player, stage.rooms[stage.currentRoom].triggers)
+
+        if trigger is not None:
+            stage.state = OnDialogueState(trigger.dialogueFile, stage)
+            trigger.kill() # Eliminamos el trigger
+            return
+
 
     def events(self, events, stage):
         stage.player.move(stage.viewport)

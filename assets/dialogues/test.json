@@ -1,0 +1,13 @@
+{
+    "info": {
+        "right": {
+            "image": "leraila.png",
+            "name": "Leraila"
+        },
+        "left": {
+            "image": "leraila.png",
+            "name": "Leraila"
+        }
+    },
+    "text": "this is a text string"
+}

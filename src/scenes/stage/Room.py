@@ -3,6 +3,7 @@
 import pygame, os, random
 from src.ResourceManager import *
 from src.sprites.characters.Enemy import *
+from src.sprites.Trigger import *
 
 # -------------------------------------------------
 # Clase Room
@@ -38,6 +39,21 @@ class Room(object):
                 enemySprite.change_global_position((posX, posY))
                 enemiesList.append(enemySprite)
         self.enemies = pygame.sprite.Group(enemiesList)
+
+        # TODO Cargamos la lista de triggers de la sala si existen
+        triggersList = []
+        if "triggers" in data:
+            for triggerData in data["triggers"]:
+                (x, y) = (triggerData["position"][0], triggerData["position"][1])
+                width = triggerData["width"]
+                height = triggerData["height"]
+
+                trigger = Trigger(pygame.Rect((x, y), (width, height)), triggerData["dialogueFile"])
+                trigger.change_global_position((x, y))
+                triggersList.append(trigger)
+
+        self.triggers = pygame.sprite.Group(triggersList)
+
 
     # Indica si el jugador está saliendo de la sala y devuelve la conexión que representa la salida
     def isExiting(self, player):

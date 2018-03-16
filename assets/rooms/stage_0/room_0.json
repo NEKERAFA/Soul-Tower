@@ -31,5 +31,13 @@
         { "type": "slime" },
         { "type": "slime" },
         { "type": "slime" }
+    ],
+    "triggers": [
+        {
+            "position": [200, 200],
+            "height": 100,
+            "width": 100,
+            "dialogueFile": "test.json"
+        }
     ]
 }

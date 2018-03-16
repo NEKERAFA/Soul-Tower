@@ -49,7 +49,6 @@ class Character(MySprite):
 
         # Cargar sheet de sprites
         self.sheet = ResourceManager.load_image(image_path, -1)
-        self.sheet = self.sheet.convert_alpha()
 
         # Movimiento actual
         self.movement = STILL

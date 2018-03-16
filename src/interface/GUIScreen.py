@@ -16,6 +16,13 @@ class GUIScreen(object):
         # Se tiene una lista de animaciones
         #self.animations = []
 
+    # TODO añadir a UML
+    def addElement(self, element):
+        self.GUIElements.append(element)
+    # TODO añadir a UML
+    def removeElement(self, element):
+        self.GUIElements.remove(element)
+
     def events(self, event_list):
         for event in event_list:
             if event.type == MOUSEBUTTONDOWN:

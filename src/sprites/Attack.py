@@ -37,7 +37,6 @@ class Attack(MySprite):
 
         # Cargar sheet de sprites
         self.sheet = ResourceManager.load_image(imageFile, -1)
-        self.sheet = self.sheet.convert_alpha()
 
         # Leer coordenadas de fichero
         data = ResourceManager.load_sprite_sheet(spriteSheet)

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import pygame
-from src.scenes.Scene import *
 from src.scenes.Stage import *
 from src.scenes.stage.State import *
 
@@ -81,12 +80,3 @@ class OnTransitionState(State):
 
     def events(self, time, stage):
         pass
-
-    def draw(self, screen, stage):
-        # Muestro un color de fondo
-        screen.fill((100, 200, 255))
-        # Luego los Sprites sobre una copia del mapa de la sala
-        newImage = stage.image.copy()
-        stage.spritesGroup.draw(newImage)
-        # Se pinta la porción de la sala que coincide con el viewport
-        screen.blit(newImage, (0,0), stage.viewport)
