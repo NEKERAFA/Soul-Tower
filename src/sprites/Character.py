@@ -134,8 +134,7 @@ class Character(MySprite):
             # Máscara de la animación
             self.mask = pygame.mask.from_surface(self.image)
 
-
-    def update(self, time, mapRect, mapMask):
+    def update_movement(self, time):
         # Las velocidades a las que iba hasta este momento
         # (speedX, speedY) = self.speed
         speedX, speedY = 0, 0
@@ -196,6 +195,12 @@ class Character(MySprite):
         # Aplicamos la velocidad en cada eje
         self.speed = (speedX, speedY)
 
+
+    def update(self, time, mapRect, mapMask):
+
+        # Actualizamos todo lo del movimiento y la animación
+        self.update_movement(time)
+
         # Y llamamos al método de la superclase para que, según la velocidad y el tiempo, calcule la nueva posición del Sprite
         MySprite.update(self, time)
 
@@ -206,20 +211,20 @@ class Character(MySprite):
         y = int(y - self.rect.height)
 
         # Se calculan los "gradientes" para conocer la dirección de la colisión
-        dx = mapMask.overlap_area(playerMask,(x+1,y)) - mapMask.overlap_area(playerMask,(x-1,y))
-        dy = mapMask.overlap_area(playerMask,(x,y+1)) - mapMask.overlap_area(playerMask,(x,y-1))
+        dx = mapMask.overlap_area(self.mask,(x+1,y)) - mapMask.overlap_area(self.mask,(x-1,y))
+        dy = mapMask.overlap_area(self.mask,(x,y+1)) - mapMask.overlap_area(self.mask,(x,y-1))
 
         # Se desplaza el personaje en la dirección adecuada
         # hasta que deje de colisionar
         while(dx):
-            self.increment_position(((1 if dx>0 else -1), 0))
+            self.increment_position(((1 if dx<0 else -1), 0))
             x,y = self.position
             x = int(x)
             y = int(y - self.rect.height)
             dx = mapMask.overlap_area(self.mask, (x+1,y)) - mapMask.overlap_area(self.mask, (x-1,y))
 
         while(dy):
-            self.increment_position((0,(1 if dy>0 else -1)))
+            self.increment_position((0,(1 if dy<0 else -1)))
             x,y = self.position
             x = int(x)
             y = int(y - self.rect.height)

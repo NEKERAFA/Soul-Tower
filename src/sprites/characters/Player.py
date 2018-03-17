@@ -3,6 +3,10 @@
 import pygame, sys, os
 from pygame.locals import *
 from src.sprites.Character import *
+from src.sprites.characters.player.PlayerState import *
+from src.sprites.characters.player.Normal import *
+from src.sprites.characters.player.Dashing import *
+from src.sprites.characters.player.Defending import *
 from src.sprites.attacks.MeleeAttack import *
 from src.controls.KeyboardMouseControl import *
 
@@ -21,6 +25,10 @@ class Player(Character):
         # Invocamos al constructor de la clase padre con la configuracion de este Character concreto
         Character.__init__(self, 'sorcerer')
         self.controlManager = KeyboardMouseControl()
+
+        # Atributo de estado del jugador (patrón estado)
+        self.playerState = Normal()
+
         # Se carga el ataque a melee
         self.meleeAttack = MeleeAttack('sprites/characters/sorcerer.png', 'attacks/attack.json', 30, 250, enemies)
         # Número de almas
@@ -49,6 +57,11 @@ class Player(Character):
         else:
             Character.move(self, STILL)
 
+        # Cambios de estado
+        # Si está dasheando:
+        if self.controlManager.sec_button():
+            self.playerState.change(Dashing)
+
         # control de ataque
         if self.controlManager.prim_button():
             # calcular la posición del centro del sprite (de momento calcula el centro del primer sprite)
@@ -64,10 +77,13 @@ class Player(Character):
             self.meleeAttack.end_attack()
 
     def update(self, time, mapRect, mapMask):
-        Character.update(self, time, mapRect, mapMask)
+        # Delegamos en el estado del jugador para actualizar
+        # print('updating')
+        self.playerState.update_pos(self, time, mapRect, mapMask)
         self.meleeAttack.update(time)
 
     ############################################################################
+
 
     # Incrementa el número de almas del jugador
     def increase_souls(self, souls):

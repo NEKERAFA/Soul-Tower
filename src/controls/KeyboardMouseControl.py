@@ -9,6 +9,7 @@ class KeyboardMouseControl(ControlManager):
         self.downButton = K_s
         self.leftButton = K_a
         self.rightButton = K_d
+        self.secButton = K_SPACE
 
     def up(self):
         return pygame.key.get_pressed()[self.upButton]
@@ -29,6 +30,9 @@ class KeyboardMouseControl(ControlManager):
 
     def prim_button(self):
         return pygame.mouse.get_pressed()[0]
+
+    def sec_button(self):
+        return pygame.key.get_pressed()[self.secButton]
 
     def set_key_up(self, newKey):
         self.upButton = newKey
