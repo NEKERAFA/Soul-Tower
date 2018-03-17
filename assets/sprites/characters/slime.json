@@ -2,12 +2,12 @@
     "stats": {
         "hp": 1,
         "atk": 1,
-        "spd": 0.1
+        "spd": 0.02
     },
 
-    "behaviour" : [
-        "wandering"
-    ],
+    "behaviour" : {
+        "type": "patrolling"
+    },
 
     "frames": [
         [

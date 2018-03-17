@@ -65,7 +65,7 @@ class Stage(Scene):
         self.posPlayer = self.font.render("x: " + str(int(self.player.position[0])) + ", y: " + str(int(self.player.position[1])), True, (0, 0, 0))
         self.posRoom = self.font.render("x: " + str(self.rooms[self.currentRoom].position[0]) + ", y: " + str(self.rooms[self.currentRoom].position[1]), True, (0, 0, 0))
 
-        self.spawDelay = 0
+        # self.spawDelay = 0
         # TODO DEBUG: BORRAR CUANDO HAGA FALTA
 
     def update(self, time):
@@ -76,23 +76,23 @@ class Stage(Scene):
         self.posPlayer = self.font.render("x: " + str(int(self.player.position[0])) + ", y: " + str(int(self.player.position[1])), True, (0, 0, 0))
         self.posRoom = self.font.render("x: " + str(self.rooms[self.currentRoom].position[0]) + ", y: " + str(self.rooms[self.currentRoom].position[1]), True, (0, 0, 0))
 
-        self.spawDelay += time
-
-        # Despawneamos enemigo pasado un segundo
-        if self.spawDelay > 2000:
-            enemies = []
-            drops = []
-            for enemy in iter(self.rooms[self.currentRoom].enemies):
-                drop = enemy.drop
-                bottom = enemy.rect.bottom
-                (posX, posY) = enemy.rect.midbottom
-                (width, height) = drop.rect.size
-                print (int(posX-width/2), posY)
-                drop.change_global_position((int(posX-width/2), posY))
-                enemies.append(enemy)
-                drops.append(drop)
-            self.rooms[self.currentRoom].enemies.empty()
-            self.rooms[self.currentRoom].drops.add(drops)
+        # self.spawDelay += time
+        #
+        # # Despawneamos enemigo pasado un segundo
+        # if self.spawDelay > 2000:
+        #     enemies = []
+        #     drops = []
+        #     for enemy in iter(self.rooms[self.currentRoom].enemies):
+        #         drop = enemy.drop
+        #         bottom = enemy.rect.bottom
+        #         (posX, posY) = enemy.rect.midbottom
+        #         (width, height) = drop.rect.size
+        #         print (int(posX-width/2), posY)
+        #         drop.change_global_position((int(posX-width/2), posY))
+        #         enemies.append(enemy)
+        #         drops.append(drop)
+        #     self.rooms[self.currentRoom].enemies.empty()
+        #     self.rooms[self.currentRoom].drops.add(drops)
         # TODO DEBUG: BORRAR CUANDO HAGA FALTA
 
     def events(self, events):

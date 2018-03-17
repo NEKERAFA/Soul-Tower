@@ -6,6 +6,8 @@
         "spd": 0.2
     },
 
+    "behaviours" : [],
+
     "frames": [
         [
             {

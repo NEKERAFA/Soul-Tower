@@ -18,7 +18,7 @@ class Room(object):
         data = ResourceManager.load_room(fullname)
 
         # Cargamos los datos del mapa
-        self.position = (data["x"], data["y"])
+        self.position = (data["position"][0], data["position"][1])
         self.width = data["width"]
         self.height = data["height"]
         self.connections = data["connections"]

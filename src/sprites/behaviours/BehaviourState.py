@@ -4,8 +4,11 @@
 # Clase BehaviourState
 
 class BehaviourState(object):
-    def move_ai(player):
+    def move_ai(self, enemy, player):
         raise NotImplemented("Tiene que implementar el metodo move_ai.")
+
+    def update(self, enemy, time, mapRect, mapMask):
+        raise NotImplemented("Tiene que implementar el metodo update")
 
     def switch(self, state):
         self.__class__ = state

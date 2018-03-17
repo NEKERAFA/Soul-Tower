@@ -3,6 +3,8 @@
 import pygame
 from src.sprites.Character import *
 from src.sprites.characters.NPC import *
+from src.sprites.behaviours.WanderingState import *
+from src.sprites.behaviours.PatrollState import *
 from src.ResourceManager import *
 
 class Enemy(NPC):
@@ -10,6 +12,14 @@ class Enemy(NPC):
         NPC.__init__(self, spriteName)
         self.drop = drop
 
+        if self.behaviour is not None:
+            if self.behaviour["type"] == "wandering":
+                self.state = WanderingState()
+            if self.behaviour["type"] == "patrolling":
+                self.state = PatrollState(self, 100)
+
     def move_ai(self, player):
-        #Character.move(self, E)
-        return
+        self.state.move_ai(self, player)
+
+    def update(self, time, mapRect, mapMask):
+        self.state.update(self, time, mapRect, mapMask)
