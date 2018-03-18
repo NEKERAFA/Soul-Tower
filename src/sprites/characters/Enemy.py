@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import pygame
+import pygame, math
 from src.sprites.Character import *
 from src.sprites.characters.NPC import *
 from src.sprites.behaviours.WanderingState import *
@@ -16,10 +16,10 @@ class Enemy(NPC):
             if self.behaviour["type"] == "wandering":
                 self.state = WanderingState()
             if self.behaviour["type"] == "patrolling":
-                self.state = PatrollState(self, 100)
+                self.state = PatrollState(self.rect.center, self.behaviour["radius"], math.radians(self.behaviour["angle"]))
 
     def move_ai(self, player):
         self.state.move_ai(self, player)
 
     def update(self, time, mapRect, mapMask):
-        self.state.update(self, time, mapRect, mapMask)
+        self.state.update(time, self, mapRect, mapMask)

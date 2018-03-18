@@ -1,12 +1,11 @@
 {
     "stats": {
+        "max_hp": 3,
         "hp": 3,
         "atk": 1,
         "sta": 5,
         "spd": 0.2
     },
-
-    "behaviours" : [],
 
     "frames": [
         [

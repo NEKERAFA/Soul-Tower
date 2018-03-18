@@ -40,11 +40,21 @@ class InRoomState(StageState):
 
         drops = pygame.sprite.spritecollide(stage.player, currentRoom.drops, False)
 
+        # Se recore la lista de drops colisionados
         for drop in drops:
+            # Drops de vida
             if type(drop) is Life:
-                # TODO max life y life
-                print "More life:", drop.amount
+                # Comprobamos que la vida del enemigo es menor que la máxima
+                # (ha recibido daño)
+                if stage.player.stats["hp"] < stage.player.stats["max_hp"]:
+                    # Añadimos las vidas al jugador
+                    stage.player.add_lifes(drop.value)
+                    # Eliminamos el sprite de todos los grupos
+                    drop.kill()
+            # Drops de almas
             elif type(drop) is Soul:
+                # Añadimos las almas recogidas y eliminamos el sprite de todos
+                # los grupos
                 stage.player.increase_souls(drop.amount)
                 drop.kill()
 
@@ -59,15 +69,6 @@ class InRoomState(StageState):
         newImage.blit(stage.player.image, stage.player.rect)
         # Enemigos
         currentRoom.enemies.draw(newImage)
-
-        # TODO DEBUG BORRAR CUANDO HAGA FALTA
-        # Mostramos los rango de visión de los enemigos
-        for enemy in iter(currentRoom.enemies):
-            enemyRange = enemy.state.patrollRange.image.copy()
-            enemyRange.set_alpha(128, pygame.RLEACCEL)
-            newImage.blit(enemyRange, enemy.state.patrollRange.rect)
-        # TODO DEBUG BORRAR CUANDO HAGA FALTA
-
         # Drops
         currentRoom.drops.draw(newImage)
         # Se pinta la porción de la sala que coincide con el viewport

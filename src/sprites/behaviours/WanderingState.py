@@ -15,6 +15,8 @@ MOVEMENTS = [N, NW, W, SW, S, SE, E, NE]
 
 class WanderingState(BehaviourState):
     def __init__(self):
+        # Llamamos al constructor de la superclase
+        BehaviourState.__init__(self)
         # Empieza parado y con un tiempo random
         self.move = STILL
         self.delay = random.randint(MIN_DELAY, MAX_DELAY)
@@ -35,7 +37,8 @@ class WanderingState(BehaviourState):
             # Se mueve
             Character.move(enemy, self.move)
 
-    def update(self, enemy, time, mapRect, mapMask):
-        # Actualizamos el delay y llamamos al update de characters
+    def update(self, time, enemy, mapRect, mapMask):
+        # Actualizamos el delay
         self.delay -= time
+        # Llamamos al update de characters
         Character.update(enemy, time, mapRect, mapMask)

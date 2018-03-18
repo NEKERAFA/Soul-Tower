@@ -15,25 +15,22 @@ MIN_DELAY = 500
 MOVEMENTS = [N, NW, W, SW, S, SE, E, NE]
 
 class PatrollState(BehaviourState):
-    '''
-        center: (int, int), Punto centrar sobre el que situar el rango de
-        visión.
-        radius: int, Radio de acción del rango.
-        vision: float, Ángulo de vision del enemigo.
-    '''
     def __init__(self, center, radius, vision):
-        # Rango de patrulla
-        self.patrollRange = EnemyRange(radius, vision, math.radians(270))
-        # Lo centramos en el enemigo
-        self.patrollRange.rect.center = enemy.rect.center
+        # Llamamos al constructor de la superclase
+        BehaviourState.__init__(self)
         # Empieza parado y con un tiempo random
         self.move = STILL
         self.delay = random.randint(MIN_DELAY, MAX_DELAY)
-        # Inicializa los puntos de colisión
+        # Creo el rango de vision
+        self.range = EnemyRange(radius, vision, 270)
+        self.range.rect.center = center
         self.playerCollision = None
-        self.count = 0
+        self.stageCollision = None
 
     def move_ai(self, enemy, player):
+        # Comprobamos si hay colisión con el jugador en el rango de visión
+        self.playerCollision = pygame.sprite.collide_mask(self.range, player)
+
         # Si se acaba el tiempo, cambia el movimiento
         if self.delay <= 0:
             # Si estaba pausado, se mueve
@@ -42,63 +39,55 @@ class PatrollState(BehaviourState):
             # Si se estaba moviendo, se pausa
             else:
                 self.move = STILL
-            # Tiempo aleatorioNone
+
+            # Tiempo aleatorio
             self.delay = random.randint(MIN_DELAY, MAX_DELAY)
-            # Se mueve
+
+            # Se actualiza la posición del jugador
             Character.move(enemy, self.move)
-            # Hago que la máscara apunte a donde el personaje mira
+
+            # Se rota el rango de visión
             if self.move == E:
-                self.patrollRange.look_at(0)
+                self.range.look_at(0)
             elif self.move == NE:
-                self.patrollRange.look_at(math.radians(45))
+                self.range.look_at(45)
             elif self.move == N:
-                self.patrollRange.look_at(math.radians(90))
+                self.range.look_at(90)
             elif self.move == NW:
-                self.patrollRange.look_at(math.radians(135))
+                self.range.look_at(135)
             elif self.move == W:
-                self.patrollRange.look_at(math.radians(180))
+                self.range.look_at(180)
             elif self.move == SW:
-                self.patrollRange.look_at(math.radians(225))
+                self.range.look_at(225)
             elif self.move == S or self.move == STILL:
-                self.patrollRange.look_at(math.radians(270))
+                self.range.look_at(270)
             elif self.move == SE:
-                self.patrollRange.look_at(math.radians(315))
+                self.range.look_at(315)
 
-        # Compruebo si el jugador está en el rango de visión
-        self.playerCollision = pygame.sprite.collide_mask(self.patrollRange, player)
-
-    def update(self, enemy, time, mapRect, mapMask):
+    def update(self, time, enemy, mapRect, mapMask):
         # Actualizamos el delay
         self.delay -= time
 
-        # Si el jugador está en mi rango de visión, compruebo que no haya una pared antes
+        # Si hay colisión con el jugador, comprobamos si hay colisión con el
+        # mapa de la fase
         if self.playerCollision is not None:
-            # Obtengo las posiciones del mapa y del enemigo
-            (enemyX, enemyY) = self.patrollRange.rect.topleft
-            (mapX, mapY) = mapRect.topleft
-            # Offset entre la máscara y el mapa
-            offset = (mapX-enemyX, mapY-enemyY)
-            # Creo una copia de la máscara del mapa y la invierto (Si no, no
-            # funciona)
-            invertMap = pygame.mask.Mask(mapMask.get_size())
-            invertMap.draw(mapMask, (0, 0))
-            invertMap.invert()
-            # Obtengo el punto de colisión de la máscara
-            mapCollision = self.patrollRange.mask.overlap(invertMap, offset)
-            # Obtengo la distancia del jugador a la máscara
+            # Colisión con el mapa
+            (posX, posY) = self.range.rect.topleft
+            self.stageCollision = self.range.mask.overlap(mapMask, (-posX, -posY))
+            # Distancia con el jugador
             distPlayer = math.hypot(self.playerCollision[0], self.playerCollision[1])
-            distMap = sys.maxint
-            # Si hay colisión obtengo la distancia del mapa a la máscara
-            if mapCollision is not None:
-                distMap = math.hypot(mapCollision[0], mapCollision[1])
-            # Si está antes es que veo al enemigo
-            if distPlayer < distMap:
-                self.count += 1
-                print "He visto al enemigo", self.count # TODO Cambiar el estado
+            # Distancia con el mapa
+            distStage = sys.maxint
+            if self.stageCollision is not None:
+                distStage = math.hypot(self.stageCollision[0], self.stageCollision[1])
+            # Si la colisión del jugador está a menor distancia, es que está delante de la pared
+            if distPlayer <= distStage:
+                print "He visto al jugador" # TODO cambiar de estado
 
-        # Actualizamos el enemigo
+        # Llamamos al update de characters
         Character.update(enemy, time, mapRect, mapMask)
 
-        # Actualizamos la posición de la máscara
-        self.patrollRange.rect.center = enemy.rect.center
-        self.patrollRange.position = enemy.rect.bottomleft
+        # Actualizamos la posición del campo de visión
+        (enemyX, enemyY) = enemy.rect.center
+        (rangeX, rangeY) = self.range.rect.center
+        self.range.increment_position((enemyX-rangeX, enemyY-rangeY))

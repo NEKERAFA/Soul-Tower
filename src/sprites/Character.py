@@ -195,9 +195,7 @@ class Character(MySprite):
         # Aplicamos la velocidad en cada eje
         self.speed = (speedX, speedY)
 
-
     def update(self, time, mapRect, mapMask):
-
         # Actualizamos todo lo del movimiento y la animación
         self.update_movement(time)
 
@@ -205,10 +203,7 @@ class Character(MySprite):
         MySprite.update(self, time)
 
         # Después se utiliza la máscara para un ajuste más preciso
-        playerMask = pygame.mask.from_surface(self.image)
-        x, y = self.position
-        x = int(x)
-        y = int(y - self.rect.height)
+        x, y = self.rect.topleft
 
         # Se calculan los "gradientes" para conocer la dirección de la colisión
         dx = mapMask.overlap_area(self.mask,(x+1,y)) - mapMask.overlap_area(self.mask,(x-1,y))
@@ -218,23 +213,24 @@ class Character(MySprite):
         # hasta que deje de colisionar
         while(dx):
             self.increment_position(((1 if dx<0 else -1), 0))
-            x,y = self.position
-            x = int(x)
-            y = int(y - self.rect.height)
+            x, y = self.rect.topleft
             dx = mapMask.overlap_area(self.mask, (x+1,y)) - mapMask.overlap_area(self.mask, (x-1,y))
 
         while(dy):
             self.increment_position((0,(1 if dy<0 else -1)))
-            x,y = self.position
-            x = int(x)
-            y = int(y - self.rect.height)
+            x, y = self.rect.topleft
             dy = mapMask.overlap_area(self.mask, (x,y+1)) - mapMask.overlap_area(self.mask, (x,y-1))
 
     ############################################################################
 
-    # Recibe un daño y se realiza el daño. Si el personaje a muerto, LO MATA
+    # Recibe un daño y se realiza el daño. Si el personaje a muerto, lo elimina
+    # de todos los grupos
     def receive_damage(self, damage):
         self.stats["hp"] -= damage
 
         if self.stats["hp"] <= 0:
             self.kill()
+
+    # Añade vidas al caracter
+    def add_lifes(self, lifes):
+        self.stats["hp"] = max(self.stats["max_hp"], self.stats["hp"]+lifes)

@@ -28,26 +28,24 @@ class Stage(Scene):
         # Obtenemos el nombre de la fase
         fullname = 'stage_' + str(int(stageNum))
 
-        # Cargamos la configuración del nivel
-        data = ResourceManager.load_stage(fullname + '.json')
-
-        # Cargamos la imagen y la máscara
+        # Cargamos la imagen
         image_path = os.path.join('stages', fullname + '.png')
         self.image = ResourceManager.load_image(image_path)
+
+        # Cargamos la máscara
         mask_path = os.path.join('stages', fullname + '_mask.png')
         mask_image = ResourceManager.load_image(mask_path, (0, 0, 0))
         self.mask = pygame.mask.from_surface(mask_image)
-        self.mask.invert()
+
+        # Cargamos la configuración del nivel
+        data = ResourceManager.load_stage(fullname + '.json')
 
         # Cargamos las salas
         self.rooms = [Room(stageNum, i) for i in range(0, data['rooms'])]
         self.currentRoom = 0
 
-        # Lista de enemigos
-        enemies = [enemy for room in self.rooms for enemy in room.enemies.sprites()]
-
         # Cargamos el sprite del jugador
-        self.player = Player(enemies)
+        self.player = Player([])
         self.player.change_global_position((data["player_pos"][0], data["player_pos"][1]))
 
         # Inicializamos el viewport, que es un rectángulo del tamaño de la pantalla que indicará qué porción de la sala se debe mostrar
