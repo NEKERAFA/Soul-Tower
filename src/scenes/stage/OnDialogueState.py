@@ -2,10 +2,10 @@
 
 import pygame
 from src.scenes.Stage import *
-from src.scenes.stage.State import *
+from src.scenes.stage.StageState import *
 from src.interface.GUIDialog import *
 
-class OnDialogueState(State):
+class OnDialogueState(StageState):
     # Recibe un trigger y la stage (de la que se saca el estado anterior y la GUI), lanza un diálogo (init)
     def __init__(self, dialogue, stage):
         self.previousState = stage.state

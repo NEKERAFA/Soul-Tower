@@ -2,12 +2,12 @@
 
 import pygame
 from src.scenes.Stage import *
-from src.scenes.stage.State import *
+from src.scenes.stage.StageState import *
 
 # -------------------------------------------------
 # Clase OnTransitionState
 
-class OnTransitionState(State):
+class OnTransitionState(StageState):
     def __init__(self, connection, player):
         self.connection = connection
         self.scrollX = SCREEN_WIDTH
@@ -45,7 +45,6 @@ class OnTransitionState(State):
                     stage.state = stage.smallRoomState
                 else:
                     stage.state = stage.inRoomState
-                stage.spritesGroup.remove(stage.rooms[stage.currentRoom].enemies.sprites())
                 stage.currentRoom = dstRoom
 
         else:
@@ -75,7 +74,6 @@ class OnTransitionState(State):
                     stage.state = stage.smallRoomState
                 else:
                     stage.state = stage.inRoomState
-                stage.spritesGroup.remove(stage.rooms[stage.currentRoom].enemies.sprites())
                 stage.currentRoom = dstRoom
 
     def events(self, time, stage):

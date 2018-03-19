@@ -9,7 +9,7 @@ class KeyboardMouseControl(ControlManager):
     downButton = K_s
     leftButton = K_a
     rightButton = K_d
-    spaceBar = K_SPACE
+    secButton = K_SPACE
 
     @classmethod
     def up(cls):
@@ -27,10 +27,6 @@ class KeyboardMouseControl(ControlManager):
     def right(cls):
         return pygame.key.get_pressed()[cls.rightButton]
 
-    @classmethod # TODO puede que quitar
-    def space(cls):
-        return pygame.key.get_pressed()[cls.spaceBar]
-
     @classmethod
     def angle(cls, pos):
         (playerX, playerY) = pos
@@ -44,6 +40,10 @@ class KeyboardMouseControl(ControlManager):
     @classmethod
     def prim_button(cls):
         return pygame.mouse.get_pressed()[0]
+
+    @classmethod
+    def sec_button(cls):
+        return pygame.key.get_pressed()[cls.secButton]
 
     @classmethod
     def set_key_up(cls, newKey):

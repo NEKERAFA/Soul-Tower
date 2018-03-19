@@ -1,22 +1,30 @@
 # -*- coding: utf-8 -*-
 
-from src.scenes.stage.State import *
+from src.scenes.stage.StageState import *
 from src.scenes.stage.OnTransitionState import *
 from src.scenes.stage.OnDialogueState import *
+from src.sprites.characters.Enemy import *
 
-class SmallRoomState(State):
-
+class SmallRoomState(StageState):
     def update(self, time, stage):
-        # Actualizamos los sprites
-        stage.spritesGroup.update(stage.rooms[stage.currentRoom].rect, stage.mask, time)
+        currentRoom = stage.rooms[stage.currentRoom]
 
-        (playerX, playerY) = stage.player.rect.center
+        # Movemos los enemigos
+        for enemy in iter(currentRoom.enemies):
+            enemy.move_ai(stage.player)
+
+        # Actualizamos los sprites
+        # Player
+        stage.player.update(time, currentRoom.rect, stage.mask)
+        # Enemigos
+        currentRoom.enemies.update(time, currentRoom.rect, stage.mask)
+        # Drops
+        currentRoom.drops.update(time)
 
         # Comprobamos si estamos saliendo de la sala
-        exit = stage.rooms[stage.currentRoom].isExiting(stage.player)
+        exit = currentRoom.isExiting(stage.player)
 
         if exit is not None:
-            stage.spritesGroup.add(stage.rooms[exit["to"]].enemies.sprites())
             stage.state = OnTransitionState(exit, stage.player)
             return
 

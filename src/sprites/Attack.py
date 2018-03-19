@@ -39,12 +39,12 @@ class Attack(MySprite):
         self.sheet = ResourceManager.load_image(imageFile, -1)
 
         # Leer coordenadas de fichero
-        data = ResourceManager.load_sprite_sheet(spriteSheet)
+        data = ResourceManager.load_sprite_conf(spriteSheet)
         self.sheetConf = []
         # Cargamos los sprites
         for col in range(0, len(data)):
             cell = data[col]
-            coords = pygame.Rect((int(cell['left']), int(cell['top'])), (int(cell['width']), int(cell['height'])))
+            coords = pygame.Rect((int(cell['x']), int(cell['y'])), (int(cell['width']), int(cell['height'])))
             delay = float(cell['delay'])*1000
             self.sheetConf.append({'coords': coords, 'delay': delay})
 
