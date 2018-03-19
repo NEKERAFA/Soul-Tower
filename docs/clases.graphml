@@ -1133,7 +1133,10 @@ O es GUIPlayerScreen en vez de GUIScreen?<y:LabelModel>
           </y:NodeLabel>
           <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
             <y:AttributeLabel>dialogue: list&lt;dict&gt;
-previousState: StageState</y:AttributeLabel>
+previousState: StageState
+spacePressed: boolean
+dialogueBox: DialogBox
+intervention: int</y:AttributeLabel>
             <y:MethodLabel>__init(dialogueFile: string, previousState: StageState)__: OnDialogueState</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
