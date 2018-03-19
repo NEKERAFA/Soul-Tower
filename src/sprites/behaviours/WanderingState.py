@@ -37,7 +37,7 @@ class WanderingState(BehaviourState):
             # Se mueve
             Character.move(enemy, self.move)
 
-    def update(self, time, enemy, mapRect, mapMask):
+    def update(self, enemy, time, mapRect, mapMask):
         # Actualizamos el delay
         self.delay -= time
         # Llamamos al update de characters

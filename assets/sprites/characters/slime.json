@@ -9,7 +9,7 @@
     "behaviour" : {
         "type": "patrolling",
         "radius": 200,
-        "angle": 90
+        "angle": 45
     },
 
     "frames": [

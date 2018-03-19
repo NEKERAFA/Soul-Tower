@@ -22,4 +22,4 @@ class Enemy(NPC):
         self.state.move_ai(self, player)
 
     def update(self, time, mapRect, mapMask):
-        self.state.update(time, self, mapRect, mapMask)
+        self.state.update(self, time, mapRect, mapMask)
