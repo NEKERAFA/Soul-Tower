@@ -223,7 +223,7 @@ class Character(MySprite):
 
     ############################################################################
 
-    # Recibe un daño y se realiza el daño. Si el personaje a muerto, lo elimina
+    # Recibe un daño y se realiza el daño. Si el personaje ha muerto, lo elimina
     # de todos los grupos
     def receive_damage(self, damage):
         self.stats["hp"] -= damage

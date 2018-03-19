@@ -15,20 +15,35 @@ MIN_DELAY = 500
 MOVEMENTS = [N, NW, W, SW, S, SE, E, NE]
 
 class PatrollState(BehaviourState):
-    def __init__(self, center, radius, vision):
+    def __init__(self, center, radius, vision, move):
         # Llamamos al constructor de la superclase
         BehaviourState.__init__(self)
+
         # Empieza parado y con un tiempo random
-        self.move = STILL
+        self.move = move
         self.delay = random.randint(MIN_DELAY, MAX_DELAY)
+
         # Creo el rango de vision
-        self.range = EnemyRange(radius, vision, 270)
-        self.range.rect.center = center
+        self.range = EnemyRange(center, radius, vision, EnemyRange.get_angle(move))
+
+        # Inicializo los valores de la distancia del jugador
         self.playerCollision = None
+        self.playerDistance = sys.maxint
 
     def move_ai(self, enemy, player):
         # Comprobamos si hay colisión con el jugador en el rango de visión
         self.playerCollision = pygame.sprite.collide_mask(self.range, player)
+
+        # Convierto el punto de colisión para dejarlo con el centro en el
+        # enemigo
+        if self.playerCollision is not None:
+            deltaX, deltaY = self.range.get_delta()
+            self.playerCollision = (self.playerCollision[0]-deltaX, self.playerCollision[1]-deltaY)
+
+            # Distancia al jugador
+            self.playerDistance = math.hypot(self.playerCollision[0], self.playerCollision[1])
+        else:
+            self.playerDistance = sys.maxint
 
         # Si se acaba el tiempo, cambia el movimiento
         if self.delay <= 0:
@@ -38,27 +53,15 @@ class PatrollState(BehaviourState):
             # Si se estaba moviendo, se pausa
             else:
                 self.move = STILL
+
             # Tiempo aleatorio
             self.delay = random.randint(MIN_DELAY, MAX_DELAY)
+
             # Se actualiza la posición del jugador
             Character.move(enemy, self.move)
+
             # Se rota el rango de visión
-            if self.move == E:
-                self.range.look_at(0)
-            elif self.move == NE:
-                self.range.look_at(45)
-            elif self.move == N:
-                self.range.look_at(90)
-            elif self.move == NW:
-                self.range.look_at(135)
-            elif self.move == W:
-                self.range.look_at(180)
-            elif self.move == SW:
-                self.range.look_at(225)
-            elif self.move == S or self.move == STILL:
-                self.range.look_at(270)
-            elif self.move == SE:
-                self.range.look_at(315)
+            self.range.look_at(EnemyRange.get_angle(self.move))
 
     def update(self, enemy, time, mapRect, mapMask):
         # Actualizamos el delay
@@ -67,27 +70,41 @@ class PatrollState(BehaviourState):
         # Si hay colisión con el jugador, comprobamos si hay colisión con el
         # mapa de la fase
         if self.playerCollision is not None:
-            # Calculo el delta del centro de vision
-            (posX, posY) = self.range.rect.topleft
-            (centerX, centerY) = self.range.rect.center
-            deltaX, deltaY = centerX-posX, centerY-posY
+            # Creo una imagen con una linea para saber en que punto colisiona
+            size = (self.range.radius*2, self.range.radius*2)
+            line = pygame.Surface(size)
+            center = (self.range.radius, self.range.radius)
+            end = (self.playerCollision[0]+self.range.radius, self.playerCollision[1]+self.range.radius)
+            pygame.draw.line(line, (0, 0, 255), center, end, 1)
+            line.set_colorkey((0, 0, 0))
+
+            # Creo la máscara para comprobar colisión con el mapa
+            raytestMask = pygame.mask.from_surface(line)
+
+            # Obtengo el offset
+            x = enemy.rect.centerx-self.range.radius
+            y = enemy.rect.centery-self.range.radius
+
             # Colisión con el mapa
-            stageCollision = self.range.mask.overlap(mapMask, (-posX, -posY))
-            # Distancia con el jugador
-            distPlayer = math.hypot(self.playerCollision[0]-deltaX, self.playerCollision[1]-deltaY)
-            # Distancia con el mapa
-            distStage = sys.maxint
+            stageCollision = raytestMask.overlap(mapMask, (-x, -y))
+
+            # Distancia al mapa infinita
+            stageDistance = sys.maxint
+
+            # Obtengo la distancia real si hay colisión
             if stageCollision is not None:
-                distStage = math.hypot(stageCollision[0]-deltaX, stageCollision[1]-deltaY)
-            # Si la colisión del jugador está a menor distancia, es que está delante de la pared
-            if distPlayer <= distStage:
-                print "Veo al jugador"
+                stageCollision = (stageCollision[0]-self.range.radius, stageCollision[1]-self.range.radius)
+                stageDistance = math.hypot(stageCollision[0], stageCollision[1])
+
+            # Si la colisión del jugador está a menor distancia con la colisión
+            # contra la pared, es que está delante de la pared
+            if self.playerDistance <= stageDistance:
                 # Creamos el estado de seguir
-                enemy.state = FollowPlayerState(enemy.rect.center, self.range.radius, self.range.angle)
-                # Establezcemos la dirección a donde mira
-                enemy.state.range.look_at(self.range.lookAt)
+                enemy.state = FollowPlayerState(self.range.radius, self.range.angle, enemy.movement)
+
                 # Ejecutamos el nuevo estado
                 enemy.state.update(enemy, time, mapRect, mapMask)
+                return
 
         # Llamamos al update de characters
         Character.update(enemy, time, mapRect, mapMask)
@@ -97,5 +114,5 @@ class PatrollState(BehaviourState):
         (rangeX, rangeY) = self.range.rect.center
         self.range.increment_position((enemyX-rangeX, enemyY-rangeY))
 
-
+# Se pone aquí debido al import recursivo
 from src.sprites.behaviours.FollowPlayerState import FollowPlayerState

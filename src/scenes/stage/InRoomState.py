@@ -69,25 +69,6 @@ class InRoomState(StageState):
         newImage.blit(stage.player.image, stage.player.rect)
         # Enemigos
         currentRoom.enemies.draw(newImage)
-
-        # TODO DEBUG BORRAR CUANDO HAGA FALTA
-        # Mostramos los rango de visión de los enemigos
-        for enemy in iter(currentRoom.enemies):
-            enemyRange = enemy.state.range.image.copy()
-            enemyRange = pygame.transform.rotate(enemyRange, enemy.state.range.lookAt)
-            enemyRange.set_alpha(128, pygame.RLEACCEL)
-            newImage.blit(enemyRange, enemy.state.range.rect)
-        #
-        #     (x, y) = enemy.state.range.rect.topleft
-        #     if enemy.state.playerCollision is not None:
-        #         (playerX, playerY) = enemy.state.playerCollision
-        #         pygame.draw.circle(newImage, (255, 255, 0), (x+playerX, y+playerY), 2)
-        #
-        #     if enemy.state.stageCollision is not None:
-        #         (stageX, stageY) = enemy.state.stageCollision
-        #         pygame.draw.circle(newImage, (0, 255, 0), (x+stageX, y+stageY), 2)
-        # TODO DEBUG BORRAR CUANDO HAGA FALTA
-
         # Drops
         currentRoom.drops.draw(newImage)
         # Se pinta la porción de la sala que coincide con el viewport

@@ -16,7 +16,7 @@ class Enemy(NPC):
             if self.behaviour["type"] == "wandering":
                 self.state = WanderingState()
             if self.behaviour["type"] == "patrolling":
-                self.state = PatrollState(self.rect.center, self.behaviour["radius"], math.radians(self.behaviour["angle"]))
+                self.state = PatrollState(self.rect.center, self.behaviour["radius"], math.radians(self.behaviour["angle"]), STILL)
 
     def move_ai(self, player):
         self.state.move_ai(self, player)
