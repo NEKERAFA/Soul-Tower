@@ -356,7 +356,7 @@ dibujar(pantalla)</y:MethodLabel>
           <y:Geometry height="75.5" width="153.0" x="-499.641647927489" y="1155.5248644588155"/>
           <y:Fill color="#FF0000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="159.27001953125" x="-3.135009765625" y="3.0">TextoJugar(menu.py)<y:LabelModel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="159.27001953125" x="-3.135009765625" y="28.18359375">TextoJugar(menu.py)<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -1116,7 +1116,7 @@ update(time: int, enemy: Enemy, roomRect: pygame.Rect, mapMask: pygame.mask.Mask
           </y:NodeLabel>
           <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
             <y:AttributeLabel>move: int
-moveDelay: int</y:AttributeLabel>
+delay: int</y:AttributeLabel>
             <y:MethodLabel>__init__(): WanderingState</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
@@ -1126,7 +1126,7 @@ moveDelay: int</y:AttributeLabel>
       <data key="d4"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="101.59859862068993" width="419.61294212152893" x="1365.7447435660247" y="1094.1415278147283"/>
+          <y:Geometry height="115.69651671832321" width="419.61294212152893" x="1365.7447435660247" y="1094.1415278147283"/>
           <y:Fill color="#00FFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="137.50390625" x="141.05451793576447" y="3.0">FollowPlayerState<y:LabelModel>
@@ -1137,9 +1137,10 @@ moveDelay: int</y:AttributeLabel>
             </y:ModelParameter>
           </y:NodeLabel>
           <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
-            <y:AttributeLabel>range: EnemyRange
-playerCollision: (int, int)
-range: int</y:AttributeLabel>
+            <y:AttributeLabel>radius: int
+angle: float
+playerDistance: float
+playerAngle: float</y:AttributeLabel>
             <y:MethodLabel>__init__(center: (int, int), radius: int, vision: float): FollowPlayerState</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
@@ -1149,10 +1150,10 @@ range: int</y:AttributeLabel>
       <data key="d4"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="115.69651671832344" width="378.43610143426395" x="1828.7847407544393" y="1094.1415278147283"/>
+          <y:Geometry height="132.88848154069592" width="379.83140329102844" x="1828.0870898260575" y="1094.1415278147283"/>
           <y:Fill color="#00FFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="92.14990234375" x="143.14309954525697" y="3.0">PatrollState<y:LabelModel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="92.14990234375" x="143.84075047363922" y="3.0">PatrollState<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -1162,8 +1163,9 @@ range: int</y:AttributeLabel>
           <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
             <y:AttributeLabel>range: EnemyRange
 playerCollision: (int, int)
+playerDistance: float
 move: int
-moveDelay: int</y:AttributeLabel>
+delay: int</y:AttributeLabel>
             <y:MethodLabel>__init__(center: (int, int), radius: int, vision: float): PatrollState</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
@@ -1173,22 +1175,28 @@ moveDelay: int</y:AttributeLabel>
       <data key="d4"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="116.03934198387356" width="367.8279876923075" x="3869.5897812201597" y="289.00688984063925"/>
+          <y:Geometry height="198.36215153294518" width="540.8454179310343" x="3783.0810661007954" y="289.00688984063925"/>
           <y:Fill color="#00FFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="99.13232421875" x="134.34783173677874" y="3.0">EnemyRange<y:LabelModel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="99.13232421875" x="220.85654685614213" y="3.0">EnemyRange<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
               <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
             </y:ModelParameter>
           </y:NodeLabel>
-          <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+          <y:UML clipContent="false" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
             <y:AttributeLabel>radius: int
 vision: float
 mask: pygame.mask.Mask</y:AttributeLabel>
             <y:MethodLabel>__init__(radius: int, vision: float, angle: float): EnemyRange
-look_at(angle: float)</y:MethodLabel>
+change_position(position: (int, int))
+increment_position(increment: (int, int))
+look_at(angle: float)
+get_slice_circle(center: (int, int), radius: int, angle: float, slices: int = 32): list&lt;(int, int)&gt;
+get_angle(move: int): float
+get_move(angle: float): int
+discretice_angle(angle: float): int</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -1197,7 +1205,7 @@ look_at(angle: float)</y:MethodLabel>
       <data key="d4"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="102.43106102896633" width="253.07523395225417" x="3926.966158090186" y="113.54772209528113"/>
+          <y:Geometry height="77.31562760721562" width="253.07523395225417" x="3926.966158090186" y="126.10543880615649"/>
           <y:Fill color="#00FFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="112.70361328125" x="70.18581033550208" y="3.0">MyStaticSprite<y:LabelModel>
@@ -1210,8 +1218,7 @@ look_at(angle: float)</y:MethodLabel>
           <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
             <y:AttributeLabel>position: (int, int) = (0, 0)</y:AttributeLabel>
             <y:MethodLabel>__init__(): MyStaticSprite
-change_position(position: (int, int))
-increment_position(increment: (int, int))</y:MethodLabel>
+</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
