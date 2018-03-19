@@ -28,6 +28,7 @@ class Bullet(Attack):
 
     def update (self, time):
         self.drawAnimation = True
+        # print(self.speed)
         Attack.update(self, time)
         MySprite.update(self, time)
         # print(self.drawAnimation)

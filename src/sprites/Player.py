@@ -18,14 +18,14 @@ PLAYER_SPEED = 0.2 # Pixeles por milisegundo
 # -------------------------------------------------
 # Clase del Character jugable
 class Player(Character):
-    def __init__(self, enemies):
+    def __init__(self, enemies, stage):
         # Invocamos al constructor de la clase padre con la configuracion de este Character concreto
         Character.__init__(self, 'characters/sorcerer.png', 'sorcerer.json', PLAYER_SPEED)
         self.controlManager = KeyboardMouseControl()
         # con ello calcular el offset al centro de la imagen
         # self.offset = (int(self.width/2), int(self.height/2))
         self.meleeAttack = MeleeAttack('characters/sorcerer.png', 'attack.json', 30, 250, enemies)
-        self.rangedAttack = RangedAttack('characters/sorcerer.png', 'attack.json', 30, 250, enemies)
+        self.rangedAttack = RangedAttack('characters/sorcerer.png', 'attack.json', 30, 250, enemies, stage)
 
     def move(self, viewport):
         # Indicamos la acción a realizar segun la tecla pulsada para el jugador

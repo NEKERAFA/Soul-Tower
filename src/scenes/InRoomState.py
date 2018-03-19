@@ -8,7 +8,7 @@ class InRoomState(State):
     def update(self, time, stage):
         # Actualizamos los sprites
         stage.spritesGroup.update(stage.rooms[stage.currentRoom].rect, stage.mask, time)
-
+        stage.bulletGroup.update(time)
         (playerX, playerY) = stage.player.rect.center
 
         # Comprobamos si estamos saliendo de la sala
@@ -31,6 +31,8 @@ class InRoomState(State):
         # Luego los Sprites sobre una copia del mapa de la sala
         newImage = stage.image.copy()
         stage.spritesGroup.draw(newImage)
+        stage.player.meleeAttack.draw(newImage)
+        stage.bulletGroup.draw(newImage)
         # Se pinta la porción de la sala que coincide con el viewport
         screen.blit(newImage, (0,0), stage.viewport)
 

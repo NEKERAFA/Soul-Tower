@@ -45,7 +45,7 @@ class Stage(Scene):
         # Cargamos el sprite del jugador
         self.enemies = []
 
-        self.player = Player(self.enemies)
+        self.player = Player(self.enemies, self)
         self.player.change_global_position((data["player_pos"][0], data["player_pos"][1]))
 
     # ----------- Añadido para probar colisiones
@@ -54,6 +54,8 @@ class Stage(Scene):
         self.enemies.append(self.enemy)
         self.spritesGroup = pygame.sprite.Group(self.player, self.enemy)
     # -----------
+
+        self.bulletGroup = pygame.sprite.Group()
 
         # Inicializamos el viewport, que es un rectángulo del tamaño de la pantalla
         # que indicará qué porción de la sala se debe mostrar
@@ -93,8 +95,8 @@ class Stage(Scene):
     def draw(self, screen):
         # Delegamos en el estado el dibujado de la fase
         self.state.draw(screen, self)
-        self.player.meleeAttack.draw(screen)
-        self.player.rangedAttack.draw(screen)
+        # self.player.meleeAttack.draw(screen)
+        # self.player.rangedAttack.draw(screen)
 
         # TODO DEBUG: BORRAR CUANDO HAGA FALTA
         screen.blit(self.posPlayer, (0, 0))
