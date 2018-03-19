@@ -102,7 +102,7 @@ draw(screen: pygame.Surface)</y:MethodLabel>
       <data key="d4"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="206.87698743784404" width="402.9527847222422" x="863.7068010300322" y="431.7065692653691"/>
+          <y:Geometry height="212.06597841927646" width="402.9527847222422" x="863.7068010300322" y="431.7065692653691"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="46.47216796875" x="178.2403083767461" y="3.0">Stage<y:LabelModel>
@@ -114,12 +114,13 @@ draw(screen: pygame.Surface)</y:MethodLabel>
           </y:NodeLabel>
           <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
             <y:AttributeLabel>image: pygame.Surface
-mask: pygame.Mask
+mask: pygame.mask.Mask
 currentRoom: int
 activeSprites: pygame.sprite.Group
+viewport: pygame.Rect
+
 inRoomState: State
-smallRoomState: State
-viewport: pygame.Rect</y:AttributeLabel>
+smallRoomState: State</y:AttributeLabel>
             <y:MethodLabel>__init__(stageNum: int, gameManager: GameManager): Stage
 update(time: int)
 events(events: list&lt;pygame.event.Event&gt;)
@@ -158,7 +159,7 @@ update(time: int)</y:MethodLabel>
       <data key="d4"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="28.0" width="191.36090825315432" x="3042.6375179717184" y="-20.98359564302251"/>
+          <y:Geometry height="28.0" width="191.36090825315432" x="3512.241201791348" y="-41.739559568751986"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="159.6064453125" x="15.87723147032716" y="3.0">pygame.sprite.Sprite<y:LabelModel>
@@ -179,10 +180,10 @@ update(time: int)</y:MethodLabel>
       <data key="d4"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="243.58696873005744" width="459.72230450928396" x="2409.2471201327426" y="413.35157861926245"/>
+          <y:Geometry height="243.58696873005744" width="462.5762495490719" x="2448.0821380061143" y="415.94607410997867"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="75.89990234375" x="191.91120108276698" y="3.0">Character<y:LabelModel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="75.89990234375" x="193.33817360266096" y="3.0">Character<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -203,7 +204,7 @@ mask: pygame.mask.Mask
             <y:MethodLabel>__init__(spriteName: String): Character
 move(movement: int)
 update_animation()
-update(time: int, mapRect: pygame.Rect, mapMask: pygame.mask.Mask)
+update(time: int, roomRect: pygame.Rect, mapMask: pygame.mask.Mask)
 receive_damage(int damage)</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
@@ -399,7 +400,7 @@ accion</y:MethodLabel>
           <y:Geometry height="128.61904960804543" width="304.57725565086145" x="-747.3394064846331" y="494.9020376906955"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="80.43212890625" x="112.07256337230572" y="3.0">GUIScreen<y:LabelModel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="80.43212890625" x="112.0725633723057" y="54.743118554022715">GUIScreen<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -423,7 +424,7 @@ draw(screen: pygame.Surface)</y:MethodLabel>
           <y:Geometry height="66.75" width="191.2537500000003" x="-868.800946510338" y="732.1607669623238"/>
           <y:Fill color="#FF0000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="209.7021484375" x="-9.224199218749845" y="3.0">PantallaInicialGUI(menu.py)<y:LabelModel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="209.7021484375" x="-9.224199218749845" y="23.80859375">PantallaInicialGUI(menu.py)<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -566,7 +567,7 @@ salas<y:LabelModel>
       <data key="d4"/>
       <data key="d6">
         <y:UMLNoteNode>
-          <y:Geometry height="63.0" width="137.43735736720646" x="2491.5044697348644" y="267.4842384923669"/>
+          <y:Geometry height="63.0" width="137.43735736720646" x="2194.434736047862" y="388.12827881066937"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="120.51953125" x="8.45891305860323" y="22.515625">Hay 9 movimientos<y:LabelModel>
@@ -733,10 +734,10 @@ action(): void</y:MethodLabel>
       <data key="d4"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="108.33640641711227" width="356.29029392789994" x="806.3042865345244" y="745.7916663126739"/>
+          <y:Geometry height="108.33640641711227" width="359.4294246288903" x="804.8037118127753" y="736.5825388500633"/>
           <y:Fill color="#00FFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bolditalic" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="85.85302734375" x="135.21863329207497" y="3.0">StageState<y:LabelModel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bolditalic" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="85.85302734375" x="136.78819864257014" y="3.0">StageState<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -745,7 +746,7 @@ action(): void</y:MethodLabel>
           </y:NodeLabel>
           <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
             <y:AttributeLabel/>
-            <y:MethodLabel>__init__(): State
+            <y:MethodLabel>__init__(): StageState
 update(time: int, stage: Stage)
 draw(screen: pygame.Surface, stage: Stage)
 events(events: list&lt;pygame.event.Event&gt;, stage: Stage)</y:MethodLabel>
@@ -889,7 +890,7 @@ draw()</y:MethodLabel>
       <data key="d4"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="28.0" width="100.0" x="3383.0086078229588" y="771.7863035858038"/>
+          <y:Geometry height="28.0" width="100.0" x="3415.4398014569115" y="640.7642813046367"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="95.45703125" x="2.271484375" y="3.0">MeleeAttack<y:LabelModel>
@@ -1014,7 +1015,7 @@ action(): void</y:MethodLabel>
       <data key="d4"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="90.75583132074348" width="329.7922941216343" x="2973.4218250374784" y="359.74105302091425"/>
+          <y:Geometry height="90.75583132074348" width="329.7922941216343" x="2973.4218250374784" y="413.8294392278108"/>
           <y:Fill color="#00FFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="39.43896484375" x="145.17666463894216" y="3.0">Drop<y:LabelModel>
@@ -1037,7 +1038,7 @@ mask: pygame.mask.Mask</y:AttributeLabel>
       <data key="d4"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="63.0" width="137.43735736720646" x="2923.7493172339555" y="518.550952303758"/>
+          <y:Geometry height="63.0" width="137.43735736720646" x="2971.453326771346" y="572.6393385106545"/>
           <y:Fill color="#00FFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="31.21240234375" x="53.11247751172823" y="3.0">Life<y:LabelModel>
@@ -1058,7 +1059,7 @@ mask: pygame.mask.Mask</y:AttributeLabel>
       <data key="d4"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="63.0" width="137.43735736720646" x="3205.1589336721554" y="518.550952303758"/>
+          <y:Geometry height="63.0" width="137.43735736720646" x="3183.1057220010675" y="572.6393385106545"/>
           <y:Fill color="#00FFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="36.0048828125" x="50.71623727735323" y="3.0">Soul<y:LabelModel>
@@ -1079,10 +1080,10 @@ mask: pygame.mask.Mask</y:AttributeLabel>
       <data key="d4"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="108.33640641711236" width="518.8500282235684" x="1758.5777773597872" y="918.9604504687491"/>
+          <y:Geometry height="108.33640641711236" width="554.5097494186161" x="1740.7479167622635" y="918.9604504687491"/>
           <y:Fill color="#00FFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bolditalic" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="117.6611328125" x="200.5944477055342" y="3.0">BehaviourState<y:LabelModel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bolditalic" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="117.6611328125" x="218.42430830305807" y="3.0">BehaviourState<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -1094,7 +1095,7 @@ mask: pygame.mask.Mask</y:AttributeLabel>
             <y:MethodLabel>__init__(): BehaviourState
 move_ai(enemy: Enemy, player: Player)
 switch(state: BehaviourState)
-update(enemy: Enemy, time: int, mapRect: pygame.Rect, mapMask: pygame.Mask)</y:MethodLabel>
+update(time: int, enemy: Enemy, roomRect: pygame.Rect, mapMask: pygame.mask.Mask)</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -1136,7 +1137,7 @@ moveDelay: int</y:AttributeLabel>
             </y:ModelParameter>
           </y:NodeLabel>
           <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
-            <y:AttributeLabel>patrollRange: EnemyRange
+            <y:AttributeLabel>range: EnemyRange
 playerCollision: (int, int)
 range: int</y:AttributeLabel>
             <y:MethodLabel>__init__(center: (int, int), radius: int, vision: float): FollowPlayerState</y:MethodLabel>
@@ -1159,7 +1160,7 @@ range: int</y:AttributeLabel>
             </y:ModelParameter>
           </y:NodeLabel>
           <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
-            <y:AttributeLabel>patrollRange: EnemyRange
+            <y:AttributeLabel>range: EnemyRange
 playerCollision: (int, int)
 move: int
 moveDelay: int</y:AttributeLabel>
@@ -1170,10 +1171,9 @@ moveDelay: int</y:AttributeLabel>
     </node>
     <node id="n47">
       <data key="d4"/>
-      <data key="d5"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="118.63383747458965" width="367.8279876923075" x="3509.086822892305" y="203.42112000000017"/>
+          <y:Geometry height="116.03934198387356" width="367.8279876923075" x="3869.5897812201597" y="289.00688984063925"/>
           <y:Fill color="#00FFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="99.13232421875" x="134.34783173677874" y="3.0">EnemyRange<y:LabelModel>
@@ -1189,6 +1189,29 @@ vision: float
 mask: pygame.mask.Mask</y:AttributeLabel>
             <y:MethodLabel>__init__(radius: int, vision: float, angle: float): EnemyRange
 look_at(angle: float)</y:MethodLabel>
+          </y:UML>
+        </y:UMLClassNode>
+      </data>
+    </node>
+    <node id="n48">
+      <data key="d4"/>
+      <data key="d6">
+        <y:UMLClassNode>
+          <y:Geometry height="102.43106102896633" width="253.07523395225417" x="3926.966158090186" y="113.54772209528113"/>
+          <y:Fill color="#00FFFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.1328125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="112.70361328125" x="70.18581033550208" y="3.0">MyStaticSprite<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+            <y:AttributeLabel>position: (int, int) = (0, 0)</y:AttributeLabel>
+            <y:MethodLabel>__init__(): MyStaticSprite
+change_position(position: (int, int))
+increment_position(increment: (int, int))</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -1230,7 +1253,7 @@ look_at(angle: float)</y:MethodLabel>
       <data key="d8"/>
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="-0.3114436220529016" ty="43.71653857185356"/>
+          <y:Path sx="0.0" sy="0.0" tx="-0.31337705658851794" ty="43.71653857185356"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="white_delta"/>
           <y:BendStyle smoothed="false"/>
@@ -1329,7 +1352,7 @@ look_at(angle: float)</y:MethodLabel>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="white_diamond" target="none"/>
-          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="41.55859375" x="4.9730623147743245" y="-33.01975673538095">rooms<y:LabelModel>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="41.55859375" x="4.9730623147743245" y="-33.116471595852545">rooms<y:LabelModel>
               <y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -1423,7 +1446,7 @@ look_at(angle: float)</y:MethodLabel>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="none"/>
-          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="41.72265625" x="4.9805086038368245" y="-38.984392582115106">player<y:LabelModel>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="41.72265625" x="5.0478914163368245" y="-38.98437951327389">player<y:LabelModel>
               <y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -1469,10 +1492,10 @@ look_at(angle: float)</y:MethodLabel>
     <edge id="e23" source="n3" target="n28">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="-88.5641733846818" sy="97.03266389699587" tx="-7.83041349200289" ty="-44.788528521798526"/>
+          <y:Path sx="-88.5641733846818" sy="99.46648519390138" tx="-7.899404120748929" ty="-44.788528521798526"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="none"/>
-          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="34.3984375" x="13.160329969958298" y="4.305846626772336">state<y:LabelModel>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="34.3984375" x="13.160329969958411" y="4.304102744923512">state<y:LabelModel>
               <y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -1686,7 +1709,7 @@ look_at(angle: float)</y:MethodLabel>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="none"/>
-          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="free" modelPosition="anywhere" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="34.3984375" x="59.80548148023627" y="-23.646858020398895">state<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="free" modelPosition="anywhere" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="34.3984375" x="42.45618081005068" y="-27.814539921044798">state<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/>
           </y:EdgeLabel>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
@@ -1722,8 +1745,17 @@ look_at(angle: float)</y:MethodLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e45" source="n47" target="n4">
-      <data key="d9"/>
+    <edge id="e45" source="n48" target="n5">
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="white_delta"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e46" source="n47" target="n48">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
