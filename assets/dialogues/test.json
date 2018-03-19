@@ -1,13 +1,29 @@
-{
-    "info": {
-        "right": {
-            "image": "leraila.png",
-            "name": "Leraila"
+[
+    {
+        "info": {
+            "right": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            },
+            "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            }
         },
-        "left": {
-            "image": "leraila.png",
-            "name": "Leraila"
-        }
+        "text": [
+            ["this is a text string", "this is another text string"],
+            ["this is yet another text string"]
+        ]
     },
-    "text": "this is a text string"
-}
+    {
+        "info": {
+            "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["this is another intervention", "with even more lines", "of stupid text"]
+        ]
+    }
+]

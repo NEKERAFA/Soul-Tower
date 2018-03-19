@@ -420,7 +420,7 @@ draw(screen: pygame.Surface)</y:MethodLabel>
           <y:Geometry height="66.75" width="191.2537500000003" x="-868.800946510338" y="732.1607669623238"/>
           <y:Fill color="#FF0000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="175.92626953125" x="7.663740234375155" y="3.0">PantallaInicialGUI(menu.py)<y:LabelModel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="175.92626953125" x="7.663740234375155" y="23.411865234375">PantallaInicialGUI(menu.py)<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -869,7 +869,7 @@ que pase los enemigos<y:LabelModel>
           <y:Geometry height="90.75583132074348" width="290.63563854037193" x="3181.381182889272" y="413.8294392278108"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="43.736328125" x="123.44965520768596" y="3.0">Attack<y:LabelModel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="43.736328125" x="123.44965520768619" y="30.768102589122748">Attack<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -892,7 +892,7 @@ draw()</y:MethodLabel>
           <y:Geometry height="28.0" width="100.0" x="3154.336989785824" y="771.7863035858038"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="79.8671875" x="10.06640625" y="3.0">MeleeAttack<y:LabelModel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="79.8671875" x="10.06640625" y="2.603271484375">MeleeAttack<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -995,7 +995,7 @@ action()</y:MethodLabel>
           </y:NodeLabel>
           <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
             <y:AttributeLabel>font: pygame.font.Font
-printText: String = ""
+printText: list&lt;string&gt;
 textCounter: int = 0
 textSpeed: float
 rightPortrait: pygame.Surface
@@ -1004,9 +1004,9 @@ leftPortrait: pygame.Surface
 leftPortraitRect: pygame.Rect
 text: list&lt;list&lt;string&gt;&gt;
 index: int
-maxSize: int</y:AttributeLabel>
+line = int</y:AttributeLabel>
             <y:MethodLabel>__init__(screen: pygame.Surface, name: String, position: (int, int), scale: (int, int), font: pygame.font.Font, intervention: dict, textSpeed: float = 0.02)
-isFinished(): boolean
+is_finished(): boolean
 next(): void</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
@@ -1084,7 +1084,7 @@ mask: pygame.Mask</y:AttributeLabel>
           <y:Geometry height="83.6911520855615" width="312.2163621647055" x="3296.8072691679063" y="120.7784284611765"/>
           <y:Fill color="#00FFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="48.78271484375" x="131.71682366047776" y="3.0">Trigger<y:LabelModel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="48.78271484375" x="131.71682366047753" y="31.88244127715575">Trigger<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -1141,7 +1141,6 @@ previousState: StageState</y:AttributeLabel>
     </node>
     <node id="n46">
       <data key="d4"/>
-      <data key="d5"/>
       <data key="d6">
         <y:UMLNoteNode>
           <y:Geometry height="75.5" width="228.61485559786092" x="-9.696395704845031" y="1549.4159013475926"/>
@@ -1681,7 +1680,6 @@ líneas de texto a utilizar<y:LabelModel>
     </edge>
     <edge id="e44" source="n46" target="n39">
       <data key="d8"/>
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>

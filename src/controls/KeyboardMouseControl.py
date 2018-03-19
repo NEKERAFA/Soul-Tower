@@ -27,7 +27,7 @@ class KeyboardMouseControl(ControlManager):
     def right(cls):
         return pygame.key.get_pressed()[cls.rightButton]
 
-    @classmethod
+    @classmethod # TODO puede que quitar
     def space(cls):
         return pygame.key.get_pressed()[cls.spaceBar]
 

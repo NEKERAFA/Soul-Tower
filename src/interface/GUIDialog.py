@@ -19,7 +19,7 @@ DIALOG_HEIGHT = 100
 # Posición del texto
 TEXT_TOP = DIALOG_BOTTOM - DIALOG_HEIGHT + 35
 TEXT_LEFT = DIALOG_LEFT + 20
-LINE_SPACE = 35 # TODO ajustar
+LINE_SPACE = 20 # TODO ajustar
 
 # Escalado de los retratos
 PORTRAIT_SCALE = 2
@@ -34,13 +34,17 @@ class GUIDialog(GUIImage):
 
         # Texto a escribir
         self.text = intervention["text"]
-        self.index = 0 # TODO usar para avanzar el diálogo
-        self.maxSize = len(self.text) # TODO cambiar para que funcione con la lista de líneas
+        self.index = 0 # Número de bloque de texto
+        self.line = 0
         # Fuente del texto
         self.font = font
 
         # Variables de control de la impresión
-        self.printText = ""
+        self.printText = []
+        # Inicializamos la lista de líneas a imprimir con tantos strings vacíos como líneas tenga el primer bloque
+        for i in range(0, len(self.text[0])):
+            self.printText.append("")
+
         self.textCounter = 0
         self.textSpeed = textSpeed
 
@@ -67,41 +71,61 @@ class GUIDialog(GUIImage):
                 self.rightPortraitRect.right = self.rect.right
                 self.rightPortraitRect.bottom = self.rect.top
 
-            # Retrato izquierdo TODO flipear
+            # Retrato izquierdo
             if "left" in intervention["info"]:
                 self.leftName = intervention["info"]["left"]["name"]
                 portraitPath = os.path.join('interface', 'game', intervention["info"]["left"]["image"])
-                self.leftPortrait = ResourceManager.load_image(portraitPath, -1)
+                # Cargamos el retrato dado la vuelta en el eje x
+                self.leftPortrait = pygame.transform.flip(ResourceManager.load_image(portraitPath, -1), True, False)
+                # Escalamos la imagen
+                self.leftPortraitRect = self.leftPortrait.get_rect()
+                self.leftPortrait = pygame.transform.scale(self.leftPortrait, (self.leftPortraitRect.width * PORTRAIT_SCALE, self.leftPortraitRect.height * PORTRAIT_SCALE))
                 self.leftPortraitRect = self.leftPortrait.get_rect()
                 # Lo colocamos encima del diálogo, en el borde izquierdo
                 self.leftPortraitRect.left = self.rect.left
                 self.leftPortraitRect.bottom = self.rect.top
 
+    # Pasa al siguiente bloque de texto, reseteando contadores y variables
+    def next(self):
+        self.index += 1
+        if self.index < len(self.text):
+            self.line = 0
+            self.textCounter = 0
+            self.printText = []
+            for i in range(0, len(self.text[self.index])):
+                self.printText.append("")
 
-        # path = os.path.join('interface', 'game', 'leraila.png')
-        # self.portrait = ResourceManager.load_image(path, -1)
-        # self.portrait_rect = self.portrait.get_rect()
-        # self.portrait_pos = (self.rect.right -self.portrait_rect.width-5, self.rect.bottom -5)
-        # self.portrait_rect.left = self.portrait_pos[0]
-        # self.portrait_rect.bottom = self.portrait_pos[1]
+    # Devuelve True en caso de que ya no queden bloques de texto por mostrar; False en caso contrario
+    def is_finished(self):
+        return (self.index == len(self.text)-1)
 
     def update(self, time):
-        # Si queda texto por imprimir, calculamos cuántas letras debemos mostrar (en base al tiempo y la velocidad)
-        # las mostramos e incrementamos el contador
-        if (self.textCounter < self.maxSize):
-            letters = int(ceil(self.textSpeed * time)) # Redondeamos hacia arriba para garantizar al menos una letra por frame
-            limit = min(self.maxSize, self.textCounter + letters) # Nos aseguramos de no pasarnos de los límites del index
-            self.printText += self.text[self.textCounter:(self.textCounter + letters)] # Añadimos las próximas letras a escribir
-            self.textCounter += letters
-
+        # Si quedan bloques por imprimir
+        if self.index < len(self.text):
+            block = self.text[self.index]
+            # Si quedan líneas por imprimir
+            if (self.line < len(self.text[self.index])):
+                maxSize = len(block[self.line])
+                lineText = block[self.line]
+                # Si queda texto por imprimir en la línea, calculamos cuántas letras debemos mostrar (en base al tiempo y la velocidad)
+                # las mostramos e incrementamos el contador
+                if (self.textCounter < maxSize):
+                    letters = int(ceil(self.textSpeed * time)) # Redondeamos hacia arriba para garantizar al menos una letra por frame
+                    limit = min(maxSize, self.textCounter + letters) # Nos aseguramos de no pasarnos de los límites del index
+                    self.printText[self.line] += lineText[self.textCounter:(self.textCounter + letters)] # Añadimos las próximas letras a escribir
+                    self.textCounter += letters
+                    # Si hemos llegado al final de la línea, pasamos a la siguiente
+                    if (self.textCounter >= maxSize):
+                        self.textCounter = 0
+                        self.line += 1
 
     def draw(self, screen):
-        # Crear surface con el texto
-        textSurface = self.font.render(self.printText, False, (0,0,0))
         # Dibujar la imagen de fondo del diálogo (la caja)
         screen.blit(self.image, self.rect)
         # Dibujar el texto
-        screen.blit(textSurface, (TEXT_LEFT, TEXT_TOP))
+        for i in range(0, len(self.printText)):
+            textSurface = self.font.render(self.printText[i], False, (0,0,0))
+            screen.blit(textSurface, (TEXT_LEFT, TEXT_TOP + i * LINE_SPACE))
         # Dibujar los retratos
         screen.blit(self.rightPortrait, self.rightPortraitRect)
         screen.blit(self.leftPortrait, self.leftPortraitRect)
