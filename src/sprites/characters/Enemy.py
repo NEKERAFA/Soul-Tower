@@ -2,6 +2,7 @@
 
 import pygame, math
 from src.sprites.Character import *
+from src.sprites.EnemyRange import *
 from src.sprites.characters.NPC import *
 from src.sprites.behaviours.WanderingState import *
 from src.sprites.behaviours.PatrollState import *
@@ -20,6 +21,12 @@ class Enemy(NPC):
 
     def move_ai(self, player):
         self.state.move_ai(self, player)
+
+        # Comprobamos que el enemigo no esté golpeando al jugador
+        if pygame.sprite.collide_rect(player, self):
+            print "Haciendo daño al jugador"
+            angle = math.radians(360-EnemyRange.get_angle(self.movement))
+            player.receive_damage(self.stats["atk"], angle)
 
     def update(self, time, mapRect, mapMask):
         self.state.update(self, time, mapRect, mapMask)

@@ -6,6 +6,7 @@ import math as m
 from pygame.locals import *
 from src.ResourceManager import *
 from src.sprites.MySprite import *
+from src.sprites.Force import *
 
 # -------------------------------------------------
 # -------------------------------------------------
@@ -90,6 +91,10 @@ class Character(MySprite):
 
         # La velocidad de caminar en diagonal
         self.diagonalSpeed = m.sqrt((self.stats["spd"] * self.stats["spd"])/2.0)
+
+        # Aceleración inicial
+        self.aceleration = None
+        self.decrement = 0
 
         # Frame inicial
         self.image = self.sheet.subsurface(self.sheetConf[0][0]['coords'])
@@ -192,6 +197,18 @@ class Character(MySprite):
         # Actualizamos la imagen a mostrar
         self.update_animation(time)
 
+        # Comprobamos si existe una aceleración para aplicarsela a cada eje
+        if self.aceleration is not None:
+            (acelX, acelY) = self.aceleration.get_coordinates()
+            speedX += acelX*time
+            speedY += acelY*time
+
+            self.aceleration.substrat(self.decrement)
+
+            if self.aceleration.module <= 0:
+                self.aceleration = None
+                self.decrement = 0
+
         # Aplicamos la velocidad en cada eje
         self.speed = (speedX, speedY)
 
@@ -223,14 +240,20 @@ class Character(MySprite):
 
     ############################################################################
 
+    def apply_force(self, angle, radius, decrement):
+        self.aceleration = Force(angle, radius)
+        self.decrement = decrement
+
     # Recibe un daño y se realiza el daño. Si el personaje ha muerto, lo elimina
     # de todos los grupos
-    def receive_damage(self, damage):
+    def receive_damage(self, damage, angle):
         self.stats["hp"] -= damage
 
         if self.stats["hp"] <= 0:
             self.kill()
 
-    # Añade vidas al caracter
+        self.apply_force(angle, self.stats["spd"]/8, self.stats["spd"]/64)
+
+    # Añade vidas al personaje
     def add_lifes(self, lifes):
         self.stats["hp"] = max(self.stats["max_hp"], self.stats["hp"]+lifes)

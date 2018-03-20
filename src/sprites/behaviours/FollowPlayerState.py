@@ -14,9 +14,6 @@ class FollowPlayerState(BehaviourState):
         # Llamamos al constructor de la superclase
         BehaviourState.__init__(self)
 
-        # Empieza parado y con un tiempo random
-        self.move = move
-
         # Radio y angulo de apertura del campo de vision
         self.radius = radius
         self.angle = angle
