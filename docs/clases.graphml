@@ -1254,6 +1254,7 @@ isExiting(player: Player): dict</y:MethodLabel>
           </y:NodeLabel>
           <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
             <y:AttributeLabel>font: pygame.font.Font
+nameFont: pygame.font.Font
 printText: list&lt;string&gt;
 textCounter: int = 0
 textSpeed: float

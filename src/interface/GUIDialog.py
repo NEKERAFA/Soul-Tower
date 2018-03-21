@@ -10,15 +10,15 @@ from src.interface.GUIImage import *
 
 # Cajas de diálogo
 DEFAULT_DIALOG_BOX = 'interface/game/dialog_box.png'
-DEFAULT_NAME_BOX = 'interface/game/dialog_box.png'
+DEFAULT_NAME_BOX = 'interface/game/name_box.png'
 
 # Posición y dimensiones del diálogo
 DIALOG_LEFT = 20
 DIALOG_BOTTOM = 295
 DIALOG_WIDTH = 360
 DIALOG_HEIGHT = 100
-NAME_LEFT_MARGIN = 10
-NAME_TOP_MARGIN = 5
+NAME_LEFT_MARGIN = 11
+NAME_TOP_MARGIN = 4
 
 # Posición del texto
 TEXT_TOP = DIALOG_BOTTOM - DIALOG_HEIGHT + 23
@@ -34,9 +34,9 @@ PORTRAIT_SCALE = 2
 # Fuentes
 DEFAULT_FONT = 'PixelOperatorHB.ttf'
 DEFAULT_FONT_SIZE = 16
+DEFAULT_NAME_SIZE = 14
 
-# TODO quitar que reciba la imagen del diálogo, puedo usar la constante
-
+# TODO poner fuentes en json maybe
 
 class GUIDialog(GUIImage):
     def __init__(self, gui_screen, intervention, dialogBox=DEFAULT_DIALOG_BOX, font=DEFAULT_FONT, fontSize=DEFAULT_FONT_SIZE):
@@ -49,6 +49,7 @@ class GUIDialog(GUIImage):
         self.line = 0
         # Fuente del texto
         self.font = ResourceManager.load_font(font, fontSize)
+        self.nameFont = ResourceManager.load_font(font, DEFAULT_NAME_SIZE)
 
         # Variables de control de la impresión
         self.printText = []
@@ -73,7 +74,6 @@ class GUIDialog(GUIImage):
 
         if "info" in intervention:
             self.nameBox = ResourceManager.load_image(DEFAULT_NAME_BOX, -1)
-            self.nameBox = pygame.transform.scale(self.nameBox, (75, 25)) # TODO quitar cuando se tenga la caja apropiada
             # Retrato derecho
             if "right" in intervention["info"]:
                 self.rightName = intervention["info"]["right"]["name"]
@@ -156,10 +156,10 @@ class GUIDialog(GUIImage):
         # Dibujar las cajas de nombres
         if self.rightName is not None:
             screen.blit(self.nameBox, self.rightNameRect)
-            rightNameText = self.font.render(self.rightName, False, (255,255,255))
+            rightNameText = self.nameFont.render(self.rightName, False, (255,255,255))
             screen.blit(rightNameText, (self.rightNameRect.left + NAME_LEFT_MARGIN, self.rightNameRect.top + NAME_TOP_MARGIN))
 
         if self.leftName is not None:
             screen.blit(self.nameBox, self.leftNameRect)
-            leftNameText = self.font.render(self.leftName, False, (255,255,255))
+            leftNameText = self.nameFont.render(self.leftName, False, (255,255,255))
             screen.blit(leftNameText, (self.leftNameRect.left + NAME_LEFT_MARGIN, self.leftNameRect.top + NAME_TOP_MARGIN))
