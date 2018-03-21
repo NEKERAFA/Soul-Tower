@@ -7,8 +7,8 @@ from src.sprites.characters.player.PlayerState import *
 
 class PlayerState(object):
 	name = "state"
-	def change(self, state):
+	def change(self, player, state):
 		raise NotImplementedError('Error: Abstract class')
 
-	def update_pos(self, player, mapRect, mapMask, time):
+	def update_state(self, player, mapRect, mapMask, time):
 		Character.update(player, mapRect, mapMask, time)

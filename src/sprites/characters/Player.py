@@ -60,8 +60,8 @@ class Player(Character):
         # Cambios de estado
         # Si está dasheando:
         if self.controlManager.sec_button():
-            self.playerState.change(Dashing)
-
+            self.playerState.change(self, Dashing)
+        
         # control de ataque
         if self.controlManager.prim_button():
             # calcular la posición del centro del sprite (de momento calcula el centro del primer sprite)
@@ -78,8 +78,8 @@ class Player(Character):
 
     def update(self, time, mapRect, mapMask):
         # Delegamos en el estado del jugador para actualizar
-        # print('updating')
-        self.playerState.update_pos(self, time, mapRect, mapMask)
+        print(self.stats["nrg"])
+        self.playerState.update_state(self, time, mapRect, mapMask)
         self.meleeAttack.update(time)
 
     ############################################################################
