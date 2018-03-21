@@ -8,7 +8,8 @@
             "left": {
                 "image": "daric.png",
                 "name": "Daric"
-            }
+            },
+            "speed": 0.06
         },
         "text": [
             ["this is a text string", "this is another text string"],

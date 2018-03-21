@@ -12,7 +12,8 @@ class GUIImage(GUIElement):
         #cargar imagen con transparencia
         self.image = ResourceManager.load_image(name, colorkey)
         #cambiar escala
-        self.image = pygame.transform.scale(self.image, scale)
+        if scale is not None:
+            self.image = pygame.transform.scale(self.image, scale)
         # Se llama al método de la clase padre con el rectángulo que ocupa la imagen
         GUIElement.__init__(self, gui_screen, self.image.get_rect())
         # Se coloca el rectangulo en su posicion

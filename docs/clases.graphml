@@ -67,7 +67,9 @@ scene_stack(scene: Scene)</y:MethodLabel>
 load_image(cls: ResourceManager, name: String, colorkey: pygame.Color = None)
 load_coordinates_file(cls: ResourceManager,name: String)
 load_room(cls: ResourceManager, name: String)
-load_stage(cls: ResourceManager, name: String)</y:MethodLabel>
+load_stage(cls: ResourceManager, name: String)
+load_dialogue(cls: ResourceManager, name: String)
+load_font(cls: ResourceManager, name:String, size: int)</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -400,7 +402,7 @@ accion</y:MethodLabel>
           <y:Geometry height="128.61904960804543" width="304.57725565086145" x="-747.3394064846331" y="494.9020376906955"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="70.47265625" x="117.0522997004307" y="54.346390038397715">GUIScreen<y:LabelModel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="70.47265625" x="117.05229970043072" y="3.0">GUIScreen<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -424,7 +426,7 @@ draw(screen: pygame.Surface)</y:MethodLabel>
           <y:Geometry height="66.75" width="191.2537500000003" x="-868.800946510338" y="732.1607669623238"/>
           <y:Fill color="#FF0000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="175.92626953125" x="7.663740234375155" y="23.411865234375">PantallaInicialGUI(menu.py)<y:LabelModel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="175.92626953125" x="7.663740234375155" y="3.0">PantallaInicialGUI(menu.py)<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -1240,7 +1242,7 @@ isExiting(player: Player): dict</y:MethodLabel>
       <data key="d4"/>
       <data key="d6">
         <y:UMLClassNode>
-          <y:Geometry height="254.54655764178437" width="587.2542245875869" x="-566.6594985417457" y="1277.6646255165615"/>
+          <y:Geometry height="340.7933354813565" width="587.2542245875869" x="-566.6594985417457" y="1277.6646255165615"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="66.83544921875" x="260.20938768441846" y="3.0">GUIDialog<y:LabelModel>
@@ -1257,12 +1259,18 @@ textCounter: int = 0
 textSpeed: float
 rightPortrait: pygame.Surface
 rightPortraitRect: pygame.Rect
+rightName: string
+rightNameRect: pygame.Rect
 leftPortrait: pygame.Surface
 leftPortraitRect: pygame.Rect
+leftName: string
+leftNameRect: pygame.Rect
+leftNameBox: pygame.Surface
+nameBox: pygame.Surface
 text: list&lt;list&lt;string&gt;&gt;
 index: int
 line = int</y:AttributeLabel>
-            <y:MethodLabel>__init__(screen: pygame.Surface, name: String, position: (int, int), scale: (int, int), font: pygame.font.Font, intervention: dict, textSpeed: float = 0.02)
+            <y:MethodLabel>__init__(screen: pygame.Surface, intervention: dict, dialogBox: String font: String, fontSize: int)
 is_finished(): boolean
 next(): void</y:MethodLabel>
           </y:UML>
@@ -1781,7 +1789,6 @@ next(): void</y:MethodLabel>
     </edge>
     <edge id="e44" source="n47" target="n27">
       <data key="d8"/>
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1793,7 +1800,6 @@ next(): void</y:MethodLabel>
     </edge>
     <edge id="e45" source="n3" target="n48">
       <data key="d8"/>
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1805,7 +1811,6 @@ next(): void</y:MethodLabel>
     </edge>
     <edge id="e46" source="n48" target="n18">
       <data key="d8"/>
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1817,7 +1822,6 @@ next(): void</y:MethodLabel>
     </edge>
     <edge id="e47" source="n49" target="n46">
       <data key="d8"/>
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1829,7 +1833,6 @@ next(): void</y:MethodLabel>
     </edge>
     <edge id="e48" source="n50" target="n26">
       <data key="d8"/>
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>

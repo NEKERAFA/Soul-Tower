@@ -132,3 +132,20 @@ class ResourceManager(object):
             cls.resources[name] = data
             # Se devuelve
             return data
+
+    @classmethod
+    def load_font(cls, name, size):
+        if (name, size) in cls.resources:
+            return cls.resources[(name, size)]
+        else:
+            fullname = os.path.join('assets', 'fonts', name)
+            font = None
+            try:
+                font = pygame.font.Font(fullname, size)
+            except pygame.error, message:
+                print 'Cannot load font:', fullname
+                raise SystemExit, message
+
+            cls.resources[(name, size)] = font
+
+            return font

@@ -7,29 +7,40 @@ from src.interface.GUIImage import *
 
 # -------------------------------------------------
 # Clase GUIDialog
-# TODO poner constantes que indiquen donde se pone una imagen a la izquierda y donde una a la derecha
-# (en principio no las necesito si las pongo pegadas al diálogo)
+
+# Cajas de diálogo
+DEFAULT_DIALOG_BOX = 'interface/game/dialog_box.png'
+DEFAULT_NAME_BOX = 'interface/game/dialog_box.png'
 
 # Posición y dimensiones del diálogo
 DIALOG_LEFT = 20
 DIALOG_BOTTOM = 295
 DIALOG_WIDTH = 360
 DIALOG_HEIGHT = 100
+NAME_LEFT_MARGIN = 10
+NAME_TOP_MARGIN = 5
 
 # Posición del texto
-TEXT_TOP = DIALOG_BOTTOM - DIALOG_HEIGHT + 35
+TEXT_TOP = DIALOG_BOTTOM - DIALOG_HEIGHT + 23
 TEXT_LEFT = DIALOG_LEFT + 20
-LINE_SPACE = 20 # TODO ajustar
+LINE_SPACE = 20
+
+# Velocidad del texto
+DEFAULT_TEXT_SPEED = 0.02
 
 # Escalado de los retratos
 PORTRAIT_SCALE = 2
 
-# TODO constante con el path de la imagen del diálogo?
+# Fuentes
+DEFAULT_FONT = 'PixelOperatorHB.ttf'
+DEFAULT_FONT_SIZE = 16
+
+# TODO quitar que reciba la imagen del diálogo, puedo usar la constante
 
 
 class GUIDialog(GUIImage):
-    def __init__(self, gui_screen, name, position, scale, font, intervention, textSpeed=0.02):
-        GUIImage.__init__(self, gui_screen, name, position, scale)
+    def __init__(self, gui_screen, intervention, dialogBox=DEFAULT_DIALOG_BOX, font=DEFAULT_FONT, fontSize=DEFAULT_FONT_SIZE):
+        GUIImage.__init__(self, gui_screen, dialogBox, (DIALOG_LEFT, DIALOG_BOTTOM), None)
         pygame.font.init()
 
         # Texto a escribir
@@ -37,7 +48,7 @@ class GUIDialog(GUIImage):
         self.index = 0 # Número de bloque de texto
         self.line = 0
         # Fuente del texto
-        self.font = font
+        self.font = ResourceManager.load_font(font, fontSize)
 
         # Variables de control de la impresión
         self.printText = []
@@ -46,18 +57,23 @@ class GUIDialog(GUIImage):
             self.printText.append("")
 
         self.textCounter = 0
-        self.textSpeed = textSpeed
+        self.textSpeed = intervention["info"]["speed"] if ("info" in intervention) and ("speed" in intervention["info"]) else DEFAULT_TEXT_SPEED
 
         # Retratos y nombres
         # TODO nombres necesitan otro recuadrito de diálogo
         self.rightPortrait = pygame.Surface((0,0))
         self.rightPortraitRect = pygame.Rect((0,0), (0,0))
         self.rightName = None
+        self.rightNameRect = pygame.Rect((0,0), (0,0))
         self.leftPortrait = pygame.Surface((0,0))
         self.leftPortraitRect = pygame.Rect((0,0), (0,0))
         self.leftName = None
+        self.leftNameRect = pygame.Rect((0,0), (0,0))
+        self.nameBox = pygame.Surface((0,0))
 
         if "info" in intervention:
+            self.nameBox = ResourceManager.load_image(DEFAULT_NAME_BOX, -1)
+            self.nameBox = pygame.transform.scale(self.nameBox, (75, 25)) # TODO quitar cuando se tenga la caja apropiada
             # Retrato derecho
             if "right" in intervention["info"]:
                 self.rightName = intervention["info"]["right"]["name"]
@@ -67,9 +83,13 @@ class GUIDialog(GUIImage):
                 self.rightPortraitRect = self.rightPortrait.get_rect()
                 self.rightPortrait = pygame.transform.scale(self.rightPortrait, (self.rightPortraitRect.width * PORTRAIT_SCALE, self.rightPortraitRect.height * PORTRAIT_SCALE))
                 self.rightPortraitRect = self.rightPortrait.get_rect()
-                # Lo colocamos encima del diálogo, en el borde derecho
-                self.rightPortraitRect.right = self.rect.right
+                # La colocamos encima del diálogo, en el borde derecho
+                self.rightPortraitRect.right = self.rect.right - 3
                 self.rightPortraitRect.bottom = self.rect.top
+                # Colocamos la caja de nombre
+                self.rightNameRect = self.nameBox.get_rect()
+                self.rightNameRect.right = self.rect.right
+                self.rightNameRect.bottom = self.rect.top
 
             # Retrato izquierdo
             if "left" in intervention["info"]:
@@ -79,11 +99,15 @@ class GUIDialog(GUIImage):
                 self.leftPortrait = pygame.transform.flip(ResourceManager.load_image(portraitPath, -1), True, False)
                 # Escalamos la imagen
                 self.leftPortraitRect = self.leftPortrait.get_rect()
-                self.leftPortrait = pygame.transform.scale(self.leftPortrait, (self.leftPortraitRect.width * PORTRAIT_SCALE, self.leftPortraitRect.height * PORTRAIT_SCALE))
+                self.leftPortrait = pygame.transform.scale(self.leftPortrait, (int(self.leftPortraitRect.width * PORTRAIT_SCALE), int(self.leftPortraitRect.height * PORTRAIT_SCALE)))
                 self.leftPortraitRect = self.leftPortrait.get_rect()
-                # Lo colocamos encima del diálogo, en el borde izquierdo
-                self.leftPortraitRect.left = self.rect.left
+                # La colocamos encima del diálogo, en el borde izquierdo
+                self.leftPortraitRect.left = self.rect.left + 3
                 self.leftPortraitRect.bottom = self.rect.top
+                # Colocamos la caja de nombre
+                self.leftNameRect = self.nameBox.get_rect()
+                self.leftNameRect.left = self.rect.left
+                self.leftNameRect.bottom = self.rect.top
 
     # Pasa al siguiente bloque de texto, reseteando contadores y variables
     def next(self):
@@ -124,8 +148,18 @@ class GUIDialog(GUIImage):
         screen.blit(self.image, self.rect)
         # Dibujar el texto
         for i in range(0, len(self.printText)):
-            textSurface = self.font.render(self.printText[i], False, (0,0,0))
+            textSurface = self.font.render(self.printText[i], False, (255,255,255))
             screen.blit(textSurface, (TEXT_LEFT, TEXT_TOP + i * LINE_SPACE))
         # Dibujar los retratos
         screen.blit(self.rightPortrait, self.rightPortraitRect)
         screen.blit(self.leftPortrait, self.leftPortraitRect)
+        # Dibujar las cajas de nombres
+        if self.rightName is not None:
+            screen.blit(self.nameBox, self.rightNameRect)
+            rightNameText = self.font.render(self.rightName, False, (255,255,255))
+            screen.blit(rightNameText, (self.rightNameRect.left + NAME_LEFT_MARGIN, self.rightNameRect.top + NAME_TOP_MARGIN))
+
+        if self.leftName is not None:
+            screen.blit(self.nameBox, self.leftNameRect)
+            leftNameText = self.font.render(self.leftName, False, (255,255,255))
+            screen.blit(leftNameText, (self.leftNameRect.left + NAME_LEFT_MARGIN, self.leftNameRect.top + NAME_TOP_MARGIN))

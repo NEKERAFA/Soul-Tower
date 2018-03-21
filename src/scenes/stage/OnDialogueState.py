@@ -14,7 +14,7 @@ class OnDialogueState(StageState):
         self.intervention = 0
 
         # TODO añadir caja de diálogo a la pantalla GUI
-        self.dialogueBox = GUIDialog(stage.gui, "interface/game/dialog_placeholder.png", (DIALOG_LEFT, DIALOG_BOTTOM), (DIALOG_WIDTH, DIALOG_HEIGHT), pygame.font.SysFont('dejavusans', 14), self.dialogue[0], 0.04)
+        self.dialogueBox = GUIDialog(stage.gui, self.dialogue[0])
         stage.gui.addElement(self.dialogueBox)
 
     # TODO modo automático con otra tecla
@@ -35,7 +35,7 @@ class OnDialogueState(StageState):
                 elif self.intervention < len(self.dialogue) - 1:
                     self.intervention += 1
                     stage.gui.removeElement(self.dialogueBox)
-                    self.dialogueBox = GUIDialog(stage.gui, "interface/game/dialog_placeholder.png", (DIALOG_LEFT, DIALOG_BOTTOM), (DIALOG_WIDTH, DIALOG_HEIGHT), pygame.font.SysFont('dejavusans', 14), self.dialogue[self.intervention], 0.04)
+                    self.dialogueBox = GUIDialog(stage.gui, self.dialogue[self.intervention])
                     stage.gui.addElement(self.dialogueBox)
                 # Terminamos el diálogo
                 else:
