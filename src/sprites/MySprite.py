@@ -9,6 +9,8 @@ class MySprite(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.position = (0, 0)
         self.speed = (0, 0)
+        self.aceleration = (0, 0)
+        self.decrement = 0
 
     # Cambia la posición en el mundo
     def change_global_position(self, position):

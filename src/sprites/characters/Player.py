@@ -84,7 +84,6 @@ class Player(Character):
 
     ############################################################################
 
-
     # Incrementa el número de almas del jugador
     def increase_souls(self, souls):
         self.souls += souls

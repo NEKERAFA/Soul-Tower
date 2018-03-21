@@ -30,16 +30,17 @@ class Stage(Scene):
         # Obtenemos el nombre de la fase
         fullname = 'stage_' + str(int(stageNum))
 
-        # Cargamos la configuración del nivel
-        data = ResourceManager.load_stage(fullname + '.json')
-
-        # Cargamos la imagen y la máscara
+        # Cargamos la imagen
         image_path = os.path.join('stages', fullname + '.png')
         self.image = ResourceManager.load_image(image_path)
+
+        # Cargamos la máscara
         mask_path = os.path.join('stages', fullname + '_mask.png')
         mask_image = ResourceManager.load_image(mask_path, (0, 0, 0))
         self.mask = pygame.mask.from_surface(mask_image)
-        self.mask.invert()
+
+        # Cargamos la configuración del nivel
+        data = ResourceManager.load_stage(fullname + '.json')
 
         # Cargamos las salas
         self.rooms = [Room(stageNum, i) for i in range(0, data['rooms'])]
@@ -53,7 +54,7 @@ class Stage(Scene):
         enemies = [enemy for room in self.rooms for enemy in room.enemies.sprites()]
 
         # Cargamos el sprite del jugador
-        self.player = Player(enemies)
+        self.player = Player([])
         self.player.change_global_position((data["player_pos"][0], data["player_pos"][1]))
 
         # Inicializamos el viewport, que es un rectángulo del tamaño de la pantalla que indicará qué porción de la sala se debe mostrar
@@ -71,8 +72,6 @@ class Stage(Scene):
         self.font = pygame.font.Font(None, 16)
         self.posPlayer = self.font.render("x: " + str(int(self.player.position[0])) + ", y: " + str(int(self.player.position[1])), True, (0, 0, 0))
         self.posRoom = self.font.render("x: " + str(self.rooms[self.currentRoom].position[0]) + ", y: " + str(self.rooms[self.currentRoom].position[1]), True, (0, 0, 0))
-
-        self.spawDelay = 0
         # TODO DEBUG: BORRAR CUANDO HAGA FALTA
 
     def update(self, time):
@@ -83,24 +82,6 @@ class Stage(Scene):
         # TODO DEBUG: BORRAR CUANDO HAGA FALTA
         self.posPlayer = self.font.render("x: " + str(int(self.player.position[0])) + ", y: " + str(int(self.player.position[1])), True, (0, 0, 0))
         self.posRoom = self.font.render("x: " + str(self.rooms[self.currentRoom].position[0]) + ", y: " + str(self.rooms[self.currentRoom].position[1]), True, (0, 0, 0))
-
-        self.spawDelay += time
-
-        # Despawneamos enemigo pasado un segundo
-        # if self.spawDelay > 2000:
-        #     enemies = []
-        #     drops = []
-        #     for enemy in iter(self.rooms[self.currentRoom].enemies):
-        #         drop = enemy.drop
-        #         bottom = enemy.rect.bottom
-        #         (posX, posY) = enemy.rect.midbottom
-        #         (width, height) = drop.rect.size
-        #         print (int(posX-width/2), posY)
-        #         drop.change_global_position((int(posX-width/2), posY))
-        #         enemies.append(enemy)
-        #         drops.append(drop)
-        #     self.rooms[self.currentRoom].enemies.empty()
-        #     self.rooms[self.currentRoom].drops.add(drops)
         # TODO DEBUG: BORRAR CUANDO HAGA FALTA
 
     def events(self, events):

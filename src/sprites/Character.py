@@ -6,6 +6,7 @@ import math as m
 from pygame.locals import *
 from src.ResourceManager import *
 from src.sprites.MySprite import *
+from src.sprites.Force import *
 
 # -------------------------------------------------
 # -------------------------------------------------
@@ -74,6 +75,12 @@ class Character(MySprite):
         # Cargamos los stats
         self.stats = data["stats"]
 
+        # Cargamos los estados de comportamiento posibles
+        if "behaviour" in data:
+            self.behaviour = data["behaviour"]
+        else:
+            self.behaviour = None
+
         # Animación inicial
         self.animationNum = SPRITE_STILL
         self.animationFrame = 0
@@ -83,6 +90,10 @@ class Character(MySprite):
 
         # La velocidad de caminar en diagonal
         self.diagonalSpeed = m.sqrt((self.stats["spd"] * self.stats["spd"])/2.0)
+
+        # Aceleración inicial
+        self.aceleration = None
+        self.decrement = 0
 
         # Frame inicial
         self.image = self.sheet.subsurface(self.sheetConf[0][0]['coords'])
@@ -126,8 +137,6 @@ class Character(MySprite):
 
             # Máscara de la animación
             self.mask = pygame.mask.from_surface(self.image)
-
-
 
     def update_movement(self, time):
         # Las velocidades a las que iba hasta este momento
@@ -187,21 +196,30 @@ class Character(MySprite):
         # Actualizamos la imagen a mostrar
         self.update_animation(time)
 
+        # Comprobamos si existe una aceleración para aplicarsela a cada eje
+        if self.aceleration is not None:
+            (acelX, acelY) = self.aceleration.get_coordinates()
+            speedX += acelX*time
+            speedY += acelY*time
+
+            self.aceleration.substrat(self.decrement)
+
+            if self.aceleration.modulo <= 0:
+                self.aceleration = None
+                self.decrement = 0
+
         # Aplicamos la velocidad en cada eje
         self.speed = (speedX, speedY)
 
-
     def update(self, time, mapRect, mapMask):
-
         # Actualizamos todo lo del movimiento y la animación
         self.update_movement(time)
 
         # Y llamamos al método de la superclase para que, según la velocidad y el tiempo, calcule la nueva posición del Sprite
         MySprite.update(self, time)
 
-        x, y = self.position
-        x = int(x)
-        y = int(y - self.rect.height)
+        # Después se utiliza la máscara para un ajuste más preciso
+        x, y = self.rect.topleft
 
         # Se calculan los "gradientes" para conocer la dirección de la colisión
         dx = mapMask.overlap_area(self.mask,(x+1,y)) - mapMask.overlap_area(self.mask,(x-1,y))
@@ -211,23 +229,30 @@ class Character(MySprite):
         # hasta que deje de colisionar
         while(dx):
             self.increment_position(((1 if dx<0 else -1), 0))
-            x,y = self.position
-            x = int(x)
-            y = int(y - self.rect.height)
+            x, y = self.rect.topleft
             dx = mapMask.overlap_area(self.mask, (x+1,y)) - mapMask.overlap_area(self.mask, (x-1,y))
 
         while(dy):
             self.increment_position((0,(1 if dy<0 else -1)))
-            x,y = self.position
-            x = int(x)
-            y = int(y - self.rect.height)
+            x, y = self.rect.topleft
             dy = mapMask.overlap_area(self.mask, (x,y+1)) - mapMask.overlap_area(self.mask, (x,y-1))
 
     ############################################################################
 
-    # Recibe un daño y se realiza el daño. Si el personaje a muerto, LO MATA
-    def receive_damage(self, damage):
+    def apply_force(self, angle, radius, decrement):
+        self.aceleration = Force(angle, radius)
+        self.decrement = decrement
+
+    # Recibe un daño y se realiza el daño. Si el personaje ha muerto, lo elimina
+    # de todos los grupos
+    def receive_damage(self, damage, angle):
         self.stats["hp"] -= damage
 
         if self.stats["hp"] <= 0:
             self.kill()
+
+        self.apply_force(angle, self.stats["spd"]/8, self.stats["spd"]/64)
+
+    # Añade vidas al personaje
+    def add_lifes(self, lifes):
+        self.stats["hp"] = max(self.stats["max_hp"], self.stats["hp"]+lifes)
