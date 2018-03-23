@@ -199,12 +199,12 @@ class Character(MySprite):
         # Comprobamos si existe una aceleración para aplicarsela a cada eje
         if self.aceleration is not None:
             (acelX, acelY) = self.aceleration.get_coordinates()
-            speedX += acelX*time
-            speedY += acelY*time
+            speedX = acelX*time
+            speedY = acelY*time
 
             self.aceleration.substrat(self.decrement)
 
-            if self.aceleration.modulo <= 0:
+            if self.aceleration.magnitude <= 0:
                 self.aceleration = None
                 self.decrement = 0
 
