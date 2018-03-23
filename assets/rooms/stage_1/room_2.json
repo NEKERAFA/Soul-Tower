@@ -1,0 +1,22 @@
+{
+    "position": [24, 1272],
+    "width": 528,
+    "height": 360,
+    "connections": [
+        {
+            "y": 1608,
+            "left": 260,
+            "right": 292,
+            "to": 1,
+            "direction": "down"
+        }
+    ],
+    "triggers": [
+        {
+            "position": [492, 1344],
+            "height": 12,
+            "width": 12,
+            "dialogueFile": "secretButton.json"
+        }
+    ]
+}

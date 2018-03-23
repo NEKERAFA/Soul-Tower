@@ -1,0 +1,14 @@
+{
+    "position": [96, 2040],
+    "width": 360,
+    "height": 360,
+    "connections": [
+        {
+            "y": 2064,
+            "left": 260,
+            "right": 292,
+            "to": 1,
+            "direction": "up"
+        }
+    ]
+}

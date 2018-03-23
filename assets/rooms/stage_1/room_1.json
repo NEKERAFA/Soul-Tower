@@ -1,0 +1,29 @@
+{
+    "position": [0, 1632],
+    "width": 552,
+    "height": 408,
+    "connections": [
+        {
+            "y": 2016,
+            "left": 260,
+            "right": 292,
+            "to": 0,
+            "direction": "down"
+        },
+        {
+            "y": 1656,
+            "left": 260,
+            "right": 292,
+            "to": 2,
+            "direction": "up"
+        }
+    ],
+    "triggers": [
+        {
+            "position": [516, 1860],
+            "height": 12,
+            "width": 12,
+            "dialogueFile": "weirdWall.json"
+        }
+    ]
+}
