@@ -2,7 +2,7 @@
 
 import pygame
 from src.sprites.characters.Player import *
-from src.sprites.characters.player.PlayerState import *
+from src.sprites.characters.player.specials.PlayerState import *
 
 class Normal(PlayerState):
 	name = "normal"
@@ -10,7 +10,7 @@ class Normal(PlayerState):
 	def change(self, state):
 		# Debug:
 		# print("Changing state from ", self.name, " to ", state.name)
-		
+
 		self.__class__ = state
 
 	def update_pos(self, player, time, mapRect, mapMask):

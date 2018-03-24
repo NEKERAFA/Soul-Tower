@@ -31,7 +31,7 @@ class Attack(MySprite):
                 Pe = calc_triang(Pl, height, ang, 0, 1, 0)
         return Pe
 
-    def __init__(self, imageFile, spriteSheet, enemyGroup):
+    def __init__(self, imageFile, spriteSheet, enemies):
         # Primero invocamos al constructor de la clase padre
         MySprite.__init__(self)
 
@@ -63,7 +63,7 @@ class Attack(MySprite):
         # Máscara de la animación
         self.mask = pygame.mask.from_surface(self.origImage)
 
-        self.enemyGroup = enemyGroup
+        self.enemies = enemies
 
     def update_animation(self, time):
         if self.drawAnimation:
@@ -96,7 +96,7 @@ class Attack(MySprite):
 
         # Colisiones
         if self.drawAnimation:
-            for enemy in self.enemyGroup:
+            for enemy in iter(self.enemies):
                 (atkX, atkY) = self.position
                 (enemyX, enemyY) = enemy.position
                 atkY -= self.image.get_height()

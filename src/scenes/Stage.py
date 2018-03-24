@@ -52,9 +52,10 @@ class Stage(Scene):
 
         # Lista de enemigos
         enemies = [enemy for room in self.rooms for enemy in room.enemies.sprites()]
+        enemiesGroup = pygame.sprite.Group(enemies)
 
         # Cargamos el sprite del jugador
-        self.player = Player([])
+        self.player = Player(enemiesGroup)
         self.player.change_global_position((data["player_pos"][0], data["player_pos"][1]))
 
         # Inicializamos el viewport, que es un rectángulo del tamaño de la pantalla que indicará qué porción de la sala se debe mostrar
@@ -99,7 +100,6 @@ class Stage(Scene):
     def draw(self, screen):
         # Delegamos en el estado el dibujado de la fase
         self.state.draw(screen, self)
-        self.player.meleeAttack.draw(screen)
 
         # TODO DEBUG: BORRAR CUANDO HAGA FALTA
         screen.blit(self.posPlayer, (400-self.posPlayer.get_width(), 0))

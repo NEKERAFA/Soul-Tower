@@ -6,9 +6,9 @@ from src.sprites.Attack import *
 # -------------------------------------------------
 # Sprites de ataques
 class MeleeAttack(Attack):
-    def __init__(self, imageFile, spriteSheet, radius, delayTime, enemyGroup):
+    def __init__(self, imageFile, spriteSheet, radius, delayTime, enemies):
         # Primero invocamos al constructor de la clase padre
-        Attack.__init__(self, imageFile, spriteSheet, enemyGroup)
+        Attack.__init__(self, imageFile, spriteSheet, enemies)
         self.delayTime = delayTime
         self.elapsedTime = 0
         self.radius = radius
