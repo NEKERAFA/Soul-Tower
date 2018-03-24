@@ -28,11 +28,12 @@ class GUIScreen(object):
             if event.type == MOUSEBUTTONDOWN:
                 self.elementClick = None
                 for element in self.GUIElements:
-                    if element.position_is_in_element(event.pos):
+                    if element.position_is_in_element((event.pos[0]/SCALE_FACTOR, event.pos[1]/SCALE_FACTOR)):
                         self.elementClick = element
+                        element.action()
             if event.type == MOUSEBUTTONUP:
                 for element in self.GUIElements:
-                    if element.position_is_in_element(event.pos):
+                    if element.position_is_in_element((event.pos[0]/SCALE_FACTOR, event.pos[1]/SCALE_FACTOR)):
                         if (element == self.elementClick):
                             element.action()
 
