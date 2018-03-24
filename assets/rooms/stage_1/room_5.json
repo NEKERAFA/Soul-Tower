@@ -1,0 +1,14 @@
+{
+    "position": [1992, 1704],
+    "width": 936,
+    "height": 336,
+    "connections": [
+        {
+            "x": 2016,
+            "top": 1896,
+            "bottom": 1872,
+            "to": 4,
+            "direction": "left"
+        }
+    ]
+}

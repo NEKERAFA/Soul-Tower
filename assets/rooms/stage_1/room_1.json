@@ -16,11 +16,18 @@
             "right": 292,
             "to": 2,
             "direction": "up"
+        },
+        {
+            "x": 528,
+            "top": 1896,
+            "bottom": 1872,
+            "to": 3,
+            "direction": "right"
         }
     ],
     "triggers": [
         {
-            "position": [516, 1860],
+            "position": [516, 1896],
             "height": 12,
             "width": 12,
             "dialogueFile": "weirdWall.json"

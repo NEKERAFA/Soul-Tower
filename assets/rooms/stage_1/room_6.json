@@ -1,0 +1,15 @@
+{
+    "position": [1344, 1200],
+    "width": 264264,
+    "height": 264,
+    "connections": [
+        {
+            "y": 1440,
+            "left": 1460,
+            "right": 1488,
+            "to": 4,
+            "direction": "down"
+        }
+    ],
+    "small": true
+}
