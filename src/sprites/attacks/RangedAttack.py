@@ -39,7 +39,7 @@ class RangedAttack(Attack):
     def draw(self, surface):
         self.bullets.draw(surface)
 
-    def update(self, time, mapMask):
+    def update(self, time, stage):
         # Actualizamos el ataque
         Attack.update(self, time)
 
@@ -54,6 +54,14 @@ class RangedAttack(Attack):
             self.elapsedTime += time
 
         # Actualizamos las balas
-        self.bullets.update(time, mapMask, self.image, self.mask, self.rect)
+        self.bullets.update(time, stage.mask, self.image, self.mask, self.rect)
 
-        # TODO: Comprobar colisión con enemigos
+        # Comprobamos que enemigos colisionan con que grupos
+        for bullet in iter(self.bullets):
+            enemyCollide = pygame.sprite.spritecollideany(bullet, self.enemies)
+
+            # Si hay una colisión, hacemos daño al jugador y matamos la bala
+            if enemyCollide is not None:
+                enemyCollide.drop.change_global_position(enemyCollide.position)
+                stage.rooms[stage.currentRoom].drops.add(enemyCollide.drop)
+                enemyCollide.receive_damage(1, bullet.rotation)

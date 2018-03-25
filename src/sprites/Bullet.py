@@ -18,7 +18,9 @@ class Bullet(MySprite):
         self.rect = frameRect.copy()
 
         # Lo ponemos en posición
-        self.position = Attack.calc_rot_pos(rotation, radius, self.rect.width, self.rect.height, characterPos)
+        width, height = self.image.get_size()
+        x, y = Attack.calc_rot_pos(rotation, radius, self.rect.width, self.rect.height, characterPos)
+        self.position = (x, y)
         self.rect.top = self.position[0]
         self.rect.left = self.position[1]
         self.image = pygame.transform.rotate(self.image, rotation)

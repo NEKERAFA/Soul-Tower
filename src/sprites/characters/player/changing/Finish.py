@@ -9,11 +9,13 @@ from src.sprites.characters.player.changing.ChangingState import *
 from src.controls.KeyboardMouseControl import *
 
 class Finish(ChangingState):
-    def update(self, player, time, mapRect, mapMask):
+    def update(self, player, time, stage):
+        currentRoom = stage.rooms[stage.currentRoom]
+
         # Delegamos en el estado del jugador para actualizar
-        player.state.update_pos(player, time, mapRect, mapMask)
+        player.state.update_pos(player, time, currentRoom.rect, stage.mask)
         # Actualizamos el ataque
-        player.attack.update(time, mapMask)
+        player.attack.update(time, stage)
 
         # Si se pulsa el botón de cambio de jugador
         if KeyboardMouseControl.select_button() and player.canChange:

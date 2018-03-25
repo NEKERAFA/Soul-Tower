@@ -39,7 +39,7 @@ class Player(Character):
         self.state = Normal()
 
         # Se cargan los ataques
-        self.attack = RangedAttack(15, 250, enemies)
+        self.attack = RangedAttack(0, 250, enemies)
 
         # Número de almas
         self.souls = 0
@@ -80,11 +80,11 @@ class Player(Character):
         if KeyboardMouseControl.prim_button():
             # Si es sorcerer, el ataque actual es ataque a distancia
             if self.currentCharacter == 'sorcerer' and type(self.attack) is not RangedAttack:
-                self.attack = RangedAttack(15, 250, self.attack.enemies)
+                self.attack = RangedAttack(0, 250, self.attack.enemies)
 
             # Si es warrior, el ataque actual es melee
             if self.currentCharacter == 'warrior' and type(self.attack) is not MeleeAttack:
-                self.attack = MeleeAttack(15, 500, self.attack.enemies)
+                self.attack = MeleeAttack(0, 500, self.attack.enemies)
 
             # Calcular la posición del centro del sprite (de momento calcula el centro del primer sprite)
             centerPosX, centerPosY = self.rect.center
@@ -96,7 +96,7 @@ class Player(Character):
         else:
             self.attack.end_attack()
 
-    def update(self, time, mapRect, mapMask):
+    def update(self, time, stage):
         # Ataque especial
         if KeyboardMouseControl.sec_button():
             # Si es sorcerer el jugador actual, cambiamos el estado a dashing
@@ -107,7 +107,7 @@ class Player(Character):
                 self.state.change(Dashing) # TODO cambiar
 
         # Controlamos el cambio de personaje
-        self.changing.update(self, time, mapRect, mapMask)
+        self.changing.update(self, time, stage)
 
     def draw(self, screen):
         # Esta función está para agrupar el mostrar al jugador y su ataque

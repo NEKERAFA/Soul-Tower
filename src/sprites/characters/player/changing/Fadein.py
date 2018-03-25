@@ -14,7 +14,7 @@ class Fadein(ChangingState):
     def __init__(self, width):
         self.width = width
 
-    def update(self, player, time, mapRect, mapMask):
+    def update(self, player, time, stage):
         # Cogemos el rectángulo del frame de estar quieto
         currentRect = player.sheetConf[0][0]['coords']
 

@@ -13,7 +13,7 @@ class Fadeout(ChangingState):
     def __init__(self):
         self.width = 0
 
-    def update(self, player, time, mapRect, mapMask):
+    def update(self, player, time, stage):
         # Obtenemos el frame actual
         maxWidth = player.sheetConf[0][0]['coords'].width
 

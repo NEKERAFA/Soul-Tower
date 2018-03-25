@@ -32,7 +32,7 @@ class MeleeAttack(Attack):
     def end_attack(self):
         self.attacking = False
 
-    def update(self, time, mapMask):
+    def update(self, time, stage):
         # Si ha pasado el tiempo suficiente y estamos intentando atacar
         if (self.elapsedTime > self.delayTime) and self.attacking:
             self.drawAnimation = True
