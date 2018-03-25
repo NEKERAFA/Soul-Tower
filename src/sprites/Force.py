@@ -14,13 +14,8 @@ class Force(object):
         '''
             Devuelve las coordenadas cartesianas del vector
         '''
-<<<<<<< HEAD
-        x = math.cos(self.angle)*self.modulo
-        y = math.sin(self.angle)*self.modulo
-=======
         x = math.cos(self.angle)*self.magnitude
         y = math.sin(self.angle)*self.magnitude
->>>>>>> refs/remotes/origin/master
         return (x, y)
 
     def substrat(self, value):
