@@ -3,6 +3,14 @@
     "width": 720,
     "height": 480,
     "connections": [],
-    "enemies": [],
+    "enemies": [
+        {
+            "type": "slime",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        }
+    ],
     "triggers": []
 }

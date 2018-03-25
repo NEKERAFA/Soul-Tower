@@ -58,9 +58,6 @@ class Stage(Scene):
         self.player = Player(enemiesGroup, self)
         self.player.change_global_position((data["player_pos"][0], data["player_pos"][1]))
 
-        # Iniciamos el sprite de bullets
-        self.bulletGroup = pygame.sprite.Group()
-
         # Inicializamos el viewport, que es un rectángulo del tamaño de la
         # pantalla que indicará qué porción de la sala se debe mostrar
         self.viewport = gameManager.screen.get_rect()

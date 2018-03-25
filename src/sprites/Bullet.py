@@ -1,36 +1,40 @@
 # -*- coding: utf-8 -*-
 
 import pygame, sys, os, math
+from src.sprites.MySprite import *
 from src.sprites.Attack import *
 
 BASE_SPEED = 0.1
 # -------------------------------------------------
 # Clase del proyectil
 
-class Bullet(Attack):
+class Bullet(MySprite):
+    def __init__(self, characterPos, rotation, radius, frameImage, frameRect):
+        # Llamamos a la superclase
+        MySprite.__init__(self)
 
-    def __init__(self, imageFile, spriteSheet, enemyGroup, characterPos, rotation, radius):
-        #TODO:Pasar el angulo a velocidad (tenemos en cuenta el signo del angulo)
-        Attack.__init__(self, imageFile, spriteSheet, enemyGroup)
-        # self.image = sheet.subsurface(sheetCoords[0][0])
-        # self.rect = self.image.get_rect(center=pos)
-        # self.position = pos
-        # self.rotation = rotation
+        # Guardamos la posición y el rectangulo
+        self.image = frameImage.copy()
+        self.rect = frameRect.copy()
+
+        # Lo ponemos en posición
         self.position = Attack.calc_rot_pos(rotation, radius, self.rect.width, self.rect.height, characterPos)
-        self.rect.left = self.position[0]
-        self.rect.top = self.position[1]
-        self.image = pygame.transform.rotate(self.origImage, rotation)
-        self.speed = (BASE_SPEED * (math.cos(math.radians(rotation))),-BASE_SPEED * (math.sin(math.radians(rotation))))
-        print(self.position, 'ranged')
+        self.rect.top = self.position[0]
+        self.rect.left = self.position[1]
+        self.image = pygame.transform.rotate(self.image, rotation)
+        self.speed = (BASE_SPEED * (math.cos(math.radians(rotation))), -BASE_SPEED * (math.sin(math.radians(rotation))))
+        self.rotation = rotation
 
-    def draw(self, surface):
-        Attack.draw(self, surface)
-
-    def update (self, time):
-        self.drawAnimation = True
-        # print(self.speed)
-        Attack.update(self, time)
+    def update (self, time, mapMask, frameImage, frameMask, frameRect):
+        # Actualizamos el frame
+        self.image = pygame.transform.rotate(frameImage, self.rotation)
+        center = self.rect.center
+        self.rect = frameRect.copy()
+        self.rect.center = center
+        # Actualizamos la posición
         MySprite.update(self, time)
-        # print(self.drawAnimation)
-        # print(self.position)
-        # comprobar colisiones contra paredes y eliminar la bala
+        # Comprobamos si ha chocado con la pared para eliminarla de todos los
+        # grupos a los que esté asociada la bala
+        x, y = self.rect.topleft
+        if frameMask.overlap(mapMask, (-x, -y)) is not None:
+            self.kill()

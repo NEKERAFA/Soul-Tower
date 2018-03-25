@@ -13,13 +13,13 @@ class Finish(ChangingState):
         # Delegamos en el estado del jugador para actualizar
         player.state.update_pos(player, time, mapRect, mapMask)
         # Actualizamos el ataque
-        player.attack.update(time)
+        player.attack.update(time, mapMask)
 
         # Si se pulsa el botón de cambio de jugador
         if KeyboardMouseControl.select_button() and player.canChange:
             # Ponemos la posición de parado
             Character.move(player, STILL)
-            
+
             # Cogemos el rectángulo de vista frontal
             currentRect = player.sheetConf[0][0]['coords']
             # Actualizamos el sprite con el nuevo sprite sheet

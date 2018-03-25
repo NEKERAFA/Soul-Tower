@@ -1,23 +1,32 @@
 # -*- coding: utf-8 -*-
 
 import pygame, sys, os, math
+from src.sprites.Attack import *
 from src.sprites.Bullet import *
 
 # -------------------------------------------------
 # Sprites de ataques
-class RangedAttack(object):
-    def __init__(self, imageFile, spriteSheet, radius, delayTime, enemyGroup, stage):
-        # Primero invocamos al constructor de la clase padre
-        self.imageFile = imageFile
-        self.spriteSheet = spriteSheet
+class RangedAttack(Attack):
+    def __init__(self, radius, delayTime, enemies):
+        # Obtenemos las rutas a los archivos
+        imageFile = os.path.join('sprites', 'attacks', 'ranged.png')
+        spriteSheet = os.path.join('attacks', 'ranged.json')
+
+        # Invocamos al constructor de la clase padre
+        Attack.__init__(self, imageFile, spriteSheet, enemies)
+        self.loopAnimation = True
+
+        # Radio de acción
         self.radius = radius
-        self.enemyGroup = enemyGroup
+        # Grupo de enemigos
+        self.enemies = enemies
+        # Tiempo entre disparos
         self.delayTime = delayTime
         self.elapsedTime = 0
-        self.radius = radius
+        # Comprueba si está atacando
         self.attacking = False
-        # self.bullets = []
-        self.stage = stage
+        # Grupo de disparos
+        self.bullets = pygame.sprite.Group()
 
     def start_attack(self, characterPos, rotation):
         self.characterPos = characterPos
@@ -27,22 +36,24 @@ class RangedAttack(object):
     def end_attack(self):
         self.attacking = False
 
-    # def draw(self, surface):
-    #     for bullet in self.bullets:
-    #         bullet.draw(surface)
+    def draw(self, surface):
+        self.bullets.draw(surface)
 
-    def update(self, time):
+    def update(self, time, mapMask):
+        # Actualizamos el ataque
+        Attack.update(self, time)
+
         # Si ha pasado el tiempo suficiente y estamos intentando atacar
         if (self.elapsedTime > self.delayTime) and self.attacking:
-            bullet = Bullet(self.imageFile, self.spriteSheet, self.enemyGroup, self.characterPos, self.rotation, self.radius)
-            self.stage.bulletGroup.add(bullet)
-            # self.bullets.append(bullet)
-            # self.drawAnimation = True
+            # Se crea una bala y se guarda en el grupo de balas
+            bullet = Bullet(self.characterPos, self.rotation, self.radius, self.image, self.rect)
+            self.bullets.add(bullet)
             # Y reiniciar el contador
             self.elapsedTime = 0
         else:
             self.elapsedTime += time
 
-        # for bullet in self.bullets:
-        #     bullet.update(time)
-        # Attack.update(self, time)
+        # Actualizamos las balas
+        self.bullets.update(time, mapMask, self.image, self.mask, self.rect)
+
+        # TODO: Comprobar colisión con enemigos

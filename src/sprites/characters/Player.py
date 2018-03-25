@@ -39,7 +39,7 @@ class Player(Character):
         self.state = Normal()
 
         # Se cargan los ataques
-        self.attack = RangedAttack('sprites/characters/sorcerer.png', 'attacks/attack.json', 30, 250, enemies, stage)
+        self.attack = RangedAttack(15, 250, enemies)
 
         # Número de almas
         self.souls = 0
@@ -79,13 +79,12 @@ class Player(Character):
         # Control de ataque
         if KeyboardMouseControl.prim_button():
             # Si es sorcerer, el ataque actual es ataque a distancia
-            # if self.currentCharacter == 'sorcerer' and type(self.attack) is not MeleeAttack:
-            #     # TODO cambiar
-            #     self.attack = MeleeAttack('sprites/characters/sorcerer.png', 'attacks/attack.json', 30, 250, enemies)
-            #
-            # # Si es warrior, el ataque actual es melee
-            # if self.currentCharacter == 'warrior' and type(self.attack) is not MeleeAttack:
-            #     self.attack = MeleeAttack('sprites/characters/sorcerer.png', 'attacks/attack.json', 30, 250, enemies)
+            if self.currentCharacter == 'sorcerer' and type(self.attack) is not RangedAttack:
+                self.attack = RangedAttack(15, 250, self.attack.enemies)
+
+            # Si es warrior, el ataque actual es melee
+            if self.currentCharacter == 'warrior' and type(self.attack) is not MeleeAttack:
+                self.attack = MeleeAttack(15, 500, self.attack.enemies)
 
             # Calcular la posición del centro del sprite (de momento calcula el centro del primer sprite)
             centerPosX, centerPosY = self.rect.center
@@ -123,3 +122,9 @@ class Player(Character):
     def increase_souls(self, souls):
         self.souls += souls
         print(self.souls)
+
+    # Recibe un daño y se realiza el daño. Si el personaje ha muerto, lo elimina
+    # de todos los grupos
+    def receive_damage(self, damage, angle):
+        if type(self.state) is Normal:
+            Character.receive_damage(self, damage, angle)

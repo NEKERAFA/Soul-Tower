@@ -12,24 +12,41 @@ class Attack(MySprite):
     def calc_rot_pos(cls, ang, r, width, height, Pj):
         if (ang>=0):
             if (ang<90): # Cuadrante I
-                Pc = calc_triang(Pj, r, ang, 0, 1, -1)
-                Pl = calc_triang(Pc, width/2, ang, 1, -1, -1)
-                Pe = calc_triang(Pl, height, ang, 0, 0, -1)
+                Pc = cls.calc_triang(Pj, r, ang, 0, 1, -1)
+                Pl = cls.calc_triang(Pc, width/2, ang, 1, -1, -1)
+                Pe = cls.calc_triang(Pl, height, ang, 0, 0, -1)
             else: # Cuadrante II
-                Pc = calc_triang(Pj, r, ang, 0, 1, -1)
-                Pl1 = calc_triang(Pc, width/2, ang, 1, -1, -1)
-                Pl2 = calc_triang(Pl1, height, ang, 0, 1, -1)
-                Pe = calc_triang(Pl2, height, ang, 1, 0, 1)
+                Pc = cls.calc_triang(Pj, r, ang, 0, 1, -1)
+                Pl1 = cls.calc_triang(Pc, width/2, ang, 1, -1, -1)
+                Pl2 = cls.calc_triang(Pl1, height, ang, 0, 1, -1)
+                Pe = cls.calc_triang(Pl2, height, ang, 1, 0, 1)
         else:
             if (ang>-90): # Cuadrante IV
-                Pc = calc_triang(Pj, r, ang, 0, 1, -1)
-                Pl = calc_triang(Pc, width/2, ang, 1, -1, -1)
-                Pe = calc_triang(Pl, height, ang, 1, 1, 0)
+                Pc = cls.calc_triang(Pj, r, ang, 0, 1, -1)
+                Pl = cls.calc_triang(Pc, width/2, ang, 1, -1, -1)
+                Pe = cls.calc_triang(Pl, height, ang, 1, 1, 0)
             else: # Cuadrante III
-                Pc = calc_triang(Pj, r, ang, 0, 1, -1)
-                Pl = calc_triang(Pc, width/2, ang, 1, 1, 1)
-                Pe = calc_triang(Pl, height, ang, 0, 1, 0)
+                Pc = cls.calc_triang(Pj, r, ang, 0, 1, -1)
+                Pl = cls.calc_triang(Pc, width/2, ang, 1, 1, 1)
+                Pe = cls.calc_triang(Pl, height, ang, 0, 1, 0)
         return Pe
+
+    # Método para calcular triángulos
+    # recibe un punto, la hipotenusa y el ángulo
+    # invAB es para utilizar el lado b en lugar del a y vice.
+    # paramX e Y se multiplican por los lados para conseguir
+    # diferentes configuraciones (sumar, restar, 0)
+    # devuelve el punto calculado
+    @classmethod
+    def calc_triang(cls, P, h, ang, invAB, paramX, paramY):
+        ladoA = h * math.sin(math.radians(ang))
+        ladoB = h * math.cos(math.radians(ang))
+        x,y = P
+        if (invAB):
+            newP = (x+ladoA*paramX, y+ladoB*paramY)
+        else:
+            newP = (x+ladoB*paramX, y+ladoA*paramY)
+        return newP
 
     def __init__(self, imageFile, spriteSheet, enemies):
         # Primero invocamos al constructor de la clase padre
@@ -41,6 +58,7 @@ class Attack(MySprite):
         # Leer coordenadas de fichero
         data = ResourceManager.load_sprite_conf(spriteSheet)
         self.sheetConf = []
+
         # Cargamos los sprites
         for col in range(0, len(data)):
             cell = data[col]
@@ -52,13 +70,15 @@ class Attack(MySprite):
         self.animationFrame = 0
         self.currentDelay = 0
 
+        # Controlamos la animación y si está en loop o no
         self.drawAnimation = True
+        self.loopAnimation = False
 
         self.rect = pygame.Rect(0, 0, self.sheetConf[0]['coords'][2], self.sheetConf[0]['coords'][3])
 
         # Frame inicial
         self.origImage = self.sheet.subsurface(self.sheetConf[0]['coords'])
-        self.image = self.origImage
+        self.image = self.origImage.copy()
 
         # Máscara de la animación
         self.mask = pygame.mask.from_surface(self.origImage)
@@ -66,7 +86,7 @@ class Attack(MySprite):
         self.enemies = enemies
 
     def update_animation(self, time):
-        if self.drawAnimation:
+        if self.loopAnimation or self.drawAnimation:
             # Actualizamos el retardo
             self.currentDelay -= time
 
@@ -84,6 +104,7 @@ class Attack(MySprite):
 
                 # Actualiamos la imagen con el frame correspondiente
                 self.origImage = self.sheet.subsurface(self.sheetConf[self.animationFrame]['coords'])
+                self.image = self.origImage.copy()
 
                 self.rect.width = self.origImage.get_width()
                 self.rect.height = self.origImage.get_height()
@@ -108,21 +129,4 @@ class Attack(MySprite):
 
     def draw(self, surface):
         if self.drawAnimation:
-            # print(self.rect)
             surface.blit(self.image, self.rect)
-
-# Método para calcular triángulos
-# recibe un punto, la hipotenusa y el ángulo
-# invAB es para utilizar el lado b en lugar del a y vice.
-# paramX e Y se multiplican por los lados para conseguir
-# diferentes configuraciones (sumar, restar, 0)
-# devuelve el punto calculado
-def calc_triang(P, h, ang, invAB, paramX, paramY):
-    ladoA = h * math.sin(math.radians(ang))
-    ladoB = h * math.cos(math.radians(ang))
-    x,y = P
-    if (invAB):
-        newP = (x+ladoA*paramX, y+ladoB*paramY)
-    else:
-        newP = (x+ladoB*paramX, y+ladoA*paramY)
-    return newP
