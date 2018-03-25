@@ -8,7 +8,7 @@ from src.scenes.Scene import *
 # -------------------------------------------------
 # Clase GUIScreen
 # La clase GUIScreen no hereda de Screen, ya que no tiene imagen propia a dibujar
-# TODO: maybe hacer que GUIScreen y Screen hereden de la misma clase (¿una "superscreen"?)
+
 class GUIScreen(object):
     def __init__(self):
         # Se tiene una lista de elementos GUI
@@ -17,10 +17,10 @@ class GUIScreen(object):
         #self.animations = []
 
     # TODO añadir a UML
-    def addElement(self, element):
+    def add_element(self, element):
         self.GUIElements.append(element)
     # TODO añadir a UML
-    def removeElement(self, element):
+    def remove_element(self, element):
         self.GUIElements.remove(element)
 
     def events(self, event_list):
@@ -28,14 +28,19 @@ class GUIScreen(object):
             if event.type == MOUSEBUTTONDOWN:
                 self.elementClick = None
                 for element in self.GUIElements:
-                    if element.position_is_in_element((event.pos[0]/SCALE_FACTOR, event.pos[1]/SCALE_FACTOR)):
+                    if element.__class__.__name__ == 'GUIButton' and element.position_is_in_element((event.pos[0]/SCALE_FACTOR, event.pos[1]/SCALE_FACTOR)):
                         self.elementClick = element
                         element.action()
             if event.type == MOUSEBUTTONUP:
                 for element in self.GUIElements:
-                    if element.position_is_in_element((event.pos[0]/SCALE_FACTOR, event.pos[1]/SCALE_FACTOR)):
+                    if element.__class__.__name__ == 'GUIButton' and element.position_is_in_element((event.pos[0]/SCALE_FACTOR, event.pos[1]/SCALE_FACTOR)):
                         if (element == self.elementClick):
                             element.action()
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_e:
+                for element in self.GUIElements:
+                    if element.__class__.__name__ == 'GUICharacterSymbol':
+                        self.elementClick = element
+                        element.action()
 
     def update(self, time):
         #Actualizar los elementos de la interfaz

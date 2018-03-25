@@ -8,10 +8,10 @@ from src.interface.GUIImage import *
 # Clase GUIChargeBar
 
 class GUIChargeBar(GUIImage):
-    def __init__(self, gui_screen, name, position, scale):
+    def __init__(self, guiScreen, name, position, scale):
         self.colorkey = None
         # La imagen se carga sin transparencias
-        GUIImage.__init__(self, gui_screen, name, position, scale, self.colorkey)
+        GUIImage.__init__(self, guiScreen, name, position, scale, self.colorkey)
 
         # Porcentaje de rellenado de la barra; 1 -> la barra se dibuja por completo
         self.percent = 1.
