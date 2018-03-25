@@ -78,7 +78,6 @@ class Player(Character):
 
     def update(self, time, mapRect, mapMask):
         # Delegamos en el estado del jugador para actualizar
-        print(self.stats["nrg"])
         self.playerState.update_state(self, time, mapRect, mapMask)
         self.meleeAttack.update(time)
 
