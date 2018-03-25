@@ -13,22 +13,22 @@ class Attack(MySprite):
         if (ang>=0):
             if (ang<90): # Cuadrante I
                 Pc = cls.calc_triang(Pj, r, ang, 0, 1, -1)
-                Pl = cls.calc_triang(Pc, width/2, ang, 1, -1, -1)
-                Pe = cls.calc_triang(Pl, height, ang, 0, 0, -1)
+                Pl = cls.calc_triang(Pc, height/2, ang, 1, -1, -1)
+                Pe = cls.calc_triang(Pl, width, ang, 0, 0, -1)
             else: # Cuadrante II
                 Pc = cls.calc_triang(Pj, r, ang, 0, 1, -1)
-                Pl1 = cls.calc_triang(Pc, width/2, ang, 1, -1, -1)
-                Pl2 = cls.calc_triang(Pl1, height, ang, 0, 1, -1)
+                Pl1 = cls.calc_triang(Pc, height/2, ang, 1, -1, -1)
+                Pl2 = cls.calc_triang(Pl1, width, ang, 0, 1, -1)
                 Pe = cls.calc_triang(Pl2, height, ang, 1, 0, 1)
         else:
             if (ang>-90): # Cuadrante IV
                 Pc = cls.calc_triang(Pj, r, ang, 0, 1, -1)
-                Pl = cls.calc_triang(Pc, width/2, ang, 1, -1, -1)
+                Pl = cls.calc_triang(Pc, height/2, ang, 1, -1, -1)
                 Pe = cls.calc_triang(Pl, height, ang, 1, 1, 0)
             else: # Cuadrante III
                 Pc = cls.calc_triang(Pj, r, ang, 0, 1, -1)
-                Pl = cls.calc_triang(Pc, width/2, ang, 1, 1, 1)
-                Pe = cls.calc_triang(Pl, height, ang, 0, 1, 0)
+                Pl = cls.calc_triang(Pc, height/2, ang, 1, 1, 1)
+                Pe = cls.calc_triang(Pl, width, ang, 0, 1, 0)
         return Pe
 
     # Método para calcular triángulos
