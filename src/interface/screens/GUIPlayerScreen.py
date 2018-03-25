@@ -28,7 +28,7 @@ class GUIPlayerScreen(GUIScreen):
         #TODO: bucle for para cada corazón/barra de estamina
         self.health = GUIHealth(self, HEART_SPRITE_LOCATION, (20,20), (20,20), 3)
         self.stamina = GUIChargeBar(self, STAMINA_BAR_SPRITE_LOCATION, (20,40), (30,10))
-        charSymb = GUICharacterSymbol(self, (20, 230), (30, 30))
+        self.charSymb = GUICharacterSymbol(self, (20, 230), (30, 30))
 
         #button = GUIButton(self, "interface/player/button_up_placeholder.png", "interface/player/button_down_placeholder.png", (0,0), (40,40))
         #text = GUIText(self, (200, 20), pygame.font.SysFont('dejavusans', 14))
@@ -41,4 +41,4 @@ class GUIPlayerScreen(GUIScreen):
         # Añadir al array de GUIElements para poder dibujar y actualizar
         self.GUIElements.append(self.health)
         self.GUIElements.append(self.stamina)
-        self.GUIElements.append(charSymb)
+        self.GUIElements.append(self.charSymb)

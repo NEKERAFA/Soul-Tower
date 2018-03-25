@@ -21,7 +21,6 @@ class GUITutorialImage(GUIImage):
         self.speed = 1./150.
 
         # Variables para controlar desaparición de la imagen
-        scale = (self.rect.width, self.rect.height)
         self.originalImage = self.image
         self.originalWidth = self.rect.width
         self.originalHeight = self.rect.height
@@ -42,6 +41,5 @@ class GUITutorialImage(GUIImage):
                 # Al terminar, eliminarse del array GUIElements
                 self.guiScreen.remove_element(self)
 
-    def action(self, GUIElements):
+    def action(self):
         self.shrink = True
-        self.GUIElements = GUIElements

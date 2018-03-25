@@ -41,7 +41,7 @@ class GUITutorialScreen(GUIScreen):
             if event.type == pygame.KEYDOWN:
                 for element in self.GUIElements:
                     if (element.__class__.__name__ == 'GUITutorialImage' and element.associatedKey == event.key):
-                        element.action(self)
+                        element.action()
                         self.movementKeyCounter += 1
                         # Si se han pulsado las cuatro teclas de movimiento se elimina el texto
                         if(self.movementKeyCounter == 4):
