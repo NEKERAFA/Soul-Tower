@@ -17,9 +17,18 @@ class Finish(ChangingState):
 
         # Si se pulsa el botón de cambio de jugador
         if KeyboardMouseControl.select_button() and player.canChange:
-            # Actualizamos la posición
+            # Ponemos la posición de parado
             Character.move(player, STILL)
-            player.update_animation(time)
+            
+            # Cogemos el rectángulo de vista frontal
+            currentRect = player.sheetConf[0][0]['coords']
+            # Actualizamos el sprite con el nuevo sprite sheet
+            player.origImage = player.sheet.subsurface(currentRect)
+            # Actualizamos el sprite que se dibuja
+            player.image = player.origImage.copy()
+            # Actualizamos el delay
+            self.currentDelay = player.sheetConf[0][0]['delay']
+
             # Cambiamos de estado
             player.changing = Fadein(player.origImage.get_width())
 

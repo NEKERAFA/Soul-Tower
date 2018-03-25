@@ -8,6 +8,7 @@ from src.sprites.characters.player.specials.Dashing import *
 from src.sprites.characters.player.specials.Defending import *
 from src.sprites.characters.player.changing.Finish import *
 from src.sprites.attacks.MeleeAttack import *
+from src.sprites.attacks.RangedAttack import *
 from src.controls.KeyboardMouseControl import *
 from src.ResourceManager import *
 
@@ -22,7 +23,7 @@ PLAYER_SPEED = 0.2 # Pixeles por milisegundo
 # -------------------------------------------------
 # Clase del Character jugable
 class Player(Character):
-    def __init__(self, enemies):
+    def __init__(self, enemies, stage):
         # Invocamos al constructor de la clase padre con la configuracion de este Character concreto
         Character.__init__(self, 'sorcerer')
 
@@ -38,7 +39,7 @@ class Player(Character):
         self.state = Normal()
 
         # Se cargan los ataques
-        self.attack = MeleeAttack('sprites/characters/sorcerer.png', 'attacks/attack.json', 30, 250, enemies)
+        self.attack = RangedAttack('sprites/characters/sorcerer.png', 'attacks/attack.json', 30, 250, enemies, stage)
 
         # Número de almas
         self.souls = 0
@@ -78,13 +79,13 @@ class Player(Character):
         # Control de ataque
         if KeyboardMouseControl.prim_button():
             # Si es sorcerer, el ataque actual es ataque a distancia
-            if self.currentCharacter == 'sorcerer' and type(self.attack) is not MeleeAttack:
-                # TODO cambiar
-                self.attack = MeleeAttack('sprites/characters/sorcerer.png', 'attacks/attack.json', 30, 250, enemies)
-
-            # Si es warrior, el ataque actual es melee
-            if self.currentCharacter == 'warrior' and type(self.attack) is not MeleeAttack:
-                self.attack = MeleeAttack('sprites/characters/sorcerer.png', 'attacks/attack.json', 30, 250, enemies)
+            # if self.currentCharacter == 'sorcerer' and type(self.attack) is not MeleeAttack:
+            #     # TODO cambiar
+            #     self.attack = MeleeAttack('sprites/characters/sorcerer.png', 'attacks/attack.json', 30, 250, enemies)
+            #
+            # # Si es warrior, el ataque actual es melee
+            # if self.currentCharacter == 'warrior' and type(self.attack) is not MeleeAttack:
+            #     self.attack = MeleeAttack('sprites/characters/sorcerer.png', 'attacks/attack.json', 30, 250, enemies)
 
             # Calcular la posición del centro del sprite (de momento calcula el centro del primer sprite)
             centerPosX, centerPosY = self.rect.center
@@ -112,7 +113,9 @@ class Player(Character):
     def draw(self, screen):
         # Esta función está para agrupar el mostrar al jugador y su ataque
         screen.blit(self.image, self.rect)
-        self.attack.draw(screen)
+
+        if hasattr(self.attack, 'draw'):
+            self.attack.draw(screen)
 
     ############################################################################
 

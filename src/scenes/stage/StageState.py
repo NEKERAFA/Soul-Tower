@@ -17,6 +17,8 @@ class StageState(object):
         newImage = stage.image.copy()
         # Player
         stage.player.draw(newImage)
+        # Bullets
+        stage.bulletGroup.draw(newImage)
         # Enemigos
         currentRoom.enemies.draw(newImage)
         # Drops

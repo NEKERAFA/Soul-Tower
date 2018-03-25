@@ -27,6 +27,7 @@ class MeleeAttack(Attack):
     def update(self, time):
         # Si ha pasado el tiempo suficiente y estamos intentando atacar
         if (self.elapsedTime > self.delayTime) and self.attacking:
+            print(self.position, 'melee')
             self.drawAnimation = True
             # Y reiniciar el contador
             self.elapsedTime = 0
