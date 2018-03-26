@@ -46,7 +46,7 @@ class RangedAttack(Attack):
         # Si ha pasado el tiempo suficiente y estamos intentando atacar
         if (self.elapsedTime > self.delayTime) and self.attacking:
             # Se crea una bala y se guarda en el grupo de balas
-            bullet = Bullet(self.characterPos, self.rotation, self.radius, self.image, self.rect)
+            bullet = Bullet(self.characterPos, self.rotation, self.radius, self.image)
             self.bullets.add(bullet)
             # Y reiniciar el contador
             self.elapsedTime = 0
@@ -54,7 +54,7 @@ class RangedAttack(Attack):
             self.elapsedTime += time
 
         # Actualizamos las balas
-        self.bullets.update(time, stage.mask, self.image, self.mask, self.rect)
+        self.bullets.update(time, stage.mask, self.image)
 
         # Comprobamos que enemigos colisionan con que grupos
         for bullet in iter(self.bullets):
