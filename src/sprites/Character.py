@@ -96,7 +96,8 @@ class Character(MySprite):
         self.decrement = 0
 
         # Frame inicial
-        self.image = self.sheet.subsurface(self.sheetConf[0][0]['coords'])
+        self.origImage = self.sheet.subsurface(self.sheetConf[0][0]['coords'])
+        self.image = self.origImage.copy()
 
         # Delay actual
         self.currentDelay = self.sheetConf[0][0]['delay']
@@ -127,9 +128,9 @@ class Character(MySprite):
             self.currentDelay = currentAnim[self.animationFrame]['delay']
 
             # Actualiamos la imagen con el frame correspondiente
-            self.image = self.sheet.subsurface(currentAnim[self.animationFrame]['coords'])
-            self.rect.width = self.image.get_width()
-            self.rect.height = self.image.get_height()
+            self.origImage = self.sheet.subsurface(currentAnim[self.animationFrame]['coords'])
+            self.image = self.origImage.copy()
+            self.rect.size = self.image.get_size()
 
             # Si mira a la E, invertimos esa imagen
             if self.looking == E:

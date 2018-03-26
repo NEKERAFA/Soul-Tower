@@ -17,7 +17,7 @@ class InRoomState(StageState):
 
         # Actualizamos los sprites
         # Player
-        stage.player.update(time, currentRoom.rect, stage.mask)
+        stage.player.update(time, stage)
         # Enemigos
         currentRoom.enemies.update(time, currentRoom.rect, stage.mask)
         # Drops

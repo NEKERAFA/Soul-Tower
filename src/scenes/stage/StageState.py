@@ -18,7 +18,7 @@ class StageState(object):
         # Puertas
         currentRoom.lockedDoorsGroup.draw(newImage)
         # Player
-        newImage.blit(stage.player.image, stage.player.rect)
+        stage.player.draw(newImage)
         # Enemigos
         currentRoom.enemies.draw(newImage)
         # Drops
