@@ -16,9 +16,11 @@ class Dashing(PlayerState):
     dashing = False
 
     def change(self, player, state):
-        # Debug:
-        # print("Changing state from ", self.name, " to ", state.name)
-        self.__class__ = state
+        # No cambia de estado hasta que termine el dash
+        if not self.dashing:
+            self.__class__ = state
+            # Debug:
+            # print("Changing state from ", self.name, " to ", state.name)
 
     def initializate(self, player):
         speedX = player.speed[0]*self.speedMulti
@@ -153,6 +155,10 @@ class Dashing(PlayerState):
             else:
                 incrY = 0
             MySprite.increment_position(player, (incrX,incrY))
+
+    def receive_damage_aux(self, player, damage, angle):
+        # Invulnerable
+        return
 
     def debug(self):
         print("PlayerState = ", self.name)

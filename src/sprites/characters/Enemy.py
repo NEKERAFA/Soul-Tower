@@ -24,9 +24,10 @@ class Enemy(NPC):
 
         # Comprobamos que el enemigo no esté golpeando al jugador
         if pygame.sprite.collide_rect(player, self):
-            print "Haciendo daño al jugador"
+            # print "Haciendo daño al jugador"
             angle = math.radians(360-EnemyRange.get_angle(self.movement))
             player.receive_damage(self.stats["atk"], angle)
+            self.receive_damage(0, math.radians(180-EnemyRange.get_angle(self.movement)))
 
     def update(self, time, mapRect, mapMask):
         self.state.update(self, time, mapRect, mapMask)

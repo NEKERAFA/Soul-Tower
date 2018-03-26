@@ -60,7 +60,10 @@ class Player(Character):
         # Cambios de estado
         # Si está dasheando:
         if self.controlManager.sec_button():
-            self.playerState.change(self, Dashing)
+            # self.playerState.change(self, Dashing)
+            self.playerState.change(self, Defending)
+        else:
+            self.playerState.change(self, Normal)
         
         # control de ataque
         if self.controlManager.prim_button():
@@ -87,3 +90,7 @@ class Player(Character):
     def increase_souls(self, souls):
         self.souls += souls
         print(self.souls)
+
+    # Sobreescribe Character.receive_damage
+    def receive_damage(self, damage, angle):
+        self.playerState.receive_damage(self, damage, angle)

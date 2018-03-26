@@ -218,6 +218,10 @@ class Character(MySprite):
         # Y llamamos al método de la superclase para que, según la velocidad y el tiempo, calcule la nueva posición del Sprite
         MySprite.update(self, time)
 
+        self.fix_collision(mapRect, mapMask)
+
+    # TODO: ya no hace falta mapRect
+    def fix_collision(self, mapRect, mapMask):
         # Después se utiliza la máscara para un ajuste más preciso
         x, y = self.rect.topleft
 
@@ -251,7 +255,10 @@ class Character(MySprite):
         if self.stats["hp"] <= 0:
             self.kill()
 
-        self.apply_force(angle, self.stats["spd"]/8, self.stats["spd"]/64)
+        # self.apply_force(angle, self.stats["spd"]/16, self.stats["spd"]/64)
+        # TODO: cambio provisional para que los enemigos reboten decentemente
+        # debería ser un stat
+        self.apply_force(angle, 0.0125, 0.003125)
 
     # Añade vidas al personaje
     def add_lifes(self, lifes):
