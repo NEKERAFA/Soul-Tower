@@ -78,9 +78,9 @@ class Player(Character):
 
         # Cambios de estado
         # Si está dasheando:
-        if self.controlManager.sec_button():
+        if KeyboardMouseControl.sec_button():
             self.playerState.change(self, Dashing)
-        
+
         # Control de ataque
         if KeyboardMouseControl.prim_button():
             # Si es sorcerer, el ataque actual es ataque a distancia
