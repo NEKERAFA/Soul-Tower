@@ -15,7 +15,7 @@ class Dashing(PlayerState):
     speedMulti = 8 # multiplicador de velocidad (píxeles / ms)
     dashing = False
 
-    def change(self, state):
+    def change(self, player, state):
         # Debug:
         # print("Changing state from ", self.name, " to ", state.name)
         self.__class__ = state
@@ -105,7 +105,7 @@ class Dashing(PlayerState):
         self.dist = distX,distY
 
 
-    def update_pos(self, player, time, mapRect, mapMask):
+    def update_state(self, player, time, mapRect, mapMask):
         # Si estamos empezando a dashear, inicializamos todo
         if not self.dashing:
             Character.update_movement(player, time)
@@ -118,7 +118,8 @@ class Dashing(PlayerState):
             self.travelled = (0,0)
             # y volvemos al estado normal
             self.dashing = False
-            self.change(Normal)
+            self.change(player, Normal)
+            self.lastDash = 0
 
         else: # Si aun no hemos llegado
             # actualizamos el tiempo que llevamos de dash
