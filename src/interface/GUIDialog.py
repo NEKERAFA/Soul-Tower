@@ -9,8 +9,8 @@ from src.interface.GUIImage import *
 # Clase GUIDialog
 
 # Cajas de diálogo
-DEFAULT_DIALOG_BOX = 'interface/game/dialog_box.png'
-DEFAULT_NAME_BOX = 'interface/game/name_box.png'
+DEFAULT_DIALOG_BOX = os.path.join('interface','game','dialog_box.png')
+DEFAULT_NAME_BOX = os.path.join('interface', 'game', 'name_box.png')
 
 # Posición y dimensiones del diálogo
 DIALOG_LEFT = 20

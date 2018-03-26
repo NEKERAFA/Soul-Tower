@@ -52,7 +52,7 @@ class Stage(Scene):
         # Cargamos la interfaz del jugador
         #TODO: meter datos de la interfaz en json, y hacerlo dependiente de la sala en la que se encuentre el jugador
         self.gui = GUIPlayerScreen()
-        self.guiTutorial = GUITutorialScreen()
+        self.guiTutorial = GUITutorialScreen(self)
 
         # Lista de enemigos
         enemies = [enemy for room in self.rooms for enemy in room.enemies.sprites()]
