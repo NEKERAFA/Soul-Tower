@@ -27,83 +27,53 @@ class Dashing(PlayerState):
         speedY = player.speed[1]*self.speedMulti
         self.speed = speedX,speedY
 
+    # Función auxiliar para calcular la distancia que se debe avanzar
+    # p1 y p2 son parámetros para controlar la dirección
+    def aux_loop(self, playerMask, mapMask, maxDist, x, y, p1, p2):
+        distX = 0
+        distY = 0
+        dist = 0
+        x = int(x + 1*p1)
+        y = int(y + 1*p2)
+        while (dist<maxDist):
+            x = int(x + 1*p1)
+            y = int(y + 1*p2)
+            distX += 1
+            distY += 1
+            dist += 1
+            if (mapMask.overlap_area(playerMask,(x,y))>0):
+                distX -= 1
+                distY -= 1
+                break
+        distX = distX * p1
+        distY = distY * p2
+        return distX,distY
+
+    # Calcula la posición en la que debe acabar el personaje
     def calc_final_pos(self, player, mapMask):
         distX = 0
         distY = 0
-        width = player.rect.width - 1
-        height = player.rect.height - 1
         x, y = player.position
         x = int(x)
         y = int(y - player.rect.height)
         # Calculamos la distancia a avanzar en cada dirección hasta
         # la distancia máxima o hasta colisión
         if (player.movement == N):
-            distX = 0
-            while (distY<self.maxDist):
-                y = int(y - height)
-                distY += height
-                if (mapMask.overlap_area(player.mask,(x,y))>0):
-                    break
-            distY = -distY
+            distX, distY = self.aux_loop(player.mask, mapMask, self.maxDist, x, y, 0, -1)
         elif (player.movement == S):
-            distX = 0
-            while (distY<self.maxDist):
-                y = int(y + height)
-                distY += height
-                if (mapMask.overlap_area(player.mask,(x,y))>0):
-                    break
+            distX, distY = self.aux_loop(player.mask, mapMask, self.maxDist, x, y, 0, 1)
         elif (player.movement == NW):
-            while (distX<self.diagDist):
-                x = int(x - width)
-                y = int(y - height)
-                distX += width
-                distY += height
-                if (mapMask.overlap_area(player.mask,(x,y))>0):
-                    break
-            distX = -distX
-            distY = -distY
+            distX, distY = self.aux_loop(player.mask, mapMask, self.diagDist, x, y, -1, -1)
         elif (player.movement == NE):
-            while (distX<self.diagDist):
-                x = int(x - width)
-                y = int(y - height)
-                distX += width
-                distY += height
-                if (mapMask.overlap_area(player.mask,(x,y))>0):
-                    break
-            distY = -distY
+            distX, distY = self.aux_loop(player.mask, mapMask, self.diagDist, x, y, 1, -1)
         elif (player.movement == W):
-            distY = 0
-            while (distX<self.maxDist):
-                x = int(x - width)
-                distX += width
-                if (mapMask.overlap_area(player.mask,(x,y))>0):
-                    break
-            distX = -distX
+            distX, distY = self.aux_loop(player.mask, mapMask, self.maxDist, x, y, -1, 0)
         elif (player.movement == E):
-            distY = 0
-            while (distX<self.maxDist):
-                x = int(x + width)
-                distX += width
-                if (mapMask.overlap_area(player.mask,(x,y))>0):
-                    break
+            distX, distY = self.aux_loop(player.mask, mapMask, self.maxDist, x, y, 1, 0)
         elif (player.movement == SW):
-            while (distX<self.diagDist):
-                x = int(x - width)
-                y = int(y - height)
-                distX += width
-                distY += height
-                if (mapMask.overlap_area(player.mask,(x,y))>0):
-                    break
-            distX = -distX
+            distX, distY = self.aux_loop(player.mask, mapMask, self.diagDist, x, y, -1, 1)
         elif (player.movement == SE):
-            while (distX<self.diagDist):
-                x = int(x - width)
-                y = int(y - height)
-                distX += width
-                distY += height
-                if (mapMask.overlap_area(player.mask,(x,y))>0):
-                    break
-
+            distX, distY = self.aux_loop(player.mask, mapMask, self.diagDist, x, y, 1, 1)
         self.dist = distX,distY
 
 
@@ -138,23 +108,45 @@ class Dashing(PlayerState):
         distX,distY = self.dist
         # Se desplaza el personaje en la dirección adecuada
         # hasta que deje de colisionar
-        while(mapMask.overlap_area(player.mask,(x,y))>0):
-            x,y = player.position
-            x = int(x)
-            y = int(y - player.rect.height)
-            if (distX>0):
-                incrX = -1
-            elif (distX<0):
-                incrX = 1
-            else:
-                incrX = 0
-            if (distY>0):
-                incrY = -1
-            elif (distY<0):
-                incrY = 1
-            else:
-                incrY = 0
-            MySprite.increment_position(player, (incrX,incrY))
+        if (distX!=0 or distY!=0):
+            while(mapMask.overlap_area(player.mask,(x,y))>0):
+                x,y = player.position
+                x = int(x)
+                y = int(y - player.rect.height)
+                if (distX>0):
+                    incrX = -1
+                elif (distX<0):
+                    incrX = 1
+                else:
+                    incrX = 0
+                if (distY>0):
+                    incrY = -1
+                elif (distY<0):
+                    incrY = 1
+                else:
+                    incrY = 0
+                MySprite.increment_position(player, (incrX,incrY))
+        else:
+            # Se calculan los "gradientes" para conocer la dirección de la colisión
+            dx = mapMask.overlap_area(player.mask,(x+1,y)) - mapMask.overlap_area(player.mask,(x-1,y))
+            dy = mapMask.overlap_area(player.mask,(x,y+1)) - mapMask.overlap_area(player.mask,(x,y-1))
+            while(dx or dy):
+                if (dx>0):
+                    incrX = -1
+                elif (dx<0):
+                    incrX = 1
+                else:
+                    incrX = 0
+                if (dy>0):
+                    incrY = -1
+                elif (dy<0):
+                    incrY = 1
+                else:
+                    incrY = 0
+                MySprite.increment_position(player, (incrX, incrY))
+                x, y = player.rect.topleft
+                dx = mapMask.overlap_area(player.mask, (x+1,y)) - mapMask.overlap_area(player.mask, (x-1,y))
+                dy = mapMask.overlap_area(player.mask, (x,y+1)) - mapMask.overlap_area(player.mask, (x,y-1))
 
     def receive_damage_aux(self, player, damage, angle):
         # Invulnerable

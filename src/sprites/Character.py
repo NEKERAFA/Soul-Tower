@@ -232,14 +232,22 @@ class Character(MySprite):
 
         # Se desplaza el personaje en la dirección adecuada
         # hasta que deje de colisionar
-        while(dx):
-            self.increment_position(((1 if dx<0 else -1), 0))
+        while(dx or dy):
+            if (dx>0):
+                incrX = -1
+            elif (dx<0):
+                incrX = 1
+            else:
+                incrX = 0
+            if (dy>0):
+                incrY = -1
+            elif (dy<0):
+                incrY = 1
+            else:
+                incrY = 0
+            self.increment_position((incrX, incrY))
             x, y = self.rect.topleft
             dx = mapMask.overlap_area(self.mask, (x+1,y)) - mapMask.overlap_area(self.mask, (x-1,y))
-
-        while(dy):
-            self.increment_position((0,(1 if dy<0 else -1)))
-            x, y = self.rect.topleft
             dy = mapMask.overlap_area(self.mask, (x,y+1)) - mapMask.overlap_area(self.mask, (x,y-1))
 
     ############################################################################
