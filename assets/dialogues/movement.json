@@ -1,0 +1,81 @@
+[
+    {
+        "text": [["Pulsa la barra espaciadora para avanzar", "los diálogos."]]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            }
+        },
+        "text": [["Me alegra ver que todavía sabes cómo caminar,", "princesita"]]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [["..."]]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            }
+        },
+        "text": [["¿Qué tal si dejas que guíe yo el camino?"]]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [["..."]]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila3.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["No."], ["Sólo viajo contigo porque no tengo opción.", "No tengo intención de dejar que profanes este", "lugar sagrado."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            }
+        },
+        "text": [["¡Venga ya! Sabes que yo también quiero detener", "la guerra de ahí fuera.", "¿No es luchar por la paz la tarea de un héroe?"]]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila2.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Tú provocaste la guerra en primer lugar."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [["Era necesario."], ["Lo siento, Leraila, pero no voy a permitir que", "sigas haciendo lo que quieras."]]
+    }
+]

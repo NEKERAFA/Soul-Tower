@@ -37,7 +37,7 @@ class GUITutorialScreen(GUIScreen):
         dKey = GUITutorialImage(self, D_SPRITE_LOCATION, (140,140), (40,40), pygame.K_d)
 
         self.onDialogue = False
-        self.dialogues = ['test.json', 'test.json'] #['movement.json', 'swap.json']
+        self.dialogues = ['movement.json']
         self.dialogueIndex = 0
 
         # Cambio de personaje
@@ -47,9 +47,9 @@ class GUITutorialScreen(GUIScreen):
         # TODO Ataque
         # self.mouse = GUITutorialImage(self, E_SPRITE_LOCATION, (140, 100), (40, 40), pygame.)
 
-        # TODO Dash
-        self.spaceKey = GUITutorialImage(self, E_SPRITE_LOCATION, (140,100), (40,40), pygame.K_e)
-        self.dashText = self.swapText = GUIText(self, (120, 60), font, 'Dash/Advance dialogue', 'center')
+        # Dash/Defender
+        self.spaceKey = GUITutorialImage(self, E_SPRITE_LOCATION, (140,100), (40,40), pygame.K_SPACE)
+        self.dashText = GUIText(self, (120, 60), font, 'Defend/Dash', 'center')
 
         self.add_element(wKey)
         self.add_element(aKey)
@@ -61,7 +61,7 @@ class GUITutorialScreen(GUIScreen):
         GUIScreen.update(self, time)
         if self.onDialogue and type(self.stage.state) is not OnDialogueState:
             self.onDialogue = False
-            self.nextElement()
+            self.next_element()
 
     def events(self, event_list):
         if not self.onDialogue:
@@ -74,22 +74,24 @@ class GUITutorialScreen(GUIScreen):
                             # Si se han pulsado las teclas de movimiento se elimina el texto y se añaden los siguientes elementos
                             if(self.tutorialKeyCounter == 4):
                                 self.remove_element(self.movementText)
-                                self.nextElement()
+                                self.stage.setState(OnDialogueState(self.dialogues[self.dialogueIndex], self.stage))
+                                self.dialogueIndex += 1
+                                self.onDialogue = True
                             elif(self.tutorialKeyCounter == 5):
                                 self.remove_element(self.swapText)
-                                self.stage.setState(OnDialogueState(self.dialogues[self.dialogueIndex], self.stage))
-                                self.dialogueIndex += 1
-                                self.onDialogue = True
+                                # self.stage.setState(OnDialogueState(self.dialogues[self.dialogueIndex], self.stage))
+                                # self.dialogueIndex += 1
+                                # self.onDialogue = True
+                                self.next_element()
                             elif(self.tutorialKeyCounter == 6):
-                                self.remove_element(self.swapText)
-                                self.stage.setState(OnDialogueState(self.dialogues[self.dialogueIndex], self.stage))
-                                self.dialogueIndex += 1
-                                self.onDialogue = True
+                                self.remove_element(self.dashText)
+                                # self.nextElement()
 
-    def nextElement(self):
+
+    def next_element(self):
         if self.tutorialKeyCounter == 4:
-            self.add_element(self.spaceKey)
-            self.add_element(self.dashText)
-        elif self.tutorialKeyCounter == 5:
             self.add_element(self.eKey)
             self.add_element(self.swapText)
+        elif self.tutorialKeyCounter == 5:
+            self.add_element(self.spaceKey)
+            self.add_element(self.dashText)

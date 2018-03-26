@@ -23,6 +23,14 @@
             "right": 1488,
             "to": 6,
             "direction": "up"
-        }        
+        }
+    ],
+    "triggers": [
+        {
+            "position": [1464, 1656],
+            "width": 168,
+            "height": 24,
+            "dialogueFile": "daricsMemories.json"
+        }
     ]
 }

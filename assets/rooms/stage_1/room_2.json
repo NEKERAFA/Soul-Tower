@@ -18,6 +18,12 @@
             "width": 12,
             "dialogueFile": "secretButton.json",
             "opens": [1, 0]
+        },
+        {
+            "position": [48, 1344],
+            "height": 24,
+            "width": 336,
+            "dialogueFile": "lerailasMemories.json"
         }
     ]
 }

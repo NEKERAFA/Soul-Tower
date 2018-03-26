@@ -1,0 +1,140 @@
+[
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Este lugar..."], ["Me recuerda mucho a mi hogar."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila_kid.png",
+                "name": "Leraila"
+            },
+            "background": "palace-garden.png"
+        },
+        "text": [["¡Hermano, hermano!", "¡Mira, han salido las flores que planté!"]]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "towerMaster_kid.png",
+                "name": "Hermano"
+            },
+            "background": "palace-garden.png"
+        },
+        "text": [["Eso es genial, Leraila."]]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila_kid.png",
+                "name": "Leraila"
+            },
+            "background": "palace-garden.png"
+        },
+        "text": [["¡Voy a enseñárselo a Padre también!"]]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "towerMaster_kid.png",
+                "name": "Hermano"
+            },
+            "background": "palace-garden.png"
+        },
+        "text": [["Padre está un poco ocupado con cosas", "de mayores."]]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila_kid.png",
+                "name": "Leraila"
+            },
+            "background": "palace-garden.png"
+        },
+        "text": [["¿Es por la plaga del Oeste?"]]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "towerMaster_kid.png",
+                "name": "Hermano"
+            },
+            "background": "palace-garden.png"
+        },
+        "text": [["Así es. Está preocupado porque los campesinos", "están perdiendo sus cosechas, y se están", "quedando sin comida."]]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila_kid.png",
+                "name": "Leraila"
+            },
+            "background": "palace-garden.png"
+        },
+        "text": [["¿Y si les compramos comida con todo", "ese dinero que nos dan de vez en cuando?"]]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "towerMaster_kid.png",
+                "name": "Hermano"
+            },
+            "background": "palace-garden.png"
+        },
+        "text": [["¿Los impuestos? Sí, eso es lo que va a hacer", "padre.", "Es sólo que no es tan sencillo, Leraila."]]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila3.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Padre era un buen hombre; se preocupaba", "por su gente."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila2.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Pero vosotros acabasteis con su vida", "egoístamente."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Vosotros los nobles siempre os creéis", "por encima de todo."],
+            ["Como si nunca cometierais errores.", "¡Como si siempre actuarais de forma justa!"],
+            ["Pero en realidad sólo os preocupáis por", "vosotros mismos."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["..."],
+            ["No voy a discutir con alguien como tú."]
+        ]
+    }
+]

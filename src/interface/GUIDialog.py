@@ -28,8 +28,9 @@ LINE_SPACE = 20
 # Velocidad del texto
 DEFAULT_TEXT_SPEED = 0.02
 
-# Escalado de los retratos
+# Retratos
 PORTRAIT_SCALE = 2
+PORTRAIT_FOLDER = os.path.join('interface', 'portraits')
 
 # Fuentes
 DEFAULT_FONT = 'PixelOperatorHB.ttf'
@@ -78,7 +79,7 @@ class GUIDialog(GUIImage):
             # Retrato derecho
             if "right" in intervention["info"]:
                 self.rightName = intervention["info"]["right"]["name"]
-                portraitPath = os.path.join('interface', 'game', intervention["info"]["right"]["image"])
+                portraitPath = os.path.join(PORTRAIT_FOLDER, intervention["info"]["right"]["image"])
                 self.rightPortrait = ResourceManager.load_image(portraitPath, -1)
                 # Escalamos la imagen
                 self.rightPortraitRect = self.rightPortrait.get_rect()
@@ -95,7 +96,7 @@ class GUIDialog(GUIImage):
             # Retrato izquierdo
             if "left" in intervention["info"]:
                 self.leftName = intervention["info"]["left"]["name"]
-                portraitPath = os.path.join('interface', 'game', intervention["info"]["left"]["image"])
+                portraitPath = os.path.join(PORTRAIT_FOLDER, intervention["info"]["left"]["image"])
                 # Cargamos el retrato dado la vuelta en el eje x
                 self.leftPortrait = pygame.transform.flip(ResourceManager.load_image(portraitPath, -1), True, False)
                 # Escalamos la imagen

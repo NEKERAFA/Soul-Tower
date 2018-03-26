@@ -1,0 +1,149 @@
+[
+    {
+        "info": {
+            "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Este sitio se parece a la aldea..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric3.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            },
+            "background": "village.png"
+        },
+        "text": [
+            ["¡Buenas! ¡Ya he llegado!"]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "villager.png",
+                "name": "Mujer"
+            },
+            "background": "village.png"
+        },
+        "text": [
+            ["¿Daric? ¿Hoy también vienes a ayudar?"],
+            ["Eres un encanto."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric3.png",
+                "name": "Daric"
+            },
+            "background": "village.png"
+        },
+        "text": [
+            ["No más que tú, preciosa."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            },
+            "background": "village.png"
+        },
+        "text": [
+            ["Aunque tienes mala cara.", "¿Ha pasado algo?"]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "villager.png",
+                "name": "Mujer"
+            },
+            "background": "village.png"
+        },
+        "text": [
+            ["Sólo lo habitual. No producimos lo suficiente", "para pagar el diezmo y sobrevivir."],
+            ["Mi padre sigue enfermo y mi hija pasa hambre,", "pero el señor feudal no atiende a razones."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            },
+            "background": "village.png"
+        },
+        "text": [
+            ["Esa escoria de \"sangre azul\" siempre", "mirando por su propio interés..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            },
+            "background": "village.png"
+        },
+        "text": [
+            ["Algún día cambiaré el reino, ya verás.", "Entonces todos podrán vivir apaciblemente.", "Y nadie tendrá que pagarle a nadie."],
+            ["¡Todo el mundo podrá vivir en igualdad!"]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "villager.png",
+                "name": "Mujer"
+            },
+            "background": "village.png"
+        },
+        "text": [
+            ["Suena bien... Demasido bien.", "Utópico, diría."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            },
+            "background": "village.png"
+        },
+        "text": [
+            ["Espera y verás. Siempre os defenderé."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric4.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["«Así fue como terminé liderando una", "revolución...", "Por el pueblo»."],
+            ["«Pero nunca quise que asesinaran al rey.", "Aunque supongo que Leraila no me creería", "ni harta de vino»."],
+            ["«...»"],
+            ["«Me pregunto si realmente podría", "emborracharse.", "Parece que nunca nada la altera»."]
+        ]
+    }
+]

@@ -30,5 +30,13 @@
             "doorSprite": "flowerDoor.png",
             "position": [528, 1920]
         }
+    ],
+    "triggers": [
+        {
+            "position": [24, 1944],
+            "height": 24,
+            "width": 504,
+            "dialogueFile": "firstRoom.json"
+        }
     ]
 }
