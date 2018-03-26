@@ -6,6 +6,7 @@ from src.sprites.Character import *
 from src.sprites.characters.player.specials.Normal import *
 from src.sprites.characters.player.specials.Dashing import *
 from src.sprites.characters.player.specials.Defending import *
+from src.sprites.characters.player.specials.Stunned import *
 from src.sprites.characters.player.changing.Finish import *
 from src.sprites.attacks.MeleeAttack import *
 from src.sprites.attacks.RangedAttack import *
@@ -100,11 +101,15 @@ class Player(Character):
         # Ataque especial
         if KeyboardMouseControl.sec_button():
             # Si es sorcerer el jugador actual, cambiamos el estado a dashing
-            if self.currentCharacter == 'sorcerer':
+            if self.currentCharacter == 'sorcerer' and type(self.state) is not Dashing:
                 self.state.change(self, Dashing)
 
-            if self.currentCharacter == 'warrior':
+            # Si es warrior el jugador actual, cambiamos el estado a defending
+            if self.currentCharacter == 'warrior' and (type(self.state) is not Defending and type(self.state) is not Stunned):
                 self.state.change(self, Defending)
+        else:
+            if self.currentCharacter == 'warrior' and type(self.state) is not Stunned:
+                self.state.change(self, Normal)
 
         # Controlamos el cambio de personaje
         self.changing.update(self, time, stage)
@@ -126,5 +131,4 @@ class Player(Character):
     # Recibe un daño y se realiza el daño. Si el personaje ha muerto, lo elimina
     # de todos los grupos
     def receive_damage(self, damage, angle):
-        if type(self.state) is Normal:
-            Character.receive_damage(self, damage, angle)
+        self.state.receive_damage(self, damage, angle)

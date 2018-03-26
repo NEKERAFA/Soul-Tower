@@ -3,7 +3,10 @@
         "max_hp": 3,
         "hp": 3,
         "atk": 1,
+        "max_nrg": 5,
         "nrg": 5,
+        "nrg_reg": 0.001,
+        "nrg_reg_bck": 0.0005,
         "spd": 0.2
     },
 

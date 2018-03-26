@@ -3,7 +3,12 @@
 Cada sprite debe tener un fichero de configuración en formato json. Estos archivos se guardan en assets/characters/[nombre del sprite].json. La sprite sheet se guardará en formato PNG en la ruta assets/images/characters/[nombre del sprite].png.
 
 El archivo de configuración debe contener los siguientes datos:
-    - TODO: documentar stats
+    - "stats": Contiene los stats del personaje, que son los siguientes:
+        - "hp" y "max_hp": vida y vida máxima
+        - "atk": ataque. Actualmente sin uso
+        - "nrg" y "max_nrg": energía y energía máxima
+        - "nrg_reg" y "nrg_reg_bck": regeneración de energía (energía/ms) y lo mismo pero para el estado de bloqueo (que es reducida).
+        - "spd": velocidad (TODO: píxel/ms?)
     - Cuatro listas de frames para las posiciones de estar quieto, caminando de espaldas, caminando de frente y caminando a la izquierda. Cada frame contiene lo siguiente:
         - "x" e "y": Coordenadas de la esquina superior izquierda del frame en la sprite sheet.
         - "width": Ancho en píxeles del frame.

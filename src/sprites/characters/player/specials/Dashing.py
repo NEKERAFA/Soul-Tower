@@ -16,9 +16,11 @@ class Dashing(PlayerState):
     dashing = False
 
     def change(self, player, state):
-        # Debug:
-        # print("Changing state from ", self.name, " to ", state.name)
-        self.__class__ = state
+        # No cambia de estado hasta que termine el dash
+        if not self.dashing:
+            self.__class__ = state
+            # Debug:
+            # print("Changing state from ", self.name, " to ", state.name)
 
     def initializate(self, player):
         speedX = player.speed[0]*self.speedMulti
@@ -145,6 +147,9 @@ class Dashing(PlayerState):
                 dx = mapMask.overlap_area(player.mask, (x+1,y)) - mapMask.overlap_area(player.mask, (x-1,y))
                 dy = mapMask.overlap_area(player.mask, (x,y+1)) - mapMask.overlap_area(player.mask, (x,y-1))
 
+    def receive_damage_aux(self, player, damage, angle):
+        # Invulnerable
+        return
 
     def debug(self):
         print("PlayerState = ", self.name)
