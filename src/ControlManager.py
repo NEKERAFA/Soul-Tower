@@ -1,13 +1,34 @@
 import pygame
 
 class ControlManager(object):
-	def up(self):
-		raise NotImplementedError('Error: Abstract class')
-	def down(self):
-		raise NotImplementedError('Error: Abstract class')
-	def left(self):
-		raise NotImplementedError('Error: Abstract class')
-	def right(self):
-		raise NotImplementedError('Error: Abstract class')
-	def angle(self, pos):
-		raise NotImplementedError('Error: Abstract class')
+    @classmethod
+    def up(cls):
+        raise NotImplementedError('Error: Abstract class')
+
+    @classmethod
+    def down(cls):
+        raise NotImplementedError('Error: Abstract class')
+
+    @classmethod
+    def left(cls):
+        raise NotImplementedError('Error: Abstract class')
+
+    @classmethod
+    def right(cls):
+        raise NotImplementedError('Error: Abstract class')
+
+    @classmethod
+    def angle(cls, pos):
+        raise NotImplementedError('Error: Abstract class')
+
+    @classmethod
+    def prim_button(cls):
+        raise NotImplementedError('Error: Abstract class')
+
+    @classmethod
+    def sec_button(cls):
+        raise NotImplementedError('Error: Abstract class')
+
+    @classmethod
+    def select_button(cls):
+        raise NotImplementedError('Error: Abstract class')

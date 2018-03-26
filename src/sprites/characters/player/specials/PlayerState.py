@@ -3,7 +3,6 @@
 import pygame
 from src.sprites.Character import *
 from src.sprites.characters.Player import *
-from src.sprites.characters.player.PlayerState import *
 
 class PlayerState(object):
 	name = "state"

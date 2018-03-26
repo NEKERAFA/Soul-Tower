@@ -16,7 +16,7 @@ class StageState(object):
         # Luego los Sprites sobre una copia del mapa de la sala
         newImage = stage.image.copy()
         # Player
-        newImage.blit(stage.player.image, stage.player.rect)
+        stage.player.draw(newImage)
         # Enemigos
         currentRoom.enemies.draw(newImage)
         # Drops
