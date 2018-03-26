@@ -8,14 +8,8 @@
             "top": 240,
             "bottom": 216,
             "to": 1,
-            "direction": "right"
-        },
-        {
-            "y": 456,
-            "left": 640,
-            "right": 680,
-            "to": 2,
-            "direction": "down"
+            "direction": "right",
+            "next": true
         }
     ],
 
@@ -32,12 +26,21 @@
         { "type": "slime" },
         { "type": "slime" }
     ],
+
     "triggers": [
         {
             "position": [200, 200],
             "height": 100,
             "width": 100,
             "dialogueFile": "test.json"
+        }
+    ],
+
+    "unlockedDoors": [
+        {
+            "position": [696, 264],
+            "doorSprite": "door_0.png",
+            "collision": [672, 216, 48, 24]
         }
     ]
 }

@@ -12,11 +12,12 @@ class StageState(object):
         currentRoom = stage.rooms[stage.currentRoom]
 
         # Muestro un color de fondo
-        screen.fill((100, 200, 255))
+        screen.fill((0, 0, 0))
         # Luego los Sprites sobre una copia del mapa de la sala
         newImage = stage.image.copy()
         # Puertas
         currentRoom.lockedDoorsGroup.draw(newImage)
+        currentRoom.unlockedDoorsGroup.draw(newImage)
         # Player
         newImage.blit(stage.player.image, stage.player.rect)
         # Enemigos
