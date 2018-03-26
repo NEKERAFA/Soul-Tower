@@ -2,13 +2,13 @@
 
 import pygame
 from src.sprites.characters.Player import *
-from src.sprites.characters.player.PlayerState import *
+from src.sprites.characters.player.specials.PlayerState import *
 from src.sprites.MySprite import *
 import math as m
 
 class Dashing(PlayerState):
     name = "dashing"
-    maxDist = 100 # Distancia máxima de dash 
+    maxDist = 100 # Distancia máxima de dash
     diagDist = m.sqrt((maxDist * maxDist)/2.0)
     dist = maxDist
     travelled = (0,0)
@@ -130,7 +130,7 @@ class Dashing(PlayerState):
             incrementY = self.speed[1]*time
             self.travelled = self.travelled[0]+incrementX, self.travelled[1]+incrementY
             MySprite.increment_position(player, (incrementX,incrementY))
-        
+
         # Comprobación de colisiones
         x, y = player.position
         x = int(x)

@@ -11,7 +11,8 @@ from src.scenes.stage.Room import *
 from src.sprites.characters.Player import *
 from src.scenes.stage.InRoomState import *
 from src.scenes.stage.SmallRoomState import *
-from src.interface.GUIPlayerScreen import *
+from src.interface.screens.GUIPlayerScreen import *
+from src.interface.screens.GUITutorialScreen import *
 
 # -------------------------------------------------
 # Clase Stage
@@ -49,15 +50,18 @@ class Stage(Scene):
         # Cargamos la interfaz del jugador
         #TODO: meter datos de la interfaz en json, y hacerlo dependiente de la sala en la que se encuentre el jugador
         self.gui = GUIPlayerScreen()
+        self.guiTutorial = GUITutorialScreen()
 
         # Lista de enemigos
         enemies = [enemy for room in self.rooms for enemy in room.enemies.sprites()]
+        enemiesGroup = pygame.sprite.Group(enemies)
 
         # Cargamos el sprite del jugador
-        self.player = Player([])
+        self.player = Player(enemiesGroup, self)
         self.player.change_global_position((data["player_pos"][0], data["player_pos"][1]))
 
-        # Inicializamos el viewport, que es un rectángulo del tamaño de la pantalla que indicará qué porción de la sala se debe mostrar
+        # Inicializamos el viewport, que es un rectángulo del tamaño de la
+        # pantalla que indicará qué porción de la sala se debe mostrar
         self.viewport = gameManager.screen.get_rect()
         self.viewport.center = self.player.rect.center
         self.viewport.clamp_ip(self.rooms[self.currentRoom].rect)
@@ -78,6 +82,7 @@ class Stage(Scene):
         # Delegamos en el estado la actualización de la fase
         self.state.update(time, self)
         self.gui.update(time)
+        self.guiTutorial.update(time)
 
         # TODO DEBUG: BORRAR CUANDO HAGA FALTA
         self.posPlayer = self.font.render("x: " + str(int(self.player.position[0])) + ", y: " + str(int(self.player.position[1])), True, (0, 0, 0))
@@ -95,11 +100,13 @@ class Stage(Scene):
         # Delegamos en el estado la acción a realizar para el Jugador
         self.state.events(events, self)
         self.gui.events(events)
+        self.guiTutorial.events(events)
 
     def draw(self, screen):
         # Delegamos en el estado el dibujado de la fase
         self.state.draw(screen, self)
-        self.player.meleeAttack.draw(screen)
+        # self.player.meleeAttack.draw(screen)
+        # self.player.rangedAttack.draw(screen)
 
         # TODO DEBUG: BORRAR CUANDO HAGA FALTA
         screen.blit(self.posPlayer, (400-self.posPlayer.get_width(), 0))
@@ -108,6 +115,7 @@ class Stage(Scene):
 
         #TODO: gui debería estar en un array, como Rooms
         self.gui.draw(screen)
+        self.guiTutorial.draw(screen)
 
     # Cambia el estado que controla el comportamiento del scroll
     def setState(self, state):
