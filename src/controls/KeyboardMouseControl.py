@@ -10,7 +10,7 @@ class KeyboardMouseControl(ControlManager):
     leftButton = K_a
     rightButton = K_d
     secButton = K_SPACE
-    selectButton = K_q
+    selectButton = K_e
 
     @classmethod
     def up(cls):
