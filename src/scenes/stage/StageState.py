@@ -15,6 +15,8 @@ class StageState(object):
         screen.fill((100, 200, 255))
         # Luego los Sprites sobre una copia del mapa de la sala
         newImage = stage.image.copy()
+        # Puertas
+        currentRoom.lockedDoorsGroup.draw(newImage)
         # Player
         newImage.blit(stage.player.image, stage.player.rect)
         # Enemigos

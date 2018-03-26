@@ -16,7 +16,8 @@
             "position": [492, 1344],
             "height": 12,
             "width": 12,
-            "dialogueFile": "secretButton.json"
+            "dialogueFile": "secretButton.json",
+            "opens": [1, 0]
         }
     ]
 }

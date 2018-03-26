@@ -28,6 +28,10 @@ El archivo de configuración de la sala debe contener los siguientes datos:
         - "height": Altura en píxeles del trigger.
         - "width": Ancho en píxeles del trigger.
         - "dialogueFile": Nombre del fichero de diálogo asociado al trigger.
+        - "opens": [room, door] Número de puerta que abre y sala en la que está dicha puerta (opcional). La sala, por lógica, tendrá un número menor o igual al de la sala en la que se encuentra el trigger
+    - "lockedDoors": Lista de puertas cerradas de la sala, si las hay.
+        - "doorSprite": Sprite de la puerta.
+        - "position" [x, y]: Posición de la esquina inferior izquierda de la puerta (no tiene por qué corresponder con la de la conexión).
 
 Cómo engañar al scroll:
     En salas en las que se vería parcialmente el fondo al entrar por algún lado, el scroll daría un salto para centrarse al entrar. Para engañar al scroll y que no dé dicho salto hay que indicar que las dimensiones de la sala son mayores de lo que realmente son, de tal modo que el scroll piense que la parte de fondo negro que se ve forma parte de la sala.

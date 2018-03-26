@@ -43,7 +43,9 @@ class Stage(Scene):
         data = ResourceManager.load_stage(fullname + '.json')
 
         # Cargamos las salas
-        self.rooms = [Room(stageNum, i) for i in range(0, data['rooms'])]
+        self.rooms = []
+        for i in range(0, data["rooms"]):
+            self.rooms.append(Room(stageNum, i, self))
         self.currentRoom = 0
 
         # Cargamos la interfaz del jugador

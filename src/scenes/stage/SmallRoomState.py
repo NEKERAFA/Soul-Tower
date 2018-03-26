@@ -32,6 +32,7 @@ class SmallRoomState(StageState):
         trigger = pygame.sprite.spritecollideany(stage.player, stage.rooms[stage.currentRoom].triggers)
 
         if trigger is not None:
+            trigger.open_door()
             stage.state = OnDialogueState(trigger.dialogueFile, stage)
             trigger.kill() # Eliminamos el trigger
             return

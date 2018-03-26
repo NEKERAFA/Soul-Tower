@@ -37,11 +37,11 @@ class InRoomState(StageState):
         stage.viewport.center = (stage.player.rect.center)
         stage.viewport.clamp_ip(currentRoom.rect)
 
-        # TODO Detectar las colisiones con los triggerables (triggers y drops) y activar el que te devuelvan
+        # Detectar las colisiones con los triggerables (triggers y drops) y activar el que te devuelvan
 
         drops = pygame.sprite.spritecollide(stage.player, currentRoom.drops, False)
 
-        # Se recore la lista de drops colisionados
+        # Se recorre la lista de drops colisionados
         for drop in drops:
             # Drops de vida
             if type(drop) is Life:
@@ -59,10 +59,11 @@ class InRoomState(StageState):
                 stage.player.increase_souls(drop.amount)
                 drop.kill()
 
-        # Si detecta colisión con un trigger, cambia de estado TODO cambiar a variable local currentRoom
-        trigger = pygame.sprite.spritecollideany(stage.player, stage.rooms[stage.currentRoom].triggers)
+        # Si detecta colisión con un trigger, cambia de estado
+        trigger = pygame.sprite.spritecollideany(stage.player, currentRoom.triggers)
 
         if trigger is not None:
+            trigger.open_door(stage)
             stage.state = OnDialogueState(trigger.dialogueFile, stage)
             trigger.kill() # Eliminamos el trigger
             return

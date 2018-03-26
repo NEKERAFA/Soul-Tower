@@ -25,12 +25,10 @@
             "direction": "right"
         }
     ],
-    "triggers": [
+    "lockedDoors": [
         {
-            "position": [516, 1896],
-            "height": 12,
-            "width": 12,
-            "dialogueFile": "weirdWall.json"
+            "doorSprite": "flowerDoor.png",
+            "position": [528, 1920]
         }
     ]
 }
