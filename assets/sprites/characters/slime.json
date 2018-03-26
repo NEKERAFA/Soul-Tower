@@ -7,7 +7,7 @@
     },
 
     "behaviour" : {
-        "type": "patrolling",
+        "type": "wandering",
         "radius": 200,
         "angle": 45
     },

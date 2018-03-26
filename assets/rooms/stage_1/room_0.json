@@ -10,5 +10,13 @@
             "to": 1,
             "direction": "up"
         }
+    ],
+    "unlockedDoors": [
+        {
+            "position": [240, 2064],
+            "doorSprite": "stoneDoor.png",
+            "collision": [264, 2064, 24, 24],
+            "wait": true
+        }
     ]
 }

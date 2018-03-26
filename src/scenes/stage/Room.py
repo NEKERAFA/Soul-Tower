@@ -7,6 +7,7 @@ from src.sprites.Trigger import *
 from src.sprites.drops.Life import *
 from src.sprites.drops.Soul import *
 from src.sprites.Door import *
+from src.sprites.doors.UnlockedDoor import *
 
 # -------------------------------------------------
 # Clase Room
@@ -50,6 +51,7 @@ class Room(object):
                     posY = enemy["position"][1]
                 enemySprite.change_global_position((posX, posY))
                 enemies.append(enemySprite)
+
         self.enemies = pygame.sprite.Group(enemies)
         self.drops = pygame.sprite.Group()
 
@@ -61,6 +63,19 @@ class Room(object):
                 self.lockedDoors.append(door)
 
         self.lockedDoorsGroup = pygame.sprite.Group(self.lockedDoors)
+
+        # Cargamos la lista de puertas abiertas de la sala si existen
+        unlockedDoors = []
+        if "unlockedDoors" in data:
+            for unlockedDoor in data["unlockedDoors"]:
+                rect = pygame.Rect(unlockedDoor["collision"][0], unlockedDoor["collision"][1], unlockedDoor["collision"][2], unlockedDoor["collision"][3])
+                wait = False
+                if "wait" in unlockedDoor:
+                    wait = unlockedDoor["wait"]
+                door = UnlockedDoor(unlockedDoor["position"], unlockedDoor["doorSprite"], stage.mask, rect, wait)
+                unlockedDoors.append(door)
+
+        self.unlockedDoorsGroup = pygame.sprite.Group(unlockedDoors)
 
         # Cargamos la lista de triggers de la sala si existen
         triggersList = []
