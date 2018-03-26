@@ -1,7 +1,7 @@
 {
-    "position": [24, 1272],
-    "width": 528,
-    "height": 360,
+    "position": [24, 768],
+    "width": 648,
+    "height": 864,
     "connections": [
         {
             "y": 1608,
@@ -13,7 +13,7 @@
     ],
     "triggers": [
         {
-            "position": [492, 1344],
+            "position": [600, 816],
             "height": 12,
             "width": 12,
             "dialogueFile": "secretButton.json",

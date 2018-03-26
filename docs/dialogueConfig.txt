@@ -24,6 +24,7 @@ EL bloque de información (opcional) es a su vez otro diccionario con la siguien
         Igual que "right" pero en el lado izquierdo.
     }
     "speed": Velocidad del texto
+    "background": Imagen de fondo.
 }
 
 Los tres campos de información son opcionales. "right" y/o "left", si aparecen, deben llevar todos sus campos internos.

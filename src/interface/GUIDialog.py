@@ -57,11 +57,12 @@ class GUIDialog(GUIImage):
         for i in range(0, len(self.text[0])):
             self.printText.append("")
 
+        self.textSpeed = DEFAULT_TEXT_SPEED
         self.textCounter = 0
-        self.textSpeed = intervention["info"]["speed"] if ("info" in intervention) and ("speed" in intervention["info"]) else DEFAULT_TEXT_SPEED
+
+        self.background = pygame.Surface((0,0))
 
         # Retratos y nombres
-        # TODO nombres necesitan otro recuadrito de diálogo
         self.rightPortrait = pygame.Surface((0,0))
         self.rightPortraitRect = pygame.Rect((0,0), (0,0))
         self.rightName = None
@@ -109,6 +110,15 @@ class GUIDialog(GUIImage):
                 self.leftNameRect.left = self.rect.left
                 self.leftNameRect.bottom = self.rect.top
 
+            # Velocidad de texto
+            if "speed" in intervention["info"]:
+                self.textSpeed = intervention["info"]["speed"]
+
+            # Imagen de fondo
+            if "background" in intervention["info"]:
+                backgroundPath = os.path.join('interface', 'backgrounds', intervention["info"]["background"])
+                self.background = ResourceManager.load_image(backgroundPath)
+
     # Pasa al siguiente bloque de texto, reseteando contadores y variables
     def next(self):
         self.index += 1
@@ -144,7 +154,10 @@ class GUIDialog(GUIImage):
                         self.line += 1
 
     def draw(self, screen):
-        # Dibujar la imagen de fondo del diálogo (la caja)
+        # Dibujar la imagen de fondo
+        screen.blit(self.background, screen.get_rect())
+
+        # Dibujar la caja del diálogo
         screen.blit(self.image, self.rect)
         # Dibujar el texto
         for i in range(0, len(self.printText)):
