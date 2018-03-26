@@ -76,11 +76,6 @@ class Player(Character):
         else:
             Character.move(self, STILL)
 
-        # Cambios de estado
-        # Si está dasheando:
-        if KeyboardMouseControl.sec_button():
-            self.playerState.change(self, Dashing)
-
         # Control de ataque
         if KeyboardMouseControl.prim_button():
             # Si es sorcerer, el ataque actual es ataque a distancia
@@ -106,10 +101,10 @@ class Player(Character):
         if KeyboardMouseControl.sec_button():
             # Si es sorcerer el jugador actual, cambiamos el estado a dashing
             if self.currentCharacter == 'sorcerer':
-                self.state.change(Dashing)
+                self.state.change(self, Dashing)
 
             if self.currentCharacter == 'warrior':
-                self.state.change(Dashing) # TODO cambiar
+                self.state.change(self, Defending)
 
         # Controlamos el cambio de personaje
         self.changing.update(self, time, stage)
