@@ -111,10 +111,6 @@ class Player(Character):
             if self.currentCharacter == 'warrior':
                 self.state.change(Dashing) # TODO cambiar
 
-    def update(self, time, mapRect, mapMask):
-        # Delegamos en el estado del jugador para actualizar
-        self.playerState.update_state(self, time, mapRect, mapMask)
-        self.meleeAttack.update(time)
         # Controlamos el cambio de personaje
         self.changing.update(self, time, stage)
 

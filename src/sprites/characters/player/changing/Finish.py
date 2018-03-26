@@ -13,7 +13,7 @@ class Finish(ChangingState):
         currentRoom = stage.rooms[stage.currentRoom]
 
         # Delegamos en el estado del jugador para actualizar
-        player.state.update_pos(player, time, currentRoom.rect, stage.mask)
+        player.state.update_state(player, time, currentRoom.rect, stage.mask)
         # Actualizamos el ataque
         player.attack.update(time, stage)
 
