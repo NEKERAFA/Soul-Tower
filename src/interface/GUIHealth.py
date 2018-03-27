@@ -11,7 +11,9 @@ from src.interface.GUIImage import *
 class GUIHealth(GUIElement):
     def __init__(self, guiScreen, name, position, scale, lifeCounter, colorkey=-1):
 
+        # String de la imagen del corazón
         self.name = name
+        
         self.scale = scale
         self.colorkey = colorkey
 

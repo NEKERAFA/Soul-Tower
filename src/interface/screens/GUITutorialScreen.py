@@ -22,9 +22,8 @@ E_SPRITE_LOCATION = os.path.join('interface', 'game', 'tutorial', 'e_placeholder
 
 class GUITutorialScreen(GUIScreen):
     def __init__(self, stage):
-        GUIScreen.__init__(self)
-
-        self.stage = stage
+        GUIScreen.__init__(self, stage)
+        
         # Contador para eliminar texto según se vayan pulsando las teclas
         self.tutorialKeyCounter = 0
         font = ResourceManager.load_font(DEFAULT_FONT, DEFAULT_FONT_SIZE)
