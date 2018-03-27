@@ -9,8 +9,8 @@ from src.interface.GUIImage import *
 # Clase GUIDialog
 
 # Cajas de diálogo
-DEFAULT_DIALOG_BOX = 'interface/game/dialog_box.png'
-DEFAULT_NAME_BOX = 'interface/game/name_box.png'
+DEFAULT_DIALOG_BOX = os.path.join('interface','game','dialog_box.png')
+DEFAULT_NAME_BOX = os.path.join('interface', 'game', 'name_box.png')
 
 # Posición y dimensiones del diálogo
 DIALOG_LEFT = 20
@@ -28,8 +28,9 @@ LINE_SPACE = 20
 # Velocidad del texto
 DEFAULT_TEXT_SPEED = 0.02
 
-# Escalado de los retratos
+# Retratos
 PORTRAIT_SCALE = 2
+PORTRAIT_FOLDER = os.path.join('interface', 'portraits')
 
 # Fuentes
 DEFAULT_FONT = 'PixelOperatorHB.ttf'
@@ -57,11 +58,12 @@ class GUIDialog(GUIImage):
         for i in range(0, len(self.text[0])):
             self.printText.append("")
 
+        self.textSpeed = DEFAULT_TEXT_SPEED
         self.textCounter = 0
-        self.textSpeed = intervention["info"]["speed"] if ("info" in intervention) and ("speed" in intervention["info"]) else DEFAULT_TEXT_SPEED
+
+        self.background = pygame.Surface((0,0))
 
         # Retratos y nombres
-        # TODO nombres necesitan otro recuadrito de diálogo
         self.rightPortrait = pygame.Surface((0,0))
         self.rightPortraitRect = pygame.Rect((0,0), (0,0))
         self.rightName = None
@@ -77,7 +79,7 @@ class GUIDialog(GUIImage):
             # Retrato derecho
             if "right" in intervention["info"]:
                 self.rightName = intervention["info"]["right"]["name"]
-                portraitPath = os.path.join('interface', 'game', intervention["info"]["right"]["image"])
+                portraitPath = os.path.join(PORTRAIT_FOLDER, intervention["info"]["right"]["image"])
                 self.rightPortrait = ResourceManager.load_image(portraitPath, -1)
                 # Escalamos la imagen
                 self.rightPortraitRect = self.rightPortrait.get_rect()
@@ -94,7 +96,7 @@ class GUIDialog(GUIImage):
             # Retrato izquierdo
             if "left" in intervention["info"]:
                 self.leftName = intervention["info"]["left"]["name"]
-                portraitPath = os.path.join('interface', 'game', intervention["info"]["left"]["image"])
+                portraitPath = os.path.join(PORTRAIT_FOLDER, intervention["info"]["left"]["image"])
                 # Cargamos el retrato dado la vuelta en el eje x
                 self.leftPortrait = pygame.transform.flip(ResourceManager.load_image(portraitPath, -1), True, False)
                 # Escalamos la imagen
@@ -108,6 +110,15 @@ class GUIDialog(GUIImage):
                 self.leftNameRect = self.nameBox.get_rect()
                 self.leftNameRect.left = self.rect.left
                 self.leftNameRect.bottom = self.rect.top
+
+            # Velocidad de texto
+            if "speed" in intervention["info"]:
+                self.textSpeed = intervention["info"]["speed"]
+
+            # Imagen de fondo
+            if "background" in intervention["info"]:
+                backgroundPath = os.path.join('interface', 'backgrounds', intervention["info"]["background"])
+                self.background = ResourceManager.load_image(backgroundPath)
 
     # Pasa al siguiente bloque de texto, reseteando contadores y variables
     def next(self):
@@ -144,7 +155,10 @@ class GUIDialog(GUIImage):
                         self.line += 1
 
     def draw(self, screen):
-        # Dibujar la imagen de fondo del diálogo (la caja)
+        # Dibujar la imagen de fondo
+        screen.blit(self.background, screen.get_rect())
+
+        # Dibujar la caja del diálogo
         screen.blit(self.image, self.rect)
         # Dibujar el texto
         for i in range(0, len(self.printText)):

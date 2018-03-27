@@ -1,0 +1,29 @@
+{
+    "position": [24, 768],
+    "width": 648,
+    "height": 864,
+    "connections": [
+        {
+            "y": 1608,
+            "left": 260,
+            "right": 292,
+            "to": 1,
+            "direction": "down"
+        }
+    ],
+    "triggers": [
+        {
+            "position": [600, 816],
+            "height": 12,
+            "width": 12,
+            "dialogueFile": "secretButton.json",
+            "opens": [1, 0]
+        },
+        {
+            "position": [48, 1344],
+            "height": 24,
+            "width": 336,
+            "dialogueFile": "lerailasMemories.json"
+        }
+    ]
+}

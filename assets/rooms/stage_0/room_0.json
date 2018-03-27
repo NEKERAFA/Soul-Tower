@@ -2,8 +2,32 @@
     "position": [0, 0],
     "width": 720,
     "height": 480,
-    "connections": [],
+    "connections": [
+        {
+            "x": 696,
+            "top": 240,
+            "bottom": 216,
+            "to": 1,
+            "direction": "right",
+            "next": true
+        }
+    ],
+
     "enemies": [
+        { "type": "slime" },
+        { "type": "slime" },
+        { "type": "slime" },
+        { "type": "slime" },
+        { "type": "slime" },
+        { "type": "slime" },
+        { "type": "slime" },
+        { "type": "slime" },
+        { "type": "slime" },
+        { "type": "slime" },
+        { "type": "slime" }
+    ],
+
+    "triggers": [
         {
             "type": "slime",
             "drop": {
@@ -12,5 +36,12 @@
             }
         }
     ],
-    "triggers": []
+
+    "unlockedDoors": [
+        {
+            "position": [696, 264],
+            "doorSprite": "door_0.png",
+            "collision": [672, 216, 48, 24]
+        }
+    ]
 }

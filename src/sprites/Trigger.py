@@ -1,12 +1,18 @@
 # -*- coding: utf-8 -*-
 
 import pygame, os
-from src.sprites.MySprite import *
-# TODO cambiar superclase a MyStaticSprite
-class Trigger(MySprite):
+from src.sprites.MyStaticSprite import *
 
-    def __init__(self, rect, dialogueFile):
-        MySprite.__init__(self)
+class Trigger(MyStaticSprite):
+
+    def __init__(self, rect, dialogueFile, door):
+        MyStaticSprite.__init__(self)
         self.rect = rect
         self.image = pygame.Surface((0,0)) # Le asignamos una imagen vacía
         self.dialogueFile = dialogueFile
+        self.door = door
+
+    def open_door(self, stage):
+        if self.door is not None:
+            self.door.kill()
+            stage.mask.erase(self.door.mask, self.door.offset)

@@ -1,0 +1,37 @@
+----- Instrucciones para escribir los archivos de diálogo -----
+
+Cada diálogo debe tener un fichero json con sus datos, almacenado en assets/dialogues.
+
+El archivo debe tener la siguiente estructura:
+
+[intervención1, intervención2, ..., intervenciónN]
+
+Cada intervención es un diccionario con la siguiente estructura:
+
+intervención := {
+    información,
+    texto
+}
+
+EL bloque de información (opcional) es a su vez otro diccionario con la siguiente información:
+
+"info": {
+    "right": {
+        "image": Retrato a mostrar en la derecha, almacenado en assets/images/interface/game
+        "name": Nombre a mostrar en la derecha
+    }
+    "left": {
+        Igual que "right" pero en el lado izquierdo.
+    }
+    "speed": Velocidad del texto
+    "background": Imagen de fondo.
+}
+
+Los tres campos de información son opcionales. "right" y/o "left", si aparecen, deben llevar todos sus campos internos.
+
+El campo de texto especifica el texto de la intervención de forma estructurada, del siguiente modo:
+"text": [
+    [bloque1], [bloque2], ..., [bloqueN]
+]
+
+Cada bloque es un fragmento de diálogo que puede mostrarse en una sola caja. Es decir, es una lista de strings, uno por cada línea a mostrar. Cada caja de diálogo puede mostrar hasta 3 líneas.

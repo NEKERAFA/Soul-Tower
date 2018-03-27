@@ -1,0 +1,14 @@
+{
+    "position": [672, 1296],
+    "width": 552,
+    "height": 336,
+    "connections": [
+        {
+            "y": 1608,
+            "left": 932,
+            "right": 964,
+            "to": 3,
+            "direction": "down"
+        }
+    ]
+}

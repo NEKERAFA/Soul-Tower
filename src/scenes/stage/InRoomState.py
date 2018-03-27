@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
+from src.controls.KeyboardMouseControl import *
 from src.scenes.stage.StageState import *
+from src.scenes.stage.OnLeaveState import *
 from src.scenes.stage.OnTransitionState import *
 from src.scenes.stage.OnDialogueState import *
 from src.sprites.characters.Enemy import *
@@ -27,7 +29,10 @@ class InRoomState(StageState):
         exit = currentRoom.isExiting(stage.player)
 
         if exit is not None:
-            stage.state = OnTransitionState(exit, stage.player)
+            if "next" in exit:
+                stage.state = OnLeaveState()
+            else:
+                stage.state = OnTransitionState(exit, stage.player)
             return
 
         # Alinea el viewport con el centro del jugador
@@ -37,11 +42,11 @@ class InRoomState(StageState):
         stage.viewport.center = (stage.player.rect.center)
         stage.viewport.clamp_ip(currentRoom.rect)
 
-        # TODO Detectar las colisiones con los triggerables (triggers y drops) y activar el que te devuelvan
+        # Detectar las colisiones con los triggerables (triggers y drops) y activar el que te devuelvan
 
         drops = pygame.sprite.spritecollide(stage.player, currentRoom.drops, False)
 
-        # Se recore la lista de drops colisionados
+        # Se recorre la lista de drops colisionados
         for drop in drops:
             # Drops de vida
             if type(drop) is Life:
@@ -59,13 +64,21 @@ class InRoomState(StageState):
                 stage.player.increase_souls(drop.amount)
                 drop.kill()
 
-        # Si detecta colisión con un trigger, cambia de estado TODO cambiar a variable local currentRoom
-        trigger = pygame.sprite.spritecollideany(stage.player, stage.rooms[stage.currentRoom].triggers)
+        # Si detecta colisión con un trigger, cambia de estado
+        trigger = pygame.sprite.spritecollideany(stage.player, currentRoom.triggers)
 
         if trigger is not None:
+            trigger.open_door(stage)
             stage.state = OnDialogueState(trigger.dialogueFile, stage)
             trigger.kill() # Eliminamos el trigger
             return
+
+        # Se detecta si estás en colisión con una puerta desbloqueada y si se
+        # puede abrir
+        for unlockedDoor in iter(currentRoom.unlockedDoorsGroup):
+            # Colisión entre jugador y puerta
+            if unlockedDoor.collision.colliderect(stage.player.rect) and KeyboardMouseControl.sec_button():
+                unlockedDoor.open(stage)
 
 
     def events(self, events, stage):

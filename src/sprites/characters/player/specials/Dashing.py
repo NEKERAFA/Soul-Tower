@@ -76,7 +76,6 @@ class Dashing(PlayerState):
             distX, distY = self.aux_loop(player.mask, mapMask, self.diagDist, x, y, 1, 1)
         self.dist = distX,distY
 
-
     def update_state(self, player, time, mapRect, mapMask):
         # Si estamos empezando a dashear, inicializamos todo
         if not self.dashing:

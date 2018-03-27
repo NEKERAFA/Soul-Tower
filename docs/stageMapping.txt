@@ -12,8 +12,9 @@ Cada imagen de fase debe ir acompañada de una máscara de colisión de la sala,
 Para hacerla:
     - Abrir la imagen del mapa con GIMP.
     - Crear una nueva capa.
-    - Pintar en blanco las zonas por las que se puede pasar y en negro lo demás. La herramienta de selección rectangular + rellenar lo hará más fácil.
+    - Pintar en blanco las zonas por las que no se puede pasar y en negro lo demás. La herramienta de selección rectangular + rellenar lo hará más fácil.
     - Exportar la imagen. CUIDADO NO VAYÁIS A SOBREESCRIBIR EL MAPA.
 
 Notas:
-    - Las paredes superiores deberían tener una porción blanca para que el personaje pueda estar cerca de la pared, concretamente TODO píxeles blancos.
+    - Las paredes superiores deberían tener una porción negra para que el personaje pueda estar cerca de la pared, concretamente 12 píxeles negros.
+    - Las salidas verticales de una tile de ancho necesitan unos 4 px transitables más a cada lado para que el personaje no se atasque

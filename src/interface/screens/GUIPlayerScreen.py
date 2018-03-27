@@ -42,3 +42,22 @@ class GUIPlayerScreen(GUIScreen):
         self.GUIElements.append(self.health)
         self.GUIElements.append(self.stamina)
         self.GUIElements.append(self.charSymb)
+
+    def events(self, event_list):
+        for event in event_list:
+            if event.type == MOUSEBUTTONDOWN:
+                self.elementClick = None
+                for element in self.GUIElements:
+                    if element.__class__.__name__ == 'GUIButton' and element.position_is_in_element((event.pos[0]/SCALE_FACTOR, event.pos[1]/SCALE_FACTOR)):
+                        self.elementClick = element
+                        element.action()
+            if event.type == MOUSEBUTTONUP:
+                for element in self.GUIElements:
+                    if element.__class__.__name__ == 'GUIButton' and element.position_is_in_element((event.pos[0]/SCALE_FACTOR, event.pos[1]/SCALE_FACTOR)):
+                        if (element == self.elementClick):
+                            element.action()
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_e:
+                for element in self.GUIElements:
+                    if element.__class__.__name__ == 'GUICharacterSymbol':
+                        self.elementClick = element
+                        element.action()

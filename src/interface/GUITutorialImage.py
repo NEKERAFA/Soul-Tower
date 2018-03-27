@@ -7,7 +7,7 @@ from src.interface.GUIImage import *
 # Clase GUITutorialImage
 
 class GUITutorialImage(GUIImage):
-    def __init__(self, guiScreen, name, position, scale, associatedKey, colorkey=-1):
+    def __init__(self, guiScreen, name, position, scale, associatedKey, colorkey=None):
         self.shrink = False
         # pygame.Key asociada
         self.associatedKey = associatedKey

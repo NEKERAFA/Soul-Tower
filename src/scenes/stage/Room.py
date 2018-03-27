@@ -6,12 +6,14 @@ from src.sprites.characters.Enemy import *
 from src.sprites.Trigger import *
 from src.sprites.drops.Life import *
 from src.sprites.drops.Soul import *
+from src.sprites.Door import *
+from src.sprites.doors.UnlockedDoor import *
 
 # -------------------------------------------------
 # Clase Room
 
 class Room(object):
-    def __init__(self, stageNum, roomNum):
+    def __init__(self, stageNum, roomNum, stage):
         # Obtenemos el nombre de la sala
         fullname = os.path.join('stage_' + str(int(stageNum)), 'room_' + str(int(roomNum)) + '.json')
 
@@ -49,19 +51,48 @@ class Room(object):
                     posY = enemy["position"][1]
                 enemySprite.change_global_position((posX, posY))
                 enemies.append(enemySprite)
+
         self.enemies = pygame.sprite.Group(enemies)
         self.drops = pygame.sprite.Group()
 
-        # TODO Cargamos la lista de triggers de la sala si existen
+        # Cargamos la lista de puertas cerradas de la sala si existen
+        self.lockedDoors = []
+        if "lockedDoors" in data:
+            for lockedDoor in data["lockedDoors"]:
+                door = Door(lockedDoor["position"], lockedDoor["doorSprite"], stage.mask)
+                self.lockedDoors.append(door)
+
+        self.lockedDoorsGroup = pygame.sprite.Group(self.lockedDoors)
+
+        # Cargamos la lista de puertas abiertas de la sala si existen
+        unlockedDoors = []
+        if "unlockedDoors" in data:
+            for unlockedDoor in data["unlockedDoors"]:
+                rect = pygame.Rect(unlockedDoor["collision"][0], unlockedDoor["collision"][1], unlockedDoor["collision"][2], unlockedDoor["collision"][3])
+                wait = False
+                if "wait" in unlockedDoor:
+                    wait = unlockedDoor["wait"]
+                door = UnlockedDoor(unlockedDoor["position"], unlockedDoor["doorSprite"], stage.mask, rect, wait)
+                unlockedDoors.append(door)
+
+        self.unlockedDoorsGroup = pygame.sprite.Group(unlockedDoors)
+
+        # Cargamos la lista de triggers de la sala si existen
         triggersList = []
         if "triggers" in data:
             for triggerData in data["triggers"]:
                 (x, y) = (triggerData["position"][0], triggerData["position"][1])
                 width = triggerData["width"]
                 height = triggerData["height"]
+                door = None
 
-                trigger = Trigger(pygame.Rect((x, y), (width, height)), triggerData["dialogueFile"])
-                trigger.change_global_position((x, y))
+                if "opens" in triggerData:
+                    roomNum = triggerData["opens"][0]
+                    doorNum  = triggerData["opens"][1]
+                    door = stage.rooms[roomNum].lockedDoors[doorNum]
+
+                trigger = Trigger(pygame.Rect((x, y), (width, height)), triggerData["dialogueFile"], door)
+                trigger.change_position((x, y))
                 triggersList.append(trigger)
 
         self.triggers = pygame.sprite.Group(triggersList)

@@ -1,0 +1,42 @@
+{
+    "position": [0, 1632],
+    "width": 552,
+    "height": 408,
+    "connections": [
+        {
+            "y": 2016,
+            "left": 260,
+            "right": 292,
+            "to": 0,
+            "direction": "down"
+        },
+        {
+            "y": 1656,
+            "left": 260,
+            "right": 292,
+            "to": 2,
+            "direction": "up"
+        },
+        {
+            "x": 528,
+            "top": 1896,
+            "bottom": 1872,
+            "to": 3,
+            "direction": "right"
+        }
+    ],
+    "lockedDoors": [
+        {
+            "doorSprite": "flowerDoor.png",
+            "position": [528, 1920]
+        }
+    ],
+    "triggers": [
+        {
+            "position": [24, 1944],
+            "height": 24,
+            "width": 504,
+            "dialogueFile": "firstRoom.json"
+        }
+    ]
+}

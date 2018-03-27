@@ -250,6 +250,7 @@ class Character(MySprite):
             dx = mapMask.overlap_area(self.mask, (x+1,y)) - mapMask.overlap_area(self.mask, (x-1,y))
             dy = mapMask.overlap_area(self.mask, (x,y+1)) - mapMask.overlap_area(self.mask, (x,y-1))
 
+
     ############################################################################
 
     def apply_force(self, angle, radius, decrement):

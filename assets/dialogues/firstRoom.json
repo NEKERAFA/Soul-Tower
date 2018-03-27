@@ -1,0 +1,33 @@
+[
+    {
+        "info": {
+            "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            }
+        },
+        "text": [["Bonito cambio. ¿Qué clase de lugar es este?"]]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila4.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Uno que los no iniciados en las artes mágicas", "no podrían comprender ni en un centenar", "de años."],
+            ["¿Por qué no dejas que los mayores nos", "ocupemos de las cosas importantes", "mientras tú...?"],
+            ["No sé, ¿te vas a jugar a los caballeros?"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric2.png",
+                "name": "Daric"
+            }
+        },
+        "text": [["Buen intento, pero tenemos la misma edad,", "\"querida\"."]]
+    }
+]

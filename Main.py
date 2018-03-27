@@ -5,7 +5,7 @@
 import pygame, random
 from datetime import datetime
 from src.GameManager import *
-from src.scenes.Stage import *
+from src.scenes.InitialStage import *
 
 if __name__ == '__main__':
     # Iniciamos la semilla
@@ -16,7 +16,7 @@ if __name__ == '__main__':
     # global gameManager
     gameManager = GameManager()
     # Creamos la escena con la pantalla inicial
-    scene = Stage(0, gameManager)
+    scene = InitialStage(gameManager)
     # Le decimos al director que apile esta escena
     gameManager.scene_stack(scene)
     # Y ejecutamos el juego
