@@ -16,6 +16,7 @@ El archivo de configuración de la sala debe contener los siguientes datos:
         - En cualquier salida:
             - "to": Número de la sala con la que conecta.
             - "direction": Dirección de la salida ("up", "down", "left", "right").
+        Si la salida pasa a una nueva fase, se pondrá el valor "next": true
     - "small": Sólo es necesario ponerlo en salas pequeñas que caben en la pantalla y, por tanto, no necesitan scroll. Como sólo se comprueba su existencia y no su valor, no es importante el valor que se le asigne, pero por coherencia/legibilidad se recomienda poner true.
     - "enemies": Lista de los enemigos que spawnean en la sala, contiene la siguiente información:
         - "position" [x, y]: Posición de spawn del enemigo. Si no está, se define una posición aleatoria.
@@ -32,6 +33,16 @@ El archivo de configuración de la sala debe contener los siguientes datos:
     - "lockedDoors": Lista de puertas cerradas de la sala, si las hay.
         - "doorSprite": Sprite de la puerta.
         - "position" [x, y]: Posición de la esquina inferior izquierda de la puerta (no tiene por qué corresponder con la de la conexión).
+    - "unlockedDoors": Lista de puertas que se pueden abrir al pulsar espacio.
+        - "doorSprite": Sprite de la puerta.
+        - "position" [x, y]: Posición de la esquina inferior izquierda de la puerta (no tiene por qué corresponder con la de la conexión).
+        - "collision" [x, y, width, height]: Rectángulo donde se hace la comprobación para abrir la puerta
+    - "magicWindow": Ventana mágica si la sala la contiene.
+        - "position" [x, y]: Posición de la esquina inferior izquierda de la ventana mágica.
+        - "initialDialog": Nombre del diálogo inicial
+        - "selectionFile": Nombre del archivo de selecciones
+        - "endDialog": Lista con los nombres de los diálogos finales
+        - "collision" [x, y, width, height]: Rectángulo donde se hace la comprobación
 
 Cómo engañar al scroll:
     En salas en las que se vería parcialmente el fondo al entrar por algún lado, el scroll daría un salto para centrarse al entrar. Para engañar al scroll y que no dé dicho salto hay que indicar que las dimensiones de la sala son mayores de lo que realmente son, de tal modo que el scroll piense que la parte de fondo negro que se ve forma parte de la sala.
