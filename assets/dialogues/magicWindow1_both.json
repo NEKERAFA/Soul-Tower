@@ -80,5 +80,49 @@
         "text": [
             ["Por extraño que parezca, estoy de acuerdo contigo."]
         ]
+    },
+    {
+        "info": {
+                "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["¿Crees que esto pasará más veces?"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Dudo bastante que lleguemos a entendernos, Daric.", "Las coincidencias existen. Dejémoslo en que", "esto ha sido una de ellas."]
+        ]
+    },
+    {
+        "info": {
+                "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Supongo que tienes razón."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["...", "Deja de darme la razón. Es raro. E incómodo."]
+        ]
     }
 ]
