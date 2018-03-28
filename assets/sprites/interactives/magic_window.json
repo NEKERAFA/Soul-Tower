@@ -1,0 +1,97 @@
+[
+    [
+        {
+            "x" : 0,
+            "y" : 0,
+            "width" : 58,
+            "height" : 74,
+            "delay" : 0.1
+        },
+        {
+            "x" : 58,
+            "y" : 0,
+            "width" : 58,
+            "height" : 74,
+            "delay" : 0.1
+        },
+        {
+            "x" : 116,
+            "y" : 0,
+            "width" : 58,
+            "height" : 74,
+            "delay" : 0.1
+        },
+        {
+            "x" : 174,
+            "y" : 0,
+            "width" : 58,
+            "height" : 74,
+            "delay" : 2
+        }
+    ],
+    [
+        {
+            "x" : 0,
+            "y" : 74,
+            "width" : 58,
+            "height" : 74,
+            "delay" : 1
+        },
+        {
+            "x" : 58,
+            "y" : 74,
+            "width" : 58,
+            "height" : 74,
+            "delay" : 0.1
+        },
+        {
+            "x" : 116,
+            "y" : 74,
+            "width" : 58,
+            "height" : 74,
+            "delay" : 0.1
+        },
+        {
+            "x" : 174,
+            "y" : 74,
+            "width" : 58,
+            "height" : 74,
+            "delay" : 0.1
+        },
+        {
+            "x" : 232,
+            "y" : 74,
+            "width" : 58,
+            "height" : 74,
+            "delay" : 0.2
+        },
+        {
+            "x" : 290,
+            "y" : 74,
+            "width" : 58,
+            "height" : 74,
+            "delay" : 0.2
+        },
+        {
+            "x" : 348,
+            "y" : 74,
+            "width" : 58,
+            "height" : 74,
+            "delay" : 0.2
+        },
+        {
+            "x" : 406,
+            "y" : 74,
+            "width" : 58,
+            "height" : 74,
+            "delay" : 0.2
+        },
+        {
+            "x" : 464,
+            "y" : 74,
+            "width" : 58,
+            "height" : 74,
+            "delay" : 0.1
+        }
+    ]
+]

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import pygame, math
+import pygame, math, os
 from src.sprites.Character import *
 from src.sprites.EnemyRange import *
 from src.sprites.characters.NPC import *
@@ -8,9 +8,13 @@ from src.sprites.behaviours.WanderingState import *
 from src.sprites.behaviours.PatrollState import *
 from src.ResourceManager import *
 
+ENEMY_PATH = 'enemies'
+
 class Enemy(NPC):
     def __init__(self, spriteName, drop):
-        NPC.__init__(self, spriteName)
+        path = os.path.join(ENEMY_PATH, spriteName)
+
+        NPC.__init__(self, path + '.png', path + '.json')
         self.drop = drop
 
         if self.behaviour is not None:
@@ -27,7 +31,6 @@ class Enemy(NPC):
             # print "Haciendo daño al jugador"
             angle = math.radians(360-EnemyRange.get_angle(self.movement))
             player.receive_damage(self.stats["atk"], angle)
-            self.receive_damage(0, math.radians(180-EnemyRange.get_angle(self.movement)))
 
     def update(self, time, mapRect, mapMask):
         self.state.update(self, time, mapRect, mapMask)

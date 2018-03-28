@@ -14,28 +14,93 @@
     ],
 
     "enemies": [
-        { "type": "slime" },
-        { "type": "slime" },
-        { "type": "slime" },
-        { "type": "slime" },
-        { "type": "slime" },
-        { "type": "slime" },
-        { "type": "slime" },
-        { "type": "slime" },
-        { "type": "slime" },
-        { "type": "slime" },
-        { "type": "slime" }
-    ],
-
-    "triggers": [
         {
             "type": "slime",
             "drop": {
                 "type": "soul",
                 "amount": 10
             }
+        },
+        {
+            "type": "slime",
+            "drop": {
+                "type": "life",
+                "amount": 10
+            }
+        },
+        {
+            "type": "slime",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "slime",
+            "drop": {
+                "type": "life",
+                "amount": 10
+            }
+        },
+        {
+            "type": "slime",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "slime",
+            "drop": {
+                "type": "life",
+                "amount": 10
+            }
+        },
+        {
+            "type": "slime",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "slime",
+            "drop": {
+                "type": "life",
+                "amount": 10
+            }
+        },
+        {
+            "type": "slime",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "slime",
+            "drop": {
+                "type": "life",
+                "amount": 10
+            }
+        },
+        {
+            "type": "slime",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "slime",
+            "drop": {
+                "type": "life",
+                "amount": 10
+            }
         }
     ],
+
+    "triggers": [],
 
     "unlockedDoors": [
         {
@@ -43,5 +108,11 @@
             "doorSprite": "door_0.png",
             "collision": [672, 216, 48, 24]
         }
-    ]
+    ],
+
+    "magicWindow": {
+        "position": [221, 98],
+        "dialogFiles": [],
+        "selectionFile": null
+    }
 }

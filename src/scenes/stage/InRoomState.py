@@ -24,6 +24,8 @@ class InRoomState(StageState):
         currentRoom.enemies.update(time, currentRoom.rect, stage.mask)
         # Drops
         currentRoom.drops.update(time)
+        # Ventana mágica
+        currentRoom.magicWindowGroup.update(time, stage)
 
         # Comprobamos si estamos saliendo de la sala
         exit = currentRoom.isExiting(stage.player)
@@ -42,8 +44,6 @@ class InRoomState(StageState):
         stage.viewport.center = (stage.player.rect.center)
         stage.viewport.clamp_ip(currentRoom.rect)
 
-        # Detectar las colisiones con los triggerables (triggers y drops) y activar el que te devuelvan
-
         drops = pygame.sprite.spritecollide(stage.player, currentRoom.drops, False)
 
         # Se recorre la lista de drops colisionados
@@ -54,7 +54,7 @@ class InRoomState(StageState):
                 # (ha recibido daño)
                 if stage.player.stats["hp"] < stage.player.stats["max_hp"]:
                     # Añadimos las vidas al jugador
-                    stage.player.add_lifes(drop.value)
+                    stage.player.add_lifes(drop.amount)
                     # Eliminamos el sprite de todos los grupos
                     drop.kill()
             # Drops de almas
@@ -73,13 +73,12 @@ class InRoomState(StageState):
             trigger.kill() # Eliminamos el trigger
             return
 
-        # Se detecta si estás en colisión con una puerta desbloqueada y si se
-        # puede abrir
-        for unlockedDoor in iter(currentRoom.unlockedDoorsGroup):
+        # Se detecta si estás en colisión con un objeto con el que puedes
+        # interactuar
+        for interSprite in iter(currentRoom.interactivesGroup):
             # Colisión entre jugador y puerta
-            if unlockedDoor.collision.colliderect(stage.player.rect) and KeyboardMouseControl.sec_button():
-                unlockedDoor.open(stage)
-
+            if interSprite.collide(stage.player) and KeyboardMouseControl.sec_button():
+                interSprite.activate(stage)
 
     def events(self, events, stage):
         stage.player.move(stage.viewport)
