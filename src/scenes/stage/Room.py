@@ -8,6 +8,7 @@ from src.sprites.drops.Life import *
 from src.sprites.drops.Soul import *
 from src.sprites.Door import *
 from src.sprites.doors.UnlockedDoor import *
+from src.sprites.MagicWindow import *
 
 # -------------------------------------------------
 # Clase Room
@@ -64,9 +65,13 @@ class Room(object):
 
         self.lockedDoorsGroup = pygame.sprite.Group(self.lockedDoors)
 
+        # Cargamos los objetos con los que se pueda interactuar
+        self.interactivesGroup = pygame.sprite.Group()
+
         # Cargamos la lista de puertas abiertas de la sala si existen
-        unlockedDoors = []
+        self.unlockedDoorsGroup = pygame.sprite.Group()
         if "unlockedDoors" in data:
+            unlockedDoors = []
             for unlockedDoor in data["unlockedDoors"]:
                 rect = pygame.Rect(unlockedDoor["collision"][0], unlockedDoor["collision"][1], unlockedDoor["collision"][2], unlockedDoor["collision"][3])
                 wait = False
@@ -74,8 +79,8 @@ class Room(object):
                     wait = unlockedDoor["wait"]
                 door = UnlockedDoor(unlockedDoor["position"], unlockedDoor["doorSprite"], stage.mask, rect, wait)
                 unlockedDoors.append(door)
-
-        self.unlockedDoorsGroup = pygame.sprite.Group(unlockedDoors)
+            self.interactivesGroup.add(unlockedDoors)
+            self.unlockedDoorsGroup.add(unlockedDoors)
 
         # Cargamos la lista de triggers de la sala si existen
         triggersList = []
@@ -97,6 +102,13 @@ class Room(object):
 
         self.triggers = pygame.sprite.Group(triggersList)
 
+        # Cargamos la ventana mágica si existera
+        self.magicWindowGroup = pygame.sprite.Group()
+        if "magicWindow" in data:
+            windowData = data["magicWindow"]
+            magicWindow = MagicWindow(windowData["position"], windowData["initialDialog"], windowData["selectionFile"], windowData["endDialog"], windowData["collision"])
+            self.magicWindowGroup.add(magicWindow)
+            self.interactivesGroup.add(magicWindow)
 
     # Indica si el jugador está saliendo de la sala y devuelve la conexión que representa la salida
     def isExiting(self, player):
