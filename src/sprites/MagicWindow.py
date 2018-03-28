@@ -8,7 +8,7 @@ from src.sprites.Interactive import *
 SPRITE_PATH = os.path.join('interactives', 'magic_window')
 
 class MagicWindow(MyStaticAnimatedSprite, Interactive):
-    def __init__(self, position, initialDialog, selectionFile, endDialog, collision):
+    def __init__(self, position, initialDialog, selectionFile, endDialogs, collision):
         # Llamamos al constructor de la primera clase
         MyStaticAnimatedSprite.__init__(self, SPRITE_PATH + '.png', SPRITE_PATH + '.json')
         # Cambiamos la posición
@@ -23,7 +23,7 @@ class MagicWindow(MyStaticAnimatedSprite, Interactive):
         # la selección
         self.initialDialog = initialDialog
         self.selectionFile = selectionFile
-        self.endDialog = endDialog
+        self.endDialogs = endDialogs
 
     def update(self, time, stage):
         stage.mask.erase(self.mask, self.offset)

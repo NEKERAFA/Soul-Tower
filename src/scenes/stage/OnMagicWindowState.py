@@ -16,18 +16,15 @@ class OnMagicWindowState(StageState):
         if not self.initialDialog:
             # Lanzamos el diálogo principal
             self.initialDialog = True
-            # TODO
-            stage.state = OnDialogueState('test.json', stage)
+            stage.state = OnDialogueState(magicWindow.initialDialog, stage)
         elif not self.setSelection:
             # Lanzamos la selección
             print 'Aquí está la intervención'
             # TODO
             self.setSelection = True
         elif not self.endDialog:
-            # Lanzamos el diálogo principal
             self.endDialog = True
-            # TODO
-            stage.state = OnDialogueState('test.json', stage)
+            stage.state = OnDialogueState(magicWindow.endDialogs, stage)
         else:
             self.magicWindow.destruct(stage)
             stage.state = self.previousState
