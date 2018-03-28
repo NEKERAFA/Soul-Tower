@@ -15,7 +15,7 @@ MIN_DELAY = 500
 MOVEMENTS = [N, NW, W, SW, S, SE, E, NE]
 
 class PatrollState(BehaviourState):
-    def __init__(self, center, radius, vision, move):
+    def __init__(self, center, radius, vision, move=STILL):
         # Llamamos al constructor de la superclase
         BehaviourState.__init__(self)
 

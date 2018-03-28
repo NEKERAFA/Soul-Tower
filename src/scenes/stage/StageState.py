@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
 
 class StageState(object):
-
-    def __init__(self):
-        pass
-
     def update(self, time, stage):
         raise NotImplemented("Tiene que implementar el metodo update.")
 

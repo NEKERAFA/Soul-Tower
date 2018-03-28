@@ -24,7 +24,7 @@
         {
             "type": "slime",
             "drop": {
-                "type": "life",
+                "type": "heart",
                 "amount": 10
             }
         },
@@ -38,7 +38,7 @@
         {
             "type": "slime",
             "drop": {
-                "type": "life",
+                "type": "heart",
                 "amount": 10
             }
         },
@@ -52,7 +52,7 @@
         {
             "type": "slime",
             "drop": {
-                "type": "life",
+                "type": "heart",
                 "amount": 10
             }
         },
@@ -66,7 +66,7 @@
         {
             "type": "slime",
             "drop": {
-                "type": "life",
+                "type": "heart",
                 "amount": 10
             }
         },
@@ -80,7 +80,7 @@
         {
             "type": "slime",
             "drop": {
-                "type": "life",
+                "type": "heart",
                 "amount": 10
             }
         },
@@ -94,13 +94,11 @@
         {
             "type": "slime",
             "drop": {
-                "type": "life",
+                "type": "heart",
                 "amount": 10
             }
         }
     ],
-
-    "triggers": [],
 
     "unlockedDoors": [
         {
@@ -111,8 +109,10 @@
     ],
 
     "magicWindow": {
-        "position": [221, 98],
-        "dialogFiles": [],
-        "selectionFile": null
+        "position": [120, 94],
+        "initialDialog": "test.json",
+        "selectionFile": null,
+        "endDialog": "test.json",
+        "collision": [120, 94, 58, 24]
     }
 }

@@ -147,7 +147,7 @@ class Dashing(PlayerState):
                 dx = mapMask.overlap_area(player.mask, (x+1,y)) - mapMask.overlap_area(player.mask, (x-1,y))
                 dy = mapMask.overlap_area(player.mask, (x,y+1)) - mapMask.overlap_area(player.mask, (x,y-1))
 
-    def receive_damage_aux(self, player, damage, angle):
+    def receive_damage_aux(self, player, force):
         # Invulnerable
         return
 

@@ -16,16 +16,16 @@ class PlayerState(object):
     def update_state(self, player, time, mapRect, mapMask):
         Character.update(player, time, mapRect, mapMask)
 
-    def receive_damage(self, player, damage, angle):
+    def receive_damage(self, player, damage, force):
         # Se actualiza el estado de invencibilidad
         # y se comprueba si toca recibir daño
         damage = self.update_inv()
         if damage:
             print("Jugador recibiendo daño")
-            self.receive_damage_aux(player, damage, angle)
+            self.receive_damage_aux(player, damage, force)
 
-    def receive_damage_aux(self, player, damage, angle):
-        Character.receive_damage(player, damage, angle)
+    def receive_damage_aux(self, player, damage, force):
+        Character.receive_damage(player, damage, force)
 
     def update_inv_time(self, time):
         if self.invEnabled:
@@ -48,5 +48,3 @@ class PlayerState(object):
             self.invElapsed = 0
             # recibes daño
             return True
-
-

@@ -9,6 +9,7 @@ class Force(object):
     def __init__(self, angle, magnitude):
         self.angle = angle
         self.magnitude = magnitude
+        self.decrement = magnitude/8
 
     def get_coordinates(self):
         '''
@@ -18,8 +19,8 @@ class Force(object):
         y = math.sin(self.angle)*self.magnitude
         return (x, y)
 
-    def substrat(self, value):
+    def substrat(self):
         '''
             Quita cierto valor del módulo, dejándolo como mínimo a 0
         '''
-        self.magnitude = max(self.magnitude-value, 0)
+        self.magnitude = max(self.magnitude-self.decrement, 0)

@@ -3,6 +3,7 @@
         "max_hp": 3,
         "hp": 3,
         "atk": 1,
+        "backward": 0.0125,
         "max_nrg": 5,
         "nrg": 5,
         "nrg_reg": 0.001,

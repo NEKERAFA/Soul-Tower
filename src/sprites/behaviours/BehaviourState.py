@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from src.sprites.Character import *
+
 # ------------------------------------------------------------------------------
 # Clase BehaviourState
 
@@ -9,3 +11,11 @@ class BehaviourState(object):
 
     def update(self, enemy, time, mapRect, mapMask):
         raise NotImplemented("Tiene que implementar el metodo update")
+
+    def make_damage(self, enemy, damage, angle, attack):
+        if attack == 'melee':
+            damage = max(damage-enemy.stats["phy_def"], 0)
+        elif attack == 'ranged':
+            damage = max(damage-enemy.stats["mag_def"], 0)
+
+        Character.make_damage(self, enemy, damage, angle, attack)

@@ -34,16 +34,9 @@ class Room(object):
         if "enemies" in data:
             for enemy in data["enemies"]:
                 # Load drop
-                drop = None
-                if "drop" in enemy:
-                    if enemy["drop"]["type"] == "life":
-                        drop = Life(enemy["drop"]["amount"])
-                    elif enemy["drop"]["type"] == "soul":
-                        drop = Soul(enemy["drop"]["amount"])
-
+                drop = Drop(enemy["drop"]["type"], enemy["drop"]["amount"])
                 # Load sprite
                 enemySprite = Enemy(enemy["type"], drop)
-
                 # Load position
                 posX = random.randint(self.position[0]+24, self.position[0]+self.width-48)
                 posY = random.randint(self.position[1]+24, self.position[1]+self.height-48)

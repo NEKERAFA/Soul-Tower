@@ -117,9 +117,7 @@ class Player(Character):
     def draw(self, screen):
         # Esta función está para agrupar el mostrar al jugador y su ataque
         screen.blit(self.image, self.rect)
-
-        if hasattr(self.attack, 'draw'):
-            self.attack.draw(screen)
+        self.attack.draw(screen)
 
     ############################################################################
 
@@ -130,5 +128,5 @@ class Player(Character):
 
     # Recibe un daño y se realiza el daño. Si el personaje ha muerto, lo elimina
     # de todos los grupos
-    def receive_damage(self, damage, angle):
-        self.state.receive_damage(self, damage, angle)
+    def receive_damage(self, damage, force):
+        self.state.receive_damage(self, damage, force)

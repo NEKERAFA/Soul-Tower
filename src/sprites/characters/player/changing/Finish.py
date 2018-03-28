@@ -15,7 +15,7 @@ class Finish(ChangingState):
         # Delegamos en el estado del jugador para actualizar
         player.state.update_state(player, time, currentRoom.rect, stage.mask)
         # Actualizamos el ataque
-        player.attack.update(time, stage)
+        player.attack.update(player, time, stage)
 
         # Si se pulsa el botón de cambio de jugador
         if KeyboardMouseControl.select_button() and player.canChange:

@@ -25,14 +25,12 @@ class Bullet(MySprite):
         self.speed = (BASE_SPEED * (math.cos(math.radians(rotation))), - BASE_SPEED * (math.sin(math.radians(rotation))))
         self.rotation = rotation
 
-    def update(self, time, mapMask, frameImage):
+    def update(self, time, stage, frameImage):
         # Actualizamos el frame
         self.image = pygame.transform.rotate(frameImage, self.rotation)
         # Actualizamos la posición
         MySprite.update(self, time)
         # Comprobamos si ha chocado con la pared para eliminarla de todos los
         # grupos a los que esté asociada la bala
-        x, y = self.rect.topleft
-        mask = pygame.mask.from_surface(self.image)
-        if mask.overlap(mapMask, (-x, -y)) is not None:
+        if not stage.viewport.colliderect(self.rect) or not stage.rooms[stage.currentRoom].rect.colliderect(self.rect):
             self.kill()

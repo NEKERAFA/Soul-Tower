@@ -39,5 +39,5 @@ class OnDialogueState(StageState):
                     stage.gui.add_element(self.dialogueBox)
                 # Terminamos el diálogo
                 else:
-                    stage.state = self.previousState
+                    stage.set_state(self.previousState)
                     stage.gui.remove_element(self.dialogueBox)

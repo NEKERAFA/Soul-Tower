@@ -7,7 +7,6 @@ from src.scenes.Scene import *
 class OnLeaveState(StageState):
     def __init__(self):
         StageState.__init__(self)
-        self.finishAnimation = False
         self.alpha = 0
         self.black = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
 
@@ -15,7 +14,10 @@ class OnLeaveState(StageState):
         self.alpha = min(self.alpha + time*0.128, 255)
 
         if self.alpha == 255 and not self.finishAnimation:
-            self.finishAnimation = True
+            stage.player.move(STILL)
+            nextStage = Stage(stage.stageNum+1, stage.gameManager, stage.player)
+            stage.gameManager.scene_change(nextStage)
+            return
 
     def events(self, events, stage):
         pass

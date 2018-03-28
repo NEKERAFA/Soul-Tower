@@ -3,6 +3,7 @@
 import pygame, sys, os, math
 from src.sprites.Attack import *
 from src.sprites.Bullet import *
+from src.sprites.Force import *
 
 # -------------------------------------------------
 # Sprites de ataques
@@ -39,7 +40,7 @@ class RangedAttack(Attack):
     def draw(self, surface):
         self.bullets.draw(surface)
 
-    def update(self, time, stage):
+    def update(self, player, time, stage):
         # Actualizamos el ataque
         Attack.update(self, time)
 
@@ -54,16 +55,15 @@ class RangedAttack(Attack):
             self.elapsedTime += time
 
         # Actualizamos las balas
-        self.bullets.update(time, stage.mask, self.image)
+        self.bullets.update(time, stage, self.image)
 
         # Comprobamos que enemigos colisionan con que grupos
-        for bullet in iter(self.bullets):
-            enemyCollide = pygame.sprite.spritecollideany(bullet, self.enemies)
+        collides = pygame.sprite.groupcollide(self.bullets, self.enemies, True, False)
 
-            # Si hay una colisión, hacemos daño al jugador y matamos la bala
-            if enemyCollide is not None:
-                position = enemyCollide.rect.midbottom
-                enemyCollide.drop.change_position(position)
-                stage.rooms[stage.currentRoom].drops.add(enemyCollide.drop)
-                enemyCollide.receive_damage(1, bullet.rotation)
-                bullet.kill()
+        # Si hay una colisión, hacemos daño al enemigo y matamos la bala
+        for bullet in collides:
+            enemies = collides[bullet]
+            # Cogemos el primero en hacer la colisión para que reciba daño
+            enemy = enemies[0]
+            impulse = Force(bullet.rotation, player.stats["backward"])
+            enemy.receive_damage(player.stats["atk"], impulse)

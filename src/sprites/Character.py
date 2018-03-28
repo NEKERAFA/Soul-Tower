@@ -70,13 +70,11 @@ class Character(MySprite):
                 tmp.append({'coords': coords, 'delay': delay})
 
         # Cargamos los stats
-        self.stats = data["stats"]
+        self.stats = data["stats"].copy()
 
         # Cargamos los estados de comportamiento posibles
         if "behaviour" in data:
             self.behaviour = data["behaviour"]
-        else:
-            self.behaviour = None
 
         # Animación inicial
         self.animationNum = SPRITE_STILL
@@ -89,8 +87,7 @@ class Character(MySprite):
         self.diagonalSpeed = m.sqrt((self.stats["spd"] * self.stats["spd"])/2.0)
 
         # Aceleración inicial
-        self.aceleration = None
-        self.decrement = 0
+        self.impulse = None
 
         # Frame inicial
         self.origImage = self.sheet.subsurface(self.sheetConf[0][0]['coords'])
@@ -101,6 +98,9 @@ class Character(MySprite):
 
         # Máscara de la animación
         self.mask = pygame.mask.from_surface(self.image)
+
+        # Define si el sprite está muerto o no
+        self.killed = False
 
     # Metodo base para realizar el movement: simplemente se le indica cual va
     # a hacer, y lo almacena
@@ -195,16 +195,15 @@ class Character(MySprite):
         self.update_animation(time)
 
         # Comprobamos si existe una aceleración para aplicarsela a cada eje
-        if self.aceleration is not None:
-            (acelX, acelY) = self.aceleration.get_coordinates()
+        if self.impulse is not None:
+            (acelX, acelY) = self.impulse.get_coordinates()
             speedX = acelX*time
             speedY = acelY*time
 
-            self.aceleration.substrat(self.decrement)
+            self.impulse.substrat()
 
-            if self.aceleration.magnitude <= 0:
-                self.aceleration = None
-                self.decrement = 0
+            if self.impulse.magnitude <= 0:
+                self.impulse = None
 
         # Aplicamos la velocidad en cada eje
         self.speed = (speedX, speedY)
@@ -216,10 +215,9 @@ class Character(MySprite):
         # Y llamamos al método de la superclase para que, según la velocidad y el tiempo, calcule la nueva posición del Sprite
         MySprite.update(self, time)
 
-        self.fix_collision(mapRect, mapMask)
+        self.fix_collision(mapMask)
 
-    # TODO: ya no hace falta mapRect
-    def fix_collision(self, mapRect, mapMask):
+    def fix_collision(self, mapMask):
         # Después se utiliza la máscara para un ajuste más preciso
         x, y = self.rect.topleft
 
@@ -247,26 +245,24 @@ class Character(MySprite):
             dx = mapMask.overlap_area(self.mask, (x+1,y)) - mapMask.overlap_area(self.mask, (x-1,y))
             dy = mapMask.overlap_area(self.mask, (x,y+1)) - mapMask.overlap_area(self.mask, (x,y-1))
 
-
     ############################################################################
 
-    def apply_force(self, angle, radius, decrement):
-        self.aceleration = Force(angle, radius)
-        self.decrement = decrement
+    def apply_force(self, force):
+        self.impulse = force
 
     # Recibe un daño y se realiza el daño. Si el personaje ha muerto, lo elimina
     # de todos los grupos
-    def receive_damage(self, damage, angle):
+    def receive_damage(self, damage, force):
+        # Reducimos el daño
         self.stats["hp"] -= damage
 
+        # Si la vida llega a cero lo matamos
         if self.stats["hp"] <= 0:
-            self.kill()
+            self.killed = True
 
-        # self.apply_force(angle, self.stats["spd"]/16, self.stats["spd"]/64)
-        # TODO: cambio provisional para que los enemigos reboten decentemente
-        # debería ser un stat
-        self.apply_force(angle, 0.0125, 0.003125)
+        # Aplicamos una fuerza de rebote
+        self.apply_force(force)
 
     # Añade vidas al personaje
     def add_lifes(self, lifes):
-        self.stats["hp"] = max(self.stats["max_hp"], self.stats["hp"]+lifes)
+        self.stats["hp"] = min(self.stats["max_hp"], self.stats["hp"]+lifes)

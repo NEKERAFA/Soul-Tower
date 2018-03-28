@@ -83,23 +83,6 @@ class Stage(Scene):
         self.state.update(time, self)
         self.gui.update(time)
 
-        # Comprobamos el estado de la sala
-        if type(self.state) is OnEnterState:
-            # Si ha terminado la animación de entrar en la sala, cambiamos al
-            # estado correspondiente de la sala
-            if self.state.finishAnimation:
-                if self.rooms[self.currentRoom].small:
-                    self.state = self.smallRoomState
-                else:
-                    self.state = self.inRoomState
-        elif type(self.state) is OnLeaveState:
-            # Si ha terminado la animación de salir de la sala, cambiamos de
-            # escena a la siguiente fase
-            if self.state.finishAnimation:
-                self.player.move(STILL)
-                nextStage = Stage(self.stageNum+1, self.gameManager, self.player)
-                self.gameManager.scene_change(nextStage)
-
     def events(self, events):
         # Miramos a ver si hay algun evento de salir del programa
         for event in events:
@@ -119,5 +102,5 @@ class Stage(Scene):
         self.gui.draw(screen)
 
     # Cambia el estado que controla el comportamiento del scroll
-    def setState(self, state):
+    def set_state(self, state):
         self.state = state
