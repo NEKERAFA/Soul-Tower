@@ -103,6 +103,7 @@ class Player(Character):
             # Si es sorcerer el jugador actual, cambiamos el estado a dashing
             if self.currentCharacter == 'sorcerer' and type(self.state) is not Dashing:
                 self.state.change(self, Dashing)
+                self.state.change(self, Dashing)
 
             # Si es warrior el jugador actual, cambiamos el estado a defending
             if self.currentCharacter == 'warrior' and (type(self.state) is not Defending and type(self.state) is not Stunned):

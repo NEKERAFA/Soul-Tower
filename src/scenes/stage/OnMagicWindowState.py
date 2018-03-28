@@ -3,6 +3,7 @@
 import pygame
 from src.scenes.stage.StageState import *
 from src.scenes.stage.OnDialogueState import *
+from src.interface.screens.GUIWindowDialogScreen import *
 
 class OnMagicWindowState(StageState):
     def __init__(self, magicWindow, stage):
@@ -11,6 +12,7 @@ class OnMagicWindowState(StageState):
         self.initialDialog = False
         self.setSelection = False
         self.endDialog = False
+        self.guiWindow = None
 
     def update(self, time, stage):
         if not self.initialDialog:
@@ -19,12 +21,16 @@ class OnMagicWindowState(StageState):
             stage.state = OnDialogueState(self.magicWindow.initialDialog, stage)
         elif not self.setSelection:
             # Lanzamos la selección
-            print 'Aquí está la intervención'
+            #print 'Aquí está la intervención'
             # TODO
-            self.setSelection = True
+            if(self.guiWindow is None):
+                self.guiWindow = stage.create_window_dialog(self.magicWindow.selectionFile)
+            if(self.guiWindow.choice >= 0):
+                self.setSelection = True
         elif not self.endDialog:
             self.endDialog = True
-            stage.state = OnDialogueState(self.magicWindow.endDialogs, stage)
+            stage.remove_window_dialog()
+            stage.state = OnDialogueState(self.magicWindow.endDialogs[self.guiWindow.choice], stage)
         else:
             self.magicWindow.destruct(stage)
             stage.state = self.previousState

@@ -5,20 +5,22 @@ from pygame.locals import *
 from src.ResourceManager import *
 from src.scenes.Scene import *
 from src.interface.screens.GUIScreen import *
-from src.interface.GUIButton import *
+from src.interface.GUIWindowButton import *
 
 # -------------------------------------------------
 # Clase GUIMenuScreen
 # Interfaz durante los menús
 
 # Localización de los sprites
-WINDOW_BUTTON_UP_LOCATION = 'interface/player/button_up_placeholder.png'
-WINDOW_BUTTON_DOWN_LOCATION = 'interface/player/button_down_placeholder.png'
+WINDOW_BUTTON_UP_LOCATION = 'interface/game/button_up.png'
+WINDOW_BUTTON_DOWN_LOCATION = 'interface/game/button_down.png'
 
 class GUIWindowDialogScreen(GUIScreen):
-    def __init__(self, stage):
+    def __init__(self, stage, selectionFile):
         GUIScreen.__init__(self, stage)
-
+        self.selectionFile = selectionFile
+        self.choice = -1
+        self.elementClick = None
         iniVal = 1+2*(self.stage.stageNum-1)
         finVal = iniVal+3
 
@@ -27,7 +29,8 @@ class GUIWindowDialogScreen(GUIScreen):
         initPosition = (int((SCREEN_WIDTH-scale[0])/2), int(SCREEN_HEIGHT/2)-scale[1])
 
         for i in range(iniVal,finVal):
-            button = GUIButton(self, WINDOW_BUTTON_UP_LOCATION, WINDOW_BUTTON_DOWN_LOCATION, (initPosition[0], initPosition[1]+i*40), scale, getattr(self, 'button_fun_'+str(i)))
+            text = "Texto " + str(i)
+            button = GUIWindowButton(self, text, WINDOW_BUTTON_UP_LOCATION, WINDOW_BUTTON_DOWN_LOCATION, (initPosition[0], initPosition[1]+i*40), scale, getattr(self, 'button_fun_'+str(i)))
             self.add_element(button)
 
     def events(self, event_list):
@@ -35,42 +38,42 @@ class GUIWindowDialogScreen(GUIScreen):
             if event.type == MOUSEBUTTONDOWN:
                 self.elementClick = None
                 for element in self.GUIElements:
-                    if element.__class__.__name__ == 'GUIButton' and element.position_is_in_element((event.pos[0]/SCALE_FACTOR, event.pos[1]/SCALE_FACTOR)):
-                        self.elementClick = element
+                    if element.__class__.__name__ == 'GUIWindowButton' and element.position_is_in_element((event.pos[0]/SCALE_FACTOR, event.pos[1]/SCALE_FACTOR)):
                         element.action()
+                        self.elementClick = element
             if event.type == MOUSEBUTTONUP:
                 for element in self.GUIElements:
-                    if element.__class__.__name__ == 'GUIButton':
+                    if element.__class__.__name__ == 'GUIWindowButton':
                         if element.position_is_in_element((event.pos[0]/SCALE_FACTOR, event.pos[1]/SCALE_FACTOR)):
                             if (element == self.elementClick):
                                 element.action()
-                                self.stage.remove_window_dialog()
+                                #self.stage.remove_window_dialog()
                         elif(element == self.elementClick):
                             element.swap()
 
     def button_fun_1(self):
-        print("function 1")
+        self.choice = 0
 
     def button_fun_2(self):
-        print("function 2")
+        self.choice = 1
 
     def button_fun_3(self):
-        print("function 3")
+        self.choice = 2
 
     def button_fun_4(self):
-        print("function 4")
+        self.choice = 0
 
     def button_fun_5(self):
-        print("function 5")
+        self.choice = 1
 
     def button_fun_6(self):
-        print("function 6")
+        self.choice = 2
 
     def button_fun_7(self):
-        print("function 7")
+        self.choice = 0
 
     def button_fun_8(self):
-        print("function 8")
+        self.choice = 1
 
     def button_fun_9(self):
-        print("function 9")
+        self.choice = 3

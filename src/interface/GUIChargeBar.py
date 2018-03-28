@@ -24,10 +24,10 @@ class GUIChargeBar(GUIImage):
     def update(self, time):
 
         # Recargar barra
-        #if(self.percent < 1.):
-            #self.percent = min(1., self.percent+time*self.speed)
+        if(self.percent < 1.):
+            self.percent = min(1., self.percent+time*self.speed)
 
-        self.percent = self.guiScreen.player.stats["nrg"] / self.guiScreen.player.stats["max_nrg"]
+        #self.percent = self.guiScreen.player.stats["nrg"] / self.guiScreen.player.stats["max_nrg"]
 
     def draw(self, screen):
         # Obtenemos ancho de la imagen (barra)
