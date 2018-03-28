@@ -29,7 +29,7 @@ class RangedAttack(Attack):
         # Grupo de disparos
         self.bullets = pygame.sprite.Group()
         # Nivel de mejora
-        self.level = 2
+        self.level = 3
         self.probability = 0.3
 
     def start_attack(self, characterPos, rotation):
@@ -75,6 +75,12 @@ class RangedAttack(Attack):
 
             # Si hay una colisión, hacemos daño al jugador y matamos la bala
             if enemyCollide is not None:
+                enemyPos = enemyCollide.position
                 enemyCollide.drop.change_global_position(enemyCollide.position)
                 stage.rooms[stage.currentRoom].drops.add(enemyCollide.drop)
                 enemyCollide.receive_damage(1, bullet.rotation)
+                bullet.kill()
+                if (self.level>2):
+                    angle = random.uniform(-180,180)
+                    bulletExtra = Bullet(enemyPos, angle, self.radius, self.image)
+                    self.bullets.add(bulletExtra)

@@ -3,6 +3,7 @@
 import pygame, sys, os, math, random
 from src.sprites.Attack import *
 from src.sprites.attacks.Thunder import *
+from src.sprites.attacks.Explosion import *
 
 # -------------------------------------------------
 # Sprites de ataques
@@ -24,14 +25,18 @@ class MeleeAttack(Attack):
         self.attacking = False
         # Grupo de rayos
         self.thunders = pygame.sprite.Group()
+        # Grupo de explosiones
+        self.explosions = pygame.sprite.Group()
         # Nivel de mejora
-        self.level = 2
-        self.probability = 0.45
+        self.level = 3
+        self.probability = 1#0.45
 
     def draw(self, surface):
         Attack.draw(self, surface)
         for thunder in self.thunders:
             thunder.draw(surface)
+        for explosion in self.explosions:
+            explosion.draw(surface)
 
     def start_attack(self, characterPos, rotation):
         self.attacking = True
@@ -80,11 +85,17 @@ class MeleeAttack(Attack):
                 collision = self.mask.overlap(enemy.mask, offset)
                 if collision is not None:
                     # print('Hit')
+                    enemyPos = enemy.rect.center
                     enemy.drop.change_global_position(enemy.position)
                     stage.rooms[stage.currentRoom].drops.add(enemy.drop)
+                    if (enemy.hp==1 and self.level>2):
+                        explosion = Explosion(enemyPos, self.enemies)
+                        self.explosions.add(explosion)
                     enemy.receive_damage(1, self.rotation)
+                    
 
         self.thunders.update(time, stage)
+        self.explosions.update(time, stage)
             # Comprobamos que enemigos colisionan con que grupos
             # enemiesCollide = pygame.sprite.spritecollide(self, self.enemies, False, pygame.sprite.collide_mask)
 
