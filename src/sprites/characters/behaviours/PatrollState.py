@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import pygame, random, math, sys
-from src.sprites.behaviours.BehaviourState import *
+from src.sprites.characters.behaviours.BehaviourState import *
 from src.sprites.Character import *
 from src.sprites.EnemyRange import *
 
@@ -115,4 +115,4 @@ class PatrollState(BehaviourState):
         self.range.increment_position((enemyX-rangeX, enemyY-rangeY))
 
 # Se pone aquí debido al import recursivo
-from src.sprites.behaviours.FollowPlayerState import FollowPlayerState
+from src.sprites.characters.behaviours.FollowPlayerState import FollowPlayerState

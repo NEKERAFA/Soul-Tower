@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
-import pygame, sys, os, math
+import pygame, sys, os, math, random
 from src.sprites.Attack import *
 from src.sprites.Bullet import *
 from src.sprites.Force import *
+from Normalize import *
 
 # -------------------------------------------------
 # Sprites de ataques
@@ -28,6 +29,9 @@ class RangedAttack(Attack):
         self.attacking = False
         # Grupo de disparos
         self.bullets = pygame.sprite.Group()
+        # Nivel de mejora
+        self.level = 2
+        self.probability = 0.3
 
     def start_attack(self, characterPos, rotation):
         self.characterPos = characterPos
@@ -49,6 +53,15 @@ class RangedAttack(Attack):
             # Se crea una bala y se guarda en el grupo de balas
             bullet = Bullet(self.characterPos, self.rotation, self.radius, self.image)
             self.bullets.add(bullet)
+            # Si tenemos nivel suficiente, se pueden lanzar dos extra
+            if (self.level>1 and random.random()<=self.probability):
+                rot2 = normalize(self.rotation + 15, -180, 180)
+                rot3 = normalize(self.rotation - 15, -180, 180)
+                bullet2 = Bullet(self.characterPos, rot2, self.radius, self.image)
+                bullet3 = Bullet(self.characterPos, rot3, self.radius, self.image)
+                self.bullets.add(bullet2)
+                self.bullets.add(bullet3)
+
             # Y reiniciar el contador
             self.elapsedTime = 0
         else:
@@ -66,4 +79,4 @@ class RangedAttack(Attack):
             # Cogemos el primero en hacer la colisión para que reciba daño
             enemy = enemies[0]
             impulse = Force(bullet.rotation, player.stats["backward"])
-            enemy.receive_damage(player.stats["atk"], impulse)
+            enemy.receive_damage('magic', player.stats["atk"], impulse)

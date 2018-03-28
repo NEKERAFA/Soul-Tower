@@ -5,7 +5,7 @@ from src.sprites.Character import *
 from src.sprites.EnemyRange import *
 from src.sprites.Force import *
 from src.sprites.characters.NPC import *
-from src.sprites.behaviours.BehaviourConstructor import *
+from src.sprites.characters.behaviours.BehaviourConstructor import *
 from src.ResourceManager import *
 
 ENEMY_PATH = 'enemies'
@@ -27,9 +27,15 @@ class Enemy(NPC):
             impulse = Force(angle, self.stats["backward"])
             player.receive_damage(self.stats["atk"], impulse)
 
+    def receive_damage(self, attack, damage, force):
+        self.state.receive_damage(self, attack, damage, force)
+
     def update(self, time, mapRect, mapMask):
         self.state.update(self, time, mapRect, mapMask)
 
     def set_drop(self, dropGroup):
         self.drop.change_position(self.rect.midbottom)
         dropGroup.add(self.drop)
+
+    def change_behaviour(self, behaviour):
+        self.state = behaviour

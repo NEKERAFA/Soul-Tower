@@ -21,7 +21,6 @@ class PlayerState(object):
         # y se comprueba si toca recibir daño
         damage = self.update_inv()
         if damage:
-            print("Jugador recibiendo daño")
             self.receive_damage_aux(player, damage, force)
 
     def receive_damage_aux(self, player, damage, force):

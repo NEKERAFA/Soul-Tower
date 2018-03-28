@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import pygame, math, sys
-from src.sprites.behaviours.BehaviourState import *
+from src.sprites.characters.behaviours.BehaviourState import *
 from src.sprites.Character import *
 from src.sprites.EnemyRange import *
-from src.sprites.behaviours.PatrollState import PatrollState
+from src.sprites.characters.behaviours.PatrollState import PatrollState
 
 # ------------------------------------------------------------------------------
 # Clase FollowPlayerState

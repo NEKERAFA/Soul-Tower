@@ -3,9 +3,9 @@
 import pygame, os, random
 from src.ResourceManager import *
 from src.sprites.characters.Enemy import *
+from src.sprites.characters.Boss import *
 from src.sprites.Trigger import *
-from src.sprites.drops.Life import *
-from src.sprites.drops.Soul import *
+from src.sprites.Drop import *
 from src.sprites.Door import *
 from src.sprites.doors.UnlockedDoor import *
 from src.sprites.MagicWindow import *
@@ -48,6 +48,17 @@ class Room(object):
 
         self.enemies = pygame.sprite.Group(enemies)
         self.drops = pygame.sprite.Group()
+
+        # Si hay un boss en la sala, lo cargo
+        self.boss = pygame.sprite.Group()
+        if "boss" in data:
+            boss = data["boss"]
+            drops = []
+            for drop in boss["drops"]:
+                drops.append(Drop(drop["type"], drop["amount"]))
+            bossSprite = Boss(boss["name"], drops)
+            bossSprite.change_global_position(boss["position"])
+            self.boss.add(bossSprite)
 
         # Cargamos la lista de puertas cerradas de la sala si existen
         self.lockedDoors = []

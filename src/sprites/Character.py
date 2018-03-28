@@ -76,12 +76,20 @@ class Character(MySprite):
         if "behaviour" in data:
             self.behaviour = data["behaviour"]
 
-        # Animación inicial
-        self.animationNum = SPRITE_STILL
-        self.animationFrame = 0
+        self.origImage = pygame.Surface((0, 0))
+        self.image = self.origImage.copy()
 
         # El rectangulo del Sprite
-        self.rect = pygame.Rect(0, 0, self.sheetConf[0][0]['coords'][2], self.sheetConf[0][0]['coords'][3])
+        self.rect = self.image.get_rect().copy()
+
+        # Delay actual
+        self.currentDelay = 0
+
+        # Máscara de la animación
+        self.mask = None
+
+        # Animación inicial
+        self.set_initial_frame(SPRITE_STILL)
 
         # La velocidad de caminar en diagonal
         self.diagonalSpeed = m.sqrt((self.stats["spd"] * self.stats["spd"])/2.0)
@@ -89,18 +97,35 @@ class Character(MySprite):
         # Aceleración inicial
         self.impulse = None
 
+        # Define si el sprite está muerto o no
+        self.killed = False
+
+        # Para ver si la animación se tiene que loopear o no
+        self.animationLoop = True
+
+        # La animación ha terminado
+        self.animationFinish = False
+
+    def set_initial_frame(self, animationNum):
+        # Establecemos la animación
+        self.animationNum = animationNum
+        self.animationFrame = 0
+
+        # Primer frame
+        firstFrame = self.sheetConf[self.animationNum][self.animationFrame]
+
         # Frame inicial
-        self.origImage = self.sheet.subsurface(self.sheetConf[0][0]['coords'])
+        self.origImage = self.sheet.subsurface(firstFrame['coords'])
         self.image = self.origImage.copy()
 
+        # El rectangulo del Sprite
+        self.rect.size = self.image.get_size()
+
         # Delay actual
-        self.currentDelay = self.sheetConf[0][0]['delay']
+        self.currentDelay = firstFrame['delay']
 
         # Máscara de la animación
         self.mask = pygame.mask.from_surface(self.image)
-
-        # Define si el sprite está muerto o no
-        self.killed = False
 
     # Metodo base para realizar el movement: simplemente se le indica cual va
     # a hacer, y lo almacena
@@ -108,33 +133,38 @@ class Character(MySprite):
         self.movement = movement
 
     def update_animation(self, time):
-        # Actualizamos el retardo
-        self.currentDelay -= time
-        currentAnim = self.sheetConf[self.animationNum]
+        if self.animationLoop:
+            # Actualizamos el retardo
+            self.currentDelay -= time
+            currentAnim = self.sheetConf[self.animationNum]
 
-        # Miramos si ha pasado el retardo para dibujar una nueva postura
-        if self.currentDelay < 0:
-            # Actualizamos la postura
-            self.animationFrame += 1
+            # Miramos si ha pasado el retardo para dibujar una nueva postura
+            if self.currentDelay < 0:
+                # Actualizamos la postura
+                self.animationFrame += 1
 
-            # Reiniciamos la animación si nos hemos pasado de frames
-            if self.animationFrame >= len(currentAnim):
-                self.animationFrame = 0
+                # Reiniciamos la animación si nos hemos pasado de frames
+                if self.animationFrame >= len(currentAnim):
+                    if self.animationLoop:
+                        self.animationFrame = 0
+                    else:
+                        self.animationFrame -= 1
+                        self.animationFinish = True
 
-            # Actualizamos el delay
-            self.currentDelay = currentAnim[self.animationFrame]['delay']
+                # Actualizamos el delay
+                self.currentDelay = currentAnim[self.animationFrame]['delay']
 
-            # Actualiamos la imagen con el frame correspondiente
-            self.origImage = self.sheet.subsurface(currentAnim[self.animationFrame]['coords'])
-            self.image = self.origImage.copy()
-            self.rect.size = self.image.get_size()
+                # Actualiamos la imagen con el frame correspondiente
+                self.origImage = self.sheet.subsurface(currentAnim[self.animationFrame]['coords'])
+                self.image = self.origImage.copy()
+                self.rect.size = self.image.get_size()
 
-            # Si mira a la E, invertimos esa imagen
-            if self.looking == E:
-                self.image = pygame.transform.flip(self.image, 1, 0)
+                # Si mira a la E, invertimos esa imagen
+                if self.looking == E:
+                    self.image = pygame.transform.flip(self.image, 1, 0)
 
-            # Máscara de la animación
-            self.mask = pygame.mask.from_surface(self.image)
+                # Máscara de la animación
+                self.mask = pygame.mask.from_surface(self.image)
 
     def update_movement(self, time):
         # Las velocidades a las que iba hasta este momento

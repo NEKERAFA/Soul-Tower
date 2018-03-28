@@ -78,6 +78,8 @@ class Stage(Scene):
         # Empezamos en estado de entrar en sala
         self.state = OnEnterState()
 
+        self.killBoss = False
+
     def update(self, time):
         # Delegamos en el estado la actualización de la fase
         self.state.update(time, self)

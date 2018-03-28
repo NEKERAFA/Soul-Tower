@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import pygame, sys, os, math
+import pygame, sys, os, math, random
 from src.sprites.Attack import *
+from src.sprites.attacks.Thunder import *
+from src.sprites.Force import *
 
 # -------------------------------------------------
 # Sprites de ataques
@@ -21,6 +23,16 @@ class MeleeAttack(Attack):
         self.radius = radius
         # Comprueba si está atacando
         self.attacking = False
+        # Grupo de rayos
+        self.thunders = pygame.sprite.Group()
+        # Nivel de mejora
+        self.level = 2
+        self.probability = 0.45
+
+    def draw(self, surface):
+        Attack.draw(self, surface)
+        for thunder in self.thunders:
+            thunder.draw(surface)
 
     def start_attack(self, characterPos, rotation):
         self.attacking = True
@@ -28,16 +40,21 @@ class MeleeAttack(Attack):
         self.rect.left = self.position[0]
         self.rect.top = self.position[1]
         self.rotation = rotation
+        self.characterPos = characterPos
 
     def end_attack(self):
         self.attacking = False
 
-    def update(self, time, stage):
+    def update(self, player, time, stage):
         # Si ha pasado el tiempo suficiente y estamos intentando atacar
         if (self.elapsedTime > self.delayTime) and self.attacking:
             self.drawAnimation = True
             # Y reiniciar el contador
             self.elapsedTime = 0
+            # Si tenemos nivel suficiente
+            if (self.level>1 and random.random()<=self.probability):
+                thunder = Thunder(self.characterPos, self.rotation, self.radius+30, self.enemies)
+                self.thunders.add(thunder)
         else:
             self.elapsedTime += time
 
@@ -52,3 +69,27 @@ class MeleeAttack(Attack):
                 self.image = pygame.transform.flip(self.image, True, False)
             else:
                 self.image = pygame.transform.rotate(self.origImage, self.rotation)
+
+            # Colisiones
+            for enemy in self.enemies:
+                (atkX, atkY) = self.position
+                (enemyX, enemyY) = enemy.position
+                # atkY -= self.image.get_height()
+                enemyY -= enemy.image.get_height()
+                offset = (int(enemyX - atkX), int(enemyY - atkY))
+                self.mask = pygame.mask.from_surface(self.image)
+                collision = self.mask.overlap(enemy.mask, offset)
+                if collision is not None:
+                    impulse = Force(self.rotation, player.stats["backward"])
+                    enemy.receive_damage('physic', player.stats["atk"], impulse)
+
+        self.thunders.update(player, time, stage)
+            # Comprobamos que enemigos colisionan con que grupos
+            # enemiesCollide = pygame.sprite.spritecollide(self, self.enemies, False, pygame.sprite.collide_mask)
+
+            # for enemyCollide in enemiesCollide:
+            #     # Si hay una colisión, hacemos daño al enemigo y matamos la bala
+            #     if enemyCollide is not None:
+            #         enemyCollide.drop.change_global_position(enemyCollide.position)
+            #         stage.rooms[stage.currentRoom].drops.add(enemyCollide.drop)
+            #         enemyCollide.receive_damage(1, self.rotation)

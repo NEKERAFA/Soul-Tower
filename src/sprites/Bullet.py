@@ -4,7 +4,8 @@ import pygame, sys, os, math
 from src.sprites.MySprite import *
 from src.sprites.Attack import *
 
-BASE_SPEED = 0.1
+BASE_SPEED = 0.25
+
 # -------------------------------------------------
 # Clase del proyectil
 

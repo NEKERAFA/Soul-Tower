@@ -7,8 +7,6 @@
         "spd": 0.02
     },
 
-    "damagedBy": ["melee"],
-
     "behaviour" : {
         "type": "wandering",
         "radius": 200,

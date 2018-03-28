@@ -124,7 +124,6 @@ class Player(Character):
     # Incrementa el número de almas del jugador
     def increase_souls(self, souls):
         self.souls += souls
-        print(self.souls)
 
     # Recibe un daño y se realiza el daño. Si el personaje ha muerto, lo elimina
     # de todos los grupos

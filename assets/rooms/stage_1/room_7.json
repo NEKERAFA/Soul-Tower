@@ -10,5 +10,31 @@
             "to": 3,
             "direction": "down"
         }
-    ]
+    ],
+    "boss": {
+        "name": "raven",
+        "position": [1040, 1440],
+        "drops": [
+            {
+                "type": "heart",
+                "amount": 1
+            },
+            {
+                "type": "heart",
+                "amount": 1
+            },
+            {
+                "type": "soul",
+                "amount": 10
+            },
+            {
+                "type": "soul",
+                "amount": 10
+            },
+            {
+                "type": "soul",
+                "amount": 10
+            }
+        ]
+    }
 }

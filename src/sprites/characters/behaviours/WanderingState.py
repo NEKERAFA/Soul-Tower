@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import pygame, random
-from src.sprites.behaviours.BehaviourState import *
+from src.sprites.characters.behaviours.BehaviourState import *
 from src.sprites.Character import *
 
 # ------------------------------------------------------------------------------

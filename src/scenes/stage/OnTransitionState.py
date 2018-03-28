@@ -3,6 +3,7 @@
 import pygame
 from src.scenes.Stage import *
 from src.scenes.stage.StageState import *
+from src.scenes.stage.OnBossRoomState import *
 
 # -------------------------------------------------
 # Clase OnTransitionState
@@ -70,10 +71,13 @@ class OnTransitionState(StageState):
             # Si hemos terminado de desplazar el mapa, volvemos al estado InRoomState y cambiamos la sala actual
             if self.scrollY <= 0:
                 dstRoom = self.connection["to"]
-                if stage.rooms[dstRoom].small:
-                    stage.state = stage.smallRoomState
+                if len(stage.rooms[dstRoom].boss) == 1:
+                    stage.set_state(OnBossRoomState(stage))
                 else:
-                    stage.state = stage.inRoomState
+                    if stage.rooms[dstRoom].small:
+                        stage.set_state(stage.smallRoomState)
+                    else:
+                        stage.set_state(stage.inRoomState)
                 stage.currentRoom = dstRoom
 
     def events(self, time, stage):

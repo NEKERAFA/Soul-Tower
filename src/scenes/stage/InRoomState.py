@@ -6,8 +6,6 @@ from src.scenes.stage.OnLeaveState import *
 from src.scenes.stage.OnTransitionState import *
 from src.scenes.stage.OnDialogueState import *
 from src.sprites.characters.Enemy import *
-from src.sprites.drops.Life import *
-from src.sprites.drops.Soul import *
 
 class InRoomState(StageState):
     def update(self, time, stage):

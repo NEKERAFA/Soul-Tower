@@ -13,92 +13,32 @@
         }
     ],
 
-    "enemies": [
-        {
-            "type": "slime",
-            "drop": {
+    "boss": {
+        "name": "raven",
+        "position": [360, 240],
+        "drops": [
+            {
+                "type": "heart",
+                "amount": 1
+            },
+            {
+                "type": "heart",
+                "amount": 1
+            },
+            {
+                "type": "soul",
+                "amount": 10
+            },
+            {
+                "type": "soul",
+                "amount": 10
+            },
+            {
                 "type": "soul",
                 "amount": 10
             }
-        },
-        {
-            "type": "slime",
-            "drop": {
-                "type": "heart",
-                "amount": 10
-            }
-        },
-        {
-            "type": "slime",
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "slime",
-            "drop": {
-                "type": "heart",
-                "amount": 10
-            }
-        },
-        {
-            "type": "slime",
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "slime",
-            "drop": {
-                "type": "heart",
-                "amount": 10
-            }
-        },
-        {
-            "type": "slime",
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "slime",
-            "drop": {
-                "type": "heart",
-                "amount": 10
-            }
-        },
-        {
-            "type": "slime",
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "slime",
-            "drop": {
-                "type": "heart",
-                "amount": 10
-            }
-        },
-        {
-            "type": "slime",
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "slime",
-            "drop": {
-                "type": "heart",
-                "amount": 10
-            }
-        }
-    ],
+        ]
+    },
 
     "unlockedDoors": [
         {
