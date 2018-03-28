@@ -42,16 +42,16 @@
         },
         "text": [
             ["Silencio."],
-            ["¿No lo oyes?", "El cristal nos transmite las voces de", "la gente."]
+            ["¿No lo oyes?", "El cristal nos transmite las voces de la gente", "en la imagen."]
         ]
     },
     {
         "info": {
             "left": {
                 "image": "villager2.png",
-                "name": "Hombre",
-                "background": "village2.png"
-            }
+                "name": "Hombre"
+            },
+            "background": "village2.png"
         },
         "text": [
             ["¡Dejadme ir!", "¡Ya os he dicho que no he hecho nada!"]
@@ -61,21 +61,21 @@
         "info": {
             "right": {
                 "image": "soldier.png",
-                "name": "Soldado",
-                "background": "village2.png"
-            }
+                "name": "Soldado"
+            },
+            "background": "village2.png"
         },
         "text": [
-            ["Nada bueno, querrás decir.", "Se te acusa de robo al Señor de estas", "tierras."],
+            ["Nada bueno, querrás decir.", "Se te acusa de robar al Señor de estas tierras."]
         ]
     },
     {
         "info": {
             "left": {
                 "image": "villager2.png",
-                "name": "Hombre",
-                "background": "village2.png"
-            }
+                "name": "Hombre"
+            },
+            "background": "village2.png"
         },
         "text": [
             ["¡Por favor! ¡Soy inocente!"]
@@ -89,7 +89,7 @@
             }
         },
         "text": [
-            ["Ah, conozco a ese hombre. No es la", "primera vez que lo cogen por robo."],
+            ["Ah, conozco a ese hombre. No es la primera", "vez que lo cogen por robo."],
             ["Seguramente tampoco será la última."]
         ]
     },
@@ -101,7 +101,7 @@
             }
         },
         "text": [
-            ["Estoy seguro de que si lo hizo fue", "por necesidad. Los nobles exprimís hasta la", "última gota de sangre del pueblo."]
+            ["Estoy seguro de que si lo hizo fue por", "necesidad. Los nobles exprimís hasta la", "última gota de sangre del pueblo."]
         ]
     },
     {
@@ -113,8 +113,8 @@
         },
         "text": [
             ["¿Necesidad? No me hagas reír."],
-            ["Como miembro de la familia real sé", "perfectamente que se ponen todos los", "medios necesarios para que los plebleyos subsistan."],
-            ["Si no tienen para vivir, es porque", "son demasiado perezosos para trabajar", "lo suficiente."],
+            ["Como miembro de la familia real sé", "perfectamente que se ponen todos los medios", "necesarios para que los plebleyos subsistan."],
+            ["Si no tienen para vivir, es porque son", "demasiado perezosos para trabajar", "lo suficiente."]
         ]
     },
     {

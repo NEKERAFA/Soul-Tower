@@ -18,7 +18,7 @@
             }
         },
         "text": [
-            ["Este hombre ha infrigido las leyes de nuestro reino", "y debe cumplir una pena acorde. Debería", "ser encarcelado durante un tiempo."]
+            ["Este hombre ha infrigido las leyes de nuestro", "reino y debe cumplir una pena acorde. Debería", "ser encarcelado durante un tiempo."]
         ]
     },
     {
@@ -41,7 +41,7 @@
             }
         },
         "text": [
-            ["Claro, claro...", "Por eso suelen apresarlo por robar", "objetos de valor."],
+            ["Claro, claro...", "Por eso suelen apresarlo por robar objetos", "de valor."],
             ["Mira, la imagen vuelve a cambiar."]
         ]
     },
@@ -49,21 +49,21 @@
         "info": {
             "right": {
                 "image": "soldier.png",
-                "name": "Soldado",
-                "background": "village2.png"
-            }
+                "name": "Soldado"
+            },
+            "background": "village2.png"
         },
         "text": [
-            ["No hay excusas. Quedas arrestado en nombre", "del señor de estas tierras."],
+            ["No hay excusas. Quedas arrestado en nombre", "del señor de estas tierras."]
         ]
     },
     {
         "info": {
             "left": {
                 "image": "villager2.png",
-                "name": "Hombre",
-                "background": "village2.png"
-            }
+                "name": "Hombre"
+            },
+            "background": "village2.png"
         },
         "text": [
             ["¡Dejadme!"], ["¡¡¡DEJADME!!!"]
@@ -88,7 +88,7 @@
             }
         },
         "text": [
-            ["Eres una persona horrible.", "¿Cómo puedes respirar tranquila", "después de oír esos gritos?"]
+            ["Eres una persona horrible.", "¿Cómo puedes respirar tranquila después de", "oír esos gritos?"]
         ]
     },
     {

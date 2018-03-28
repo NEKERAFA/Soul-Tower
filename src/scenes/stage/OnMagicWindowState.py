@@ -16,7 +16,7 @@ class OnMagicWindowState(StageState):
         if not self.initialDialog:
             # Lanzamos el diálogo principal
             self.initialDialog = True
-            stage.state = OnDialogueState(magicWindow.initialDialog, stage)
+            stage.state = OnDialogueState(self.magicWindow.initialDialog, stage)
         elif not self.setSelection:
             # Lanzamos la selección
             print 'Aquí está la intervención'
@@ -24,7 +24,7 @@ class OnMagicWindowState(StageState):
             self.setSelection = True
         elif not self.endDialog:
             self.endDialog = True
-            stage.state = OnDialogueState(magicWindow.endDialogs, stage)
+            stage.state = OnDialogueState(self.magicWindow.endDialogs, stage)
         else:
             self.magicWindow.destruct(stage)
             stage.state = self.previousState
