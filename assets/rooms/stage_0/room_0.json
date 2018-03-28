@@ -10,6 +10,72 @@
                 "type": "soul",
                 "amount": 10
             }
+        },{
+            "type": "slime",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },{
+            "type": "slime",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },{
+            "type": "slime",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },{
+            "type": "slime",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },{
+            "type": "slime",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },{
+            "type": "slime",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },{
+            "type": "slime",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },{
+            "type": "slime",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },{
+            "type": "slime",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },{
+            "type": "slime",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },{
+            "type": "slime",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
         }
     ],
     "triggers": []

@@ -115,17 +115,6 @@ class Attack(MySprite):
         # Actualizamos la imagen a mostrar
         self.update_animation(time)
 
-        # Colisiones
-        if self.drawAnimation:
-            for enemy in iter(self.enemies):
-                (atkX, atkY) = self.position
-                (enemyX, enemyY) = enemy.position
-                atkY -= self.image.get_height()
-                enemyY -= enemy.image.get_height()
-                offset = (int(enemyX - atkX), int(enemyY - atkY))
-                collision = self.mask.overlap(enemy.mask, offset)
-                if collision is not None:
-                    print('Hit')
 
     def draw(self, surface):
         if self.drawAnimation:

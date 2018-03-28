@@ -105,6 +105,11 @@ class Character(MySprite):
         # Máscara de la animación
         self.mask = pygame.mask.from_surface(self.image)
 
+        # Guardamos los stats que se van a ir modificando durante el juego
+        # TODO: realizar el cambio en otros sitios
+        self.hp = self.stats["hp"]
+        # self.nrg = self.stats["nrg"]
+
     # Metodo base para realizar el movement: simplemente se le indica cual va
     # a hacer, y lo almacena
     def move(self, movement):
@@ -259,9 +264,8 @@ class Character(MySprite):
     # Recibe un daño y se realiza el daño. Si el personaje ha muerto, lo elimina
     # de todos los grupos
     def receive_damage(self, damage, angle):
-        self.stats["hp"] -= damage
-
-        if self.stats["hp"] <= 0:
+        self.hp -= damage
+        if self.hp <= 0:
             self.kill()
 
         # self.apply_force(angle, self.stats["spd"]/16, self.stats["spd"]/64)
@@ -271,4 +275,4 @@ class Character(MySprite):
 
     # Añade vidas al personaje
     def add_lifes(self, lifes):
-        self.stats["hp"] = max(self.stats["max_hp"], self.stats["hp"]+lifes)
+        self.hp = max(self.stats["max_hp"], self.hp+lifes)

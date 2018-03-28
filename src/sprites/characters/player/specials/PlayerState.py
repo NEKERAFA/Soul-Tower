@@ -21,10 +21,10 @@ class PlayerState(object):
         # y se comprueba si toca recibir daño
         damage = self.update_inv()
         if damage:
-            print("Jugador recibiendo daño")
             self.receive_damage_aux(player, damage, angle)
 
     def receive_damage_aux(self, player, damage, angle):
+        print("Jugador recibiendo daño")
         Character.receive_damage(player, damage, angle)
 
     def update_inv_time(self, time):
