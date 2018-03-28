@@ -49,8 +49,7 @@ class GUIButton(GUIElement):
         # Si se ha pulsado y soltado el botón, activeImage será upImage, y se realiza la acción asociada
         if(self.activeImage == self.upImage):
             self.associated_action()
-
-    #TODO funciones lambda por aquí para tener acciones diferentes por botón
+            
     def associated_action(self):
         # Acción asociada a cada botón
         self.onClickFunction()

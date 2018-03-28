@@ -38,13 +38,11 @@ class GUIHealth(GUIElement):
         # Actualizar corazones
         for i in range(0, len(self.heartArray)):
             self.heartArray[i].update(time)
-        return
 
     def draw(self, screen):
         # Dibujar corazones
         for i in range(0, len(self.heartArray)):
             self.heartArray[i].draw(screen)
-        return
 
     def action(self):
         # Implementar animación de perder vida ?
