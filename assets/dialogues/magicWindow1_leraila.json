@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [
     {
         "info": {
@@ -114,3 +115,121 @@
         ]
     }
 ]
+=======
+[
+    {
+        "info": {
+            "left": {
+                "image": "leraila3.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["La respuesta está clara."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Este hombre ha infrigido las leyes de nuestro", "reino y debe cumplir una pena acorde. Debería", "ser encarcelado durante un tiempo."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["¡No! ¡Ese hombre sólo está desesperado", "por sobrevivir!"],
+            ["¡De hecho, ni siquiera hay pruebas!", "¡Sólo una acusación infundada!"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila4.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Claro, claro...", "Por eso suelen apresarlo por robar objetos", "de valor."],
+            ["Mira, la imagen vuelve a cambiar."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "soldier.png",
+                "name": "Soldado"
+            },
+            "background": "village2.png"
+        },
+        "text": [
+            ["No hay excusas. Quedas arrestado en nombre", "del señor de estas tierras."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "villager2.png",
+                "name": "Hombre"
+            },
+            "background": "village2.png"
+        },
+        "text": [
+            ["¡Dejadme!"], ["¡¡¡DEJADME!!!"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila3.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Se ha hecho justicia."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Eres una persona horrible.", "¿Cómo puedes respirar tranquila después de", "oír esos gritos?"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila3.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Porque sé que he hecho lo correcto."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric4.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Al menos esto es sólo un caso hipotético..."]
+        ]
+    }
+]
+>>>>>>> origin/stages

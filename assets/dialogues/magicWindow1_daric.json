@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [
     {
         "info": {
@@ -46,3 +47,53 @@
         ]
     }
 ]
+=======
+[
+    {
+        "info": {
+            "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Está claro. Deberían dejar ir a ese pobre hombre.", "Seguro que sólo intenta buscarse la vida."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila3.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["... No estás en tus cabales."],
+            ["Te encanta romper el orden, ¿verdad?"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Si es para hacer justicia, sí."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["..."],
+            ["La gente como tú es una plaga para el reino.", "Suerte que esto no es más que una imagen", "mágica."]
+        ]
+    }
+]
+>>>>>>> origin/stages

@@ -62,6 +62,8 @@ class RangedAttack(Attack):
 
             # Si hay una colisión, hacemos daño al jugador y matamos la bala
             if enemyCollide is not None:
-                enemyCollide.drop.change_global_position(enemyCollide.position)
+                position = enemyCollide.rect.midbottom
+                enemyCollide.drop.change_position(position)
                 stage.rooms[stage.currentRoom].drops.add(enemyCollide.drop)
                 enemyCollide.receive_damage(1, bullet.rotation)
+                bullet.kill()

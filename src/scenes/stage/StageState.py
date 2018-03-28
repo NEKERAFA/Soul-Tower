@@ -24,6 +24,8 @@ class StageState(object):
         currentRoom.enemies.draw(newImage)
         # Drops
         currentRoom.drops.draw(newImage)
+        # Ventana mágica
+        currentRoom.magicWindowGroup.draw(newImage)
         # Se pinta la porción de la sala que coincide con el viewport
         screen.blit(newImage, (0,0), stage.viewport)
 

@@ -20,21 +20,21 @@ from src.ResourceManager import *
 # -------------------------------------------------
 
 PLAYER_SPEED = 0.2 # Pixeles por milisegundo
+PLAYER_PATH = 'player'
+SORCERER_PATH = os.path.join(PLAYER_PATH, 'sorcerer.png')
+WARRIOR_PATH = os.path.join('sprites', 'characters', PLAYER_PATH, 'warrior.png')
+PLAYER_CONF_PATH = os.path.join(PLAYER_PATH, 'info.json')
 
 # -------------------------------------------------
 # Clase del Character jugable
 class Player(Character):
     def __init__(self, enemies, stage):
         # Invocamos al constructor de la clase padre con la configuracion de este Character concreto
-        Character.__init__(self, 'sorcerer')
-
-        # Rutas de las sprite sheets del personaje principal
-        sorcererPath = os.path.join('sprites', 'characters', 'sorcerer.png')
-        warriorPath = os.path.join('sprites', 'characters', 'warrior.png')
+        Character.__init__(self, SORCERER_PATH, PLAYER_CONF_PATH)
 
         # Cargamos las sprite sheets
-        self.sorcererSheet = ResourceManager.load_image(sorcererPath, (-1))
-        self.warriorSheet = ResourceManager.load_image(warriorPath, (-1))
+        self.sorcererSheet = self.sheet.copy()
+        self.warriorSheet = ResourceManager.load_image(WARRIOR_PATH, (-1))
 
         # Atributo de estado del jugador (patrón estado)
         self.state = Normal()

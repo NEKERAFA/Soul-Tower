@@ -171,9 +171,13 @@ class GUIDialog(GUIImage):
         if self.rightName is not None:
             screen.blit(self.nameBox, self.rightNameRect)
             rightNameText = self.nameFont.render(self.rightName, False, (255,255,255))
-            screen.blit(rightNameText, (self.rightNameRect.left + NAME_LEFT_MARGIN, self.rightNameRect.top + NAME_TOP_MARGIN))
+            rectAux = rightNameText.get_rect()
+            rectAux.center = self.rightNameRect.center
+            screen.blit(rightNameText, (rectAux.left, rectAux.top))
 
         if self.leftName is not None:
             screen.blit(self.nameBox, self.leftNameRect)
             leftNameText = self.nameFont.render(self.leftName, False, (255,255,255))
-            screen.blit(leftNameText, (self.leftNameRect.left + NAME_LEFT_MARGIN, self.leftNameRect.top + NAME_TOP_MARGIN))
+            rectAux = leftNameText.get_rect()
+            rectAux.center = self.leftNameRect.center
+            screen.blit(leftNameText, (rectAux.left, rectAux.top))

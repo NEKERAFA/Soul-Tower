@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 
+from src.controls.KeyboardMouseControl import *
 from src.scenes.stage.StageState import *
+from src.scenes.stage.OnLeaveState import *
 from src.scenes.stage.OnTransitionState import *
 from src.scenes.stage.OnDialogueState import *
 from src.sprites.characters.Enemy import *
+from src.sprites.drops.Life import *
+from src.sprites.drops.Soul import *
 
 class SmallRoomState(StageState):
     def update(self, time, stage):
@@ -15,7 +19,7 @@ class SmallRoomState(StageState):
 
         # Actualizamos los sprites
         # Player
-        stage.player.update(time, currentRoom.rect, stage.mask)
+        stage.player.update(time, stage)
         # Enemigos
         currentRoom.enemies.update(time, currentRoom.rect, stage.mask)
         # Drops
@@ -25,17 +29,48 @@ class SmallRoomState(StageState):
         exit = currentRoom.isExiting(stage.player)
 
         if exit is not None:
-            stage.state = OnTransitionState(exit, stage.player)
+            if "next" in exit:
+                stage.state = OnLeaveState()
+            else:
+                stage.state = OnTransitionState(exit, stage.player)
             return
 
-        # Si detecta colisión con un trigger, cambia de estado TODO cambiar a variable local currentRoom
-        trigger = pygame.sprite.spritecollideany(stage.player, stage.rooms[stage.currentRoom].triggers)
+        drops = pygame.sprite.spritecollide(stage.player, currentRoom.drops, False)
+
+        # Se recorre la lista de drops colisionados
+        for drop in drops:
+            # Drops de vida
+            if type(drop) is Life:
+                # Comprobamos que la vida del enemigo es menor que la máxima
+                # (ha recibido daño)
+                if stage.player.stats["hp"] < stage.player.stats["max_hp"]:
+                    # Añadimos las vidas al jugador
+                    stage.player.add_lifes(drop.amount)
+                    # Eliminamos el sprite de todos los grupos
+                    drop.kill()
+            # Drops de almas
+            elif type(drop) is Soul:
+                # Añadimos las almas recogidas y eliminamos el sprite de todos
+                # los grupos
+                stage.player.increase_souls(drop.amount)
+                drop.kill()
+
+        # Si detecta colisión con un trigger, cambia de estado
+        trigger = pygame.sprite.spritecollideany(stage.player, currentRoom.triggers)
 
         if trigger is not None:
-            trigger.open_door()
+            trigger.open_door(stage)
             stage.state = OnDialogueState(trigger.dialogueFile, stage)
             trigger.kill() # Eliminamos el trigger
             return
+
+        # Se detecta si estás en colisión con una puerta desbloqueada y si se
+        # puede abrir
+        for unlockedDoor in iter(currentRoom.unlockedDoorsGroup):
+            # Colisión entre jugador y puerta
+            if unlockedDoor.collision.colliderect(stage.player.rect) and KeyboardMouseControl.sec_button():
+                unlockedDoor.open(stage)
+
 
     def events(self, events, stage):
         stage.player.move(stage.viewport)

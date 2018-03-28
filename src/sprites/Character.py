@@ -31,24 +31,21 @@ SPRITE_WALKING_UP = 1
 SPRITE_WALKING_DOWN = 2
 SPRITE_WALKING = 3
 
+CHARACTER_PATH = 'characters'
+
 # -------------------------------------------------
 # Sprites de personajes
 class Character(MySprite):
     '''
         Parámetros pasados al constructor de esta clase:
             * Nombre del sprite
-            * Velocidad de caminar en los ejes x e y (no diagonal)
     '''
-    def __init__(self, spriteName):
+    def __init__(self, imageFile, spriteSheet):
         # Primero invocamos al constructor de la clase padre
         MySprite.__init__(self)
 
-        # Obtenemos el nombre de la carpeta del sprite sheet y del archivo de configuración
-        fullname = os.path.join('characters', spriteName)
-        imagePath = os.path.join('sprites', fullname) + '.png'
-
         # Cargar sheet de sprites
-        self.sheet = ResourceManager.load_image(imagePath, -1)
+        self.sheet = ResourceManager.load_image(os.path.join('sprites', CHARACTER_PATH, imageFile), -1)
 
         # Movimiento actual
         self.movement = STILL
@@ -57,7 +54,7 @@ class Character(MySprite):
         self.looking = W
 
         # Leer el fichero de configuración
-        data = ResourceManager.load_sprite_conf(fullname + '.json')
+        data = ResourceManager.load_sprite_conf(os.path.join(CHARACTER_PATH, spriteSheet))
 
         # Cargamos los sprites
         self.sheetConf = []

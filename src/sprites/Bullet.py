@@ -12,10 +12,10 @@ class Bullet(MySprite):
     def __init__(self, characterPos, rotation, radius, frameImage):
         # Llamamos a la superclase
         MySprite.__init__(self)
-
         # Rotamos la imagen
         self.image = pygame.transform.rotate(frameImage, rotation)
-        width, height = self.image.get_size()
+        width = frameImage.get_rect().width
+        height = frameImage.get_rect().height
 
         # Obtenemos la posición
         x, y = Attack.calc_rot_pos(rotation, radius, width, height, characterPos)
