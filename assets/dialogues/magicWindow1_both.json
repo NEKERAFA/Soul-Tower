@@ -1,0 +1,128 @@
+[
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            },
+            "right": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Quizás... tengas razón en algo."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["¿Eh?"]
+        ]
+    },
+    {
+        "info": {
+                "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Eso... ha sido raro."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila3.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["En fin..."],
+            ["Creo que, sólo quizás... ese hombre pueda estar", "diciendo la verdad. Pero no podemos saberlo", "con seguridad."]
+        ]
+    },
+    {
+        "info": {
+                "left": {
+                "image": "daric4.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Yo estaba pensando que podía estar mintiendo,", "pero tampoco podemos saberlo."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Creo que una investigación, y un juicio, sería", "lo más justo en este caso."]
+        ]
+    },
+    {
+        "info": {
+                "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Por extraño que parezca, estoy de acuerdo contigo."]
+        ]
+    },
+    {
+        "info": {
+                "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["¿Crees que esto pasará más veces?"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Dudo bastante que lleguemos a entendernos, Daric.", "Las coincidencias existen. Dejémoslo en que", "esto ha sido una de ellas."]
+        ]
+    },
+    {
+        "info": {
+                "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Supongo que tienes razón."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["...", "Deja de darme la razón. Es raro. E incómodo."]
+        ]
+    }
+]

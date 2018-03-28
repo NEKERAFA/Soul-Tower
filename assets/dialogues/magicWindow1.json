@@ -1,0 +1,198 @@
+[
+    {
+        "info": {
+                "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["¿Un espejo?", "Qué desagradable..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["No. Este cristal emana poder mágico."],
+            ["¿Hm? El reflejo está cambiando..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Parece... el pueblo más cercano a palacio..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Silencio."],
+            ["¿No lo oyes?", "El cristal nos transmite las voces de la gente", "en la imagen."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "villager2.png",
+                "name": "Hombre"
+            },
+            "background": "village2.png"
+        },
+        "text": [
+            ["¡Dejadme ir!", "¡Ya os he dicho que no he hecho nada!"]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "soldier.png",
+                "name": "Soldado"
+            },
+            "background": "village2.png"
+        },
+        "text": [
+            ["Nada bueno, querrás decir.", "Se te acusa de robar al Señor de estas tierras."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "villager2.png",
+                "name": "Hombre"
+            },
+            "background": "village2.png"
+        },
+        "text": [
+            ["¡Por favor! ¡Soy inocente!"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Ah, conozco a ese hombre. No es la primera", "vez que lo cogen por robo."],
+            ["Seguramente tampoco será la última."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Estoy seguro de que si lo hizo fue por", "necesidad. Los nobles exprimís hasta la", "última gota de sangre del pueblo."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila4.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["¿Necesidad? No me hagas reír."],
+            ["Como miembro de la familia real sé", "perfectamente que se ponen todos los medios", "necesarios para que los plebleyos subsistan."],
+            ["Si no tienen para vivir, es porque son", "demasiado perezosos para trabajar", "lo suficiente."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["..."],
+            ["Realmente no tienes ni idea de lo que sufren", "tus súbditos."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Realmente no tienes ni idea de lo que te mienten", "tus aliados."]
+        ]
+    },
+    {
+        "text": [
+            ["«Forasteros»"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["¿Qué ha sido eso?"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Probablemente una criatura mística,", "moradora y guardiana de esta Torre."]
+        ]
+    },
+    {
+        "text": [
+            ["«Observad la escena ante vosotros»"],
+            ["«Decidid cómo resolveríais esta situación»"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Decidir, ¿eh...?"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila3.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["..."]
+        ]
+    }
+]

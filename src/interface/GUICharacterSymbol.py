@@ -3,6 +3,7 @@
 import pygame
 from src.ResourceManager import *
 from src.interface.GUIElement import *
+from src.sprites.characters.player.changing.Fadein import *
 
 SORCERESS_SYMBOL_SPRITE = 'interface/player/sorceress_symbol_placeholder.png'
 WARRIOR_SYMBOL_SPRITE = 'interface/player/warrior_symbol_placeholder.png'
@@ -33,24 +34,23 @@ class GUICharacterSymbol(GUIElement):
         # Se coloca el rectangulo en su posicion
         self.set_position(position)
 
+        self.originalWidth = self.rect.width
+
         # Porcentaje de tamaño de la imagen; 1 -> la imagen se dibuja a tamaño normal
         self.percent = 1.
         # Velocidad de escalado de la imagen: 100% de la imagen/1000ms = 100% en 1s
-        self.speed = 1./100.
+        self.speed = self.originalWidth/MAX_TIME
 
-        self.originalWidth = self.rect.width
 
     def update(self, time):
         if(self.switching):
             # Encoger imagen sobre su centro por el eje horizontal,
             #  para hacer un efecto de "moneda" girando
-            if(self.percent > 0.):
+            if(self.rect.width > 0.):
                 center = self.rect.center
-                self.percent = max(0., self.percent-time*self.speed)
-                self.rect.width = int(self.originalWidth*self.percent)
+                self.rect.width = int(max(0., self.rect.width-self.speed*time))
                 scale = (self.rect.width, self.rect.height)
                 self.drawnImage = pygame.transform.scale(self.activeImage, scale)
-
                 self.rect.center = center
             else:
                 # Intercambiar imágenes y pasar a la fase de expansión
@@ -59,13 +59,11 @@ class GUICharacterSymbol(GUIElement):
                 self.restoring = True
         elif(self.restoring):
             # Expandir siguiente imagen para completar el efecto de la moneda
-            if(self.percent < 1.):
+            if(self.rect.width < self.originalWidth):
                 center = self.rect.center
-                self.percent = min(1., self.percent+time*self.speed)
-                self.rect.width = int(self.originalWidth*self.percent)
+                self.rect.width = int(min(self.originalWidth, self.rect.width+self.speed*time))
                 scale = (self.rect.width, self.rect.height)
                 self.drawnImage = pygame.transform.scale(self.activeImage, scale)
-
                 self.rect.center = center
             else:
                 self.restoring = False
@@ -77,7 +75,7 @@ class GUICharacterSymbol(GUIElement):
 
     def action(self):
         # Dar comienzo al intercambio de imágenes
-        if(not self.switching):
+        if(not self.switching and not self.restoring):
             self.switching = True
 
     def switch_image(self):

@@ -9,8 +9,9 @@ from src.interface.GUIImage import *
 # Clase GUIHealth
 
 class GUIHealth(GUIElement):
-    def __init__(self, guiScreen, name, position, scale, lifeCounter, colorkey=-1):
+    def __init__(self, guiScreen, name, position, scale, colorkey=-1):
 
+        # String de la imagen del corazón
         self.name = name
         self.scale = scale
         self.colorkey = colorkey
@@ -27,7 +28,10 @@ class GUIHealth(GUIElement):
         # Se coloca el rectangulo en su posicion
         self.set_position(position)
 
-        for i in range(0, lifeCounter):
+        self.maxLifeCounter = self.guiScreen.player.stats["max_hp"]
+        self.lifeCounter = self.guiScreen.player.stats["hp"]
+
+        for i in range(0, self.lifeCounter):
             self.gain_life()
 
     def update(self, time):
@@ -51,7 +55,7 @@ class GUIHealth(GUIElement):
         heart = GUIImage(self.guiScreen, self.name, self.heartPos, self.scale, self.colorkey)
         self.heartArray.append(heart)
         # Actualizar posiciones del resto de corazones
-        self.heartPos = (self.heartPos[0] + heart.image.get_rect().right, self.heartPos[1])
+        self.heartPos = (self.heartPos[0] + heart.image.get_rect().right+2, self.heartPos[1])
 
     def lose_life(self):
         # Eliminar último elemento del array

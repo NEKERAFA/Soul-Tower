@@ -7,6 +7,8 @@ from src.interface.screens.GUITutorialScreen import *
 # -------------------------------------------------
 # Clase InitialState
 
+#TODO: mover cosas de guiWindow al Stage general
+
 class InitialStage(Stage):
     def __init__(self, gameManager):
         # Primero invocamos al constructor de la clase padre

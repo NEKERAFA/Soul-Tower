@@ -7,56 +7,48 @@ from src.scenes.Scene import *
 from src.interface.screens.GUIScreen import *
 from src.interface.GUIHealth import *
 from src.interface.GUIChargeBar import *
-from src.interface.GUIDialog import *
 from src.interface.GUIButton import *
-from src.interface.GUIText import *
 from src.interface.GUICharacterSymbol import *
+from src.interface.GUIText import *
+from src.scenes.stage.InRoomState import *
 
 # -------------------------------------------------
 # Clase GUIPlayerScreen
 # Interfaz durante el gameplay
 
 # Localización de los sprites
-HEART_SPRITE_LOCATION = 'interface/player/heart_placeholder.png'
+HEART_SPRITE_LOCATION = 'interface/player/gui_heart.png'
 STAMINA_BAR_SPRITE_LOCATION = 'interface/player/stamina_placeholder.png'
+SOULS_SPRITE_LOCATION = 'interface/player/gui_soul.png'
 
+DEFAULT_FONT = 'PixelOperatorHB.ttf'
+DEFAULT_FONT_SIZE = 12
 
 class GUIPlayerScreen(GUIScreen):
-    def __init__(self):
-        GUIScreen.__init__(self)
-        #TODO: posiciones y escalas relativas a la pantalla
-        #TODO: bucle for para cada corazón/barra de estamina
-        self.health = GUIHealth(self, HEART_SPRITE_LOCATION, (20,20), (20,20), 3)
-        self.stamina = GUIChargeBar(self, STAMINA_BAR_SPRITE_LOCATION, (20,40), (30,10))
-        self.charSymb = GUICharacterSymbol(self, (20, 230), (30, 30))
+    def __init__(self, stage):
+        GUIScreen.__init__(self, stage)
 
-        #button = GUIButton(self, "interface/player/button_up_placeholder.png", "interface/player/button_down_placeholder.png", (0,0), (40,40))
-        #text = GUIText(self, (200, 20), pygame.font.SysFont('dejavusans', 14))
-        # TODO dialogBox = GUIDialog(self, "interface/game/dialog_placeholder.png", (20,295), (360, 100), pygame.font.SysFont('dejavusans', 14), "this is a text string", 0.04)
-        # TODO recolocar diálogo
-        #text.change_text('test')
-        #text.change_color((255, 0, 0))
-        #text.change_font(pygame.font.SysFont('dejavusans', 30))
+        self.player = self.stage.player
+
+        self.font = ResourceManager.load_font(DEFAULT_FONT, DEFAULT_FONT_SIZE)
+
+        #TODO: posiciones y escalas relativas a la pantalla
+        self.health = GUIHealth(self, HEART_SPRITE_LOCATION, (55,30), -1)
+        self.stamina = GUIChargeBar(self, STAMINA_BAR_SPRITE_LOCATION, (55,40), (30,10))
+        self.charSymb = GUICharacterSymbol(self, (20, 40), (30, 30))
+        self.soulsText = GUIText(self, (350, 20), self.font, str(self.player.souls), 'left', (255, 255, 255))
+        self.soulsSymb = GUIImage(self, SOULS_SPRITE_LOCATION, (360, 30), (30, 30))
 
         # Añadir al array de GUIElements para poder dibujar y actualizar
         self.GUIElements.append(self.health)
         self.GUIElements.append(self.stamina)
         self.GUIElements.append(self.charSymb)
+        self.GUIElements.append(self.soulsText)
+        self.GUIElements.append(self.soulsSymb)
 
     def events(self, event_list):
         for event in event_list:
-            if event.type == MOUSEBUTTONDOWN:
-                self.elementClick = None
-                for element in self.GUIElements:
-                    if element.__class__.__name__ == 'GUIButton' and element.position_is_in_element((event.pos[0]/SCALE_FACTOR, event.pos[1]/SCALE_FACTOR)):
-                        self.elementClick = element
-                        element.action()
-            if event.type == MOUSEBUTTONUP:
-                for element in self.GUIElements:
-                    if element.__class__.__name__ == 'GUIButton' and element.position_is_in_element((event.pos[0]/SCALE_FACTOR, event.pos[1]/SCALE_FACTOR)):
-                        if (element == self.elementClick):
-                            element.action()
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_e:
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_e and self.stage.guiWindow is None and self.stage.state.__class__.__name__ == 'InRoomState' :
                 for element in self.GUIElements:
                     if element.__class__.__name__ == 'GUICharacterSymbol':
                         self.elementClick = element

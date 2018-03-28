@@ -10,11 +10,13 @@ from src.scenes.Scene import *
 # La clase GUIScreen no hereda de Screen, ya que no tiene imagen propia a dibujar
 
 class GUIScreen(object):
-    def __init__(self):
+    def __init__(self, stage):
         # Se tiene una lista de elementos GUI
         self.GUIElements = []
         # Se tiene una lista de animaciones
         #self.animations = []
+
+        self.stage = stage
 
     # TODO añadir a UML
     def add_element(self, element):

@@ -20,12 +20,7 @@ class GUIText(GUIElement):
         # Se llama al método de la clase padre con el rectángulo del texto
         GUIElement.__init__(self, guiScreen, self.textSurface.get_rect())
         # Se coloca el rectangulo en su posicion
-        if(self.alignment=='left'):
-            self.rect.bottomleft = position
-        elif(self.alignment=='center'):
-            self.rect.midbottom = position
-        elif(self.alignment=='right'):
-            self.rect.bottomright = position
+        self.set_position(position)
 
     def update(self, time):
         return
@@ -36,6 +31,15 @@ class GUIText(GUIElement):
     def action(self):
         #No hace nada (es un texto)
         return
+
+
+    def set_position(self, position):
+        if(self.alignment=='left'):
+            self.rect.bottomleft = position
+        elif(self.alignment=='center'):
+            self.rect.midbottom = position
+        elif(self.alignment=='right'):
+            self.rect.bottomright = position
 
     def change_font(self, font):
         # Cambiar fuente del texto

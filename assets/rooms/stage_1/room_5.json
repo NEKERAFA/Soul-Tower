@@ -10,5 +10,12 @@
             "to": 4,
             "direction": "left"
         }
-    ]
+    ],
+    "magicWindow": {
+        "position": [2820, 1776],
+        "initialDialog": "magicWindow1.json",
+        "selectionFile": "test.json",
+        "endDialog": "magicWindow1_leraila.json",
+        "collision": [2832, 1728, 72, 72]
+    }
 }

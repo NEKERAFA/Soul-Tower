@@ -8,7 +8,7 @@ from src.interface.GUIElement import *
 # Clase GUIButton
 
 class GUIButton(GUIElement):
-    def __init__(self, guiScreen, upName, downName, position, scale, colorkey=-1):
+    def __init__(self, guiScreen, upName, downName, position, scale, onClickFunction, colorkey=-1):
 
         # Cargar las imágenes de botón sin pulsar y pulsado
         self.upImage = ResourceManager.load_image(upName, colorkey)
@@ -23,6 +23,9 @@ class GUIButton(GUIElement):
         self.activeImage = self.upImage
         self.inactiveImage = self.downImage
 
+        # Función del botón
+        self.onClickFunction = onClickFunction
+
         # Se llama al método de la clase padre con el rectángulo que ocupa el botón
         GUIElement.__init__(self, guiScreen, self.activeImage.get_rect())
         # Se coloca el rectangulo en su posicion
@@ -34,12 +37,15 @@ class GUIButton(GUIElement):
     def draw(self, screen):
         screen.blit(self.activeImage, self.rect)
 
-    def action(self):
+    def swap(self):
         # Intercambiar imágenes
         temp = self.inactiveImage
         self.inactiveImage = self.activeImage
         self.activeImage = temp
 
+    def action(self):
+        # Intercambiar imágenes
+        self.swap()
         # Si se ha pulsado y soltado el botón, activeImage será upImage, y se realiza la acción asociada
         if(self.activeImage == self.upImage):
             self.associated_action()
@@ -47,4 +53,4 @@ class GUIButton(GUIElement):
     #TODO funciones lambda por aquí para tener acciones diferentes por botón
     def associated_action(self):
         # Acción asociada a cada botón
-        print("One action to rule them all")
+        self.onClickFunction()
