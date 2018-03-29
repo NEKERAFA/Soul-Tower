@@ -18,7 +18,7 @@ class Explosion(Attack):
         # Invocamos al constructor de la clase padre
         Attack.__init__(self, imageFile, spriteSheet, enemies)
         self.image = pygame.transform.scale(self.origImage, (int(self.rect.width*2), int(self.rect.height*2)))
-        print(self.rect.height, self.rect.width)
+        # print(self.rect.height, self.rect.width)
         self.rect.topleft = x-self.rect.height,y-self.rect.width
         # self.rect.bottomleft = x-self.rect.height/2,y-self.rect.width-16
         # self.shrink = 5

@@ -30,6 +30,9 @@ class MeleeAttack(Attack):
         # Nivel de mejora
         self.level = 3
         self.probability = 1#0.45
+        # Diccionario de ataque-enemigos
+        # (para el mismo ataque no hacer daño más de una vez al mismo enemigo)
+        self.attackDict = {-1:-1}
 
     def draw(self, surface):
         Attack.draw(self, surface)
@@ -76,6 +79,7 @@ class MeleeAttack(Attack):
 
             # Colisiones
             for enemy in self.enemies:
+                # print(self.id)
                 (atkX, atkY) = self.position
                 (enemyX, enemyY) = enemy.position
                 # atkY -= self.image.get_height()
@@ -85,13 +89,20 @@ class MeleeAttack(Attack):
                 collision = self.mask.overlap(enemy.mask, offset)
                 if collision is not None:
                     # print('Hit')
-                    enemyPos = enemy.rect.center
-                    enemy.drop.change_global_position(enemy.position)
-                    stage.rooms[stage.currentRoom].drops.add(enemy.drop)
-                    if (enemy.hp==1 and self.level>2):
-                        explosion = Explosion(enemyPos, self.enemies)
-                        self.explosions.add(explosion)
-                    enemy.receive_damage(1, self.rotation)
+                    # Comprobamos si aun no hemos dañado al enemigo
+                    value = self.attackDict.get(id(enemy))
+                    if (value is None or value!=self.id):
+                        self.attackDict[id(enemy)] = self.id
+                        enemyPos = enemy.rect.center
+                        enemy.drop.change_global_position(enemy.position)
+                        stage.rooms[stage.currentRoom].drops.add(enemy.drop)
+                        if (enemy.hp==1 and self.level>2):
+                            explosion = Explosion(enemyPos, self.enemies)
+                            self.explosions.add(explosion)
+                            # TODO: cambiar para que lo haga cuando muere
+                            del self.attackDict[id(enemy)]
+                        print("damaging enemy ", id(enemy))
+                        enemy.receive_damage(1, self.rotation)
                     
 
         self.thunders.update(time, stage)

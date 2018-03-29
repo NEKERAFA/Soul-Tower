@@ -85,6 +85,9 @@ class Attack(MySprite):
 
         self.enemies = enemies
 
+        # Para llevar cuenta del nº de ataque
+        self.id = 0
+
     def update_animation(self, time):
         if self.loopAnimation or self.drawAnimation:
             # Actualizamos el retardo
@@ -101,6 +104,7 @@ class Attack(MySprite):
                 if self.animationFrame >= len(self.sheetConf):
                     self.animationFrame = 0
                     self.drawAnimation = False
+                    self.id += 1
 
                 # Actualiamos la imagen con el frame correspondiente
                 self.origImage = self.sheet.subsurface(self.sheetConf[self.animationFrame]['coords'])
