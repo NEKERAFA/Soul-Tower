@@ -13,8 +13,10 @@ class StageState(object):
             if enemy.killed:
                 enemy.set_drop(currentRoom.collectables)
                 killedEnemies.append(enemy)
-        currentRoom.enemies.remove(killedEnemies) # Quito los enemigos muertos
 
+        for enemy in killedEnemies:
+            enemy.kill() # Quito los enemigos muertos
+            
         # Se recorre la lista de recolectables colisionados
         collectables = pygame.sprite.spritecollide(stage.player, currentRoom.collectables, False)
         for collectable in collectables:

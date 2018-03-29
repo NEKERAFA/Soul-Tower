@@ -31,7 +31,8 @@ class RangedAttack(Attack):
         self.bullets = pygame.sprite.Group()
         # Nivel de mejora
         self.level = 3
-        self.probability = 0.3
+        self.probLvl2 = 0.7
+        self.probLvl3 = 0.2
 
     def start_attack(self, characterPos, rotation):
         self.characterPos = characterPos
@@ -54,7 +55,7 @@ class RangedAttack(Attack):
             bullet = Bullet(self.characterPos, self.rotation, self.radius, self.image)
             self.bullets.add(bullet)
             # Si tenemos nivel suficiente, se pueden lanzar dos extra
-            if (self.level>1 and random.random()<=self.probability):
+            if (self.level>2 and random.random()<=self.probLvl3):
                 rot2 = normalize(self.rotation + 15, -180, 180)
                 rot3 = normalize(self.rotation - 15, -180, 180)
                 bullet2 = Bullet(self.characterPos, rot2, self.radius, self.image)
@@ -81,7 +82,7 @@ class RangedAttack(Attack):
             enemyPos = enemy.position
             impulse = Force(bullet.rotation, player.stats["backward"])
             enemy.receive_damage('magic', player.stats["atk"], impulse)
-            if (self.level>2 and enemy.justDied):
+            if (self.level>1 and enemy.justDied and random.random()<=self.probLvl2):
                 # enemy.kill()
                 angle = random.uniform(-180,180)
                 bulletExtra = Bullet(enemyPos, angle, self.radius, self.image)
