@@ -6,7 +6,7 @@ from src.ResourceManager import *
 from src.scenes.Scene import *
 from src.interface.screens.GUIScreen import *
 from src.interface.GUIHealth import *
-from src.interface.GUIChargeBar import *
+from src.interface.GUIStamina import *
 from src.interface.GUIButton import *
 from src.interface.GUICharacterSymbol import *
 from src.interface.GUIText import *
@@ -30,13 +30,13 @@ class GUIPlayerScreen(GUIScreen):
 
         self.player = self.stage.player
 
-        self.font = ResourceManager.load_font(DEFAULT_FONT, DEFAULT_FONT_SIZE)
+        font = ResourceManager.load_font(DEFAULT_FONT, DEFAULT_FONT_SIZE)
 
         #TODO: posiciones y escalas relativas a la pantalla
         self.health = GUIHealth(self, HEART_SPRITE_LOCATION, (55,30), -1)
-        self.stamina = GUIChargeBar(self, STAMINA_BAR_SPRITE_LOCATION, (55,40), (30,10))
+        self.stamina = GUIStamina(self, STAMINA_BAR_SPRITE_LOCATION, (55,40), (30,10))
         self.charSymb = GUICharacterSymbol(self, (20, 40), (30, 30))
-        self.soulsText = GUIText(self, (350, 20), self.font, str(self.player.souls), 'left', (255, 255, 255))
+        self.soulsText = GUIText(self, (350, 20), font, str(self.player.souls), 'left', (255, 255, 255))
         self.soulsSymb = GUIImage(self, SOULS_SPRITE_LOCATION, (360, 30), (30, 30))
 
         # Añadir al array de GUIElements para poder dibujar y actualizar
@@ -49,7 +49,10 @@ class GUIPlayerScreen(GUIScreen):
     def events(self, event_list):
         for event in event_list:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_e and self.stage.guiWindow is None and self.stage.state.__class__.__name__ == 'InRoomState' :
-                for element in self.GUIElements:
-                    if element.__class__.__name__ == 'GUICharacterSymbol':
-                        self.elementClick = element
-                        element.action()
+                self.charSymb.action()
+                #for element in self.GUIElements:
+                #    if element.__class__.__name__ == 'GUICharacterSymbol':
+                #        self.elementClick = element
+                #        element.action()
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+                self.stamina.lose_stamina(2.4)

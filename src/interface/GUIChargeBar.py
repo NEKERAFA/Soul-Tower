@@ -8,23 +8,22 @@ from src.interface.GUIImage import *
 # Clase GUIChargeBar
 
 class GUIChargeBar(GUIImage):
-    def __init__(self, guiScreen, name, position, scale):
-        self.colorkey = None
+    def __init__(self, guiScreen, name, position, scale, colorkey=-1):
         self.guiScreen = guiScreen
         # La imagen se carga sin transparencias
-        GUIImage.__init__(self, self.guiScreen, name, position, scale, self.colorkey)
+        GUIImage.__init__(self, self.guiScreen, name, position, scale, colorkey)
 
         # Porcentaje de rellenado de la barra; 1 -> la barra se dibuja por completo
         self.percent = 1.
         # Velocidad de llenado de la barra: 100% de la barra/1000ms = 100% en 1s
-        self.speed = 1./1000.
+        self.speed = 0
 
+        self.recharge = False
 
 
     def update(self, time):
-
         # Recargar barra
-        if(self.percent < 1.):
+        if(self.percent < 1. and self.recharge):
             self.percent = min(1., self.percent+time*self.speed)
 
         #self.percent = self.guiScreen.player.stats["nrg"] / self.guiScreen.player.stats["max_nrg"]
