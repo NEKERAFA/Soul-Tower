@@ -7,15 +7,19 @@ from src.scenes.Scene import *
 class OnEnterState(StageState):
     def __init__(self):
         StageState.__init__(self)
-        self.finishAnimation = False
         self.alpha = 255
         self.black = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
 
     def update(self, time, stage):
         self.alpha = max(self.alpha - time*0.256, 0)
 
-        if self.alpha == 0 and not self.finishAnimation:
-            self.finishAnimation = True
+        if self.alpha == 0:
+            if stage.rooms[stage.currentRoom].small:
+                stage.set_state(stage.smallRoomState)
+            else:
+                stage.set_state(stage.inRoomState)
+            stage.state.update(time, stage)
+            return
 
         # Player
         currentRoom = stage.rooms[stage.currentRoom]

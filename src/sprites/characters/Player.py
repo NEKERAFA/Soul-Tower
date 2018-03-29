@@ -40,7 +40,7 @@ class Player(Character):
         self.state = Normal()
 
         # Se cargan los ataques
-        self.attack = RangedAttack(30, 300, enemies)
+        self.attack = RangedAttack(20, 300, enemies)
 
         # Número de almas
         self.souls = 0
@@ -81,7 +81,7 @@ class Player(Character):
         if KeyboardMouseControl.prim_button():
             # Si es sorcerer, el ataque actual es ataque a distancia
             if self.currentCharacter == 'sorcerer' and type(self.attack) is not RangedAttack:
-                self.attack = RangedAttack(30, 300, self.attack.enemies)
+                self.attack = RangedAttack(20, 300, self.attack.enemies)
 
             # Si es warrior, el ataque actual es melee
             if self.currentCharacter == 'warrior' and type(self.attack) is not MeleeAttack:
@@ -118,18 +118,15 @@ class Player(Character):
     def draw(self, screen):
         # Esta función está para agrupar el mostrar al jugador y su ataque
         screen.blit(self.image, self.rect)
-
-        if hasattr(self.attack, 'draw'):
-            self.attack.draw(screen)
+        self.attack.draw(screen)
 
     ############################################################################
 
     # Incrementa el número de almas del jugador
     def increase_souls(self, souls):
         self.souls += souls
-        print(self.souls)
 
     # Recibe un daño y se realiza el daño. Si el personaje ha muerto, lo elimina
     # de todos los grupos
-    def receive_damage(self, damage, angle):
-        self.state.receive_damage(self, damage, angle)
+    def receive_damage(self, damage, force):
+        self.state.receive_damage(self, damage, force)

@@ -36,8 +36,5 @@ class Normal(PlayerState):
 		player.stats["nrg"] = min(player.stats["max_nrg"], player.stats["nrg"])
 		Character.update(player, time, mapRect, mapMask)
 
-	def receive_damage_aux(self, player, damage, angle):
-		Character.receive_damage(player, damage, angle)
-
 	def debug(self):
 		print("PlayerState = ", self.name)

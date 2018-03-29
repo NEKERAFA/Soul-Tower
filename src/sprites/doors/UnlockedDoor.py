@@ -3,12 +3,12 @@ from src.sprites.Door import *
 from src.sprites.Interactive import *
 
 class UnlockedDoor(Door, Interactive):
-    def __init__(self, position, imagePath, stageMask, collision, wait):
-        Door.__init__(self, position, imagePath, stageMask)
+    def __init__(self, position, imagePath, doorMask, stageMask, collision, attr=None):
+        Door.__init__(self, position, imagePath, doorMask, stageMask)
         Interactive.__init__(self, collision)
-        self.wait = wait
+        self.attr = attr
 
     def activate(self, stage):
-        if not self.wait or (self.wait): # TODO and stage.mirar_variable):
+        if self.attr is None or getattr(stage, self.attr):
             stage.mask.erase(self.mask, self.offset)
             self.kill()

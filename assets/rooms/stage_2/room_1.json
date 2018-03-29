@@ -1,0 +1,27 @@
+{
+    "position": [48, 720],
+    "width": 1008,
+    "height": 576,
+    "connections": [
+    ],
+    "unlockedDoors": [
+        {
+            "position": [336, 864],
+            "doorSprite": "cell2.png",
+            "doorMask": [428, 840, 32, 12],
+            "collision": [428, 852, 32, 24]
+        },
+        {
+            "position": [552, 864],
+            "doorSprite": "cell2.png",
+            "doorMask": [644, 840, 32, 12],
+            "collision": [644, 852, 32, 24]
+        },
+        {
+            "position": [768, 864],
+            "doorSprite": "cell2.png",
+            "doorMask": [860, 840, 32, 12],
+            "collision": [860, 852, 32, 24]
+        }
+    ]
+}

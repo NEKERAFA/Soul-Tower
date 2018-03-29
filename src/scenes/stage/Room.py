@@ -3,9 +3,9 @@
 import pygame, os, random
 from src.ResourceManager import *
 from src.sprites.characters.Enemy import *
+from src.sprites.characters.Boss import *
 from src.sprites.Trigger import *
-from src.sprites.drops.Life import *
-from src.sprites.drops.Soul import *
+from src.sprites.Drop import *
 from src.sprites.Door import *
 from src.sprites.doors.UnlockedDoor import *
 from src.sprites.MagicWindow import *
@@ -34,16 +34,9 @@ class Room(object):
         if "enemies" in data:
             for enemy in data["enemies"]:
                 # Load drop
-                drop = None
-                if "drop" in enemy:
-                    if enemy["drop"]["type"] == "life":
-                        drop = Life(enemy["drop"]["amount"])
-                    elif enemy["drop"]["type"] == "soul":
-                        drop = Soul(enemy["drop"]["amount"])
-
+                drop = Drop(enemy["drop"]["type"], enemy["drop"]["amount"])
                 # Load sprite
                 enemySprite = Enemy(enemy["type"], drop)
-
                 # Load position
                 posX = random.randint(self.position[0]+24, self.position[0]+self.width-48)
                 posY = random.randint(self.position[1]+24, self.position[1]+self.height-48)
@@ -56,11 +49,22 @@ class Room(object):
         self.enemies = pygame.sprite.Group(enemies)
         self.drops = pygame.sprite.Group()
 
+        # Si hay un boss en la sala, lo cargo
+        if "boss" in data:
+            boss = data["boss"]
+            drops = []
+            for drop in boss["drops"]:
+                drops.append(Drop(drop["type"], drop["amount"]))
+            bossSprite = Boss(boss["name"], drops)
+            bossSprite.change_global_position(boss["position"])
+            self.boss = bossSprite
+            self.enemies.add(bossSprite)
+
         # Cargamos la lista de puertas cerradas de la sala si existen
         self.lockedDoors = []
         if "lockedDoors" in data:
             for lockedDoor in data["lockedDoors"]:
-                door = Door(lockedDoor["position"], lockedDoor["doorSprite"], stage.mask)
+                door = Door(lockedDoor["position"], lockedDoor["doorSprite"], lockedDoor["doorMask"], stage.mask)
                 self.lockedDoors.append(door)
 
         self.lockedDoorsGroup = pygame.sprite.Group(self.lockedDoors)
@@ -74,10 +78,10 @@ class Room(object):
             unlockedDoors = []
             for unlockedDoor in data["unlockedDoors"]:
                 rect = pygame.Rect(unlockedDoor["collision"][0], unlockedDoor["collision"][1], unlockedDoor["collision"][2], unlockedDoor["collision"][3])
-                wait = False
-                if "wait" in unlockedDoor:
-                    wait = unlockedDoor["wait"]
-                door = UnlockedDoor(unlockedDoor["position"], unlockedDoor["doorSprite"], stage.mask, rect, wait)
+                attr = None
+                if "attr" in unlockedDoor:
+                    attr = unlockedDoor["attr"]
+                door = UnlockedDoor(unlockedDoor["position"], unlockedDoor["doorSprite"], unlockedDoor["doorMask"], stage.mask, rect, attr)
                 unlockedDoors.append(door)
             self.interactivesGroup.add(unlockedDoors)
             self.unlockedDoorsGroup.add(unlockedDoors)

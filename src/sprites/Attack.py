@@ -85,6 +85,9 @@ class Attack(MySprite):
 
         self.enemies = enemies
 
+        # Para llevar cuenta del nº de ataque
+        self.id = 0
+
     def update_animation(self, time):
         if self.loopAnimation or self.drawAnimation:
             # Actualizamos el retardo
@@ -101,6 +104,7 @@ class Attack(MySprite):
                 if self.animationFrame >= len(self.sheetConf):
                     self.animationFrame = 0
                     self.drawAnimation = False
+                    self.id += 1
 
                 # Actualiamos la imagen con el frame correspondiente
                 self.origImage = self.sheet.subsurface(self.sheetConf[self.animationFrame]['coords'])
@@ -115,18 +119,7 @@ class Attack(MySprite):
         # Actualizamos la imagen a mostrar
         self.update_animation(time)
 
-        # Colisiones
-        if self.drawAnimation:
-            for enemy in iter(self.enemies):
-                (atkX, atkY) = self.position
-                (enemyX, enemyY) = enemy.position
-                atkY -= self.image.get_height()
-                enemyY -= enemy.image.get_height()
-                offset = (int(enemyX - atkX), int(enemyY - atkY))
-                collision = self.mask.overlap(enemy.mask, offset)
-                if collision is not None:
-                    print('Hit')
-
     def draw(self, surface):
+        # Mostramos la animación si se debería de mostrar
         if self.drawAnimation:
             surface.blit(self.image, self.rect)

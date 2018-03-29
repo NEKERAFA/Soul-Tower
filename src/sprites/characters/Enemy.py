@@ -3,9 +3,9 @@
 import pygame, math, os
 from src.sprites.Character import *
 from src.sprites.EnemyRange import *
+from src.sprites.Force import *
 from src.sprites.characters.NPC import *
-from src.sprites.behaviours.WanderingState import *
-from src.sprites.behaviours.PatrollState import *
+from src.sprites.characters.behaviours.BehaviourConstructor import *
 from src.ResourceManager import *
 
 ENEMY_PATH = 'enemies'
@@ -16,21 +16,26 @@ class Enemy(NPC):
 
         NPC.__init__(self, path + '.png', path + '.json')
         self.drop = drop
-
-        if self.behaviour is not None:
-            if self.behaviour["type"] == "wandering":
-                self.state = WanderingState()
-            if self.behaviour["type"] == "patrolling":
-                self.state = PatrollState(self.rect.center, self.behaviour["radius"], math.radians(self.behaviour["angle"]), STILL)
+        self.state = BehaviourConstructor.get_behaviour(self.behaviour["type"], self)
 
     def move_ai(self, player):
         self.state.move_ai(self, player)
 
         # Comprobamos que el enemigo no esté golpeando al jugador
         if pygame.sprite.collide_rect(player, self):
-            # print "Haciendo daño al jugador"
             angle = math.radians(360-EnemyRange.get_angle(self.movement))
-            player.receive_damage(self.stats["atk"], angle)
+            impulse = Force(angle, self.stats["backward"])
+            player.receive_damage(self.stats["atk"], impulse)
+
+    def receive_damage(self, attack, damage, force):
+        self.state.receive_damage(self, attack, damage, force)
 
     def update(self, time, mapRect, mapMask):
         self.state.update(self, time, mapRect, mapMask)
+
+    def set_drop(self, dropGroup):
+        self.drop.change_position(self.rect.midbottom)
+        dropGroup.add(self.drop)
+
+    def change_behaviour(self, behaviour):
+        self.state = behaviour

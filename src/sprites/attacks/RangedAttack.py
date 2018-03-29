@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 
-import pygame, sys, os, math
+import pygame, sys, os, math, random
 from src.sprites.Attack import *
 from src.sprites.Bullet import *
+from src.sprites.Force import *
+from Normalize import *
 
 # -------------------------------------------------
 # Sprites de ataques
@@ -27,6 +29,9 @@ class RangedAttack(Attack):
         self.attacking = False
         # Grupo de disparos
         self.bullets = pygame.sprite.Group()
+        # Nivel de mejora
+        self.level = 3
+        self.probability = 0.3
 
     def start_attack(self, characterPos, rotation):
         self.characterPos = characterPos
@@ -39,7 +44,7 @@ class RangedAttack(Attack):
     def draw(self, surface):
         self.bullets.draw(surface)
 
-    def update(self, time, stage):
+    def update(self, player, time, stage):
         # Actualizamos el ataque
         Attack.update(self, time)
 
@@ -48,22 +53,35 @@ class RangedAttack(Attack):
             # Se crea una bala y se guarda en el grupo de balas
             bullet = Bullet(self.characterPos, self.rotation, self.radius, self.image)
             self.bullets.add(bullet)
+            # Si tenemos nivel suficiente, se pueden lanzar dos extra
+            if (self.level>1 and random.random()<=self.probability):
+                rot2 = normalize(self.rotation + 15, -180, 180)
+                rot3 = normalize(self.rotation - 15, -180, 180)
+                bullet2 = Bullet(self.characterPos, rot2, self.radius, self.image)
+                bullet3 = Bullet(self.characterPos, rot3, self.radius, self.image)
+                self.bullets.add(bullet2)
+                self.bullets.add(bullet3)
+
             # Y reiniciar el contador
             self.elapsedTime = 0
         else:
             self.elapsedTime += time
 
         # Actualizamos las balas
-        self.bullets.update(time, stage.mask, self.image)
+        self.bullets.update(time, stage, self.image)
 
         # Comprobamos que enemigos colisionan con que grupos
-        for bullet in iter(self.bullets):
-            enemyCollide = pygame.sprite.spritecollideany(bullet, self.enemies)
+        collides = pygame.sprite.groupcollide(self.bullets, self.enemies, True, False)
 
-            # Si hay una colisión, hacemos daño al jugador y matamos la bala
-            if enemyCollide is not None:
-                position = enemyCollide.rect.midbottom
-                enemyCollide.drop.change_position(position)
-                stage.rooms[stage.currentRoom].drops.add(enemyCollide.drop)
-                enemyCollide.receive_damage(1, bullet.rotation)
-                bullet.kill()
+        # Si hay una colisión, hacemos daño al enemigo y matamos la bala
+        for bullet in collides:
+            enemies = collides[bullet]
+            # Cogemos el primero en hacer la colisión para que reciba daño
+            enemy = enemies[0]
+            enemyPos = enemy.position
+            impulse = Force(bullet.rotation, player.stats["backward"])
+            enemy.receive_damage('magic', player.stats["atk"], impulse)
+            if (self.level>2):
+                angle = random.uniform(-180,180)
+                bulletExtra = Bullet(enemyPos, angle, self.radius, self.image)
+                self.bullets.add(bulletExtra)

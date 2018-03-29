@@ -13,94 +13,32 @@
         }
     ],
 
-    "enemies": [
-        {
-            "type": "slime",
-            "drop": {
+    "boss": {
+        "name": "raven",
+        "position": [360, 240],
+        "drops": [
+            {
+                "type": "heart",
+                "amount": 1
+            },
+            {
+                "type": "heart",
+                "amount": 1
+            },
+            {
+                "type": "soul",
+                "amount": 10
+            },
+            {
+                "type": "soul",
+                "amount": 10
+            },
+            {
                 "type": "soul",
                 "amount": 10
             }
-        },
-        {
-            "type": "slime",
-            "drop": {
-                "type": "life",
-                "amount": 10
-            }
-        },
-        {
-            "type": "slime",
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "slime",
-            "drop": {
-                "type": "life",
-                "amount": 10
-            }
-        },
-        {
-            "type": "slime",
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "slime",
-            "drop": {
-                "type": "life",
-                "amount": 10
-            }
-        },
-        {
-            "type": "slime",
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "slime",
-            "drop": {
-                "type": "life",
-                "amount": 10
-            }
-        },
-        {
-            "type": "slime",
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "slime",
-            "drop": {
-                "type": "life",
-                "amount": 10
-            }
-        },
-        {
-            "type": "slime",
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "slime",
-            "drop": {
-                "type": "life",
-                "amount": 10
-            }
-        }
-    ],
-
-    "triggers": [],
+        ]
+    },
 
     "unlockedDoors": [
         {
@@ -111,8 +49,10 @@
     ],
 
     "magicWindow": {
-        "position": [221, 98],
-        "dialogFiles": [],
-        "selectionFile": null
+        "position": [120, 94],
+        "initialDialog": "test.json",
+        "selectionFile": null,
+        "endDialog": "test.json",
+        "collision": [120, 94, 58, 24]
     }
 }

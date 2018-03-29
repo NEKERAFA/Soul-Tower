@@ -26,15 +26,16 @@ class Defending(PlayerState):
         speedX, speedY = player.speed
         player.speed = (speedX*0.3,speedY*0.3)
         MySprite.update(player, time)
-        Character.fix_collision(player, mapRect, mapMask)
+        Character.fix_collision(player, mapMask)
 
-    def receive_damage_aux(self, player, damage, angle):
+    def receive_damage_aux(self, player, damage, force):
         # TODO: si no tiene suficiente energía, entrar en estado de "stun"
         player.stats["nrg"] -= self.defendCost
         if (player.stats["nrg"]<0):
             print("Energía insuficiente. Jugador aturdido")
             player.stats["nrg"] = 0
             self.change(player, Stunned)
+            player.state.receive_damage(player, damage, force)
         else:
             print("Daño defendido")
 

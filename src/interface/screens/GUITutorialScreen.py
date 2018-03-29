@@ -73,7 +73,7 @@ class GUITutorialScreen(GUIScreen):
                             # Si se han pulsado las teclas de movimiento se elimina el texto y se añaden los siguientes elementos
                             if(self.tutorialKeyCounter == 4):
                                 self.remove_element(self.movementText)
-                                self.stage.setState(OnDialogueState(self.dialogues[self.dialogueIndex], self.stage))
+                                self.stage.set_state(OnDialogueState(self.dialogues[self.dialogueIndex], self.stage))
                                 self.dialogueIndex += 1
                                 self.onDialogue = True
                             elif(self.tutorialKeyCounter == 5):
