@@ -7,13 +7,15 @@ from src.sprites.MySprite import *
 from src.sprites.EnemyRange import *
 
 # ------------------------------------------------------------------------------
-# Clase RavenFlyAroundStageState
+# Clase RavenLandState
 
 class RavenLandState(RavenBehaviourState):
     def __init__(self, position, previousState):
+        RavenBehaviourState.__init__(self)
         self.position = position
         self.distance = 0
-        self.time = 0
+        self.elapseTime = 0
+        self.delayTime = random.randint(2, 5)*1000
         self.land = False
         self.previousState = previousState
 
@@ -48,11 +50,14 @@ class RavenLandState(RavenBehaviourState):
 
         if self.land:
             # Si el cuervo ha aterrizado
-            self.time += time
-            # Si ha pasado 4s posado
-            if self.time > 4000:
+            self.elapseTime += time
+            # Si ha pasado ya los segundos posado
+            if self.elapseTime > self.delayTime:
                 enemy.change_behaviour(self.previousState)
-
         elif self.distance < enemy.rect.width/2:
             # El cuervo sigue volando pero está en la zona de posarse
             self.land = True
+
+    def receive_damage(self, enemy, attack, damage, force):
+        if self.land or attack == 'magic':
+            Character.receive_damage(enemy, damage, force)

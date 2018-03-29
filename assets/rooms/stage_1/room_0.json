@@ -15,8 +15,8 @@
         {
             "position": [240, 2064],
             "doorSprite": "stoneDoor.png",
-            "collision": [264, 2064, 24, 24],
-            "wait": true
+            "doorMask": [260, 2040, 32, 12],
+            "collision": [264, 2064, 24, 24]
         }
     ],
     "magicWindow": {

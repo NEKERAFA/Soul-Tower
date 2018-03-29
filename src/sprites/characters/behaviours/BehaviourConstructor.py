@@ -3,7 +3,7 @@
 import pygame
 from src.sprites.characters.behaviours.PatrollState import *
 from src.sprites.characters.behaviours.WanderingState import *
-from src.sprites.characters.behaviours.raven.RavenFlyAroundStageState import *
+from src.sprites.characters.behaviours.raven.RavenStillState import *
 
 class BehaviourConstructor(object):
     @classmethod
@@ -12,7 +12,7 @@ class BehaviourConstructor(object):
             return WanderingState()
         elif behaviourName == 'patrolling':
             return PatrollState(enemy.rect.center, enemy.behaviour["radius"], math.radians(enemy.behaviour["angle"]), STILL)
-        elif behaviourName == 'ravenBehaviour':
-            return RavenFlyAroundStageState()
+        elif behaviourName == 'raven':
+            return RavenStillState()
         else:
             raise SystemExit, 'behaviour not permited'

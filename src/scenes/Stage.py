@@ -23,7 +23,6 @@ from src.interface.screens.GUIWindowDialogScreen import *
 SCREEN_CENTER_X = int(SCREEN_WIDTH/2)
 
 class Stage(Scene):
-
     inRoomState = InRoomState()
     smallRoomState = SmallRoomState()
 
@@ -83,7 +82,8 @@ class Stage(Scene):
         # Empezamos en estado de entrar en sala
         self.state = OnEnterState()
 
-        self.killBoss = False
+        # Variable que nos dice si el boss ha muerto
+        self.bossKilled = False
 
     def update(self, time):
         # Delegamos en el estado la actualización de la fase

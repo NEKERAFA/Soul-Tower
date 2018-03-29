@@ -4,34 +4,43 @@ from src.controls.KeyboardMouseControl import *
 from src.scenes.stage.StageState import *
 from src.scenes.stage.OnLeaveState import *
 from src.scenes.stage.OnDialogueState import *
+from src.sprites.characters.behaviours.raven.RavenFlyAroundStageState import *
 from src.sprites.characters.Enemy import *
 
 class OnBossRoomState(StageState):
     def __init__(self, stage):
-        # TODO poner para cerrar la puerta
-        pass
+        stage.rooms[stage.currentRoom].boss.set_initial_frame(4)
+        stage.rooms[stage.currentRoom].boss.animationLoop = False
 
     def update(self, time, stage):
         currentRoom = stage.rooms[stage.currentRoom]
 
-        # Movemos los enemigos
-        for enemy in iter(currentRoom.enemies):
-            enemy.move_ai(stage.player)
-
         # Actualizamos los sprites
         # Player
-        stage.player.update(time, stage)
-        # Enemigos
-        currentRoom.boss.update(time, currentRoom.rect, stage.mask)
+        if currentRoom.boss.animationLoop:
+            stage.player.update(time, stage)
+
+        # Boss
+        if not currentRoom.boss.killed:
+            # Actualizamos el movimiento solo si la animación está en loop
+            if currentRoom.boss.animationLoop:
+                currentRoom.boss.move_ai(stage.player)
+
+            # Actualiamos la animación
+            currentRoom.boss.update(time, currentRoom.rect, stage.mask)
+
+            # Compruebo si el enemigo ha termina la animación
+            if currentRoom.boss.animationFinish:
+                currentRoom.boss.animationLoop = True
+                currentRoom.boss.animationFinish = False
+                currentRoom.boss.set_initial_frame(0)
+                currentRoom.boss.change_behaviour(RavenFlyAroundStageState())
 
         # Compruebo si ha muerto el boss
-        if len(currentRoom.boss) == 1:
-            bossGroup = currentRoom.boss.sprites()
-            boss = bossGroup[0]
-            if boss.killed:
-                boss.kill()
-                boss.set_drop(currentRoom.drops)
-                stage.killBoss = True
+        if currentRoom.boss.killed and not stage.bossKilled:
+            currentRoom.boss.kill()
+            currentRoom.boss.set_drop(currentRoom.drops)
+            stage.bossKilled = True
 
         # Drops
         currentRoom.drops.update(time)

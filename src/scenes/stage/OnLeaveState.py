@@ -13,7 +13,7 @@ class OnLeaveState(StageState):
     def update(self, time, stage):
         self.alpha = min(self.alpha + time*0.128, 255)
 
-        if self.alpha == 255 and not self.finishAnimation:
+        if self.alpha == 255:
             stage.player.move(STILL)
             nextStage = Stage(stage.stageNum+1, stage.gameManager, stage.player)
             stage.gameManager.scene_change(nextStage)

@@ -13,7 +13,9 @@ from src.sprites.EnemyRange import *
 
 class RavenFlyAroundStageState(RavenBehaviourState):
     def __init__(self):
-        self.time = 0
+        RavenBehaviourState.__init__(self)
+        self.delayTime = random.randint(2, 5)*1000
+        self.elapseTime = 0
         self.angle = random.randint(0, 360)
 
     def move_ai(self, enemy, player):
@@ -22,7 +24,7 @@ class RavenFlyAroundStageState(RavenBehaviourState):
     def update(self, enemy, time, mapRect, mapMask):
         # Miramos si el enemigo se sale del area de vuelo
         if not mapRect.inflate(-96, -96).contains(enemy.rect):
-            self.angle = random.randint(0, 360)
+            self.angle = random.randint(0, 359)
 
         # Calculamos hacia donde tiene que moverse el personaje
         lookAt, move = EnemyRange.discretice_angle(self.angle)
@@ -33,11 +35,12 @@ class RavenFlyAroundStageState(RavenBehaviourState):
         MySprite.update(enemy, time)
 
         # Actualizamos el tiempo interno
-        self.time += time
+        self.elapseTime += time
 
-        # Si se pasa de 4s, cambio de estado
-        if self.time > 4000:
-            self.time = 0
+        # Si se pasan los segundos volando, cambio de estado
+        if self.elapseTime > self.delayTime:
+            self.delayTime = random.randint(2, 5)*1000
+            self.elapseTime = 0
             # Miramos a que estado saltar
             jump = random.randint(0, 1)
             if jump == 1:
@@ -52,3 +55,7 @@ class RavenFlyAroundStageState(RavenBehaviourState):
                 posY = random.randint(y+48, y+height-48)
                 # Cambio de estado
                 enemy.change_behaviour(RavenLandState((posX, posY), self))
+
+    def receive_damage(self, enemy, attack, damage, force):
+        if attack == 'magic':
+            Character.receive_damage(enemy, damage, force)

@@ -133,7 +133,7 @@ class Character(MySprite):
         self.movement = movement
 
     def update_animation(self, time):
-        if self.animationLoop:
+        if self.animationLoop or not self.animationFinish:
             # Actualizamos el retardo
             self.currentDelay -= time
             currentAnim = self.sheetConf[self.animationNum]

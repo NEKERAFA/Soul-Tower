@@ -28,7 +28,8 @@
     "lockedDoors": [
         {
             "doorSprite": "flowerDoor.png",
-            "position": [528, 1920]
+            "position": [528, 1920],
+            "doorMask": [528, 1860, 24, 36]
         }
     ],
     "triggers": [

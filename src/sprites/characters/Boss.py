@@ -7,8 +7,7 @@ from src.sprites.Drop import *
 
 class Boss(Enemy):
     def __init__(self, name, drops):
-        if name == 'raven':
-            self.behaviour = {"type": "ravenBehaviour"}
+        self.behaviour = {"type": name}
         Enemy.__init__(self, name, drops[0])
         self.drops = drops[1:]
 

@@ -71,14 +71,41 @@ class OnTransitionState(StageState):
             # Si hemos terminado de desplazar el mapa, volvemos al estado InRoomState y cambiamos la sala actual
             if self.scrollY <= 0:
                 dstRoom = self.connection["to"]
-                if len(stage.rooms[dstRoom].boss) == 1:
+                stage.currentRoom = dstRoom
+                if hasattr(stage.rooms[dstRoom], 'boss'):
                     stage.set_state(OnBossRoomState(stage))
                 else:
                     if stage.rooms[dstRoom].small:
                         stage.set_state(stage.smallRoomState)
                     else:
                         stage.set_state(stage.inRoomState)
-                stage.currentRoom = dstRoom
 
     def events(self, time, stage):
         pass
+
+    def draw(self, screen, stage):
+        currentRoom = stage.rooms[stage.currentRoom]
+        nextRoom = stage.rooms[self.connection["to"]]
+
+        # Muestro un color de fondo
+        screen.fill((0, 0, 0))
+        # Luego los Sprites sobre una copia del mapa de la sala
+        newImage = stage.image.copy()
+        # Puertas
+        currentRoom.lockedDoorsGroup.draw(newImage)
+        currentRoom.unlockedDoorsGroup.draw(newImage)
+        nextRoom.lockedDoorsGroup.draw(newImage)
+        nextRoom.unlockedDoorsGroup.draw(newImage)
+        # Ventana mágica
+        currentRoom.magicWindowGroup.draw(newImage)
+        nextRoom.magicWindowGroup.draw(newImage)
+        # Enemigos
+        currentRoom.enemies.draw(newImage)
+        nextRoom.enemies.draw(newImage)
+        # Drops
+        currentRoom.drops.draw(newImage)
+        nextRoom.drops.draw(newImage)
+        # Player
+        stage.player.draw(newImage)
+        # Se pinta la porción de la sala que coincide con el viewport
+        screen.blit(newImage, (0,0), stage.viewport)

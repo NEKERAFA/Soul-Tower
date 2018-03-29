@@ -50,7 +50,6 @@ class Room(object):
         self.drops = pygame.sprite.Group()
 
         # Si hay un boss en la sala, lo cargo
-        self.boss = pygame.sprite.Group()
         if "boss" in data:
             boss = data["boss"]
             drops = []
@@ -58,13 +57,14 @@ class Room(object):
                 drops.append(Drop(drop["type"], drop["amount"]))
             bossSprite = Boss(boss["name"], drops)
             bossSprite.change_global_position(boss["position"])
-            self.boss.add(bossSprite)
+            self.boss = bossSprite
+            self.enemies.add(bossSprite)
 
         # Cargamos la lista de puertas cerradas de la sala si existen
         self.lockedDoors = []
         if "lockedDoors" in data:
             for lockedDoor in data["lockedDoors"]:
-                door = Door(lockedDoor["position"], lockedDoor["doorSprite"], stage.mask)
+                door = Door(lockedDoor["position"], lockedDoor["doorSprite"], lockedDoor["doorMask"], stage.mask)
                 self.lockedDoors.append(door)
 
         self.lockedDoorsGroup = pygame.sprite.Group(self.lockedDoors)
@@ -78,10 +78,10 @@ class Room(object):
             unlockedDoors = []
             for unlockedDoor in data["unlockedDoors"]:
                 rect = pygame.Rect(unlockedDoor["collision"][0], unlockedDoor["collision"][1], unlockedDoor["collision"][2], unlockedDoor["collision"][3])
-                wait = False
-                if "wait" in unlockedDoor:
-                    wait = unlockedDoor["wait"]
-                door = UnlockedDoor(unlockedDoor["position"], unlockedDoor["doorSprite"], stage.mask, rect, wait)
+                attr = None
+                if "attr" in unlockedDoor:
+                    attr = unlockedDoor["attr"]
+                door = UnlockedDoor(unlockedDoor["position"], unlockedDoor["doorSprite"], unlockedDoor["doorMask"], stage.mask, rect, attr)
                 unlockedDoors.append(door)
             self.interactivesGroup.add(unlockedDoors)
             self.unlockedDoorsGroup.add(unlockedDoors)

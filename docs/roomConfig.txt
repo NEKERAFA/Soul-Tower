@@ -33,10 +33,13 @@ El archivo de configuración de la sala debe contener los siguientes datos:
     - "lockedDoors": Lista de puertas cerradas de la sala, si las hay.
         - "doorSprite": Sprite de la puerta.
         - "position" [x, y]: Posición de la esquina inferior izquierda de la puerta (no tiene por qué corresponder con la de la conexión).
+        - "doorMask" [x, y, width, height]: Máscara de la puerta que se quitará al activarla
     - "unlockedDoors": Lista de puertas que se pueden abrir al pulsar espacio.
         - "doorSprite": Sprite de la puerta.
         - "position" [x, y]: Posición de la esquina inferior izquierda de la puerta (no tiene por qué corresponder con la de la conexión).
+        - "doorMask" [x, y, width, height]: Máscara de la puerta que se quitará al activarla
         - "collision" [x, y, width, height]: Rectángulo donde se hace la comprobación para abrir la puerta
+        - "attr": String del atributo que comprueba en stage. Si no está, supone que la puerta se puede abrir siempre.
     - "magicWindow": Ventana mágica si la sala la contiene.
         - "position" [x, y]: Posición de la esquina inferior izquierda de la ventana mágica.
         - "initialDialog": Nombre del diálogo inicial

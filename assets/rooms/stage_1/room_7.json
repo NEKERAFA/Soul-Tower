@@ -4,24 +4,65 @@
     "height": 336,
     "connections": [
         {
-            "y": 1608,
+            "y": 1296,
             "left": 932,
             "right": 964,
-            "to": 3,
-            "direction": "down"
+            "direction": "up",
+            "next": true
+        }
+    ],
+    "unlockedDoors": [
+        {
+            "doorSprite": "boss1TopDoor.png",
+            "position": [912, 1320],
+            "collision": [936, 1320, 24, 24],
+            "doorMask": [932, 1296, 32, 12],
+            "attr": "bossKilled"
         }
     ],
     "boss": {
         "name": "raven",
-        "position": [1040, 1440],
+        "position": [933, 1484],
         "drops": [
             {
                 "type": "heart",
-                "amount": 1
+                "amount": 2
             },
             {
-                "type": "heart",
-                "amount": 1
+                "type": "soul",
+                "amount": 10
+            },
+            {
+                "type": "soul",
+                "amount": 10
+            },
+            {
+                "type": "soul",
+                "amount": 10
+            },
+            {
+                "type": "soul",
+                "amount": 10
+            },
+            {
+                "type": "soul",
+                "amount": 10
+            },
+            {
+                "type": "soul",
+                "amount": 10
+            },
+            {
+                "type": "soul",
+                "amount": 10
+            },
+            {
+                "type": "soul",
+                "amount": 10
+            },
+            {
+                "type": "soul",
+                "amount": 10
             },
             {
                 "type": "soul",
