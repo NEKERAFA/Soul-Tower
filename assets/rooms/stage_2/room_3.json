@@ -1,0 +1,14 @@
+{
+    "position": [1440, -20],
+    "width": 264,
+    "height": 264,
+    "connections": [
+        {
+            "y": 240,
+            "left": 1556,
+            "right": 1588,
+            "to": 2,
+            "direction": "down"
+        }
+    ]
+}

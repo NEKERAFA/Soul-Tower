@@ -96,9 +96,9 @@ class Room(object):
                 door = None
 
                 if "opens" in triggerData:
-                    roomNum = triggerData["opens"][0]
+                    otherRoomNum = triggerData["opens"][0]
                     doorNum  = triggerData["opens"][1]
-                    door = stage.rooms[roomNum].lockedDoors[doorNum]
+                    door = stage.rooms[otherRoomNum].lockedDoors[doorNum] if otherRoomNum != roomNum else self.lockedDoors[doorNum]
 
                 trigger = Trigger(pygame.Rect((x, y), (width, height)), triggerData["dialogueFile"], door)
                 trigger.change_position((x, y))

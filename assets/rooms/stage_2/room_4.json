@@ -1,0 +1,40 @@
+{
+    "position": [1104, 1464],
+    "width": 456,
+    "height": 456,
+    "connections": [
+        {
+            "y": 1488,
+            "left": 1316,
+            "right": 1348,
+            "to": 3,
+            "direction": "up"
+        }
+    ],
+    "unlockedDoors": [
+        {
+            "position": [1104, 1656],
+            "doorSprite": "cell3.png",
+            "doorMask": [1172, 1632, 32, 12],
+            "collision": [1184, 1632, 32, 12]
+        },
+        {
+            "position": [1392, 1656],
+            "doorSprite": "cell3.png",
+            "doorMask": [1460, 1632, 32, 12],
+            "collision": [1472, 1632, 32, 12]
+        },
+        {
+            "position": [1104, 1920],
+            "doorSprite": "cell3b.png",
+            "doorMask": [1172, 1728, 32, 24],
+            "collision": [1172, 1728, 32, 12]
+        },
+        {
+            "position": [1392, 1920],
+            "doorSprite": "cell3b.png",
+            "doorMask": [1460, 1728, 32, 24],
+            "collision": [1460, 1728, 32, 12]
+        }
+    ]
+}
