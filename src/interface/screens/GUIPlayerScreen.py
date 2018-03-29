@@ -55,4 +55,4 @@ class GUIPlayerScreen(GUIScreen):
                 #        self.elementClick = element
                 #        element.action()
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-                self.stamina.lose_stamina(2.4)
+                self.health.gain_life()
