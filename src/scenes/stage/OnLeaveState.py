@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import pygame
-from src.scenes.stage.StageState import *
 from src.scenes.Scene import *
+from src.sprites.Character import *
+from src.scenes.stage.StageState import *
 
 class OnLeaveState(StageState):
     def __init__(self):
@@ -15,8 +16,7 @@ class OnLeaveState(StageState):
 
         if self.alpha == 255:
             stage.player.move(STILL)
-            nextStage = Stage(stage.stageNum+1, stage.gameManager, stage.player)
-            stage.gameManager.scene_change(nextStage)
+            stage.gameManager.scene_change(stage.next_stage())
             return
 
     def events(self, events, stage):

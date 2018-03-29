@@ -11,7 +11,6 @@ from src.scenes.stage.Room import *
 from src.sprites.Character import *
 from src.sprites.characters.Player import *
 from src.scenes.stage.OnEnterState import *
-from src.scenes.stage.OnLeaveState import *
 from src.scenes.stage.InRoomState import *
 from src.scenes.stage.SmallRoomState import *
 from src.interface.screens.GUIPlayerScreen import *
@@ -126,3 +125,7 @@ class Stage(Scene):
      # Eliminar diálogo para ventanas
     def remove_window_dialog(self):
         self.guiWindow = None
+
+    # Crea la fase siguient
+    def next_stage(self):
+        return Stage(self.stageNum+1, self.gameManager, self.player)
