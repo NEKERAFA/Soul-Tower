@@ -95,7 +95,7 @@ class MeleeAttack(Attack):
                     if (value is None or value!=self.id):
                         self.attackDict[id(enemy)] = self.id
                         enemyPos = enemy.rect.center
-                        if (enemy.hp==1 and self.level>2):
+                        if (enemy.stats["hp"]==1 and self.level>2):
                             explosion = Explosion(enemyPos, self.enemies)
                             self.explosions.add(explosion)
                             # TODO: cambiar para que lo haga cuando muere

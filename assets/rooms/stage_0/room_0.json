@@ -7,9 +7,25 @@
             "x": 696,
             "top": 240,
             "bottom": 216,
-            "to": 1,
             "direction": "right",
             "next": true
+        },
+        {
+            "y": 480,
+            "left": 645,
+            "right": 677,
+            "to": 2,
+            "direction": "down"
+        }
+    ],
+
+    "enemies":  [
+        {
+            "type": "slime",
+            "drop": {
+                "type": "heart",
+                "amount": 1
+            }
         }
     ],
 
@@ -22,18 +38,6 @@
                 "amount": 1
             },
             {
-                "type": "heart",
-                "amount": 1
-            },
-            {
-                "type": "soul",
-                "amount": 10
-            },
-            {
-                "type": "soul",
-                "amount": 10
-            },
-            {
                 "type": "soul",
                 "amount": 10
             }
@@ -44,7 +48,9 @@
         {
             "position": [696, 264],
             "doorSprite": "door_0.png",
-            "collision": [672, 216, 48, 24]
+            "collision": [672, 216, 48, 24],
+            "doorMask": [696, 200, 24, 41],
+            "key": [2, 0]
         }
     ],
 

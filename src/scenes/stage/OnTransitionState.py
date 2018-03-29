@@ -92,19 +92,17 @@ class OnTransitionState(StageState):
         # Luego los Sprites sobre una copia del mapa de la sala
         newImage = stage.image.copy()
         # Puertas
-        currentRoom.lockedDoorsGroup.draw(newImage)
-        currentRoom.unlockedDoorsGroup.draw(newImage)
-        nextRoom.lockedDoorsGroup.draw(newImage)
-        nextRoom.unlockedDoorsGroup.draw(newImage)
-        # Ventana mágica
-        currentRoom.magicWindowGroup.draw(newImage)
-        nextRoom.magicWindowGroup.draw(newImage)
+        currentRoom.doors.draw(newImage)
+        nextRoom.doors.draw(newImage)
+        # Sprites interactivos
+        currentRoom.interactives.draw(newImage)
+        nextRoom.interactives.draw(newImage)
+        # Recolectables
+        currentRoom.collectables.draw(newImage)
+        nextRoom.collectables.draw(newImage)
         # Enemigos
         currentRoom.enemies.draw(newImage)
         nextRoom.enemies.draw(newImage)
-        # Drops
-        currentRoom.drops.draw(newImage)
-        nextRoom.drops.draw(newImage)
         # Player
         stage.player.draw(newImage)
         # Se pinta la porción de la sala que coincide con el viewport

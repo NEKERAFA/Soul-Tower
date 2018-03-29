@@ -9,7 +9,7 @@ class Interactive(object):
     def __init__(self, collision):
         self.collision = collision
 
-    def activate(self):
+    def activate(self, stage):
         raise NotImplementedError('Error: implemente el método activate')
 
     def collide(self, character):

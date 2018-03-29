@@ -6,6 +6,7 @@ from src.sprites.characters.Enemy import *
 from src.sprites.characters.Boss import *
 from src.sprites.Trigger import *
 from src.sprites.Drop import *
+from src.sprites.Key import *
 from src.sprites.Door import *
 from src.sprites.doors.UnlockedDoor import *
 from src.sprites.MagicWindow import *
@@ -30,7 +31,7 @@ class Room(object):
         self.small = True if "small" in data else False
 
         # Cargamos los enemigos de la sala si existien
-        enemies = []
+        self.enemies = pygame.sprite.Group()
         if "enemies" in data:
             for enemy in data["enemies"]:
                 # Load drop
@@ -44,10 +45,7 @@ class Room(object):
                     posX = enemy["position"][0]
                     posY = enemy["position"][1]
                 enemySprite.change_global_position((posX, posY))
-                enemies.append(enemySprite)
-
-        self.enemies = pygame.sprite.Group(enemies)
-        self.drops = pygame.sprite.Group()
+                self.enemies.add(enemySprite)
 
         # Si hay un boss en la sala, lo cargo
         if "boss" in data:
@@ -66,28 +64,42 @@ class Room(object):
             for lockedDoor in data["lockedDoors"]:
                 door = Door(lockedDoor["position"], lockedDoor["doorSprite"], lockedDoor["doorMask"], stage.mask)
                 self.lockedDoors.append(door)
+        self.doors = pygame.sprite.Group(self.lockedDoors)
 
-        self.lockedDoorsGroup = pygame.sprite.Group(self.lockedDoors)
+        # Cargamos los objetos recolectables
+        self.collectables = pygame.sprite.Group()
+        self.keys = []
+        if "keys" in data:
+            for key in data["keys"]:
+                keyObj = Key(key["position"], key["keySprite"])
+                self.collectables.add(keyObj)
+                self.keys.append(keyObj)
 
         # Cargamos los objetos con los que se pueda interactuar
-        self.interactivesGroup = pygame.sprite.Group()
+        self.interactives = pygame.sprite.Group()
 
         # Cargamos la lista de puertas abiertas de la sala si existen
-        self.unlockedDoorsGroup = pygame.sprite.Group()
+        self.unlockedDoors = []
         if "unlockedDoors" in data:
-            unlockedDoors = []
             for unlockedDoor in data["unlockedDoors"]:
                 rect = pygame.Rect(unlockedDoor["collision"][0], unlockedDoor["collision"][1], unlockedDoor["collision"][2], unlockedDoor["collision"][3])
-                attr = None
-                if "attr" in unlockedDoor:
-                    attr = unlockedDoor["attr"]
-                door = UnlockedDoor(unlockedDoor["position"], unlockedDoor["doorSprite"], unlockedDoor["doorMask"], stage.mask, rect, attr)
-                unlockedDoors.append(door)
-            self.interactivesGroup.add(unlockedDoors)
-            self.unlockedDoorsGroup.add(unlockedDoors)
+                key = None
+                if "key" in unlockedDoor:
+                    key = unlockedDoor["key"]
+                door = UnlockedDoor(unlockedDoor["position"], unlockedDoor["doorSprite"], unlockedDoor["doorMask"], stage.mask, rect, key)
+                self.unlockedDoors.append(door)
+                self.interactives.add(door)
+
+        # Cargamos la ventana mágica si existera
+        self.magicWindowGroup = pygame.sprite.Group()
+        if "magicWindow" in data:
+            windowData = data["magicWindow"]
+            magicWindow = MagicWindow(windowData["position"], windowData["initialDialog"], windowData["selectionFile"], windowData["endDialog"], windowData["collision"])
+            self.magicWindowGroup.add(magicWindow)
+            self.interactives.add(magicWindow)
 
         # Cargamos la lista de triggers de la sala si existen
-        triggersList = []
+        self.triggers = pygame.sprite.Group()
         if "triggers" in data:
             for triggerData in data["triggers"]:
                 (x, y) = (triggerData["position"][0], triggerData["position"][1])
@@ -102,17 +114,7 @@ class Room(object):
 
                 trigger = Trigger(pygame.Rect((x, y), (width, height)), triggerData["dialogueFile"], door)
                 trigger.change_position((x, y))
-                triggersList.append(trigger)
-
-        self.triggers = pygame.sprite.Group(triggersList)
-
-        # Cargamos la ventana mágica si existera
-        self.magicWindowGroup = pygame.sprite.Group()
-        if "magicWindow" in data:
-            windowData = data["magicWindow"]
-            magicWindow = MagicWindow(windowData["position"], windowData["initialDialog"], windowData["selectionFile"], windowData["endDialog"], windowData["collision"])
-            self.magicWindowGroup.add(magicWindow)
-            self.interactivesGroup.add(magicWindow)
+                self.triggers.add(trigger)
 
     # Indica si el jugador está saliendo de la sala y devuelve la conexión que representa la salida
     def isExiting(self, player):
