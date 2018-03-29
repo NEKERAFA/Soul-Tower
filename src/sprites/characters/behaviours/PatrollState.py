@@ -2,6 +2,7 @@
 
 import pygame, random, math, sys
 from src.sprites.characters.behaviours.BehaviourState import *
+from src.sprites.characters.behaviours.FollowPlayerState import *
 from src.sprites.Character import *
 from src.sprites.EnemyRange import *
 
@@ -100,10 +101,7 @@ class PatrollState(BehaviourState):
             # contra la pared, es que está delante de la pared
             if self.playerDistance <= stageDistance:
                 # Creamos el estado de seguir
-                enemy.state = FollowPlayerState(self.range.radius, self.range.angle, enemy.movement)
-
-                # Ejecutamos el nuevo estado
-                enemy.state.update(enemy, time, mapRect, mapMask)
+                enemy.change_behaviour(FollowPlayerState(self.range.radius, self))
                 return
 
         # Llamamos al update de characters
@@ -113,6 +111,3 @@ class PatrollState(BehaviourState):
         (enemyX, enemyY) = enemy.rect.center
         (rangeX, rangeY) = self.range.rect.center
         self.range.increment_position((enemyX-rangeX, enemyY-rangeY))
-
-# Se pone aquí debido al import recursivo
-from src.sprites.characters.behaviours.FollowPlayerState import FollowPlayerState

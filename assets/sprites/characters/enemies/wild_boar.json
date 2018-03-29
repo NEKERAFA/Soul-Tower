@@ -3,13 +3,13 @@
         "max_hp": 2,
         "hp": 2,
         "atk": 1,
-        "backward": 0.00125,
-        "spd": 0.01
+        "backward": 0.001,
+        "spd": 0.1
     },
 
     "behaviour" : {
         "type": "patrolling",
-        "radius": 25,
+        "radius": 150,
         "angle": 45
     },
 

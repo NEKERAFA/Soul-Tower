@@ -1,90 +1,106 @@
-[
-    [
-        {
-            "x" : 32,
-            "y" : 0,
-            "width" : 32,
-            "height" : 32,
-            "delay" : 0.5
-        },
-        {
-            "x" : 64,
-            "y" : 0,
-            "width" : 32,
-            "height" : 32,
-            "delay" : 0.5
-        }
-    ],
+{
+    "stats": {
+        "max_hp": 2,
+        "hp": 2,
+        "atk": 1,
+        "backward": 0.001,
+        "spd": 0.075
+    },
 
-    [
-        {
-            "x" : 0,
-            "y" : 96,
-            "width" : 32,
-            "height" : 32,
-            "delay" : 0.1
-        },
-        {
-            "x" : 32,
-            "y" : 96,
-            "width" : 32,
-            "height" : 32,
-            "delay" : 0.1
-        },
-        {
-            "x" : 64,
-            "y" : 96,
-            "width" : 32,
-            "height" : 32,
-            "delay" : 0.1
-        }
-    ],
+    "behaviour" : {
+        "type": "patrolling",
+        "radius": 200,
+        "angle": 90
+    },
 
-    [
-        {
-            "x" : 0,
-            "y" : 0,
-            "width" : 32,
-            "height" : 32,
-            "delay" : 0.1
-        },
-        {
-            "x" : 32,
-            "y" : 0,
-            "width" : 32,
-            "height" : 32,
-            "delay" : 0.1
-        },
-        {
-            "x" : 64,
-            "y" : 0,
-            "width" : 32,
-            "height" : 32,
-            "delay" : 0.1
-        }
-    ],
+    "frames": [
+        [
+            {
+                "x" : 32,
+                "y" : 0,
+                "width" : 32,
+                "height" : 32,
+                "delay" : 0.5
+            },
+            {
+                "x" : 64,
+                "y" : 0,
+                "width" : 32,
+                "height" : 32,
+                "delay" : 0.5
+            }
+        ],
 
-    [
-        {
-            "x" : 0,
-            "y" : 32,
-            "width" : 32,
-            "height" : 32,
-            "delay" : 0.1
-        },
-        {
-            "x" : 32,
-            "y" : 32,
-            "width" : 32,
-            "height" : 32,
-            "delay" : 0.1
-        },
-        {
-            "x" : 64,
-            "y" : 32,
-            "width" : 32,
-            "height" : 32,
-            "delay" : 0.1
-        }
+        [
+            {
+                "x" : 0,
+                "y" : 96,
+                "width" : 32,
+                "height" : 32,
+                "delay" : 0.1
+            },
+            {
+                "x" : 32,
+                "y" : 96,
+                "width" : 32,
+                "height" : 32,
+                "delay" : 0.1
+            },
+            {
+                "x" : 64,
+                "y" : 96,
+                "width" : 32,
+                "height" : 32,
+                "delay" : 0.1
+            }
+        ],
+
+        [
+            {
+                "x" : 0,
+                "y" : 0,
+                "width" : 32,
+                "height" : 32,
+                "delay" : 0.1
+            },
+            {
+                "x" : 32,
+                "y" : 0,
+                "width" : 32,
+                "height" : 32,
+                "delay" : 0.1
+            },
+            {
+                "x" : 64,
+                "y" : 0,
+                "width" : 32,
+                "height" : 32,
+                "delay" : 0.1
+            }
+        ],
+
+        [
+            {
+                "x" : 0,
+                "y" : 32,
+                "width" : 32,
+                "height" : 32,
+                "delay" : 0.1
+            },
+            {
+                "x" : 32,
+                "y" : 32,
+                "width" : 32,
+                "height" : 32,
+                "delay" : 0.1
+            },
+            {
+                "x" : 64,
+                "y" : 32,
+                "width" : 32,
+                "height" : 32,
+                "delay" : 0.1
+            }
+        ]
     ]
-]
+}
