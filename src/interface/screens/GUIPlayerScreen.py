@@ -38,7 +38,6 @@ class GUIPlayerScreen(GUIScreen):
         self.charSymb = GUICharacterSymbol(self, (20, 40), (30, 30))
         self.soulsText = GUIText(self, (350, 20), font, str(self.player.souls), 'left', (255, 255, 255))
         self.soulsSymb = GUIImage(self, SOULS_SPRITE_LOCATION, (360, 30), (30, 30))
-
         # Añadir al array de GUIElements para poder dibujar y actualizar
         self.GUIElements.append(self.health)
         self.GUIElements.append(self.stamina)
@@ -54,5 +53,5 @@ class GUIPlayerScreen(GUIScreen):
                 #    if element.__class__.__name__ == 'GUICharacterSymbol':
                 #        self.elementClick = element
                 #        element.action()
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-                self.health.gain_life()
+            #if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+            #    self.health.gain_life()

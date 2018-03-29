@@ -28,10 +28,10 @@ class GUIHealth(GUIElement):
         # Se coloca el rectangulo en su posicion
         self.set_position(position)
 
-        self.maxLifeCounter = self.guiScreen.player.stats["max_hp"]
-        self.lifeCounter = self.guiScreen.player.stats["hp"]
-
-        for i in range(0, self.lifeCounter):
+        self.maxLifeCounter = 0
+        self.lifeCounter = 0
+        self.gain_max_life()
+        for i in range(0, self.guiScreen.player.stats["hp"]):
             self.gain_life()
 
     def update(self, time):
@@ -48,8 +48,10 @@ class GUIHealth(GUIElement):
         # Implementar animación de perder vida ?
         return
 
-    def gain_life(self):
+    def gain_max_life(self):
         self.maxLifeCounter = self.guiScreen.player.stats["max_hp"]
+
+    def gain_life(self):
         if(self.lifeCounter < self.maxLifeCounter):
             # Crear corazón y meterlo en array
             heart = GUIImage(self.guiScreen, self.name, self.heartPos, self.scale, self.colorkey)
