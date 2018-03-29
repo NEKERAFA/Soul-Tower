@@ -70,7 +70,7 @@
         }
     ],
     "magicWindow": {
-        "position": [2840, 1776],
+        "position": [2844, 1776],
         "initialDialog": "magicWindow1.json",
         "selectionFile": "magicWindow_menu.json",
         "endDialog": ["magicWindow1_leraila.json", "magicWindow1_daric.json", "magicWindow1_both.json"],

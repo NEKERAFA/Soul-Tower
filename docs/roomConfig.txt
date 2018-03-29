@@ -48,7 +48,7 @@ El archivo de configuración de la sala debe contener los siguientes datos:
         - "doorMask" [x, y, width, height]: Máscara de la puerta que se quitará al activarla
         - "collision" [x, y, width, height]: Rectángulo donde se hace la comprobación para abrir la puerta
         - "key": [room, key] Llave que abre la puerta. Si no está, supone que la puerta se puede abrir siempre.
-    - "keys": Lista de llabes que hay en la habitación.
+    - "keys": Lista de llaves que hay en la habitación.
         - "keySprite": Sprite de la llave.
         - "position" [x, y]: Posición de la esquina inferior izquierda de la llave.
     - "magicWindow": Ventana mágica si la sala la contiene.

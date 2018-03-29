@@ -89,10 +89,15 @@
     "triggers": [
         {
             "position": [672, 1248],
-            "width": 48,
-            "height": 48,
-            "dialogueFile": "hectorsSymbol.json",
-            "opens": [0, 1]
+            "width": 16,
+            "height": 16,
+            "dialogueFile": "hectorsSymbol.json"
+        }
+    ],
+    "keys": [
+        {
+            "position": [672, 1248],
+            "keySprite": "shield.png"
         }
     ]
 }
