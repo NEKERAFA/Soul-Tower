@@ -49,13 +49,19 @@ class GUIHealth(GUIElement):
         return
 
     def gain_life(self):
-        # Crear corazón y meterlo en array
-        heart = GUIImage(self.guiScreen, self.name, self.heartPos, self.scale, self.colorkey)
-        self.heartArray.append(heart)
-        # Actualizar posiciones del resto de corazones
-        self.heartPos = (self.heartPos[0] + heart.image.get_rect().right+2, self.heartPos[1])
+        self.maxLifeCounter = self.guiScreen.player.stats["max_hp"]
+        if(self.lifeCount < self.maxLifeCounter):
+            # Crear corazón y meterlo en array
+            heart = GUIImage(self.guiScreen, self.name, self.heartPos, self.scale, self.colorkey)
+            self.heartArray.append(heart)
+            # Actualizar posiciones del resto de corazones
+            self.heartPos = (self.heartPos[0] + heart.image.get_rect().right+2, self.heartPos[1])
+            self.lifeCount+=1
 
     def lose_life(self):
         # Eliminar último elemento del array
-        if(len(self.heartArray) > 0):
+        if(len(self.heartArray) > 0 and self.lifeCount > 0):
             del(self.heartArray[-1])
+            # Actualizar posiciones del resto de corazones
+            self.heartPos = (self.heartPos[0] - (self.heartArray[-1].image.get_rect().right+2), self.heartPos[1])
+            self.lifeCount-=1
