@@ -11,6 +11,7 @@ class KeyboardMouseControl(ControlManager):
     rightButton = K_d
     secButton = K_SPACE
     selectButton = K_e
+    actionButton = K_q
 
     @classmethod
     def up(cls):
@@ -47,6 +48,10 @@ class KeyboardMouseControl(ControlManager):
         return pygame.key.get_pressed()[cls.secButton]
 
     @classmethod
+    def action_button(cls):
+        return pygame.key.get_pressed()[cls.actionButton]
+
+    @classmethod
     def select_button(cls):
         return pygame.key.get_pressed()[cls.selectButton]
 
@@ -69,3 +74,7 @@ class KeyboardMouseControl(ControlManager):
     @classmethod
     def set_key_select(cls, newKey):
         cls.selectButton = newKey
+
+    @classmethod
+    def set_key_action(cls, newKey):
+        cls.actionButton = newKey

@@ -6,10 +6,14 @@ from src.sprites.characters.Enemy import *
 from src.sprites.Drop import *
 
 class Boss(Enemy):
-    def __init__(self, name, drops):
+    def __init__(self, name, drops, closeDoor):
         self.behaviour = {"type": name}
         Enemy.__init__(self, name, drops[0])
-        self.drops = drops[1:]
+        if len(drops) > 1:
+            self.drops = drops[1:]
+        else:
+            self.drops = []
+        self.closeDoor = closeDoor
 
     def set_drop(self, dropGroup):
         Enemy.set_drop(self, dropGroup)

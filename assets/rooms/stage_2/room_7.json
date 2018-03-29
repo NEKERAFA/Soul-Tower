@@ -1,0 +1,28 @@
+{
+    "position": [2760, 888],
+    "width": 528,
+    "height": 456,
+    "connections": [
+        {
+            "x": 2784,
+            "top": 1128,
+            "bottom": 1092,
+            "to": 5,
+            "direction": "left"
+        }
+    ],
+    "triggers": [
+        {
+            "position": [3216, 1296],
+            "width": 24,
+            "height": 24,
+            "dialogueFile": "hectorsWeapon.json"
+        }
+    ],
+    "keys": [
+        {
+            "position": [3216, 1296],
+            "keySprite": "hammer.png"
+        }
+    ]
+}

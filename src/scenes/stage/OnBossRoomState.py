@@ -6,11 +6,22 @@ from src.scenes.stage.OnLeaveState import *
 from src.scenes.stage.OnDialogueState import *
 from src.sprites.characters.behaviours.raven.RavenFlyAroundStageState import *
 from src.sprites.characters.Enemy import *
+from src.sprites.Door import *
 
 class OnBossRoomState(StageState):
     def __init__(self, stage):
-        stage.rooms[stage.currentRoom].boss.set_initial_frame(4)
-        stage.rooms[stage.currentRoom].boss.animationLoop = False
+        currentRoom = stage.rooms[stage.currentRoom]
+        # Iniciamos la animación del boss
+        currentRoom.boss.set_initial_frame(4)
+        currentRoom.boss.animationLoop = False
+        # Creamos la puerta que se cierra al entrar en la habitación
+        doorConf = stage.rooms[stage.currentRoom].boss.closeDoor
+        door = Door(doorConf["position"], doorConf["doorSprite"], doorConf["doorMask"], stage.mask)
+        # Añadimos el sprite
+        currentRoom.lockedDoors.append(door)
+        currentRoom.doors.add(door)
+        # Para comprobar si el boss a muerto
+        self.killedBoss = False
 
     def update(self, time, stage):
         currentRoom = stage.rooms[stage.currentRoom]
@@ -36,14 +47,24 @@ class OnBossRoomState(StageState):
                 currentRoom.boss.set_initial_frame(0)
                 currentRoom.boss.change_behaviour(RavenFlyAroundStageState())
 
-        # Compruebo si ha muerto el boss
-        if currentRoom.boss.killed and not stage.bossKilled:
+        # Compruebo si ha muerto el boss para dropear el bo
+        if currentRoom.boss.killed and not self.killedBoss:
             currentRoom.boss.kill()
-            currentRoom.boss.set_drop(currentRoom.drops)
-            stage.bossKilled = True
+            currentRoom.boss.set_drop(currentRoom.collectables)
+            currentRoom.lockedDoors[0].open(stage)
+            self.killedBoss = True
 
-        # Drops
-        currentRoom.drops.update(time)
+        # Recogibles
+        currentRoom.collectables.update(time)
+
+        # Si detecta colisión con un trigger, cambia de estado
+        trigger = pygame.sprite.spritecollideany(stage.player, currentRoom.triggers)
+
+        if trigger is not None:
+            trigger.open_door(stage)
+            stage.state = OnDialogueState(trigger.dialogueFile, stage)
+            trigger.kill() # Eliminamos el trigger
+            return
 
         # Comprobamos si estamos saliendo de la sala
         exit = currentRoom.isExiting(stage.player)
@@ -62,32 +83,7 @@ class OnBossRoomState(StageState):
         stage.viewport.center = (stage.player.rect.center)
         stage.viewport.clamp_ip(currentRoom.rect)
 
-        drops = pygame.sprite.spritecollide(stage.player, currentRoom.drops, False)
-
-        # Se recorre la lista de drops colisionados
-        for drop in drops:
-            # Drops de vida
-            if drop.name == 'heart':
-                # Comprobamos que la vida del enemigo es menor que la máxima
-                # (ha recibido daño)
-                if stage.player.stats["hp"] < stage.player.stats["max_hp"]:
-                    # Añadimos las vidas al jugador
-                    stage.player.add_lifes(drop.amount)
-                    # Eliminamos el sprite de todos los grupos
-                    drop.kill()
-            # Drops de almas
-            elif drop.name == 'soul':
-                # Añadimos las almas recogidas y eliminamos el sprite de todos
-                # los grupos
-                stage.player.increase_souls(drop.amount)
-                drop.kill()
-
-        # Se detecta si estás en colisión con un objeto con el que puedes
-        # interactuar
-        for interSprite in iter(currentRoom.interactivesGroup):
-            # Colisión entre jugador y puerta
-            if interSprite.collide(stage.player) and KeyboardMouseControl.sec_button():
-                interSprite.activate(stage)
+        StageState.update(self, time, stage)
 
     def events(self, events, stage):
         stage.player.move(stage.viewport)

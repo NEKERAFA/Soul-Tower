@@ -17,3 +17,7 @@ class Door(MyStaticSprite):
         self.mask.fill()
         self.offset = doorMask[0:2]
         stageMask.draw(self.mask, self.offset)
+
+    def open(self, stage):
+        stage.mask.erase(self.mask, self.offset)
+        self.kill()

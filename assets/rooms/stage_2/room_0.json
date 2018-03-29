@@ -23,14 +23,16 @@
             "position": [240, 720],
             "doorSprite": "prisonDoor.png",
             "doorMask": [260, 696, 32, 24]
-        },
-        {
-            "position": [1032, 600],
-            "doorSprite": "prisonDoorV.png",
-            "doorMask": [1032, 540, 24, 36]
         }
     ],
     "unlockedDoors": [
+        {
+            "position": [1032, 600],
+            "doorSprite": "prisonDoorV.png",
+            "doorMask": [1032, 540, 24, 36],
+            "collision": [1020, 540, 12, 36],
+            "key": [1, 0]
+        },
         {
             "position": [240, 168],
             "doorSprite": "cell.png",

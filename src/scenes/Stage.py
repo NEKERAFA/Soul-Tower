@@ -50,6 +50,13 @@ class Stage(Scene):
         self.rooms = []
         for i in range(0, data["rooms"]):
             self.rooms.append(Room(stageNum, i, self))
+
+        # Metemos las llaves en su sitio
+        for room in self.rooms:
+            for door in room.unlockedDoors:
+                if hasattr(door, 'key') and door.key is not None:
+                    door.key = self.rooms[door.key[0]].keys[door.key[1]]
+
         self.currentRoom = 0
 
         # Lista de enemigos
@@ -80,9 +87,6 @@ class Stage(Scene):
 
         # Empezamos en estado de entrar en sala
         self.state = OnEnterState()
-
-        # Variable que nos dice si el boss ha muerto
-        self.bossKilled = False
 
     def update(self, time):
         # Delegamos en el estado la actualización de la fase

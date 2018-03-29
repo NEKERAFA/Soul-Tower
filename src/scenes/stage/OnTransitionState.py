@@ -42,12 +42,14 @@ class OnTransitionState(StageState):
             # Si hemos terminado de desplazar el mapa, volvemos al estado InRoomState y cambiamos la sala actual
             if self.scrollX <= 0:
                 dstRoom = self.connection["to"]
-                if stage.rooms[dstRoom].small:
-                    stage.state = stage.smallRoomState
-                else:
-                    stage.state = stage.inRoomState
                 stage.currentRoom = dstRoom
-
+                if hasattr(stage.rooms[dstRoom], 'boss'):
+                    stage.set_state(OnBossRoomState(stage))
+                else:
+                    if stage.rooms[dstRoom].small:
+                        stage.set_state(stage.smallRoomState)
+                    else:
+                        stage.set_state(stage.inRoomState)
         else:
             shiftY = int(self.speed*time)
             shiftPlayerY = int(self.speedPlayer*time)
@@ -92,19 +94,17 @@ class OnTransitionState(StageState):
         # Luego los Sprites sobre una copia del mapa de la sala
         newImage = stage.image.copy()
         # Puertas
-        currentRoom.lockedDoorsGroup.draw(newImage)
-        currentRoom.unlockedDoorsGroup.draw(newImage)
-        nextRoom.lockedDoorsGroup.draw(newImage)
-        nextRoom.unlockedDoorsGroup.draw(newImage)
-        # Ventana mágica
-        currentRoom.magicWindowGroup.draw(newImage)
-        nextRoom.magicWindowGroup.draw(newImage)
+        currentRoom.doors.draw(newImage)
+        nextRoom.doors.draw(newImage)
+        # Sprites interactivos
+        currentRoom.interactives.draw(newImage)
+        nextRoom.interactives.draw(newImage)
+        # Recolectables
+        currentRoom.collectables.draw(newImage)
+        nextRoom.collectables.draw(newImage)
         # Enemigos
         currentRoom.enemies.draw(newImage)
         nextRoom.enemies.draw(newImage)
-        # Drops
-        currentRoom.drops.draw(newImage)
-        nextRoom.drops.draw(newImage)
         # Player
         stage.player.draw(newImage)
         # Se pinta la porción de la sala que coincide con el viewport

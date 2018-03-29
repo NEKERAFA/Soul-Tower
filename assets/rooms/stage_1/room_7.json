@@ -11,13 +11,11 @@
             "next": true
         }
     ],
-    "unlockedDoors": [
+    "lockedDoors": [
         {
             "doorSprite": "boss1TopDoor.png",
             "position": [912, 1320],
-            "collision": [936, 1320, 24, 24],
-            "doorMask": [932, 1296, 32, 12],
-            "attr": "bossKilled"
+            "doorMask": [932, 1296, 32, 12]
         }
     ],
     "boss": {
@@ -25,57 +23,18 @@
         "position": [933, 1484],
         "drops": [
             {
+                "type": "soul",
+                "amount": 10
+            },
+            {
                 "type": "heart",
-                "amount": 2
-            },
-            {
-                "type": "soul",
-                "amount": 10
-            },
-            {
-                "type": "soul",
-                "amount": 10
-            },
-            {
-                "type": "soul",
-                "amount": 10
-            },
-            {
-                "type": "soul",
-                "amount": 10
-            },
-            {
-                "type": "soul",
-                "amount": 10
-            },
-            {
-                "type": "soul",
-                "amount": 10
-            },
-            {
-                "type": "soul",
-                "amount": 10
-            },
-            {
-                "type": "soul",
-                "amount": 10
-            },
-            {
-                "type": "soul",
-                "amount": 10
-            },
-            {
-                "type": "soul",
-                "amount": 10
-            },
-            {
-                "type": "soul",
-                "amount": 10
-            },
-            {
-                "type": "soul",
-                "amount": 10
+                "amount": 1
             }
-        ]
+        ],
+        "closeDoor": {
+            "doorSprite": "boss1BottomDoor.png",
+            "position": [912, 1632],
+            "doorMask": [932, 1608, 32, 24]
+        }
     }
 }

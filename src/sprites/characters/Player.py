@@ -36,6 +36,9 @@ class Player(Character):
         self.sorcererSheet = self.sheet.copy()
         self.warriorSheet = ResourceManager.load_image(WARRIOR_PATH, (-1))
 
+        # Guardo la fase actual
+        self.stage = stage
+
         # Atributo de estado del jugador (patrón estado)
         self.state = Normal()
 
@@ -44,6 +47,9 @@ class Player(Character):
 
         # Número de almas
         self.souls = 0
+
+        # Inventario
+        self.inventary = []
 
         # Esta variable mira si se puede cambiar de personaje o no
         self.canChange = True
@@ -125,8 +131,28 @@ class Player(Character):
     # Incrementa el número de almas del jugador
     def increase_souls(self, souls):
         self.souls += souls
+        # Actualizo la GUI
+        self.stage.gui.soulsText.change_text(str(self.souls))
 
     # Recibe un daño y se realiza el daño. Si el personaje ha muerto, lo elimina
     # de todos los grupos
     def receive_damage(self, damage, force):
+        life = self.stats["hp"]
         self.state.receive_damage(self, damage, force)
+        remainLife = self.stats["hp"]
+        # Actualizo la GUI
+        for i in range(0, life-remainLife):
+            self.stage.gui.health.lose_life()
+
+    # Añade vidas al personaje
+    def add_lifes(self, lifes):
+        life = self.stats["hp"]
+        Character.add_lifes(self, lifes)
+        remainLife = self.stats["hp"]
+        # Actualizo la GUI
+        for i in range(0, remainLife-life):
+            self.stage.gui.health.gain_life()
+
+    # Cambia de fase al jugador
+    def change_stage(self, stage):
+        self.stage = stage

@@ -7,44 +7,63 @@
             "x": 696,
             "top": 240,
             "bottom": 216,
-            "to": 1,
             "direction": "right",
-            "next": true
+            "to": 1
+        },
+        {
+            "y": 480,
+            "left": 645,
+            "right": 677,
+            "to": 2,
+            "direction": "down"
         }
     ],
 
-    "boss": {
-        "name": "raven",
-        "position": [360, 240],
-        "drops": [
-            {
+    "enemies":  [
+        {
+            "type": "slime",
+            "drop": {
                 "type": "heart",
                 "amount": 1
-            },
-            {
-                "type": "heart",
-                "amount": 1
-            },
-            {
-                "type": "soul",
-                "amount": 10
-            },
-            {
-                "type": "soul",
-                "amount": 10
-            },
-            {
+            }
+        },
+        {
+            "type": "slime",
+            "drop": {
                 "type": "soul",
                 "amount": 10
             }
-        ]
-    },
+        },
+        {
+            "type": "slime",
+            "drop": {
+                "type": "heart",
+                "amount": 1
+            }
+        },
+        {
+            "type": "slime",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "slime",
+            "drop": {
+                "type": "heart",
+                "amount": 1
+            }
+        }
+    ],
 
     "unlockedDoors": [
         {
             "position": [696, 264],
             "doorSprite": "door_0.png",
-            "collision": [672, 216, 48, 24]
+            "collision": [672, 216, 48, 24],
+            "doorMask": [696, 200, 24, 41],
+            "key": [2, 0]
         }
     ],
 
