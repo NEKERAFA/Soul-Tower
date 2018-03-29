@@ -16,7 +16,7 @@ if __name__ == '__main__':
     # global gameManager
     gameManager = GameManager()
     # Creamos la escena con la pantalla inicial
-    scene = InitialStage(gameManager)
+    scene = Stage(2, gameManager)
     # Le decimos al director que apile esta escena
     gameManager.scene_stack(scene)
     # Y ejecutamos el juego

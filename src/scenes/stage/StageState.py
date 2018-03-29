@@ -21,7 +21,6 @@ class StageState(object):
         collectables = pygame.sprite.spritecollide(stage.player, currentRoom.collectables, False)
         for collectable in collectables:
             collectable.collect(stage) # Los recojo
-            collectable.kill() # Los elimino
 
         # Se detecta si estás en colisión con un objeto con el que puedes
         # interactuar
@@ -39,12 +38,12 @@ class StageState(object):
         newImage = stage.image.copy()
         # Ventana mágica
         currentRoom.magicWindowGroup.draw(newImage)
+        # Puertas
+        currentRoom.doors.draw(newImage)
         # Recolectables
         currentRoom.collectables.draw(newImage)
         # Sprites interactivos
-        currentRoom.interactives.draw(newImage)
-        # Puertas
-        currentRoom.doors.draw(newImage)
+        currentRoom.unlockedDoorsGroup.draw(newImage)
         # Enemigos
         currentRoom.enemies.draw(newImage)
         # Player

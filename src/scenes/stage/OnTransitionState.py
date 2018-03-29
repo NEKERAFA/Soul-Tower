@@ -93,15 +93,18 @@ class OnTransitionState(StageState):
         screen.fill((0, 0, 0))
         # Luego los Sprites sobre una copia del mapa de la sala
         newImage = stage.image.copy()
+        # Ventana mágica
+        currentRoom.magicWindowGroup.draw(newImage)
+        nextRoom.magicWindowGroup.draw(newImage)
         # Puertas
         currentRoom.doors.draw(newImage)
         nextRoom.doors.draw(newImage)
-        # Sprites interactivos
-        currentRoom.interactives.draw(newImage)
-        nextRoom.interactives.draw(newImage)
         # Recolectables
         currentRoom.collectables.draw(newImage)
         nextRoom.collectables.draw(newImage)
+        # Sprites interactivos
+        currentRoom.unlockedDoorsGroup.draw(newImage)
+        nextRoom.unlockedDoorsGroup.draw(newImage)
         # Enemigos
         currentRoom.enemies.draw(newImage)
         nextRoom.enemies.draw(newImage)

@@ -108,7 +108,6 @@ class MeleeAttack(Attack):
                         impulse = Force(self.rotation, player.stats["backward"])
                         enemy.receive_damage('physic', player.stats["atk"], impulse)
 
-
         self.thunders.update(player, time, stage)
         self.explosions.update(time, stage)
             # Comprobamos que enemigos colisionan con que grupos

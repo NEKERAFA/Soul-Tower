@@ -80,6 +80,7 @@ class Room(object):
 
         # Cargamos la lista de puertas abiertas de la sala si existen
         self.unlockedDoors = []
+        self.unlockedDoorsGroup = pygame.sprite.Group()
         if "unlockedDoors" in data:
             for unlockedDoor in data["unlockedDoors"]:
                 rect = pygame.Rect(unlockedDoor["collision"][0], unlockedDoor["collision"][1], unlockedDoor["collision"][2], unlockedDoor["collision"][3])
@@ -88,6 +89,7 @@ class Room(object):
                     key = unlockedDoor["key"]
                 door = UnlockedDoor(unlockedDoor["position"], unlockedDoor["doorSprite"], unlockedDoor["doorMask"], stage.mask, rect, key)
                 self.unlockedDoors.append(door)
+                self.unlockedDoorsGroup.add(door)
                 self.interactives.add(door)
 
         # Cargamos la ventana mágica si existera
