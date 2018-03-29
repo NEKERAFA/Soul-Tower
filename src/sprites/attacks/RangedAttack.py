@@ -21,7 +21,7 @@ class RangedAttack(Attack):
         # Radio de acción
         self.radius = radius
         # Grupo de enemigos
-        self.enemies = enemies
+        # self.enemies = enemies
         # Tiempo entre disparos
         self.delayTime = delayTime
         self.elapsedTime = 0
@@ -82,6 +82,7 @@ class RangedAttack(Attack):
             impulse = Force(bullet.rotation, player.stats["backward"])
             enemy.receive_damage('magic', player.stats["atk"], impulse)
             if (self.level>2 and enemy.justDied):
+                # enemy.kill()
                 angle = random.uniform(-180,180)
                 bulletExtra = Bullet(enemyPos, angle, self.radius, self.image)
                 self.bullets.add(bulletExtra)

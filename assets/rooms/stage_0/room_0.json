@@ -26,6 +26,24 @@
                 "type": "heart",
                 "amount": 1
             }
+        },{
+            "type": "slime",
+            "drop": {
+                "type": "heart",
+                "amount": 1
+            }
+        },{
+            "type": "slime",
+            "drop": {
+                "type": "heart",
+                "amount": 1
+            }
+        },{
+            "type": "slime",
+            "drop": {
+                "type": "heart",
+                "amount": 1
+            }
         }
     ],
 
