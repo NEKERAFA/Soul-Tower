@@ -25,7 +25,7 @@ class StageState(object):
         # interactuar
         for interSprite in iter(currentRoom.interactives):
             # Colisión entre jugador y puerta
-            if interSprite.collide(stage.player) and KeyboardMouseControl.sec_button():
+            if interSprite.collide(stage.player) and KeyboardMouseControl.action_button():
                 interSprite.activate(stage)
 
     def draw(self, screen, stage):
@@ -37,12 +37,12 @@ class StageState(object):
         newImage = stage.image.copy()
         # Ventana mágica
         currentRoom.magicWindowGroup.draw(newImage)
-        # Puertas
-        currentRoom.doors.draw(newImage)
-        # Sprites interactivos
-        currentRoom.interactives.draw(newImage)
         # Recolectables
         currentRoom.collectables.draw(newImage)
+        # Sprites interactivos
+        currentRoom.interactives.draw(newImage)
+        # Puertas
+        currentRoom.doors.draw(newImage)
         # Enemigos
         currentRoom.enemies.draw(newImage)
         # Player

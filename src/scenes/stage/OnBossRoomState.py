@@ -6,11 +6,22 @@ from src.scenes.stage.OnLeaveState import *
 from src.scenes.stage.OnDialogueState import *
 from src.sprites.characters.behaviours.raven.RavenFlyAroundStageState import *
 from src.sprites.characters.Enemy import *
+from src.sprites.Door import *
 
 class OnBossRoomState(StageState):
     def __init__(self, stage):
-        stage.rooms[stage.currentRoom].boss.set_initial_frame(4)
-        stage.rooms[stage.currentRoom].boss.animationLoop = False
+        currentRoom = stage.rooms[stage.currentRoom]
+        # Iniciamos la animación del boss
+        currentRoom.boss.set_initial_frame(4)
+        currentRoom.boss.animationLoop = False
+        # Creamos la puerta que se cierra al entrar en la habitación
+        doorConf = stage.rooms[stage.currentRoom].boss.closeDoor
+        door = Door(doorConf["position"], doorConf["doorSprite"], doorConf["doorMask"], stage.mask)
+        # Añadimos el sprite
+        currentRoom.lockedDoors.append(door)
+        currentRoom.doors.add(door)
+        # Para comprobar si el boss a muerto
+        self.killedBoss = False
 
     def update(self, time, stage):
         currentRoom = stage.rooms[stage.currentRoom]
@@ -36,10 +47,12 @@ class OnBossRoomState(StageState):
                 currentRoom.boss.set_initial_frame(0)
                 currentRoom.boss.change_behaviour(RavenFlyAroundStageState())
 
-        # Compruebo si ha muerto el boss
-        if currentRoom.boss.killed and not stage.bossKilled:
+        # Compruebo si ha muerto el boss para dropear el bo
+        if currentRoom.boss.killed and not self.killedBoss:
             currentRoom.boss.kill()
             currentRoom.boss.set_drop(currentRoom.collectables)
+            currentRoom.lockedDoors[0].open(stage)
+            self.killedBoss = True
 
         # Recogibles
         currentRoom.collectables.update(time)

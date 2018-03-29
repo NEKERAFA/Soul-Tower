@@ -42,12 +42,14 @@ class OnTransitionState(StageState):
             # Si hemos terminado de desplazar el mapa, volvemos al estado InRoomState y cambiamos la sala actual
             if self.scrollX <= 0:
                 dstRoom = self.connection["to"]
-                if stage.rooms[dstRoom].small:
-                    stage.state = stage.smallRoomState
-                else:
-                    stage.state = stage.inRoomState
                 stage.currentRoom = dstRoom
-
+                if hasattr(stage.rooms[dstRoom], 'boss'):
+                    stage.set_state(OnBossRoomState(stage))
+                else:
+                    if stage.rooms[dstRoom].small:
+                        stage.set_state(stage.smallRoomState)
+                    else:
+                        stage.set_state(stage.inRoomState)
         else:
             shiftY = int(self.speed*time)
             shiftPlayerY = int(self.speedPlayer*time)

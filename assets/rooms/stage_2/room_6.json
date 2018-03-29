@@ -18,11 +18,13 @@
         "endDialog": ["magicWindow2_leraila.json", "magicWindow2_daric.json", "magicWindow2_both.json"],
         "collision": [3192, 384, 72, 72]
     },
-    "lockedDoors": [
+    "unlockedDoors": [
         {
             "position": [3024, 552],
             "doorSprite": "cell4.png",
-            "doorMask": [3140, 528, 32, 12]
+            "doorMask": [3140, 528, 32, 12],
+            "collision": [3140, 528, 32, 24],
+            "key": [7, 0]
         }
     ]
 }

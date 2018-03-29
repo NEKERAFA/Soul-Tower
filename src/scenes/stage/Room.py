@@ -53,7 +53,7 @@ class Room(object):
             drops = []
             for drop in boss["drops"]:
                 drops.append(Drop(drop["type"], drop["amount"]))
-            bossSprite = Boss(boss["name"], drops)
+            bossSprite = Boss(boss["name"], drops, boss["closeDoor"])
             bossSprite.change_global_position(boss["position"])
             self.boss = bossSprite
             self.enemies.add(bossSprite)

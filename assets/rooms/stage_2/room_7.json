@@ -16,8 +16,13 @@
             "position": [3216, 1296],
             "width": 24,
             "height": 24,
-            "dialogueFile": "hectorsWeapon.json",
-            "opens": [6, 0]
+            "dialogueFile": "hectorsWeapon.json"
+        }
+    ],
+    "keys": [
+        {
+            "position": [3216, 1296],
+            "keySprite": "hammer.png"
         }
     ]
 }

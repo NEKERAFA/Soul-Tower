@@ -42,7 +42,6 @@ class InRoomState(StageState):
                 stage.set_state(OnLeaveState())
             else:
                 stage.set_state(OnTransitionState(exit, stage.player))
-            return
 
         # Alinea el viewport con el centro del jugador
         # Si la pantalla se sale de la sala actual, la alinea para que encaje

@@ -36,5 +36,5 @@ class Drop(MyStaticAnimatedSprite,  Collectable):
         elif self.name == 'soul':
             # Añadimos las almas recogidas y eliminamos el sprite de todos
             # los grupos
-            stage.player.increase_souls(drop.amount)
+            stage.player.increase_souls(self.amount)
             self.kill()
