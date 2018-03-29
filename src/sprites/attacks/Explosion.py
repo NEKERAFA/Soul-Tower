@@ -2,6 +2,7 @@
 
 import pygame, sys, os, math, random
 from src.sprites.Attack import *
+from src.sprites.Force import *
 
 # -------------------------------------------------
 # Sprites de ataques
@@ -23,12 +24,15 @@ class Explosion(Attack):
         # self.rect.bottomleft = x-self.rect.height/2,y-self.rect.width-16
         # self.shrink = 5
         # self.blastRect = Rect(0,0,0,0)
+        # Diccionario de ataque-enemigos
+        # (para el mismo ataque no hacer daño más de una vez al mismo enemigo)
+        self.attackDict = {-1:-1}
         
     def draw(self, surface):
         Attack.draw(self, surface)
         # pygame.draw.rect(surface, (0,0,0), self.blastRect)
 
-    def update(self, time, stage):
+    def update(self, player, time, stage):
         self.image = pygame.transform.scale(self.origImage, (int(self.rect.width*2), int(self.rect.height*2)))
 
         Attack.update(self, time)
@@ -36,9 +40,14 @@ class Explosion(Attack):
         if self.animationFrame>3:
             for enemy in self.enemies:
                 if self.rect.colliderect(enemy.rect):
-                    print('Explosion hit')
-                    enemy.drop.change_global_position(enemy.position)
-                    stage.rooms[stage.currentRoom].drops.add(enemy.drop)
-                    enemy.receive_damage(self.damage, self.rotation)
+                    value = self.attackDict.get(id(enemy))
+                    if (value is None or value!=self.id):
+                        self.attackDict[id(enemy)] = self.id
+                        # print('Explosion hit')
+                        angle = random.uniform(0, 2*math.pi)
+                        impulse = Force(angle, player.stats["backward"])
+                        enemy.receive_damage('physic', player.stats["atk"], impulse)
+                        if (enemy.killed):
+                            del self.attackDict[id(enemy)]
         if not self.drawAnimation:
             self.kill()

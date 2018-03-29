@@ -81,7 +81,7 @@ class RangedAttack(Attack):
             enemyPos = enemy.position
             impulse = Force(bullet.rotation, player.stats["backward"])
             enemy.receive_damage('magic', player.stats["atk"], impulse)
-            if (self.level>2):
+            if (self.level>2 and enemy.justDied):
                 angle = random.uniform(-180,180)
                 bulletExtra = Bullet(enemyPos, angle, self.radius, self.image)
                 self.bullets.add(bulletExtra)

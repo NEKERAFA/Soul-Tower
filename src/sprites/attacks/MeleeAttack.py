@@ -30,7 +30,7 @@ class MeleeAttack(Attack):
         self.explosions = pygame.sprite.Group()
         # Nivel de mejora
         self.level = 3
-        self.probability = 1#0.45
+        self.probability = 0.45
         # Diccionario de ataque-enemigos
         # (para el mismo ataque no hacer daño más de una vez al mismo enemigo)
         self.attackDict = {-1:-1}
@@ -95,10 +95,14 @@ class MeleeAttack(Attack):
                     if (value is None or value!=self.id):
                         self.attackDict[id(enemy)] = self.id
                         enemyPos = enemy.rect.center
-                        if (enemy.stats["hp"]==1 and self.level>2):
+                        # print(self.id)
+                        print("damaging enemy ", id(enemy), enemy.killed)
+                        impulse = Force(self.rotation, player.stats["backward"])
+                        enemy.receive_damage('physic', player.stats["atk"], impulse)
+                        if (enemy.justDied and self.level>2):
+                            print("Creating explosion")
                             explosion = Explosion(enemyPos, self.enemies)
                             self.explosions.add(explosion)
-                            # TODO: cambiar para que lo haga cuando muere
                             del self.attackDict[id(enemy)]
                         print("damaging enemy ", id(enemy))
                         impulse = Force(self.rotation, player.stats["backward"])
@@ -110,9 +114,5 @@ class MeleeAttack(Attack):
             # Comprobamos que enemigos colisionan con que grupos
             # enemiesCollide = pygame.sprite.spritecollide(self, self.enemies, False, pygame.sprite.collide_mask)
 
-            # for enemyCollide in enemiesCollide:
-            #     # Si hay una colisión, hacemos daño al enemigo y matamos la bala
-            #     if enemyCollide is not None:
-            #         enemyCollide.drop.change_global_position(enemyCollide.position)
-            #         stage.rooms[stage.currentRoom].drops.add(enemyCollide.drop)
-            #         enemyCollide.receive_damage(1, self.rotation)
+        self.thunders.update(player, time, stage)
+        self.explosions.update(player, time, stage)
