@@ -70,7 +70,7 @@ class Stage(Scene):
 
         # Diálogo de ventana
         self.guiWindow = None
-        #self.create_window_dialog()
+        #self.create_window_dialog(None)
 
         # Inicializamos el viewport, que es un rectángulo del tamaño de la
         # pantalla que indicará qué porción de la sala se debe mostrar
