@@ -43,7 +43,6 @@ class Explosion(Attack):
                     value = self.attackDict.get(id(enemy))
                     if (value is None or value!=self.id):
                         self.attackDict[id(enemy)] = self.id
-                        # print('Explosion hit')
                         angle = random.uniform(0, 2*math.pi)
                         impulse = Force(angle, player.stats["backward"])
                         enemy.receive_damage('physic', player.stats["atk"], impulse)

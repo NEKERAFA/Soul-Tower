@@ -30,7 +30,8 @@ class MeleeAttack(Attack):
         self.explosions = pygame.sprite.Group()
         # Nivel de mejora
         self.level = 3
-        self.probability = 0.45
+        self.probLvl2 = 0.7
+        self.probLvl3 = 0.45
         # Diccionario de ataque-enemigos
         # (para el mismo ataque no hacer daño más de una vez al mismo enemigo)
         self.attackDict = {-1:-1}
@@ -60,7 +61,7 @@ class MeleeAttack(Attack):
             # Y reiniciar el contador
             self.elapsedTime = 0
             # Si tenemos nivel suficiente
-            if (self.level>1 and random.random()<=self.probability):
+            if (self.level>2 and random.random()<=self.probLvl3):
                 thunder = Thunder(self.characterPos, self.rotation, self.radius+30, self.enemies)
                 self.thunders.add(thunder)
         else:
@@ -89,18 +90,14 @@ class MeleeAttack(Attack):
                 self.mask = pygame.mask.from_surface(self.image)
                 collision = self.mask.overlap(enemy.mask, offset)
                 if collision is not None:
-                    # print('Hit')
                     # Comprobamos si aun no hemos dañado al enemigo
                     value = self.attackDict.get(id(enemy))
                     if (value is None or value!=self.id):
                         self.attackDict[id(enemy)] = self.id
                         enemyPos = enemy.rect.center
-                        # print(self.id)
-                        print("damaging enemy ", id(enemy), enemy.killed)
                         impulse = Force(self.rotation, player.stats["backward"])
                         enemy.receive_damage('physic', player.stats["atk"], impulse)
-                        if (enemy.justDied and self.level>2):
-                            print("Creating explosion")
+                        if (self.level>1 and enemy.justDied and random.random()<=self.probLvl2):
                             explosion = Explosion(enemyPos, self.enemies)
                             self.explosions.add(explosion)
                             del self.attackDict[id(enemy)]
