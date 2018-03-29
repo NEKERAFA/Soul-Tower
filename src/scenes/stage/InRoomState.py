@@ -6,8 +6,6 @@ from src.scenes.stage.OnLeaveState import *
 from src.scenes.stage.OnTransitionState import *
 from src.scenes.stage.OnDialogueState import *
 from src.sprites.characters.Enemy import *
-from src.sprites.drops.Life import *
-from src.sprites.drops.Soul import *
 
 class InRoomState(StageState):
     def update(self, time, stage):
@@ -22,6 +20,17 @@ class InRoomState(StageState):
         stage.player.update(time, stage)
         # Enemigos
         currentRoom.enemies.update(time, currentRoom.rect, stage.mask)
+
+        # Compruebo los enemigos muertos para matarlos y coger su drop
+        killedEnemies = []
+        for enemy in iter(currentRoom.enemies):
+            if enemy.killed:
+                enemy.set_drop(currentRoom.drops)
+                killedEnemies.append(enemy)
+
+        for enemy in killedEnemies:
+            enemy.kill()
+
         # Drops
         currentRoom.drops.update(time)
         # Ventana mágica
@@ -32,9 +41,9 @@ class InRoomState(StageState):
 
         if exit is not None:
             if "next" in exit:
-                stage.state = OnLeaveState()
+                stage.set_state(OnLeaveState())
             else:
-                stage.state = OnTransitionState(exit, stage.player)
+                stage.set_state(OnTransitionState(exit, stage.player))
             return
 
         # Alinea el viewport con el centro del jugador
@@ -49,7 +58,7 @@ class InRoomState(StageState):
         # Se recorre la lista de drops colisionados
         for drop in drops:
             # Drops de vida
-            if type(drop) is Life:
+            if drop.name == 'heart':
                 # Comprobamos que la vida del enemigo es menor que la máxima
                 # (ha recibido daño)
                 if stage.player.stats["hp"] < stage.player.stats["max_hp"]:
@@ -58,7 +67,7 @@ class InRoomState(StageState):
                     # Eliminamos el sprite de todos los grupos
                     drop.kill()
             # Drops de almas
-            elif type(drop) is Soul:
+            elif drop.name == 'soul':
                 # Añadimos las almas recogidas y eliminamos el sprite de todos
                 # los grupos
                 stage.player.increase_souls(drop.amount)

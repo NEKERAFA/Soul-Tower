@@ -6,54 +6,22 @@ from src.scenes.stage.OnLeaveState import *
 from src.scenes.stage.OnTransitionState import *
 from src.scenes.stage.OnDialogueState import *
 from src.sprites.characters.Enemy import *
-from src.sprites.drops.Life import *
-from src.sprites.drops.Soul import *
 
 class SmallRoomState(StageState):
     def update(self, time, stage):
-        currentRoom = stage.rooms[stage.currentRoom]
-
-        # Movemos los enemigos
-        for enemy in iter(currentRoom.enemies):
-            enemy.move_ai(stage.player)
-
         # Actualizamos los sprites
         # Player
         stage.player.update(time, stage)
-        # Enemigos
-        currentRoom.enemies.update(time, currentRoom.rect, stage.mask)
-        # Drops
-        currentRoom.drops.update(time)
 
         # Comprobamos si estamos saliendo de la sala
         exit = currentRoom.isExiting(stage.player)
 
         if exit is not None:
             if "next" in exit:
-                stage.state = OnLeaveState()
+                stage.set_state(OnLeaveState())
             else:
-                stage.state = OnTransitionState(exit, stage.player)
+                stage.set_state(OnTransitionState(exit, stage.player))
             return
-
-        drops = pygame.sprite.spritecollide(stage.player, currentRoom.drops, False)
-
-        # Se recorre la lista de drops colisionados
-        for drop in drops:
-            # Drops de vida
-            if type(drop) is Life:
-                # Comprobamos que la vida del enemigo es menor que la máxima
-                # (ha recibido daño)
-                if stage.player.stats["hp"] < stage.player.stats["max_hp"]:
-                    # Añadimos las vidas al jugador
-                    stage.player.add_lifes(drop.amount)
-                    # Eliminamos el sprite de todos los grupos
-                    drop.kill()
-            # Drops de almas
-            elif type(drop) is Soul:
-                # Añadimos las almas recogidas y eliminamos el sprite de todos
-                # los grupos
-                stage.player.increase_souls(drop.amount)
-                drop.kill()
 
         # Si detecta colisión con un trigger, cambia de estado
         trigger = pygame.sprite.spritecollideany(stage.player, currentRoom.triggers)

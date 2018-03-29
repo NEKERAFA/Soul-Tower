@@ -11,7 +11,6 @@ from src.scenes.stage.Room import *
 from src.sprites.Character import *
 from src.sprites.characters.Player import *
 from src.scenes.stage.OnEnterState import *
-from src.scenes.stage.OnLeaveState import *
 from src.scenes.stage.InRoomState import *
 from src.scenes.stage.SmallRoomState import *
 from src.interface.screens.GUIPlayerScreen import *
@@ -23,7 +22,6 @@ from src.interface.screens.GUIWindowDialogScreen import *
 SCREEN_CENTER_X = int(SCREEN_WIDTH/2)
 
 class Stage(Scene):
-
     inRoomState = InRoomState()
     smallRoomState = SmallRoomState()
 
@@ -83,26 +81,12 @@ class Stage(Scene):
         # Empezamos en estado de entrar en sala
         self.state = OnEnterState()
 
+        # Variable que nos dice si el boss ha muerto
+        self.bossKilled = False
+
     def update(self, time):
         # Delegamos en el estado la actualización de la fase
         self.state.update(time, self)
-
-        # Comprobamos el estado de la sala
-        if type(self.state) is OnEnterState:
-            # Si ha terminado la animación de entrar en la sala, cambiamos al
-            # estado correspondiente de la sala
-            if self.state.finishAnimation:
-                if self.rooms[self.currentRoom].small:
-                    self.state = self.smallRoomState
-                else:
-                    self.state = self.inRoomState
-        elif type(self.state) is OnLeaveState:
-            # Si ha terminado la animación de salir de la sala, cambiamos de
-            # escena a la siguiente fase
-            if self.state.finishAnimation:
-                self.player.move(STILL)
-                nextStage = Stage(self.stageNum+1, self.gameManager, self.player)
-                self.gameManager.scene_change(nextStage)
 
     def events(self, events):
         # Miramos a ver si hay algun evento de salir del programa
@@ -124,7 +108,7 @@ class Stage(Scene):
             self.guiWindow.draw(screen)
 
     # Cambia el estado que controla el comportamiento del scroll
-    def setState(self, state):
+    def set_state(self, state):
         self.state = state
 
     # Crear diálogo para las ventanas
@@ -135,3 +119,7 @@ class Stage(Scene):
      # Eliminar diálogo para ventanas
     def remove_window_dialog(self):
         self.guiWindow = None
+
+    # Crea la fase siguient
+    def next_stage(self):
+        return Stage(self.stageNum+1, self.gameManager, self.player)
