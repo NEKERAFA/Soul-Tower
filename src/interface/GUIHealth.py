@@ -59,3 +59,5 @@ class GUIHealth(GUIElement):
         # Eliminar último elemento del array
         if(len(self.heartArray) > 0):
             del(self.heartArray[-1])
+        # Actualizar posiciones del resto de corazones
+        self.heartPos = (self.heartPos[0] - (heart.image.get_rect().right+2), self.heartPos[1])
