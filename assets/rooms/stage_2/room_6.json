@@ -1,0 +1,28 @@
+{
+    "position": [2760, 360],
+    "width": 528,
+    "height": 456,
+    "connections": [
+        {
+            "x": 2784,
+            "top": 600,
+            "bottom": 564,
+            "to": 5,
+            "direction": "left"
+        }
+    ],
+    "magicWindow": {
+        "position": [3204, 432],
+        "initialDialog": "magicWindow2.json",
+        "selectionFile": "magicWindow_menu.json",
+        "endDialog": ["magicWindow2_leraila.json", "magicWindow2_daric.json", "magicWindow2_both.json"],
+        "collision": [3192, 384, 72, 72]
+    },
+    "lockedDoors": [
+        {
+            "position": [3024, 552],
+            "doorSprite": "cell4.png",
+            "doorMask": [3140, 528, 32, 12]
+        }
+    ]
+}

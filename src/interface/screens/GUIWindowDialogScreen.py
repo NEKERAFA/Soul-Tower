@@ -21,7 +21,7 @@ class GUIWindowDialogScreen(GUIScreen):
         self.selectionFile = ResourceManager.load_dialogue(selectionFile)
         self.choice = -1
         self.elementClick = None
-        iniVal = 1+2*(self.stage.stageNum-1)
+        iniVal = 1+3*(self.stage.stageNum-1)
         finVal = iniVal+3
 
         scale = (360,40)

@@ -23,6 +23,20 @@
             "right": 1348,
             "to": 4,
             "direction": "down"
+        },
+        {
+            "x": 2112,
+            "top": 624,
+            "bottom": 588,
+            "to": 5,
+            "direction": "right"
+        },
+        {
+            "x": 2112,
+            "top": 1104,
+            "bottom": 1068,
+            "to": 5,
+            "direction": "right"
         }
     ]
 }

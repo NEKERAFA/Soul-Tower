@@ -11,11 +11,11 @@ class StageState(object):
         screen.fill((0, 0, 0))
         # Luego los Sprites sobre una copia del mapa de la sala
         newImage = stage.image.copy()
+        # Ventana mágica
+        currentRoom.magicWindowGroup.draw(newImage)
         # Puertas
         currentRoom.lockedDoorsGroup.draw(newImage)
         currentRoom.unlockedDoorsGroup.draw(newImage)
-        # Ventana mágica
-        currentRoom.magicWindowGroup.draw(newImage)
         # Enemigos
         currentRoom.enemies.draw(newImage)
         # Drops
