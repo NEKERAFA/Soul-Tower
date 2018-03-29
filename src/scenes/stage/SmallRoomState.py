@@ -9,9 +9,30 @@ from src.sprites.characters.Enemy import *
 
 class SmallRoomState(StageState):
     def update(self, time, stage):
+        currentRoom = stage.rooms[stage.currentRoom]
+
+        # Movemos los enemigos
+        for enemy in iter(currentRoom.enemies):
+            enemy.move_ai(stage.player)
+
         # Actualizamos los sprites
         # Player
         stage.player.update(time, stage)
+        # Enemigos
+        currentRoom.enemies.update(time, currentRoom.rect, stage.mask)
+        # Recogibles
+        currentRoom.collectables.update(time)
+        # Ventana mágica
+        currentRoom.magicWindowGroup.update(time, stage)
+
+        # Si detecta colisión con un trigger, cambia de estado
+        trigger = pygame.sprite.spritecollideany(stage.player, currentRoom.triggers)
+
+        if trigger is not None:
+            trigger.open_door(stage)
+            stage.state = OnDialogueState(trigger.dialogueFile, stage)
+            trigger.kill() # Eliminamos el trigger
+            return
 
         # Comprobamos si estamos saliendo de la sala
         exit = currentRoom.isExiting(stage.player)
@@ -23,21 +44,7 @@ class SmallRoomState(StageState):
                 stage.set_state(OnTransitionState(exit, stage.player))
             return
 
-        # Si detecta colisión con un trigger, cambia de estado
-        trigger = pygame.sprite.spritecollideany(stage.player, currentRoom.triggers)
-
-        if trigger is not None:
-            trigger.open_door(stage)
-            stage.state = OnDialogueState(trigger.dialogueFile, stage)
-            trigger.kill() # Eliminamos el trigger
-            return
-
-        # Se detecta si estás en colisión con una puerta desbloqueada y si se
-        # puede abrir
-        for unlockedDoor in iter(currentRoom.unlockedDoorsGroup):
-            # Colisión entre jugador y puerta
-            if unlockedDoor.collision.colliderect(stage.player.rect) and KeyboardMouseControl.sec_button():
-                unlockedDoor.open(stage)
+        StageState.update(self, time, stage)
 
     def events(self, events, stage):
         stage.player.move(stage.viewport)

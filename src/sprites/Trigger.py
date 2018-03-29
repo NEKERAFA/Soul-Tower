@@ -4,7 +4,6 @@ import pygame, os
 from src.sprites.MyStaticSprite import *
 
 class Trigger(MyStaticSprite):
-
     def __init__(self, rect, dialogueFile, door):
         MyStaticSprite.__init__(self)
         self.rect = rect
@@ -14,5 +13,4 @@ class Trigger(MyStaticSprite):
 
     def open_door(self, stage):
         if self.door is not None:
-            self.door.kill()
-            stage.mask.erase(self.door.mask, self.door.offset)
+            self.door.open(stage)

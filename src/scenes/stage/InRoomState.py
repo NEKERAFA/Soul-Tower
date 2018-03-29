@@ -20,21 +20,19 @@ class InRoomState(StageState):
         stage.player.update(time, stage)
         # Enemigos
         currentRoom.enemies.update(time, currentRoom.rect, stage.mask)
-
-        # Compruebo los enemigos muertos para matarlos y coger su drop
-        killedEnemies = []
-        for enemy in iter(currentRoom.enemies):
-            if enemy.killed:
-                enemy.set_drop(currentRoom.drops)
-                killedEnemies.append(enemy)
-
-        for enemy in killedEnemies:
-            enemy.kill()
-
-        # Drops
-        currentRoom.drops.update(time)
+        # Recogibles
+        currentRoom.collectables.update(time)
         # Ventana mágica
         currentRoom.magicWindowGroup.update(time, stage)
+
+        # Si detecta colisión con un trigger, cambia de estado
+        trigger = pygame.sprite.spritecollideany(stage.player, currentRoom.triggers)
+
+        if trigger is not None:
+            trigger.open_door(stage)
+            stage.state = OnDialogueState(trigger.dialogueFile, stage)
+            trigger.kill() # Eliminamos el trigger
+            return
 
         # Comprobamos si estamos saliendo de la sala
         exit = currentRoom.isExiting(stage.player)
@@ -53,41 +51,7 @@ class InRoomState(StageState):
         stage.viewport.center = (stage.player.rect.center)
         stage.viewport.clamp_ip(currentRoom.rect)
 
-        drops = pygame.sprite.spritecollide(stage.player, currentRoom.drops, False)
-
-        # Se recorre la lista de drops colisionados
-        for drop in drops:
-            # Drops de vida
-            if drop.name == 'heart':
-                # Comprobamos que la vida del enemigo es menor que la máxima
-                # (ha recibido daño)
-                if stage.player.stats["hp"] < stage.player.stats["max_hp"]:
-                    # Añadimos las vidas al jugador
-                    stage.player.add_lifes(drop.amount)
-                    # Eliminamos el sprite de todos los grupos
-                    drop.kill()
-            # Drops de almas
-            elif drop.name == 'soul':
-                # Añadimos las almas recogidas y eliminamos el sprite de todos
-                # los grupos
-                stage.player.increase_souls(drop.amount)
-                drop.kill()
-
-        # Si detecta colisión con un trigger, cambia de estado
-        trigger = pygame.sprite.spritecollideany(stage.player, currentRoom.triggers)
-
-        if trigger is not None:
-            trigger.open_door(stage)
-            stage.state = OnDialogueState(trigger.dialogueFile, stage)
-            trigger.kill() # Eliminamos el trigger
-            return
-
-        # Se detecta si estás en colisión con un objeto con el que puedes
-        # interactuar
-        for interSprite in iter(currentRoom.interactivesGroup):
-            # Colisión entre jugador y puerta
-            if interSprite.collide(stage.player) and KeyboardMouseControl.sec_button():
-                interSprite.activate(stage)
+        StageState.update(self, time, stage)
 
     def events(self, events, stage):
         stage.player.move(stage.viewport)
