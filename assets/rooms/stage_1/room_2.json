@@ -11,6 +11,80 @@
             "direction": "down"
         }
     ],
+    "enemies": [
+        {
+            "type": "bee",
+            "position": [59, 1392],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "slime",
+            "position": [480, 1248],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "bee",
+            "position": [346, 1458],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "bee",
+            "position": [132, 1044],
+            "drop": {
+                "type": "heart",
+                "amount": 1
+            }
+        },
+        {
+            "type": "slime",
+            "position": [408, 923],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "bee",
+            "position": [504, 857],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "bee",
+            "position": [130, 840],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "slime",
+            "position": [596, 976],
+            "drop": {
+                "type": "heart",
+                "amount": 1
+            }
+        },
+        {
+            "type": "bee",
+            "position": [588, 1097],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        }
+    ],
     "triggers": [
         {
             "position": [600, 816],

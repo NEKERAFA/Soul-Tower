@@ -32,5 +32,7 @@ class Bullet(MySprite):
         MySprite.update(self, time)
         # Comprobamos si ha chocado con la pared para eliminarla de todos los
         # grupos a los que esté asociada la bala
-        if not stage.viewport.colliderect(self.rect) or not stage.rooms[stage.currentRoom].rect.colliderect(self.rect):
+        x, y = self.rect.topleft
+        mask = pygame.mask.from_surface(self.image)
+        if not stage.viewport.contains(self.rect) or mask.overlap(stage.rangedMask, (-x, -y)):
             self.kill()

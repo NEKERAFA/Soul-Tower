@@ -1,108 +1,93 @@
 {
     "stats": {
-        "max_hp": 1,
-        "hp": 1,
+        "max_hp": 2,
+        "hp": 2,
         "atk": 1,
         "backward": 0.00125,
-        "spd": 0.02
+        "spd": 0.01
     },
 
     "behaviour" : {
-        "type": "wandering"
+        "type": "patrolling",
+        "radius": 25,
+        "angle": 45
     },
 
     "frames": [
         [
             {
-                "x" : 0,
-                "y" : 32,
-                "width" : 32,
-                "height" : 32,
-                "delay" : 0.1
-            },
-            {
-                "x" : 32,
-                "y" : 32,
-                "width" : 32,
-                "height" : 32,
-                "delay" : 0.1
-            },
-            {
-                "x" : 64,
-                "y" : 32,
+                "x" : 1,
+                "y" : 1,
                 "width" : 32,
                 "height" : 32,
                 "delay" : 0.1
             }
         ],
-
         [
             {
-                "x" : 0,
-                "y" : 96,
+                "x" : 1,
+                "y" : 34,
                 "width" : 32,
                 "height" : 32,
                 "delay" : 0.1
             },
             {
-                "x" : 32,
-                "y" : 96,
+                "x" : 34,
+                "y" : 34,
                 "width" : 32,
                 "height" : 32,
                 "delay" : 0.1
             },
             {
-                "x" : 64,
-                "y" : 96,
+                "x" : 67,
+                "y" : 34,
                 "width" : 32,
                 "height" : 32,
                 "delay" : 0.1
             }
         ],
-
         [
             {
-                "x" : 0,
-                "y" : 32,
+                "x" : 1,
+                "y" : 100,
                 "width" : 32,
                 "height" : 32,
                 "delay" : 0.1
             },
             {
-                "x" : 32,
-                "y" : 32,
+                "x" : 34,
+                "y" : 100,
                 "width" : 32,
                 "height" : 32,
                 "delay" : 0.1
             },
             {
-                "x" : 64,
-                "y" : 32,
+                "x" : 67,
+                "y" : 100,
                 "width" : 32,
                 "height" : 32,
                 "delay" : 0.1
             }
         ],
-
         [
             {
-                "x" : 0,
-                "y" : 64,
-                "width" : 32,
+                "x" : 1,
+                "y" : 67,
+                "width" : 36,
                 "height" : 32,
                 "delay" : 0.1
             },
             {
-                "x" : 32,
-                "y" : 64,
-                "width" : 32,
+                "x" : 38,
+                "y" : 67,
+                "width" : 36,
                 "height" : 32,
                 "delay" : 0.1
             },
             {
-                "x" : 64,
-                "y" : 64,
-                "width" : 32,
+                "x" : 75,
+                "y" : 67,
+                "width" : 36,
                 "height" : 32,
                 "delay" : 0.1
             }

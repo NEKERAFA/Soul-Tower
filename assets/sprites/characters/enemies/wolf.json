@@ -1,198 +1,214 @@
-[
-    [
-        {
-            "x": 0,
-            "y": 0,
-            "width": 64,
-            "height": 45,
-            "delay": 0.2
-        },
-        {
-            "x": 64,
-            "y": 0,
-            "width": 64,
-            "height": 45,
-            "delay": 0.2
-        },
-        {
-            "x": 128,
-            "y": 0,
-            "width": 64,
-            "height": 45,
-            "delay": 0.2
-        },
-        {
-            "x": 192,
-            "y": 0,
-            "width": 64,
-            "height": 45,
-            "delay": 0.2
-        },
-        {
-            "x": 128,
-            "y": 0,
-            "width": 64,
-            "height": 45,
-            "delay": 0.2
-        },
-        {
-            "x": 64,
-            "y": 0,
-            "width": 64,
-            "height": 45,
-            "delay": 0.2
-        }
-    ],
+{
+    "stats": {
+        "max_hp": 2,
+        "hp": 2,
+        "atk": 1,
+        "backward": 0.00125,
+        "spd": 0.01
+    },
 
-    [
-        {
-            "x": 0,
-            "y": 45,
-            "width": 64,
-            "height": 32,
-            "delay": 0.1
-        },
-        {
-            "x": 64,
-            "y": 45,
-            "width": 64,
-            "height": 32,
-            "delay": 0.1
-        },
-        {
-            "x": 128,
-            "y": 45,
-            "width": 64,
-            "height": 32,
-            "delay": 0.1
-        },
-        {
-            "x": 192,
-            "y": 45,
-            "width": 64,
-            "height": 32,
-            "delay": 0.1
-        },
-        {
-            "x": 256,
-            "y": 45,
-            "width": 64,
-            "height": 32,
-            "delay": 0.1
-        }
-    ],
+    "behaviour" : {
+        "type": "patrolling",
+        "radius": 100,
+        "angle": 22.5
+    },
 
-    [
-        {
-            "x": 0,
-            "y": 45,
-            "width": 64,
-            "height": 32,
-            "delay": 0.1
-        },
-        {
-            "x": 64,
-            "y": 45,
-            "width": 64,
-            "height": 32,
-            "delay": 0.1
-        },
-        {
-            "x": 128,
-            "y": 45,
-            "width": 64,
-            "height": 32,
-            "delay": 0.1
-        },
-        {
-            "x": 192,
-            "y": 45,
-            "width": 64,
-            "height": 32,
-            "delay": 0.1
-        },
-        {
-            "x": 256,
-            "y": 45,
-            "width": 64,
-            "height": 32,
-            "delay": 0.1
-        }
-    ],
+    "frames": [
+        [
+            {
+                "x": 0,
+                "y": 0,
+                "width": 64,
+                "height": 45,
+                "delay": 0.2
+            },
+            {
+                "x": 64,
+                "y": 0,
+                "width": 64,
+                "height": 45,
+                "delay": 0.2
+            },
+            {
+                "x": 128,
+                "y": 0,
+                "width": 64,
+                "height": 45,
+                "delay": 0.2
+            },
+            {
+                "x": 192,
+                "y": 0,
+                "width": 64,
+                "height": 45,
+                "delay": 0.2
+            },
+            {
+                "x": 128,
+                "y": 0,
+                "width": 64,
+                "height": 45,
+                "delay": 0.2
+            },
+            {
+                "x": 64,
+                "y": 0,
+                "width": 64,
+                "height": 45,
+                "delay": 0.2
+            }
+        ],
 
-    [
-        {
-            "x": 0,
-            "y": 45,
-            "width": 64,
-            "height": 32,
-            "delay": 0.1
-        },
-        {
-            "x": 64,
-            "y": 45,
-            "width": 64,
-            "height": 32,
-            "delay": 0.1
-        },
-        {
-            "x": 128,
-            "y": 45,
-            "width": 64,
-            "height": 32,
-            "delay": 0.1
-        },
-        {
-            "x": 192,
-            "y": 45,
-            "width": 64,
-            "height": 32,
-            "delay": 0.1
-        },
-        {
-            "x": 256,
-            "y": 45,
-            "width": 64,
-            "height": 32,
-            "delay": 0.1
-        }
-    ],
+        [
+            {
+                "x": 0,
+                "y": 45,
+                "width": 64,
+                "height": 32,
+                "delay": 0.1
+            },
+            {
+                "x": 64,
+                "y": 45,
+                "width": 64,
+                "height": 32,
+                "delay": 0.1
+            },
+            {
+                "x": 128,
+                "y": 45,
+                "width": 64,
+                "height": 32,
+                "delay": 0.1
+            },
+            {
+                "x": 192,
+                "y": 45,
+                "width": 64,
+                "height": 32,
+                "delay": 0.1
+            },
+            {
+                "x": 256,
+                "y": 45,
+                "width": 64,
+                "height": 32,
+                "delay": 0.1
+            }
+        ],
 
-    [
-        {
-            "x": 0,
-            "y": 109,
-            "width": 64,
-            "height": 32,
-            "delay": 5
-        },
-        {
-            "x": 64,
-            "y": 109,
-            "width": 64,
-            "height": 32,
-            "delay": 0.1
-        },
-        {
-            "x": 128,
-            "y": 109,
-            "width": 64,
-            "height": 32,
-            "delay": 0.1
-        },
-        {
-            "x": 192,
-            "y": 109,
-            "width": 64,
-            "height": 32,
-            "delay": 0.1
-        },
-        {
-            "x": 256,
-            "y": 109,
-            "width": 64,
-            "height": 32,
-            "delay": 0.1
-        }
+        [
+            {
+                "x": 0,
+                "y": 45,
+                "width": 64,
+                "height": 32,
+                "delay": 0.1
+            },
+            {
+                "x": 64,
+                "y": 45,
+                "width": 64,
+                "height": 32,
+                "delay": 0.1
+            },
+            {
+                "x": 128,
+                "y": 45,
+                "width": 64,
+                "height": 32,
+                "delay": 0.1
+            },
+            {
+                "x": 192,
+                "y": 45,
+                "width": 64,
+                "height": 32,
+                "delay": 0.1
+            },
+            {
+                "x": 256,
+                "y": 45,
+                "width": 64,
+                "height": 32,
+                "delay": 0.1
+            }
+        ],
+
+        [
+            {
+                "x": 0,
+                "y": 45,
+                "width": 64,
+                "height": 32,
+                "delay": 0.1
+            },
+            {
+                "x": 64,
+                "y": 45,
+                "width": 64,
+                "height": 32,
+                "delay": 0.1
+            },
+            {
+                "x": 128,
+                "y": 45,
+                "width": 64,
+                "height": 32,
+                "delay": 0.1
+            },
+            {
+                "x": 192,
+                "y": 45,
+                "width": 64,
+                "height": 32,
+                "delay": 0.1
+            },
+            {
+                "x": 256,
+                "y": 45,
+                "width": 64,
+                "height": 32,
+                "delay": 0.1
+            }
+        ],
+
+        [
+            {
+                "x": 0,
+                "y": 109,
+                "width": 64,
+                "height": 32,
+                "delay": 5
+            },
+            {
+                "x": 64,
+                "y": 109,
+                "width": 64,
+                "height": 32,
+                "delay": 0.1
+            },
+            {
+                "x": 128,
+                "y": 109,
+                "width": 64,
+                "height": 32,
+                "delay": 0.1
+            },
+            {
+                "x": 192,
+                "y": 109,
+                "width": 64,
+                "height": 32,
+                "delay": 0.1
+            },
+            {
+                "x": 256,
+                "y": 109,
+                "width": 64,
+                "height": 32,
+                "delay": 0.1
+            }
+        ]
     ]
-]
+}

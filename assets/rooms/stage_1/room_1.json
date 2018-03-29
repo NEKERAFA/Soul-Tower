@@ -25,6 +25,56 @@
             "direction": "right"
         }
     ],
+    "enemies": [
+        {
+            "type": "slime",
+            "position": [72, 1752],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "slime",
+            "position": [144, 1704],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "slime",
+            "position": [168, 1824],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "slime",
+            "position": [456, 1944],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "slime",
+            "position": [408, 1776],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "bee",
+            "position": [408, 1752],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        }
+    ],
     "lockedDoors": [
         {
             "doorSprite": "flowerDoor.png",

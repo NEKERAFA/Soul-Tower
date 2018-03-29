@@ -24,5 +24,87 @@
             "to": 7,
             "direction": "up"
         }
+    ],
+    "enemies": [
+        {
+            "type": "slime",
+            "position": [720, 1848],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "slime",
+            "position": [600, 1992],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "wild_boar",
+            "position": [792, 1814],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "wild_boar",
+            "position": [984, 1752],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "slime",
+            "position": [864, 1992],
+            "drop": {
+                "type": "heart",
+                "amount": 1
+            }
+        },
+        {
+            "type": "wild_boar",
+            "position": [1262, 1992],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "wild_boar",
+            "position": [1176, 1836],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "wild_boar",
+            "position": [1128, 1704],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "slime",
+            "position": [768, 1752],
+            "drop": {
+                "type": "heart",
+                "amount": 1
+            }
+        },
+        {
+            "type": "bee",
+            "position": [1056, 1728],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        }
     ]
 }
