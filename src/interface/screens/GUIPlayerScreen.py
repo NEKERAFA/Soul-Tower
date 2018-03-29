@@ -48,7 +48,7 @@ class GUIPlayerScreen(GUIScreen):
 
     def events(self, event_list):
         for event in event_list:
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_e and self.stage.guiWindow is None and self.stage.state.__class__.__name__ == 'InRoomState' :
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_e:
                 self.charSymb.action()
                 #for element in self.GUIElements:
                 #    if element.__class__.__name__ == 'GUICharacterSymbol':

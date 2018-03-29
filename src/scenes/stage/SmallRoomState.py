@@ -71,6 +71,8 @@ class SmallRoomState(StageState):
             if unlockedDoor.collision.colliderect(stage.player.rect) and KeyboardMouseControl.sec_button():
                 unlockedDoor.open(stage)
 
+        stage.gui.update(time)
 
     def events(self, events, stage):
         stage.player.move(stage.viewport)
+        stage.gui.events(events)

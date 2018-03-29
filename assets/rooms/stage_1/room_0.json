@@ -18,12 +18,5 @@
             "collision": [264, 2064, 24, 24],
             "wait": true
         }
-    ],
-    "magicWindow": {
-        "position": [144, 2136],
-        "initialDialog": "magicWindow1.json",
-        "selectionFile": "magicWindow1.json",
-        "endDialog": ["magicWindow1_leraila.json", "magicWindow1_daric.json", "magicWindow1_both.json"],
-        "collision": [144, 2160, 100, 100]
-    }
+    ]
 }

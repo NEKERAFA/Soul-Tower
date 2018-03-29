@@ -78,7 +78,7 @@
             }
         },
         "text": [
-            ["Por extraño que parezca, estoy de acuerdo contigo."]
+            ["Por extraño que parezca, estoy de acuerdo", "contigo."]
         ]
     },
     {
@@ -100,7 +100,7 @@
             }
         },
         "text": [
-            ["Dudo bastante que lleguemos a entendernos, Daric.", "Las coincidencias existen. Dejémoslo en que", "esto ha sido una de ellas."]
+            ["Dudo bastante que lleguemos a entendernos,","Daric. Las coincidencias existen. Dejémoslo en", "que esto ha sido una de ellas."]
         ]
     },
     {

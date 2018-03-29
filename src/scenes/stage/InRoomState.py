@@ -80,5 +80,8 @@ class InRoomState(StageState):
             if interSprite.collide(stage.player) and KeyboardMouseControl.sec_button():
                 interSprite.activate(stage)
 
+        stage.gui.update(time)
+
     def events(self, events, stage):
         stage.player.move(stage.viewport)
+        stage.gui.events(events)

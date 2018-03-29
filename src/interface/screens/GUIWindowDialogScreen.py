@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import pygame
+import pygame, os
 from pygame.locals import *
 from src.ResourceManager import *
 from src.scenes.Scene import *
@@ -12,25 +12,25 @@ from src.interface.GUIWindowButton import *
 # Interfaz durante los menús
 
 # Localización de los sprites
-WINDOW_BUTTON_UP_LOCATION = 'interface/game/button_up.png'
-WINDOW_BUTTON_DOWN_LOCATION = 'interface/game/button_down.png'
+WINDOW_BUTTON_UP_LOCATION = os.path.join('interface', 'game', 'button_up.png')
+WINDOW_BUTTON_DOWN_LOCATION = os.path.join('interface', 'game', 'button_down.png')
 
 class GUIWindowDialogScreen(GUIScreen):
     def __init__(self, stage, selectionFile):
         GUIScreen.__init__(self, stage)
-        self.selectionFile = selectionFile
+        self.selectionFile = ResourceManager.load_dialogue(selectionFile)
         self.choice = -1
         self.elementClick = None
         iniVal = 1+2*(self.stage.stageNum-1)
         finVal = iniVal+3
 
-        scale = (100,40)
+        scale = (360,40)
 
-        initPosition = (int((SCREEN_WIDTH-scale[0])/2), int(SCREEN_HEIGHT/2)-scale[1])
+        initPosition = (int((SCREEN_WIDTH-scale[0])/2), int(SCREEN_HEIGHT/2)-scale[1]*1.5)
 
         for i in range(iniVal,finVal):
-            text = "Texto " + str(i)
-            button = GUIWindowButton(self, text, WINDOW_BUTTON_UP_LOCATION, WINDOW_BUTTON_DOWN_LOCATION, (initPosition[0], initPosition[1]+i*40), scale, getattr(self, 'button_fun_'+str(i)))
+            text = self.selectionFile[i-1]
+            button = GUIWindowButton(self, text, WINDOW_BUTTON_UP_LOCATION, WINDOW_BUTTON_DOWN_LOCATION, (initPosition[0], initPosition[1]+i*(scale[1]+10)), scale, getattr(self, 'button_fun_'+str(i)))
             self.add_element(button)
 
     def events(self, event_list):

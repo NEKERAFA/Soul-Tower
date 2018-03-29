@@ -12,10 +12,10 @@
         }
     ],
     "magicWindow": {
-        "position": [2820, 1776],
+        "position": [2840, 1776],
         "initialDialog": "magicWindow1.json",
-        "selectionFile": "test.json",
-        "endDialog": "magicWindow1_leraila.json",
+        "selectionFile": "magicWindow_menu.json",
+        "endDialog": ["magicWindow1_leraila.json", "magicWindow1_daric.json", "magicWindow1_both.json"],
         "collision": [2832, 1728, 72, 72]
     }
 }

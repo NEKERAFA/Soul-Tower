@@ -86,9 +86,6 @@ class Stage(Scene):
     def update(self, time):
         # Delegamos en el estado la actualización de la fase
         self.state.update(time, self)
-        self.gui.update(time)
-        if(self.guiWindow is not None):
-            self.guiWindow.update(time)
 
         # Comprobamos el estado de la sala
         if type(self.state) is OnEnterState:
@@ -117,9 +114,6 @@ class Stage(Scene):
 
         # Delegamos en el estado la acción a realizar para el Jugador
         self.state.events(events, self)
-        self.gui.events(events)
-        if(self.guiWindow is not None):
-            self.guiWindow.events(events)
 
     def draw(self, screen):
         # Delegamos en el estado el dibujado de la fase
