@@ -30,6 +30,9 @@ class Thunder(Attack):
         # self.rect.bottomleft = x-self.rect.height/2,y-self.rect.width-16
         self.shrink = 5
         # self.blastRect = Rect(0,0,0,0)
+        # Diccionario de ataque-enemigos
+        # (para el mismo ataque no hacer daño más de una vez al mismo enemigo)
+        self.attackDict = {-1:-1}
 
     def draw(self, surface):
         Attack.draw(self, surface)
@@ -46,8 +49,16 @@ class Thunder(Attack):
             # self.blastRect = blastRect
             for enemy in self.enemies:
                 if blastRect.colliderect(enemy.rect):
-                    angle = random.uniform(0, 2*math.pi)
-                    impulse = Force(angle, player.stats["backward"])
-                    enemy.receive_damage('magic', player.stats["atk"], impulse)
+                    value = self.attackDict.get(id(enemy))
+                    if (value is None or value!=self.id):
+                        self.attackDict[id(enemy)] = self.id
+                        if (enemy.hp==1):
+                            del self.attackDict[id(enemy)]
+                        enemy.drop.change_global_position(enemy.position)
+                        stage.rooms[stage.currentRoom].drops.add(enemy.drop)
+                        print("thunder enemy ", id(enemy))
+                        angle = random.uniform(0, 2*math.pi)
+                        impulse = Force(angle, player.stats["backward"])
+                        enemy.receive_damage('magic', player.stats["atk"], impulse)
         if not self.drawAnimation:
             self.kill()

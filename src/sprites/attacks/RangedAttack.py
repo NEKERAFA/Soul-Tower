@@ -30,7 +30,7 @@ class RangedAttack(Attack):
         # Grupo de disparos
         self.bullets = pygame.sprite.Group()
         # Nivel de mejora
-        self.level = 2
+        self.level = 3
         self.probability = 0.3
 
     def start_attack(self, characterPos, rotation):
@@ -78,5 +78,10 @@ class RangedAttack(Attack):
             enemies = collides[bullet]
             # Cogemos el primero en hacer la colisión para que reciba daño
             enemy = enemies[0]
+            enemyPos = enemy.position
             impulse = Force(bullet.rotation, player.stats["backward"])
             enemy.receive_damage('magic', player.stats["atk"], impulse)
+            if (self.level>2):
+                angle = random.uniform(-180,180)
+                bulletExtra = Bullet(enemyPos, angle, self.radius, self.image)
+                self.bullets.add(bulletExtra)

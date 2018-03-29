@@ -40,7 +40,7 @@ class Player(Character):
         self.state = Normal()
 
         # Se cargan los ataques
-        self.attack = RangedAttack(30, 300, enemies)
+        self.attack = RangedAttack(20, 300, enemies)
 
         # Número de almas
         self.souls = 0
@@ -81,7 +81,7 @@ class Player(Character):
         if KeyboardMouseControl.prim_button():
             # Si es sorcerer, el ataque actual es ataque a distancia
             if self.currentCharacter == 'sorcerer' and type(self.attack) is not RangedAttack:
-                self.attack = RangedAttack(30, 300, self.attack.enemies)
+                self.attack = RangedAttack(20, 300, self.attack.enemies)
 
             # Si es warrior, el ataque actual es melee
             if self.currentCharacter == 'warrior' and type(self.attack) is not MeleeAttack:
