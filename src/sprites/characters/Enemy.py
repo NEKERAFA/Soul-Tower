@@ -17,6 +17,8 @@ class Enemy(NPC):
         NPC.__init__(self, path + '.png', path + '.json')
         self.drop = drop
         self.state = BehaviourConstructor.get_behaviour(self.behaviour["type"], self)
+        self.wasAlive = True
+        self.justDied = False
 
     def move_ai(self, player):
         self.state.move_ai(self, player)
@@ -29,6 +31,11 @@ class Enemy(NPC):
 
     def receive_damage(self, attack, damage, force):
         self.state.receive_damage(self, attack, damage, force)
+        if self.killed and self.wasAlive:
+            self.justDied = True
+            self.wasAlive = False
+        else:
+            self.justDied = False
 
     def update(self, time, mapRect, mapMask):
         self.state.update(self, time, mapRect, mapMask)
