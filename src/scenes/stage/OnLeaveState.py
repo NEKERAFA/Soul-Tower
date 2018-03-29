@@ -15,9 +15,10 @@ class OnLeaveState(StageState):
         self.alpha = min(self.alpha + time*0.128, 255)
 
         if self.alpha == 255:
+            nextStage = stage.next_stage()
             stage.player.move(STILL)
-            stage.gameManager.scene_change(stage.next_stage())
-            return
+            stage.player.change_stage(nextStage)
+            stage.gameManager.scene_change(nextStage)
 
     def events(self, events, stage):
         pass

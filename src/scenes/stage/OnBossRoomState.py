@@ -22,7 +22,6 @@ class OnBossRoomState(StageState):
         currentRoom.doors.add(door)
         # Para comprobar si el boss a muerto
         self.killedBoss = False
-        print "Boss"
 
     def update(self, time, stage):
         currentRoom = stage.rooms[stage.currentRoom]

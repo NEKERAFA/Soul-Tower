@@ -22,8 +22,16 @@ El archivo de configuración de la sala debe contener los siguientes datos:
         - "position" [x, y]: Posición de spawn del enemigo. Si no está, se define una posición aleatoria.
         - "type": Nombre del tipo de enemigo. Corresponde con el nombre del sprite.
         - "drop": Objeto que droppea, contiene la siguiente información:
-            - "type": Tipo de drop ("life" o "soul")
+            - "type": Tipo de drop ("heart" o "soul")
             - "amount": Cantidad del drop una vez cogido
+    - "boss": Con esto se le indica a la habitación que contiene un boss, más la siguiente información:
+        - "name": Nombre del boss,
+        - "position" [x, y]: Posición absoluta de spawn del boss
+        - "drops": Lista con los drops del boss. Contiene la misma información que el enemigo
+        - "closeDoor": Puerta que el enemigo cierra cuando se entra a la sala. Se debe aportar la siguiente información:
+            - "doorSprite": Sprite de la puerta.
+            - "position" [x, y]: Posición de la esquina inferior izquierda de la puerta (no tiene por qué corresponder con la de la conexión).
+            - "doorMask" [x, y, width, height]: Máscara de la puerta que se añadirá al mapa.
     - "triggers": Lista de los triggers de la sala. Cada trigger deber aportar la siguiente información:
         - "position" [x, y]: Posición de la esquina inferior izquierda del trigger.
         - "height": Altura en píxeles del trigger.

@@ -50,8 +50,6 @@ class OnTransitionState(StageState):
                         stage.set_state(stage.smallRoomState)
                     else:
                         stage.set_state(stage.inRoomState)
-
-
         else:
             shiftY = int(self.speed*time)
             shiftPlayerY = int(self.speedPlayer*time)

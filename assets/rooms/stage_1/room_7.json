@@ -25,13 +25,13 @@
             {
                 "type": "soul",
                 "amount": 10
-            }
+            },
             {
-                "type": "life",
+                "type": "heart",
                 "amount": 1
             }
         ],
-        "closePath": {
+        "closeDoor": {
             "doorSprite": "boss1BottomDoor.png",
             "position": [912, 1632],
             "doorMask": [932, 1608, 32, 24]
