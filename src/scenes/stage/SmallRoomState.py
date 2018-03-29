@@ -46,5 +46,8 @@ class SmallRoomState(StageState):
 
         StageState.update(self, time, stage)
 
+        stage.gui.update(time)
+
     def events(self, events, stage):
         stage.player.move(stage.viewport)
+        stage.gui.events(events)

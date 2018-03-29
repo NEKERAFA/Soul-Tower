@@ -9,6 +9,39 @@
             "bottom": 216,
             "to": 0,
             "direction": "left"
+        },
+        {
+            "y": 302,
+            "left": 1028,
+            "right": 1060,
+            "next": true,
+            "direction": "down"
+        }
+    ],
+    "boss": {
+        "name": "raven",
+        "position": [960, 180],
+        "drops": [
+            {
+                "type": "heart",
+                "amount": 1
+            },
+            {
+                "type": "soul",
+                "amount": 10
+            }
+        ],
+        "closeDoor": {
+            "position": [720, 264],
+            "doorSprite": "door_2.png",
+            "doorMask": [720, 200, 24, 41]
+        }
+    },
+    "lockedDoors": [
+        {
+            "position": [1008, 312],
+            "doorSprite": "door_1.png",
+            "doorMask": [1028, 288, 32, 24]
         }
     ]
 }

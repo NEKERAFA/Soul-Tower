@@ -3,37 +3,78 @@
     "width": 1056,
     "height": 720,
     "connections": [
+        {
+            "y": 696,
+            "left": 260,
+            "right": 292,
+            "to": 1,
+            "direction": "down"
+        },
+        {
+            "x": 1032,
+            "top": 576,
+            "bottom": 540,
+            "to": 2,
+            "direction": "right"
+        }
+    ],
+    "lockedDoors": [
+        {
+            "position": [240, 720],
+            "doorSprite": "prisonDoor.png",
+            "doorMask": [260, 696, 32, 24]
+        },
+        {
+            "position": [1032, 600],
+            "doorSprite": "prisonDoorV.png",
+            "doorMask": [1032, 540, 24, 36]
+        }
     ],
     "unlockedDoors": [
         {
             "position": [240, 168],
             "doorSprite": "cell.png",
             "doorMask": [240, 59, 24, 37],
-            "collision": [216, 59, 24, 37]
+            "collision": [216, 59, 12, 37]
         },
         {
             "position": [240, 336],
             "doorSprite": "cell.png",
             "doorMask": [240, 228, 24, 37],
-            "collision": [216, 228, 24, 37]
+            "collision": [216, 228, 12, 37]
         },
         {
             "position": [240, 504],
             "doorSprite": "cell.png",
             "doorMask": [240, 396, 24, 37],
-            "collision": [216, 396, 24, 37]
+            "collision": [216, 396, 12, 37]
         },
         {
             "position": [456, 504],
             "doorSprite": "cell2.png",
             "doorMask": [548, 480, 32, 12],
-            "collision": [548, 492, 32, 24]
+            "collision": [548, 492, 32, 12]
         },
         {
             "position": [672, 504],
             "doorSprite": "cell2.png",
             "doorMask": [764, 480, 32, 12],
-            "collision": [764, 492, 32, 24]
+            "collision": [764, 492, 32, 12]
+        }
+    ],
+    "triggers": [
+        {
+            "position": [100, 100],
+            "width": 48,
+            "height": 48,
+            "dialogueFile": "startStage2.json"
+        },
+        {
+            "position": [1020, 564],
+            "width": 12,
+            "height": 36,
+            "dialogueFile": "weirdSound.json",
+            "opens": [0, 0]
         }
     ]
 }

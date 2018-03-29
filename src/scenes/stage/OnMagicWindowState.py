@@ -35,5 +35,9 @@ class OnMagicWindowState(StageState):
             self.magicWindow.destruct(stage)
             stage.state = self.previousState
 
+        if(self.guiWindow is not None):
+            self.guiWindow.update(time)
+
     def events(self, events, stage):
-        pass
+        if(stage.guiWindow is not None):
+            stage.guiWindow.events(events)

@@ -1,0 +1,95 @@
+[
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [["¿No hay salida?"]]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [["Parece que hay un hueco en la pared."]]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [["Entonces supongo que habrá que encajar algo", "ahí."]]
+    },
+    {
+        "text": [["BRRRRROOOOOOM"]]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [["¡¿Qué ha sido eso?!"]]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [["..."], ["El ruido provenía de más atrás."]]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [["¿... Nunca te altera nada?"]]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila3.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [["Tú me alteras."]]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [["..."]]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [["..."]]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [["Sigamos adelante."]]
+    }
+]

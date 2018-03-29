@@ -1,0 +1,28 @@
+{
+    "position": [1056, 264],
+    "width": 1080,
+    "height": 1200,
+    "connections": [
+        {
+            "x": 1080,
+            "top": 576,
+            "bottom": 540,
+            "to": 0,
+            "direction": "left"
+        },
+        {
+            "y": 288,
+            "left": 1556,
+            "right": 1588,
+            "to": 3,
+            "direction": "up"
+        },
+        {
+            "y": 1440,
+            "left": 1316,
+            "right": 1348,
+            "to": 4,
+            "direction": "down"
+        }
+    ]
+}

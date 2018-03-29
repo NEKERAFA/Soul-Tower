@@ -19,7 +19,7 @@ class OnDialogueState(StageState):
 
     # TODO modo automático con otra tecla
     def update(self, time, stage):
-        pass
+        stage.gui.update(time)
 
     def events(self, events, stage):
         # Responder a pulsaciones del teclado.

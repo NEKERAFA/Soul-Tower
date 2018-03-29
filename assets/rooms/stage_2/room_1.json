@@ -3,25 +3,96 @@
     "width": 1008,
     "height": 576,
     "connections": [
+        {
+            "y": 744,
+            "left": 260,
+            "right": 292,
+            "to": 0,
+            "direction": "up"
+        }
     ],
     "unlockedDoors": [
         {
             "position": [336, 864],
             "doorSprite": "cell2.png",
             "doorMask": [428, 840, 32, 12],
-            "collision": [428, 852, 32, 24]
+            "collision": [428, 852, 32, 12]
         },
         {
             "position": [552, 864],
             "doorSprite": "cell2.png",
             "doorMask": [644, 840, 32, 12],
-            "collision": [644, 852, 32, 24]
+            "collision": [644, 852, 32, 12]
         },
         {
             "position": [768, 864],
             "doorSprite": "cell2.png",
             "doorMask": [860, 840, 32, 12],
-            "collision": [860, 852, 32, 24]
+            "collision": [860, 852, 32, 12]
+        },
+        {
+            "position": [120, 1080],
+            "doorSprite": "cell5.png",
+            "doorMask": [212, 936, 32, 24],
+            "collision": [212, 924, 32, 12]
+        },
+        {
+            "position": [336, 1080],
+            "doorSprite": "cell5.png",
+            "doorMask": [428, 936, 32, 24],
+            "collision": [428, 924, 32, 12]
+        },
+        {
+            "position": [552, 1080],
+            "doorSprite": "cell5.png",
+            "doorMask": [644, 936, 32, 24],
+            "collision": [644, 924, 32, 12]
+        },
+        {
+            "position": [768, 1080],
+            "doorSprite": "cell5.png",
+            "doorMask": [860, 936, 32, 24],
+            "collision": [860, 924, 32, 12]
+        },
+        {
+            "position": [48, 1296],
+            "doorSprite": "cell5.png",
+            "doorMask": [140, 1152, 32, 24],
+            "collision": [140, 1152, 32, 12]
+        },
+        {
+            "position": [264, 1296],
+            "doorSprite": "cell5.png",
+            "doorMask": [356, 1152, 32, 24],
+            "collision": [356, 1152, 32, 12]
+        },
+        {
+            "position": [624, 1296],
+            "doorSprite": "cell5.png",
+            "doorMask": [716, 1152, 32, 24],
+            "collision": [716, 1152, 32, 12]
+        },
+        {
+            "position": [840, 1296],
+            "doorSprite": "cell5.png",
+            "doorMask": [932, 1152, 32, 24],
+            "collision": [932, 1152, 32, 12]
+        }
+    ],
+    "lockedDoors": [
+        {
+            "position": [504, 1296],
+            "doorSprite": "prisonDoor.png",
+            "doorMask": [528, 1272, 48, 24]
+        }
+    ],
+    "triggers": [
+        {
+            "position": [672, 1248],
+            "width": 48,
+            "height": 48,
+            "dialogueFile": "hectorsSymbol.json",
+            "opens": [0, 1]
         }
     ]
 }
