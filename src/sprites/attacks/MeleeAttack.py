@@ -81,7 +81,6 @@ class MeleeAttack(Attack):
 
             # Colisiones
             for enemy in self.enemies:
-                # print(self.id)
                 (atkX, atkY) = self.position
                 (enemyX, enemyY) = enemy.position
                 # atkY -= self.image.get_height()
@@ -101,14 +100,8 @@ class MeleeAttack(Attack):
                             explosion = Explosion(enemyPos, self.enemies)
                             self.explosions.add(explosion)
                             del self.attackDict[id(enemy)]
-                        print("damaging enemy ", id(enemy))
                         impulse = Force(self.rotation, player.stats["backward"])
                         enemy.receive_damage('physic', player.stats["atk"], impulse)
 
         self.thunders.update(player, time, stage)
         self.explosions.update(player, time, stage)
-            # Comprobamos que enemigos colisionan con que grupos
-            # enemiesCollide = pygame.sprite.spritecollide(self, self.enemies, False, pygame.sprite.collide_mask)
-
-        self.thunders.update(player, time, stage)
-        self.explosions.update(player, time, stage)aa
