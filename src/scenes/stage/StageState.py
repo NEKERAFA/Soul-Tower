@@ -40,12 +40,12 @@ class StageState(object):
         currentRoom.magicWindowGroup.draw(newImage)
         # Recolectables
         currentRoom.collectables.draw(newImage)
+        # Enemigos
+        currentRoom.enemies.draw(newImage)
         # Puertas
         currentRoom.doors.draw(newImage)
         # Sprites interactivos
         currentRoom.unlockedDoorsGroup.draw(newImage)
-        # Enemigos
-        currentRoom.enemies.draw(newImage)
         # Player
         stage.player.draw(newImage)
         # Se pinta la porción de la sala que coincide con el viewport

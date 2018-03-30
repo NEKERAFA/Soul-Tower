@@ -1,5 +1,129 @@
 [
     {
-        "text": [["Daric"]]
+        "info": {
+            "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Están trabajando duro. Se merecen", "un respiro. No creo que haya nada que", "resolver."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila5.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["¡No!"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["«Qué raro... ¿Por qué se altera tanto?»"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "hector_shadow.png",
+                "name": "Rehén"
+            },
+            "background": "prison.png"
+        },
+        "text": [
+            ["..."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "rebel.png",
+                "name": "Rebelde"
+            },
+            "background": "prison.png"
+        },
+        "text": [
+            ["Chicos, ¿qué os parece si inauguramos la noche", "con una ejecución?"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "hector_sad.png",
+                "name": "Héctor"
+            },
+            "background": "prison.png"
+        },
+        "text": [
+            ["..."],
+            ["..."],
+            ["..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Dios mío..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["¡HÉCTOR!"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila2.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Eres horrible, Daric. ¿Cómo has podido...?"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Yo no... sabía..."],
+            ["S-Sólo es una imagen mágica de todos modos.", "¿No...?"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila2.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Eso espero..."]
+        ]
     }
 ]

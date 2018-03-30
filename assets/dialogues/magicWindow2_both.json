@@ -1,5 +1,142 @@
 [
     {
-        "text": [["Both"]]
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Esa voz... me suena."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila3.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Normal..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "hector_shadow.png",
+                "name": "Rehén"
+            },
+            "background": "prison.png"
+        },
+        "text": [
+            ["..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "hector_sad.png",
+                "name": "Héctor"
+            },
+            "background": "prison.png"
+        },
+        "text": [
+            ["Si Leraila o Daric estuvieran aquí..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["¡HÉCTOR!"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila3.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["No podemos dejarlo ahí."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            },
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["¡Hay que liberarlo!"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "hector_sad.png",
+                "name": "Héctor"
+            },
+            "background": "prison.png"
+        },
+        "text": [
+            ["¿Eh? ¿Una luz?"]
+        ]
+    },
+    {
+        "info": {
+            "background": "prison.png"
+        },
+        "text": [
+            ["Héctor se desvanció en la luz."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "rebel.png",
+                "name": "Rebelde"
+            },
+            "background": "prison.png"
+        },
+        "text": [
+            ["¡Eh! ¡¿Adónde ha ido ese traidor?!", "¡Vamos, buscadlo!"],
+            ["¡No dejéis escapar a esa escoria que", "se cambió al bando de los sangre azul!"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric4.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Menos mal..."],
+            ["¿Crees que esto ha pasado de verdad en", "el exterior...?"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["..."],
+            ["No lo sé. Sólo espero que, esté donde esté", "Héctor, se encuentre bien..."]
+        ]
     }
 ]

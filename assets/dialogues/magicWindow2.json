@@ -1,5 +1,74 @@
 [
     {
-        "text": [["Window"]]
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Otra vez esto..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "hector_shadow.png",
+                "name": "Rehén"
+            },
+            "background": "prison.png"
+        },
+        "text": [
+            ["..."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "rebel.png",
+                "name": "Rebelde"
+            },
+            "background": "prison.png"
+        },
+        "text": [
+            ["Esto te pasa por traicionarnos."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "hector_shadow.png",
+                "name": "Rehén"
+            },
+            "background": "prison.png"
+        },
+        "text": [
+            ["Por favor... Dejadme ir.", "Tiene que haber otra forma de resolver esto."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "rebel.png",
+                "name": "Rebelde"
+            },
+            "background": "prison.png"
+        },
+        "text": [
+            ["¿Por qué deberíamos?"],
+            ["Daric el Libertador ha partido en busca", "del poder que necesita para ganar esta", "guerra."],
+            ["Aunque aún no haya vuelto, podemos empezar", "por celebrar tu captura. No hay sitio para", "los traidores aquí."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["..."]
+        ]
     }
 ]
