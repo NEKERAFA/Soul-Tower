@@ -1,0 +1,51 @@
+[
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [["Te mueves muy despacio cuando te defiendes.", "Así no llegaremos a ninguna parte."]]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [["Al menos enfrento a los enemigos de frente;", "tú sólo huyes cuando usas tu magia para", "acelerar."]]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila2.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["... Pongo distancia para atacar mejor."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Continuemos. Veo una puerta en aquella pared."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [["Yo también tengo ojos, ¿sabes?"]]
+    }
+]
