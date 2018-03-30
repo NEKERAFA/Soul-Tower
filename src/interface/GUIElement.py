@@ -10,8 +10,13 @@ class GUIElement(object):
         self.guiScreen = guiScreen
         self.rect = rect
 
-    def set_position(self, position):
-        self.rect.bottomleft = position
+    def set_position(self, position, alignment='left'):
+        if(alignment=='left'):
+            self.rect.bottomleft = position
+        elif(alignment=='center'):
+            self.rect.midbottom = position
+        elif(alignment=='right'):
+            self.rect.bottomright = position
 
     #Devuelve si la posición pasada como argumento (generalmente la del ratón) está encima del elemento o no
     def position_is_in_element(self, position):
