@@ -31,6 +31,7 @@
                 "amount": 1
             }
         ],
+        "finalDialogue": "test.json",
         "closeDoor": {
             "doorSprite": "boss1BottomDoor.png",
             "position": [912, 1632],

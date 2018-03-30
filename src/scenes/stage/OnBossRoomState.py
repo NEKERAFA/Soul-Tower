@@ -53,6 +53,7 @@ class OnBossRoomState(StageState):
             currentRoom.boss.set_drop(currentRoom.collectables)
             currentRoom.lockedDoors[0].open(stage)
             self.killedBoss = True
+            stage.set_state(OnDialogueState(currentRoom.boss.dialogueFile, self))
 
         # Recogibles
         currentRoom.collectables.update(time)
