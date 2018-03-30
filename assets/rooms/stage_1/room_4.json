@@ -32,5 +32,79 @@
             "height": 24,
             "dialogueFile": "daricsMemories.json"
         }
+    ],
+    "enemies": [
+        {
+            "type": "bee",
+            "position": [1416, 1968],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "wild_boar",
+            "position": [1536, 1872],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "wild_boar",
+            "position": [1512, 1752],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "bee",
+            "position": [1512, 1656],
+            "drop": {
+                "type": "heart",
+                "amount": 1
+            }
+        },
+        {
+            "type": "bee",
+            "position": [1440, 1560],
+            "drop": {
+                "type": "heart",
+                "amount": 1
+            }
+        },
+        {
+            "type": "wild_boar",
+            "position": [1584, 1608],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "wild_boar",
+            "position": [1752, 1752],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "wolf",
+            "position": [1896, 1872],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "bee",
+            "position": [1800, 1968],
+            "drop": {
+                "type": "heart",
+                "amount": 1
+            }
+        }
     ]
 }

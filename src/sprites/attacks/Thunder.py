@@ -52,13 +52,11 @@ class Thunder(Attack):
                     value = self.attackDict.get(id(enemy))
                     if (value is None or value!=self.id):
                         self.attackDict[id(enemy)] = self.id
-                        if (enemy.hp==1):
-                            del self.attackDict[id(enemy)]
-                        enemy.drop.change_global_position(enemy.position)
-                        stage.rooms[stage.currentRoom].drops.add(enemy.drop)
                         print("thunder enemy ", id(enemy))
                         angle = random.uniform(0, 2*math.pi)
                         impulse = Force(angle, player.stats["backward"])
                         enemy.receive_damage('magic', player.stats["atk"], impulse)
+                        if (enemy.killed):
+                            del self.attackDict[id(enemy)]
         if not self.drawAnimation:
             self.kill()

@@ -18,19 +18,127 @@
             "direction": "right"
         }
     ],
+    "enemies":  [
+        {
+            "type": "rat",
+            "position": [408, 128],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "position": [300, 248],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "bat",
+            "position": [404, 312],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "position": [408, 128],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "bat",
+            "position": [485, 412],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "bat",
+            "position": [48, 684],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "position": [700, 476],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "position": [72, 192],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "position": [48, 360],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "position": [192, 504],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "position": [288, 672],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "position": [432, 576],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "position": [936, 684],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        }
+    ],
     "lockedDoors": [
         {
             "position": [240, 720],
             "doorSprite": "prisonDoor.png",
             "doorMask": [260, 696, 32, 24]
-        },
-        {
-            "position": [1032, 600],
-            "doorSprite": "prisonDoorV.png",
-            "doorMask": [1032, 540, 24, 36]
         }
     ],
     "unlockedDoors": [
+        {
+            "position": [1032, 600],
+            "doorSprite": "prisonDoorV.png",
+            "doorMask": [1032, 540, 24, 36],
+            "collision": [1020, 540, 12, 36],
+            "key": [1, 0]
+        },
         {
             "position": [240, 168],
             "doorSprite": "cell.png",

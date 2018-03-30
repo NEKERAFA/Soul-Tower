@@ -11,6 +11,80 @@
             "direction": "up"
         }
     ],
+    "enemies":  [
+        {
+            "type": "bat",
+            "position": [365, 826],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "bat",
+            "position": [600, 769],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "spider",
+            "position": [504, 1260],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "bat",
+            "position": [600, 1032],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "position": [816, 1130],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "position": [649, 1105],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "position": [985, 1248],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "spider",
+            "position": [98, 1264],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "spider",
+            "position": [744, 1260],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        }
+    ],
     "unlockedDoors": [
         {
             "position": [336, 864],
@@ -89,10 +163,15 @@
     "triggers": [
         {
             "position": [672, 1248],
-            "width": 48,
-            "height": 48,
-            "dialogueFile": "hectorsSymbol.json",
-            "opens": [0, 1]
+            "width": 16,
+            "height": 16,
+            "dialogueFile": "hectorsSymbol.json"
+        }
+    ],
+    "keys": [
+        {
+            "position": [672, 1248],
+            "keySprite": "shield.png"
         }
     ]
 }

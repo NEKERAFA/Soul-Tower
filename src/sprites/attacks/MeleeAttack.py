@@ -30,7 +30,8 @@ class MeleeAttack(Attack):
         self.explosions = pygame.sprite.Group()
         # Nivel de mejora
         self.level = 3
-        self.probability = 1#0.45
+        self.probLvl2 = 0.7
+        self.probLvl3 = 0.45
         # Diccionario de ataque-enemigos
         # (para el mismo ataque no hacer daño más de una vez al mismo enemigo)
         self.attackDict = {-1:-1}
@@ -60,7 +61,7 @@ class MeleeAttack(Attack):
             # Y reiniciar el contador
             self.elapsedTime = 0
             # Si tenemos nivel suficiente
-            if (self.level>1 and random.random()<=self.probability):
+            if (self.level>2 and random.random()<=self.probLvl3):
                 thunder = Thunder(self.characterPos, self.rotation, self.radius+30, self.enemies)
                 self.thunders.add(thunder)
         else:
@@ -80,7 +81,6 @@ class MeleeAttack(Attack):
 
             # Colisiones
             for enemy in self.enemies:
-                # print(self.id)
                 (atkX, atkY) = self.position
                 (enemyX, enemyY) = enemy.position
                 # atkY -= self.image.get_height()
@@ -89,30 +89,19 @@ class MeleeAttack(Attack):
                 self.mask = pygame.mask.from_surface(self.image)
                 collision = self.mask.overlap(enemy.mask, offset)
                 if collision is not None:
-                    # print('Hit')
                     # Comprobamos si aun no hemos dañado al enemigo
                     value = self.attackDict.get(id(enemy))
                     if (value is None or value!=self.id):
                         self.attackDict[id(enemy)] = self.id
                         enemyPos = enemy.rect.center
-                        if (enemy.stats["hp"]==1 and self.level>2):
+                        impulse = Force(self.rotation, player.stats["backward"])
+                        enemy.receive_damage('physic', player.stats["atk"], impulse)
+                        if (self.level>1 and enemy.justDied and random.random()<=self.probLvl2):
                             explosion = Explosion(enemyPos, self.enemies)
                             self.explosions.add(explosion)
-                            # TODO: cambiar para que lo haga cuando muere
                             del self.attackDict[id(enemy)]
-                        print("damaging enemy ", id(enemy))
                         impulse = Force(self.rotation, player.stats["backward"])
                         enemy.receive_damage('physic', player.stats["atk"], impulse)
 
-
         self.thunders.update(player, time, stage)
-        self.explosions.update(time, stage)
-            # Comprobamos que enemigos colisionan con que grupos
-            # enemiesCollide = pygame.sprite.spritecollide(self, self.enemies, False, pygame.sprite.collide_mask)
-
-            # for enemyCollide in enemiesCollide:
-            #     # Si hay una colisión, hacemos daño al enemigo y matamos la bala
-            #     if enemyCollide is not None:
-            #         enemyCollide.drop.change_global_position(enemyCollide.position)
-            #         stage.rooms[stage.currentRoom].drops.add(enemyCollide.drop)
-            #         enemyCollide.receive_damage(1, self.rotation)
+        self.explosions.update(player, time, stage)

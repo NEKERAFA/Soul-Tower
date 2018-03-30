@@ -7,8 +7,58 @@
             "y": 1488,
             "left": 1316,
             "right": 1348,
-            "to": 3,
+            "to": 2,
             "direction": "up"
+        }
+    ],
+    "enemies":  [
+        {
+            "type": "spider",
+            "position": [1296, 1727],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "bat",
+            "position": [1128, 1536],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "position": [1138, 1876],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "position": [1441, 1848],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "position": [1437, 1602],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "position": [1431, 1798],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
         }
     ],
     "unlockedDoors": [

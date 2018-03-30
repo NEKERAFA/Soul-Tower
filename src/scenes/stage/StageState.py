@@ -13,19 +13,20 @@ class StageState(object):
             if enemy.killed:
                 enemy.set_drop(currentRoom.collectables)
                 killedEnemies.append(enemy)
-        currentRoom.enemies.remove(killedEnemies) # Quito los enemigos muertos
+
+        for enemy in killedEnemies:
+            enemy.kill() # Quito los enemigos muertos
 
         # Se recorre la lista de recolectables colisionados
         collectables = pygame.sprite.spritecollide(stage.player, currentRoom.collectables, False)
         for collectable in collectables:
             collectable.collect(stage) # Los recojo
-            collectable.kill() # Los elimino
 
         # Se detecta si estás en colisión con un objeto con el que puedes
         # interactuar
         for interSprite in iter(currentRoom.interactives):
             # Colisión entre jugador y puerta
-            if interSprite.collide(stage.player) and KeyboardMouseControl.sec_button():
+            if interSprite.collide(stage.player) and KeyboardMouseControl.action_button():
                 interSprite.activate(stage)
 
     def draw(self, screen, stage):
@@ -35,14 +36,16 @@ class StageState(object):
         screen.fill((0, 0, 0))
         # Luego los Sprites sobre una copia del mapa de la sala
         newImage = stage.image.copy()
-        # Puertas
-        currentRoom.doors.draw(newImage)
-        # Sprites interactivos
-        currentRoom.interactives.draw(newImage)
+        # Ventana mágica
+        currentRoom.magicWindowGroup.draw(newImage)
         # Recolectables
         currentRoom.collectables.draw(newImage)
         # Enemigos
         currentRoom.enemies.draw(newImage)
+        # Puertas
+        currentRoom.doors.draw(newImage)
+        # Sprites interactivos
+        currentRoom.unlockedDoorsGroup.draw(newImage)
         # Player
         stage.player.draw(newImage)
         # Se pinta la porción de la sala que coincide con el viewport

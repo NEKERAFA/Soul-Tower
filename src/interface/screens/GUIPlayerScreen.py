@@ -19,7 +19,7 @@ from src.scenes.stage.InRoomState import *
 # Localización de los sprites
 HEART_SPRITE_LOCATION = 'interface/player/gui_heart.png'
 STAMINA_BAR_SPRITE_LOCATION = 'interface/player/stamina_placeholder.png'
-SOULS_SPRITE_LOCATION = 'interface/player/gui_soul.png'
+SOULS_SPRITE_LOCATION = 'interface/player/gui_souls_box.png'
 
 DEFAULT_FONT = 'PixelOperatorHB.ttf'
 DEFAULT_FONT_SIZE = 12
@@ -35,15 +35,15 @@ class GUIPlayerScreen(GUIScreen):
         #TODO: posiciones y escalas relativas a la pantalla
         self.health = GUIHealth(self, HEART_SPRITE_LOCATION, (55,30), -1)
         self.stamina = GUIStamina(self, STAMINA_BAR_SPRITE_LOCATION, (55,40), (30,10))
-        self.charSymb = GUICharacterSymbol(self, (20, 40), (30, 30))
-        self.soulsText = GUIText(self, (350, 20), font, str(self.player.souls), 'left', (255, 255, 255))
-        self.soulsSymb = GUIImage(self, SOULS_SPRITE_LOCATION, (360, 30), (30, 30))
+        self.charSymb = GUICharacterSymbol(self, (20, 40), None)
+        self.soulsText = GUIText(self, (SCREEN_WIDTH-60, 23), font, str(self.player.souls), 'right', (255, 255, 255))
+        self.soulsSymb = GUIImage(self, SOULS_SPRITE_LOCATION, (SCREEN_WIDTH-100, 30))
         # Añadir al array de GUIElements para poder dibujar y actualizar
         self.GUIElements.append(self.health)
         self.GUIElements.append(self.stamina)
         self.GUIElements.append(self.charSymb)
-        self.GUIElements.append(self.soulsText)
         self.GUIElements.append(self.soulsSymb)
+        self.GUIElements.append(self.soulsText)
 
     def events(self, event_list):
         for event in event_list:

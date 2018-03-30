@@ -38,10 +38,13 @@ class Stage(Scene):
         image_path = os.path.join('stages', fullname + '.png')
         self.image = ResourceManager.load_image(image_path)
 
-        # Cargamos la máscara
-        mask_path = os.path.join('stages', fullname + '_mask.png')
-        mask_image = ResourceManager.load_image(mask_path, (0, 0, 0))
-        self.mask = pygame.mask.from_surface(mask_image)
+        # Cargamos las máscaras
+        maskPath = os.path.join('stages', fullname + '_mask.png')
+        maskImage = ResourceManager.load_image(maskPath, (0, 0, 0))
+        self.mask = pygame.mask.from_surface(maskImage)
+        rangedMaskPath = os.path.join('stages', fullname + '_rangedMask.png')
+        rangedMaskImage = ResourceManager.load_image(rangedMaskPath, (0, 0, 0))
+        self.rangedMask = pygame.mask.from_surface(rangedMaskImage)
 
         # Cargamos la configuración del nivel
         data = ResourceManager.load_stage(fullname + '.json')
@@ -77,7 +80,7 @@ class Stage(Scene):
 
         # Diálogo de ventana
         self.guiWindow = None
-        #self.create_window_dialog()
+        #self.create_window_dialog(None)
 
         # Inicializamos el viewport, que es un rectángulo del tamaño de la
         # pantalla que indicará qué porción de la sala se debe mostrar

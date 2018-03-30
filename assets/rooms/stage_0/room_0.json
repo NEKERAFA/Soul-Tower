@@ -54,6 +54,27 @@
                 "type": "heart",
                 "amount": 1
             }
+        },
+        {
+            "type": "bat",
+            "drop": {
+                "type": "heart",
+                "amount": 1
+            }
+        },
+        {
+            "type": "rat",
+            "drop": {
+                "type": "heart",
+                "amount": 1
+            }
+        },
+        {
+            "type": "spider",
+            "drop": {
+                "type": "heart",
+                "amount": 1
+            }
         }
     ],
 

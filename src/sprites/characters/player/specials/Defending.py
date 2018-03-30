@@ -29,7 +29,7 @@ class Defending(PlayerState):
         Character.fix_collision(player, mapMask)
 
     def receive_damage_aux(self, player, damage, force):
-        # TODO: si no tiene suficiente energía, entrar en estado de "stun"
+        # Si no tiene suficiente energía, entrar en estado de "stun"
         player.stats["nrg"] -= self.defendCost
         if (player.stats["nrg"]<0):
             print("Energía insuficiente. Jugador aturdido")

@@ -7,7 +7,7 @@ import pygame, os
 DOORS_PATH = 'doors'
 
 class Door(MyStaticSprite):
-    def __init__(self, position, imagePath, doorMask, stageMask):
+    def __init__(self, position, imagePath, doorMask, stage):
         MyStaticSprite.__init__(self)
 
         self.image = ResourceManager.load_image(os.path.join(DOORS_PATH, imagePath))
@@ -16,8 +16,10 @@ class Door(MyStaticSprite):
         self.mask = pygame.mask.Mask(doorMask[2:4])
         self.mask.fill()
         self.offset = doorMask[0:2]
-        stageMask.draw(self.mask, self.offset)
+        stage.mask.draw(self.mask, self.offset)
+        stage.rangedMask.draw(self.mask, self.offset)
 
     def open(self, stage):
         stage.mask.erase(self.mask, self.offset)
+        stage.rangedMask.erase(self.mask, self.offset)
         self.kill()

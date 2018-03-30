@@ -5,8 +5,8 @@ from src.ResourceManager import *
 from src.interface.GUIElement import *
 from src.sprites.characters.player.changing.Fadein import *
 
-SORCERESS_SYMBOL_SPRITE = 'interface/player/sorceress_symbol_placeholder.png'
-WARRIOR_SYMBOL_SPRITE = 'interface/player/warrior_symbol_placeholder.png'
+SORCERESS_SYMBOL_SPRITE = 'interface/player/sorceress_symbol.png'
+WARRIOR_SYMBOL_SPRITE = 'interface/player/warrior_symbol.png'
 # -------------------------------------------------
 # Clase GUICharacterSymbol
 # Clase para mostrar un símbolo que represente al personaje activo

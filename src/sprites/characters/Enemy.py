@@ -17,18 +17,25 @@ class Enemy(NPC):
         NPC.__init__(self, path + '.png', path + '.json')
         self.drop = drop
         self.state = BehaviourConstructor.get_behaviour(self.behaviour["type"], self)
+        self.wasAlive = True
+        self.justDied = False
 
     def move_ai(self, player):
         self.state.move_ai(self, player)
 
         # Comprobamos que el enemigo no esté golpeando al jugador
-        if pygame.sprite.collide_rect(player, self):
+        if pygame.sprite.collide_mask(player, self):
             angle = math.radians(360-EnemyRange.get_angle(self.movement))
             impulse = Force(angle, self.stats["backward"])
             player.receive_damage(self.stats["atk"], impulse)
 
     def receive_damage(self, attack, damage, force):
         self.state.receive_damage(self, attack, damage, force)
+        if self.killed and self.wasAlive:
+            self.justDied = True
+            self.wasAlive = False
+        else:
+            self.justDied = False
 
     def update(self, time, mapRect, mapMask):
         self.state.update(self, time, mapRect, mapMask)

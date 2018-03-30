@@ -5,8 +5,8 @@ from src.sprites.Door import *
 from src.sprites.Interactive import *
 
 class UnlockedDoor(Door, Interactive):
-    def __init__(self, position, imagePath, doorMask, stageMask, collision, key=None):
-        Door.__init__(self, position, imagePath, doorMask, stageMask)
+    def __init__(self, position, imagePath, doorMask, stage, collision, key=None):
+        Door.__init__(self, position, imagePath, doorMask, stage)
         Interactive.__init__(self, collision)
         self.key = key
 

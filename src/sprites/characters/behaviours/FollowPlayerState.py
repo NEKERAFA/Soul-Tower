@@ -4,19 +4,20 @@ import pygame, math, sys
 from src.sprites.characters.behaviours.BehaviourState import *
 from src.sprites.Character import *
 from src.sprites.EnemyRange import *
-from src.sprites.characters.behaviours.PatrollState import PatrollState
 
 # ------------------------------------------------------------------------------
 # Clase FollowPlayerState
 
 class FollowPlayerState(BehaviourState):
-    def __init__(self, radius, angle, move):
+    def __init__(self, radius, previousState):
         # Llamamos al constructor de la superclase
         BehaviourState.__init__(self)
 
+        # Estado previo
+        self.previousState = previousState
+
         # Radio y angulo de apertura del campo de vision
         self.radius = radius
-        self.angle = angle
 
         # Inicializo los valores de la distancia del jugador
         self.playerDistance = 0
@@ -75,11 +76,8 @@ class FollowPlayerState(BehaviourState):
         # Comprobamos que el jugador siga en rango o no haya una pared de por
         # medio
         if self.playerDistance > self.radius or self.playerDistance > stageDistance:
-            # Creamos el estado de seguir
-            enemy.state = PatrollState(enemy.rect.center, self.radius, self.angle, enemy.movement)
-
-            # Ejecutamos el nuevo estado
-            enemy.state.update(enemy, time, mapRect, mapMask)
+            # Volvemos al estado anterior
+            enemy.change_behaviour(self.previousState)
             return
 
         # Llamamos al update de characters
