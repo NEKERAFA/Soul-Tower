@@ -7,6 +7,8 @@
         "spd": 0.15
     },
 
+    "sound": "wolf.wav",
+
     "behaviour" : {
         "type": "patrolling",
         "radius": 250,

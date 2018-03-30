@@ -48,12 +48,15 @@ class Attack(MySprite):
             newP = (x+ladoB*paramX, y+ladoA*paramY)
         return newP
 
-    def __init__(self, imageFile, spriteSheet, enemies):
+    def __init__(self, imageFile, spriteSheet, enemies, effect_sound):
         # Primero invocamos al constructor de la clase padre
         MySprite.__init__(self)
 
         # Cargar sheet de sprites
         self.sheet = ResourceManager.load_image(imageFile, -1)
+
+        #Cargamos efecto de sonido
+        self.effect_sound = ResourceManager.load_effect_sound(effect_sound)
 
         # Leer coordenadas de fichero
         data = ResourceManager.load_sprite_conf(spriteSheet)

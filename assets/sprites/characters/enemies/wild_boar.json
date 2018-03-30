@@ -7,6 +7,8 @@
         "spd": 0.1
     },
 
+    "sound": "wild_boar.wav",
+
     "behaviour" : {
         "type": "patrolling",
         "radius": 150,

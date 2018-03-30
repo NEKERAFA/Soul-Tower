@@ -9,6 +9,7 @@ from src.sprites.Force import *
 class Thunder(Attack):
     def __init__(self, characterPos, rotation, radius, enemies):
         # Obtenemos las rutas a los archivos
+        effect_sound = 'thunder.wav'
         imageFile = os.path.join('sprites', 'attacks', 'thunder.png')
         spriteSheet = os.path.join('attacks', 'thunder.json')
         self.damage = 1
@@ -24,7 +25,7 @@ class Thunder(Attack):
         self.rotation = rotation
 
         # Invocamos al constructor de la clase padre
-        Attack.__init__(self, imageFile, spriteSheet, enemies)
+        Attack.__init__(self, imageFile, spriteSheet, enemies, effect_sound)
         self.image = pygame.transform.rotate(self.origImage, 90)
         self.rect.bottomleft = x-self.rect.height/2,y-self.rect.width-36
         # self.rect.bottomleft = x-self.rect.height/2,y-self.rect.width-16
@@ -35,6 +36,9 @@ class Thunder(Attack):
         self.attackDict = {-1:-1}
 
     def draw(self, surface):
+        pygame.mixer.set_reserved(1)
+        chanel_reserved_0 = pygame.mixer.Channel(0)
+        chanel_reserved_0.play(self.effect_sound)
         Attack.draw(self, surface)
         # pygame.draw.rect(surface, (0,0,0), self.blastRect)
 

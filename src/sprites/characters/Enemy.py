@@ -20,6 +20,7 @@ class Enemy(NPC):
         self.wasAlive = True
         self.justDied = False
 
+
     def move_ai(self, player):
         self.state.move_ai(self, player)
 

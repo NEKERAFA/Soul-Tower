@@ -54,6 +54,11 @@ class Stage(Scene):
         for i in range(0, data["rooms"]):
             self.rooms.append(Room(stageNum, i, self))
 
+        #Cargamos la musica
+        music_path = os.path.join('',data["music"])
+        ResourceManager.load_music(music_path)
+        pygame.mixer.music.play(-1,0.0)
+
         # Metemos las llaves en su sitio
         for room in self.rooms:
             for door in room.unlockedDoors:

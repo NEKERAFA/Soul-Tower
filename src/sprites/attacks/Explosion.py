@@ -9,6 +9,7 @@ from src.sprites.Force import *
 class Explosion(Attack):
     def __init__(self, position, enemies):
         # Obtenemos las rutas a los archivos
+        effect_sound = 'explosion.wav'
         imageFile = os.path.join('sprites', 'attacks', 'explosion.png')
         spriteSheet = os.path.join('attacks', 'explosion.json')
         self.damage = 1
@@ -17,7 +18,7 @@ class Explosion(Attack):
         self.rotation = random.uniform(-180,180)
 
         # Invocamos al constructor de la clase padre
-        Attack.__init__(self, imageFile, spriteSheet, enemies)
+        Attack.__init__(self, imageFile, spriteSheet, enemies, effect_sound)
         self.image = pygame.transform.scale(self.origImage, (int(self.rect.width*2), int(self.rect.height*2)))
         # print(self.rect.height, self.rect.width)
         self.rect.topleft = x-self.rect.height,y-self.rect.width
@@ -27,8 +28,11 @@ class Explosion(Attack):
         # Diccionario de ataque-enemigos
         # (para el mismo ataque no hacer daño más de una vez al mismo enemigo)
         self.attackDict = {-1:-1}
-        
+
     def draw(self, surface):
+        pygame.mixer.set_reserved(1)
+        chanel_reserved_0 = pygame.mixer.Channel(0)
+        chanel_reserved_0.play(self.effect_sound)
         Attack.draw(self, surface)
         # pygame.draw.rect(surface, (0,0,0), self.blastRect)
 

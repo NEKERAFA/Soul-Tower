@@ -11,11 +11,12 @@ from Normalize import *
 class RangedAttack(Attack):
     def __init__(self, radius, delayTime, enemies):
         # Obtenemos las rutas a los archivos
+        effect_sound = 'pew.wav'
         imageFile = os.path.join('sprites', 'attacks', 'ranged.png')
         spriteSheet = os.path.join('attacks', 'ranged.json')
 
         # Invocamos al constructor de la clase padre
-        Attack.__init__(self, imageFile, spriteSheet, enemies)
+        Attack.__init__(self, imageFile, spriteSheet, enemies, effect_sound)
         self.loopAnimation = True
 
         # Radio de acción
@@ -37,6 +38,9 @@ class RangedAttack(Attack):
     def start_attack(self, characterPos, rotation):
         self.characterPos = characterPos
         self.rotation = rotation
+        pygame.mixer.set_reserved(1)
+        chanel_reserved_0 = pygame.mixer.Channel(0)
+        chanel_reserved_0.play(self.effect_sound)
         self.attacking = True
 
     def end_attack(self):
