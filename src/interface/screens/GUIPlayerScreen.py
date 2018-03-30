@@ -6,7 +6,7 @@ from src.ResourceManager import *
 from src.scenes.Scene import *
 from src.interface.screens.GUIScreen import *
 from src.interface.GUIHealth import *
-from src.interface.GUIStamina import *
+from src.interface.GUIEnergy import *
 from src.interface.GUIButton import *
 from src.interface.GUICharacterSymbol import *
 from src.interface.GUIText import *
@@ -18,7 +18,7 @@ from src.scenes.stage.InRoomState import *
 
 # Localización de los sprites
 HEART_SPRITE_LOCATION = os.path.join(INTERFACE_PLAYER_FOLDER, 'gui_heart.png')
-STAMINA_BAR_SPRITE_LOCATION = os.path.join(INTERFACE_PLAYER_FOLDER, 'stamina_placeholder.png')
+ENERGY_BAR_SPRITE_LOCATION = os.path.join(INTERFACE_PLAYER_FOLDER, 'gui_energy_bar.png')
 SOULS_SPRITE_LOCATION = os.path.join(INTERFACE_PLAYER_FOLDER, 'gui_souls_box.png')
 
 DEFAULT_FONT = 'PixelOperatorHB.ttf'
@@ -34,13 +34,13 @@ class GUIPlayerScreen(GUIScreen):
 
         #TODO: posiciones y escalas relativas a la pantalla
         self.health = GUIHealth(self, HEART_SPRITE_LOCATION, (55,30), -1)
-        self.stamina = GUIStamina(self, STAMINA_BAR_SPRITE_LOCATION, (55,40), (30,10))
+        self.energy = GUIEnergy(self, ENERGY_BAR_SPRITE_LOCATION, (55,40), None)
         self.charSymb = GUICharacterSymbol(self, (20, 40), None)
         self.soulsText = GUIText(self, (SCREEN_WIDTH-60, 23), font, str(self.player.souls), 'right', (255, 255, 255))
         self.soulsSymb = GUIImage(self, SOULS_SPRITE_LOCATION, (SCREEN_WIDTH-100, 30))
         # Añadir al array de GUIElements para poder dibujar y actualizar
         self.GUIElements.append(self.health)
-        self.GUIElements.append(self.stamina)
+        self.GUIElements.append(self.energy)
         self.GUIElements.append(self.charSymb)
         self.GUIElements.append(self.soulsSymb)
         self.GUIElements.append(self.soulsText)

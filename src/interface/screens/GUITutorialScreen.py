@@ -20,8 +20,8 @@ S_SPRITE_LOCATION = os.path.join(INTERFACE_GAME_FOLDER, 'tutorial', 'gui_s_key.p
 D_SPRITE_LOCATION = os.path.join(INTERFACE_GAME_FOLDER, 'tutorial', 'gui_d_key.png')
 E_SPRITE_LOCATION = os.path.join(INTERFACE_GAME_FOLDER, 'tutorial', 'gui_e_key.png')
 SPACE_SPRITE_LOCATION = os.path.join(INTERFACE_GAME_FOLDER, 'tutorial', 'gui_space_key.png')
-Q_SPRITE_LOCATION = os.path.join('interface', 'game', 'tutorial', 'gui_q_key.png')
-MOUSE_SPRITE_LOCATION = os.path.join('interface', 'game', 'tutorial', 'w_placeholder.png')
+Q_SPRITE_LOCATION = os.path.join(INTERFACE_GAME_FOLDER, 'tutorial', 'gui_q_key.png')
+MOUSE_SPRITE_LOCATION = os.path.join(INTERFACE_GAME_FOLDER, 'tutorial', 'gui_mouse_button.png')
 
 class GUITutorialScreen(GUIScreen):
     def __init__(self, stage):
@@ -61,7 +61,7 @@ class GUITutorialScreen(GUIScreen):
         self.add_element(self.movementText)
 
         # Ataque
-        self.mouse = GUITutorialImage(self, MOUSE_SPRITE_LOCATION, (250, 100), (40, 40), None)
+        self.mouse = GUITutorialImage(self, MOUSE_SPRITE_LOCATION, (250, 100), None, None, -1)
         self.attackText = GUIText(self, (275, 120), font, 'Atacar', 'center')
 
         # Interactuar

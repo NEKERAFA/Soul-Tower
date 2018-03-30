@@ -6,13 +6,13 @@ from src.interface.GUIElement import *
 from src.interface.GUIChargeBar import *
 
 # -------------------------------------------------
-# Clase GUIStamina
-# Representación de las barras de estamina / energía
+# Clase GUIEnergy
+# Representación de las barras de energía
 
-class GUIStamina(GUIElement):
+class GUIEnergy(GUIElement):
     def __init__(self, guiScreen, name, position, scale, colorkey=-1):
 
-        # String de la imagen de las barras de estamina
+        # String de la imagen de las barras de energía
         self.name = name
         self.scale = scale
         self.colorkey = colorkey
@@ -29,33 +29,31 @@ class GUIStamina(GUIElement):
         # Se coloca el rectangulo en su posicion
         self.set_position(position)
 
-        self.maxStaminaCounter = self.guiScreen.player.stats["max_nrg"]
-        self.staminaCounter = self.guiScreen.player.stats["nrg"]
-        self.staminaRegen = self.guiScreen.player.stats["nrg_reg"]
+        self.inbetween = -5
 
-        self.currStamina = self.maxStamina = self.maxStaminaCounter
+        self.maxEnergyCounter = self.guiScreen.player.stats["max_nrg"]
+        self.energyCounter = self.guiScreen.player.stats["nrg"]
+        #self.energyRegen = self.guiScreen.player.stats["nrg_reg"]
 
-        for i in range(0, int(self.maxStaminaCounter)):
+        self.currEnergy = self.maxEnergy = self.maxEnergyCounter
+
+        for i in range(0, int(self.maxEnergyCounter)):
             # Crear barra y meterlo en array
             bar = GUIChargeBar(self.guiScreen, self.name, self.barPos, self.scale, self.colorkey)
             self.barArray.append(bar)
             # Actualizar posiciones del resto de barras
-            self.barPos = (self.barPos[0] + bar.image.get_rect().right+2, self.barPos[1])
+            self.barPos = (self.barPos[0] + bar.image.get_rect().right+self.inbetween, self.barPos[1])
 
     def update(self, time):
-        # Actualizar estamina
-        # TODO esto se podría gestionar tomando los datos directamente del jugador
-        if(self.currStamina < self.maxStamina):
-            self.currStamina = min(self.maxStamina, self.currStamina + time*self.staminaRegen)
 
         # Actualizar barras
         i = -1
-        for i in range(0, int(self.currStamina)):
+        for i in range(0, int(self.currEnergy)):
             self.barArray[i].percent = 1.
-        for j in range(int(self.currStamina), self.maxStamina):
+        for j in range(int(self.currEnergy), self.maxEnergy):
             self.barArray[j].percent = 0.
-        if(self.currStamina - int(self.currStamina) > 0):
-            self.barArray[i+1].percent = self.currStamina - int(self.currStamina)
+        if(self.currEnergy - int(self.currEnergy) > 0):
+            self.barArray[i+1].percent = self.currEnergy - int(self.currEnergy)
 
 
     def draw(self, screen):
@@ -66,14 +64,20 @@ class GUIStamina(GUIElement):
     def action(self):
         return
 
-    def gain_stamina_bar(self):
+    def gain_energy_bar(self):
         # Crear barra y meterlo en array
         bar = GUIChargeBar(self.guiScreen, self.name, self.barPos, self.scale, self.colorkey)
-        bar.set_fill_speed(self.staminaRegen)
+        #bar.set_fill_speed(self.energyRegen)
         self.barArray.append(bar)
         # Actualizar posiciones del resto de barras
-        self.barPos = (self.barPos[0] + bar.image.get_rect().right+2, self.barPos[1])
+        self.barPos = (self.barPos[0] + bar.image.get_rect().right+self.inbetween, self.barPos[1])
 
-    def lose_stamina(self, quantity):
-        if(quantity <= self.currStamina):
-            self.currStamina -= quantity
+        self.maxEnergy += 1
+        self.currEnergy = self.maxEnergy
+
+    def set_energy(self, value):
+        self.currEnergy = value
+
+        # Actualizar energía
+        #if(self.currEnergy < self.maxEnergy):
+        #    self.currEnergy = min(self.maxEnergy, self.currEnergy + self.energyRegen)

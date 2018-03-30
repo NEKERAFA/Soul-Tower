@@ -31,9 +31,10 @@ class Stunned(PlayerState):
         else:
             self.stunned = True
         # Regeneración de energía
-        player.stats["nrg"] += time*player.stats["nrg_reg"]
+        #player.stats["nrg"] += time*player.stats["nrg_reg"]
         # Establecer tope
-        player.stats["nrg"] = min(player.stats["max_nrg"], player.stats["nrg"])
+        #player.stats["nrg"] = min(player.stats["max_nrg"], player.stats["nrg"])
+        player.set_energy(min(player.stats["max_nrg"], player.stats["nrg"] + time*player.stats["nrg_reg"]))
         # No te puedes mover
         #Character.update(player, time, mapRect, mapMask)
 
