@@ -105,11 +105,3 @@ class MeleeAttack(Attack):
 
         self.thunders.update(player, time, stage)
         self.explosions.update(player, time, stage)
-<<<<<<< HEAD
-            # Comprobamos que enemigos colisionan con que grupos
-            # enemiesCollide = pygame.sprite.spritecollide(self, self.enemies, False, pygame.sprite.collide_mask)
-
-        self.thunders.update(player, time, stage)
-        self.explosions.update(player, time, stage)
-=======
->>>>>>> b6b8678d9689066f852a6cfd7544a0e36d5010bd
