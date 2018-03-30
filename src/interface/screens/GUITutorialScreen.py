@@ -19,10 +19,13 @@ A_SPRITE_LOCATION = os.path.join('interface', 'game', 'tutorial', 'a_placeholder
 S_SPRITE_LOCATION = os.path.join('interface', 'game', 'tutorial', 's_placeholder.png')
 D_SPRITE_LOCATION = os.path.join('interface', 'game', 'tutorial', 'd_placeholder.png')
 E_SPRITE_LOCATION = os.path.join('interface', 'game', 'tutorial', 'e_placeholder.png')
+SPACE_SPRITE_LOCATION = os.path.join('interface', 'game', 'tutorial', 'space_placeholder.png')
 
 class GUITutorialScreen(GUIScreen):
     def __init__(self, stage):
         GUIScreen.__init__(self, stage)
+
+        # TODO guardar una referencia a la puerta del final de tutorial, ponerle una llave falsa y al terminar una llave = None
 
         # Contador para eliminar texto según se vayan pulsando las teclas
         self.tutorialKeyCounter = 0
@@ -47,8 +50,8 @@ class GUITutorialScreen(GUIScreen):
         # self.mouse = GUITutorialImage(self, E_SPRITE_LOCATION, (140, 100), (40, 40), pygame.)
 
         # Dash/Defender
-        self.spaceKey = GUITutorialImage(self, E_SPRITE_LOCATION, (140,100), (40,40), pygame.K_SPACE)
-        self.dashText = GUIText(self, (120, 60), font, 'Defenderse (Daric)/Sprint (Leraila)', 'center')
+        self.spaceKey = GUITutorialImage(self, SPACE_SPRITE_LOCATION, (100,250), (200,50), pygame.K_SPACE)
+        self.dashText = GUIText(self, (200, 200), font, 'Defenderse (Daric)/Sprint (Leraila)', 'center')
 
         self.add_element(wKey)
         self.add_element(aKey)
