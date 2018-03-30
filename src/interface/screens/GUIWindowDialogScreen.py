@@ -37,7 +37,7 @@ class GUIWindowDialogScreen(GUIScreen):
         for i in range(iniVal,finVal):
             text = self.selectionFile[i]
             nextPosition = (initPosition[0], initPosition[1]+(i%3)*(scale[1]+10)+40)
-            button = GUIWindowButton(self, text, WINDOW_BUTTON_UP_LOCATION, WINDOW_BUTTON_DOWN_LOCATION, choiceSymbolsLocations[(i%3)], nextPosition, scale, getattr(self, 'button_fun_'+str(i)))
+            button = GUIWindowButton(self, text, WINDOW_BUTTON_UP_LOCATION, WINDOW_BUTTON_DOWN_LOCATION, choiceSymbolsLocations[(i%3)], getattr(self, 'button_fun_'+str(i)), nextPosition, scale)
             self.add_element(button)
 
     def events(self, event_list):

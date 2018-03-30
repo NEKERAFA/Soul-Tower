@@ -14,13 +14,13 @@ from src.scenes.Stage import *
 # Interfaz en la primera sala
 
 # Localización de los sprites
-W_SPRITE_LOCATION = os.path.join('interface', 'game', 'tutorial', 'w_placeholder.png')
-A_SPRITE_LOCATION = os.path.join('interface', 'game', 'tutorial', 'a_placeholder.png')
-S_SPRITE_LOCATION = os.path.join('interface', 'game', 'tutorial', 's_placeholder.png')
-D_SPRITE_LOCATION = os.path.join('interface', 'game', 'tutorial', 'd_placeholder.png')
-E_SPRITE_LOCATION = os.path.join('interface', 'game', 'tutorial', 'e_placeholder.png')
-SPACE_SPRITE_LOCATION = os.path.join('interface', 'game', 'tutorial', 'space_placeholder.png')
-Q_SPRITE_LOCATION = os.path.join('interface', 'game', 'tutorial', 'w_placeholder.png')
+W_SPRITE_LOCATION = os.path.join(INTERFACE_GAME_FOLDER, 'tutorial', 'gui_w_key.png')
+A_SPRITE_LOCATION = os.path.join(INTERFACE_GAME_FOLDER, 'tutorial', 'gui_a_key.png')
+S_SPRITE_LOCATION = os.path.join(INTERFACE_GAME_FOLDER, 'tutorial', 'gui_s_key.png')
+D_SPRITE_LOCATION = os.path.join(INTERFACE_GAME_FOLDER, 'tutorial', 'gui_d_key.png')
+E_SPRITE_LOCATION = os.path.join(INTERFACE_GAME_FOLDER, 'tutorial', 'gui_e_key.png')
+SPACE_SPRITE_LOCATION = os.path.join(INTERFACE_GAME_FOLDER, 'tutorial', 'gui_space_key.png')
+Q_SPRITE_LOCATION = os.path.join('interface', 'game', 'tutorial', 'gui_q_key.png')
 MOUSE_SPRITE_LOCATION = os.path.join('interface', 'game', 'tutorial', 'w_placeholder.png')
 
 class GUITutorialScreen(GUIScreen):

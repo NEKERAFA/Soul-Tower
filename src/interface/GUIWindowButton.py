@@ -15,10 +15,10 @@ DEFAULT_FONT = 'PixelOperatorHB.ttf'
 DEFAULT_FONT_SIZE = 16
 
 class GUIWindowButton(GUIButton):
-    def __init__(self, guiScreen, text, upName, downName, symbolName, position, scale, onClickFunction, colorkey=-1):
+    def __init__(self, guiScreen, text, upName, downName, symbolName, onClickFunction, position, scale=None, colorkey=-1):
 
         # Crear botón
-        GUIButton.__init__(self, guiScreen, upName, downName, position, scale, onClickFunction, colorkey)
+        GUIButton.__init__(self, guiScreen, upName, downName, position, onClickFunction, scale, colorkey)
 
         # Crear texto
         self.font = ResourceManager.load_font(DEFAULT_FONT, DEFAULT_FONT_SIZE)
@@ -50,10 +50,10 @@ class GUIWindowButton(GUIButton):
         self.symbol.set_position((self.imagePosition[0], self.imagePosition[1]+self.swapHeight))
 
 
-    def action(self):
+    #def action(self):
         # Intercambiar imágenes
-        self.swap()
+    #    self.swap()
 
         # Si se ha pulsado y soltado el botón, activeImage será upImage, y se realiza la acción asociada
-        if(self.activeImage == self.upImage):
-            self.associated_action()
+    #    if(self.activeImage == self.upImage):
+    #        self.associated_action()

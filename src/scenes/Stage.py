@@ -15,6 +15,8 @@ from src.scenes.stage.InRoomState import *
 from src.scenes.stage.SmallRoomState import *
 from src.interface.screens.GUIPlayerScreen import *
 from src.interface.screens.GUIWindowDialogScreen import *
+from src.interface.screens.GUIGameOverScreen import *
+from src.interface.screens.GUIStartMenuScreen import *
 
 # -------------------------------------------------
 # Clase Stage
@@ -82,6 +84,9 @@ class Stage(Scene):
         self.guiWindow = None
         #self.create_window_dialog(None)
 
+        # Pantalla de game over
+        self.guiGameOver = None
+
         # Inicializamos el viewport, que es un rectángulo del tamaño de la
         # pantalla que indicará qué porción de la sala se debe mostrar
         self.viewport = gameManager.screen.get_rect()
@@ -106,6 +111,7 @@ class Stage(Scene):
         # Delegamos en el estado la acción a realizar para el Jugador
         self.state.events(events, self)
 
+
     def draw(self, screen):
         # Delegamos en el estado el dibujado de la fase
         self.state.draw(screen, self)
@@ -113,6 +119,8 @@ class Stage(Scene):
         self.gui.draw(screen)
         if(self.guiWindow is not None):
             self.guiWindow.draw(screen)
+        if(self.guiGameOver is not None):
+            self.guiGameOver.draw(screen)
 
     # Cambia el estado que controla el comportamiento del scroll
     def set_state(self, state):
