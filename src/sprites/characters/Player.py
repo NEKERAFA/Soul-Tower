@@ -151,6 +151,40 @@ class Player(Character):
         for i in range(0, remainLife-life):
             self.stage.gui.health.gain_life()
 
+    # Añade vida máxima al personaje
+    # Cuando esto suceda, la vida se regenera por completo
+    def add_max_life(self):
+        self.stats["max_hp"] += 1
+        self.stats["hp"] = self.stats["max_hp"]
+        self.stage.gui.health.gain_max_life()
+
+    # Añadir (o disminuír) energía
+    def add_energy(self, value):
+        self.stats["nrg"] += value
+        #if(self.stats["nrg"]>self.stats["max_nrg"]):
+        #    self.stats["nrg"] = self.stats["max_nrg"]
+        #elif(self.stats["nrg"]<0):
+        #    self.stats["nrg"] = 0
+
+        self.stage.gui.energy.set_energy(self.stats["nrg"])
+
+    # Fijar energía a un valor
+    def set_energy(self, value):
+        self.stats["nrg"] = value
+        #if(self.stats["nrg"]>self.stats["max_nrg"]):
+        #    self.stats["nrg"] = self.stats["max_nrg"]
+        #elif(self.stats["nrg"]<0):
+        #    self.stats["nrg"] = 0
+
+        self.stage.gui.energy.set_energy(self.stats["nrg"])
+
+    # Añade energía máxima al personaje
+    # Cuando esto suceda, la energía se regenera por completo
+    def add_max_energy(self):
+        self.stats["max_nrg"] += 1
+        self.stats["nrg"] = self.stats["max_nrg"]
+        self.stage.gui.energy.gain_energy_bar()
+
     # Cambia de fase al jugador
     def change_stage(self, stage):
         self.stage = stage

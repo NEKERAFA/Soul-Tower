@@ -17,7 +17,8 @@ class Normal(PlayerState):
 			# Si se quiere cambiar al estado dashing
 			# se comprueba el tiempo transcurrido y la energía
 			if (self.lastDash > self.timeToDash and player.stats["nrg"] > 2):
-				player.stats["nrg"] -= self.dashCost
+				#player.stats["nrg"] -= self.dashCost
+				player.add_energy(-self.dashCost)
 				self.__class__ = state
 			else:
 				return
@@ -31,9 +32,10 @@ class Normal(PlayerState):
 		# Se actualiza el tiempo transcurrido desde que acabó el último dash
 		self.lastDash += time
 		# Regeneración de energía
-		player.stats["nrg"] += time*player.stats["nrg_reg"]
+		#player.stats["nrg"] += time*player.stats["nrg_reg"]
 		# Establecer tope
-		player.stats["nrg"] = min(player.stats["max_nrg"], player.stats["nrg"])
+		#player.stats["nrg"] = min(player.stats["max_nrg"], player.stats["nrg"])
+		player.set_energy(min(player.stats["max_nrg"], player.stats["nrg"]+time*player.stats["nrg_reg"]))
 		Character.update(player, time, mapRect, mapMask)
 
 	def debug(self):

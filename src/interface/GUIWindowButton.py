@@ -18,7 +18,7 @@ class GUIWindowButton(GUIButton):
     def __init__(self, guiScreen, text, upName, downName, symbolName, onClickFunction, position, scale=None, colorkey=-1):
 
         # Crear botón
-        GUIButton.__init__(self, guiScreen, upName, downName, position, onClickFunction, scale, colorkey)
+        GUIButton.__init__(self, guiScreen, upName, downName, onClickFunction, position, scale, colorkey)
 
         # Crear texto
         self.font = ResourceManager.load_font(DEFAULT_FONT, DEFAULT_FONT_SIZE)
