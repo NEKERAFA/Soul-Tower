@@ -13,10 +13,10 @@ class StageState(object):
             if enemy.killed:
                 enemy.set_drop(currentRoom.collectables)
                 killedEnemies.append(enemy)
-                
+
         for enemy in killedEnemies:
             enemy.kill() # Quito los enemigos muertos
-            
+
         # Se recorre la lista de recolectables colisionados
         collectables = pygame.sprite.spritecollide(stage.player, currentRoom.collectables, False)
         for collectable in collectables:
@@ -38,14 +38,14 @@ class StageState(object):
         newImage = stage.image.copy()
         # Ventana mágica
         currentRoom.magicWindowGroup.draw(newImage)
-        # Puertas
-        currentRoom.doors.draw(newImage)
         # Recolectables
         currentRoom.collectables.draw(newImage)
-        # Sprites interactivos
-        currentRoom.unlockedDoorsGroup.draw(newImage)
         # Enemigos
         currentRoom.enemies.draw(newImage)
+        # Puertas
+        currentRoom.doors.draw(newImage)
+        # Sprites interactivos
+        currentRoom.unlockedDoorsGroup.draw(newImage)
         # Player
         stage.player.draw(newImage)
         # Se pinta la porción de la sala que coincide con el viewport

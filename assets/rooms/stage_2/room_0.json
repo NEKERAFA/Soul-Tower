@@ -18,6 +18,112 @@
             "direction": "right"
         }
     ],
+    "enemies":  [
+        {
+            "type": "rat",
+            "position": [408, 128],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "position": [300, 248],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "bat",
+            "position": [404, 312],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "position": [408, 128],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "bat",
+            "position": [485, 412],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "bat",
+            "position": [48, 684],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "position": [700, 476],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "position": [72, 192],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "position": [48, 360],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "position": [192, 504],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "position": [288, 672],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "position": [432, 576],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "position": [936, 684],
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        }
+    ],
     "lockedDoors": [
         {
             "position": [240, 720],

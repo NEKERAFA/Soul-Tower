@@ -102,12 +102,12 @@ class OnTransitionState(StageState):
         # Recolectables
         currentRoom.collectables.draw(newImage)
         nextRoom.collectables.draw(newImage)
-        # Sprites interactivos
-        currentRoom.unlockedDoorsGroup.draw(newImage)
-        nextRoom.unlockedDoorsGroup.draw(newImage)
         # Enemigos
         currentRoom.enemies.draw(newImage)
         nextRoom.enemies.draw(newImage)
+        # Sprites interactivos
+        currentRoom.unlockedDoorsGroup.draw(newImage)
+        nextRoom.unlockedDoorsGroup.draw(newImage)
         # Player
         stage.player.draw(newImage)
         # Se pinta la porción de la sala que coincide con el viewport

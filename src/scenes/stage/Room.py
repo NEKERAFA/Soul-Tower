@@ -34,17 +34,28 @@ class Room(object):
         self.enemies = pygame.sprite.Group()
         if "enemies" in data:
             for enemy in data["enemies"]:
-                # Load drop
+                # Cargamos el drop
                 drop = Drop(enemy["drop"]["type"], enemy["drop"]["amount"])
-                # Load sprite
+                # Cargamos el sprite
                 enemySprite = Enemy(enemy["type"], drop)
-                # Load position
-                posX = random.randint(self.position[0]+24, self.position[0]+self.width-48)
-                posY = random.randint(self.position[1]+24, self.position[1]+self.height-48)
+                # Ponemos al enemigo en su posición
                 if "position" in enemy:
-                    posX = enemy["position"][0]
-                    posY = enemy["position"][1]
-                enemySprite.change_global_position((posX, posY))
+                    enemySprite.change_global_position(enemy["position"])
+                else:
+                    # Posición random
+                    posX = random.randint(self.position[0]+24, self.position[0]+self.width-48)
+                    posY = random.randint(self.position[1]+24, self.position[1]+self.height-48)
+                    enemySprite.change_global_position((posX, posY))
+                    offset = enemySprite.rect.topleft
+
+                    # Comprobamos que no colisiona con la máscara
+                    while enemySprite.mask.overlap(stage.mask, offset):
+                        posX = random.randint(self.position[0]+24, self.position[0]+self.width-48)
+                        posY = random.randint(self.position[1]+24, self.position[1]+self.height-48)
+                        enemySprite.change_global_position((posX, posY))
+                        offset = enemySprite.rect.topleft
+
+                # Añadimos al enemigo en los sprites
                 self.enemies.add(enemySprite)
 
         # Si hay un boss en la sala, lo cargo
@@ -62,7 +73,7 @@ class Room(object):
         self.lockedDoors = []
         if "lockedDoors" in data:
             for lockedDoor in data["lockedDoors"]:
-                door = Door(lockedDoor["position"], lockedDoor["doorSprite"], lockedDoor["doorMask"], stage.mask)
+                door = Door(lockedDoor["position"], lockedDoor["doorSprite"], lockedDoor["doorMask"], stage)
                 self.lockedDoors.append(door)
         self.doors = pygame.sprite.Group(self.lockedDoors)
 
@@ -87,7 +98,7 @@ class Room(object):
                 key = None
                 if "key" in unlockedDoor:
                     key = unlockedDoor["key"]
-                door = UnlockedDoor(unlockedDoor["position"], unlockedDoor["doorSprite"], unlockedDoor["doorMask"], stage.mask, rect, key)
+                door = UnlockedDoor(unlockedDoor["position"], unlockedDoor["doorSprite"], unlockedDoor["doorMask"], stage, rect, key)
                 self.unlockedDoors.append(door)
                 self.unlockedDoorsGroup.add(door)
                 self.interactives.add(door)
