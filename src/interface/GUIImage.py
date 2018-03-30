@@ -8,7 +8,7 @@ from src.interface.GUIElement import *
 # Clase GUIImage
 
 class GUIImage(GUIElement):
-    def __init__(self, guiScreen, name, position, scale, colorkey=-1):
+    def __init__(self, guiScreen, name, position, scale=None, colorkey=-1):
         #cargar imagen con transparencia
         self.image = ResourceManager.load_image(name, colorkey)
         #cambiar escala
