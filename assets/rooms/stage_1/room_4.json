@@ -6,14 +6,14 @@
         {
             "x": 1368,
             "top": 1944,
-            "bottom": 1920,
+            "bottom": 1905,
             "to": 3,
             "direction": "left"
         },
         {
             "x": 1968,
             "top": 1896,
-            "bottom": 1872,
+            "bottom": 1857,
             "to": 5,
             "direction": "right"
         },

@@ -8,7 +8,7 @@ from src.interface.GUIElement import *
 # Clase GUIButton
 
 class GUIButton(GUIElement):
-    def __init__(self, guiScreen, upName, downName, position, scale, onClickFunction, colorkey=-1):
+    def __init__(self, guiScreen, upName, downName, onClickFunction, position, scale=None, colorkey=-1):
 
         # Cargar las imágenes de botón sin pulsar y pulsado
         self.upImage = ResourceManager.load_image(upName, colorkey)
@@ -49,7 +49,7 @@ class GUIButton(GUIElement):
         # Si se ha pulsado y soltado el botón, activeImage será upImage, y se realiza la acción asociada
         if(self.activeImage == self.upImage):
             self.associated_action()
-            
+
     def associated_action(self):
         # Acción asociada a cada botón
         self.onClickFunction()

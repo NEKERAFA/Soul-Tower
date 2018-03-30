@@ -17,9 +17,9 @@ from src.scenes.stage.InRoomState import *
 # Interfaz durante el gameplay
 
 # Localización de los sprites
-HEART_SPRITE_LOCATION = 'interface/player/gui_heart.png'
-STAMINA_BAR_SPRITE_LOCATION = 'interface/player/stamina_placeholder.png'
-SOULS_SPRITE_LOCATION = 'interface/player/gui_souls_box.png'
+HEART_SPRITE_LOCATION = os.path.join(INTERFACE_PLAYER_FOLDER, 'gui_heart.png')
+STAMINA_BAR_SPRITE_LOCATION = os.path.join(INTERFACE_PLAYER_FOLDER, 'stamina_placeholder.png')
+SOULS_SPRITE_LOCATION = os.path.join(INTERFACE_PLAYER_FOLDER, 'gui_souls_box.png')
 
 DEFAULT_FONT = 'PixelOperatorHB.ttf'
 DEFAULT_FONT_SIZE = 12
@@ -47,7 +47,7 @@ class GUIPlayerScreen(GUIScreen):
 
     def events(self, event_list):
         for event in event_list:
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_e:
+            if event.type == KEYDOWN and event.key == pygame.K_e:
                 self.charSymb.action()
                 #for element in self.GUIElements:
                 #    if element.__class__.__name__ == 'GUICharacterSymbol':

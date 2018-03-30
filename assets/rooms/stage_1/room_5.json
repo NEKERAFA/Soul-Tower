@@ -6,67 +6,9 @@
         {
             "x": 2016,
             "top": 1896,
-            "bottom": 1872,
+            "bottom": 1857,
             "to": 4,
             "direction": "left"
-        }
-    ],
-    "enemies": [
-        {
-            "type": "wolf",
-            "position": [2112, 1896],
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "wolf",
-            "position": [2304, 1872],
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "wolf",
-            "position": [2784, 1872],
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "wolf",
-            "position": [2520, 1848],
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "bee",
-            "position": [2424, 2008],
-            "drop": {
-                "type": "heart",
-                "amount": 1
-            }
-        },
-        {
-            "type": "wolf",
-            "position": [2304, 1872],
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "wild_boar",
-            "position": [2328, 1800],
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
         }
     ],
     "magicWindow": {

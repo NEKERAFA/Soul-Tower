@@ -44,7 +44,7 @@ class RavenFollowPlayerState(RavenBehaviourState):
 
     def update(self, enemy, time, mapRect, mapMask):
         # Se actualiza el movimiento del personaje
-        Character.update_movement(enemy, time)
+        enemy.update_movement(enemy, time)
         enemy.speed = (enemy.speed[0]*1.5, enemy.speed[1]*1.5)
         MySprite.update(enemy, time)
 

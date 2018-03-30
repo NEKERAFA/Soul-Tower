@@ -22,9 +22,17 @@
         {
             "position": [3024, 552],
             "doorSprite": "cell4.png",
-            "doorMask": [3140, 528, 32, 12],
+            "doorMask": [3140, 528, 32, 24],
             "collision": [3140, 528, 32, 24],
             "key": [7, 0]
+        }
+    ],
+    "triggers": [
+        {
+            "position": [3120, 576],
+            "width": 72,
+            "height": 24,
+            "dialogueFile": "brokenWall.json"
         }
     ]
 }

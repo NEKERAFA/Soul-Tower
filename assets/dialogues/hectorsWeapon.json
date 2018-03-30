@@ -1,5 +1,128 @@
 [
     {
-        "text": [["Unlocked"]]
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [["Héctor solía usar una como esta."]]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "hector.png",
+                "name": "Héctor"
+            },
+            "background": "village.png"
+        },
+        "text": [
+            ["¡Daric! ¿Qué tal todo?"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            },
+            "background": "village.png"
+        },
+        "text": [["Por aquí ayudando en el campo, como siempre."]]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "hector.png",
+                "name": "Héctor"
+            },
+            "background": "village.png"
+        },
+        "text": [
+            ["¿Has pensado en lo que te dije?"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            },
+            "background": "village.png"
+        },
+        "text": [
+            ["Claro. Pero lo que propones es imposible."],
+            ["Leraila y yo nos hemos llevado mal desde", "siempre. No va a cambiar eso ahora."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "hector.png",
+                "name": "Héctor"
+            },
+            "background": "village.png"
+        },
+        "text": [
+            ["Creo que si los dos lo intentarais de verdad", "podríais llegar a entenderos..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            },
+            "background": "village.png"
+        },
+        "text": [
+            ["Jajaja. Qué ideas tienes."],
+            ["¿Sabes? Se nota que aunque seas de familia", "noble, en vuestros orígenes erais campesinos.", "Me alegro de tenerte como amigo."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "hector.png",
+                "name": "Héctor"
+            },
+            "background": "village.png"
+        },
+        "text": [
+            ["Yo también. Pero me alegría más si mis", "dos mejores amigos se llevaran bien también."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric4.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["«Héctor siempre intentó que nos llevarámos", "bien, pero era una batalla perdida desde antes", "de empezar»"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Parece bastante contundente."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Lo es. Con esto puedes romper prácticamente", "lo que quieras."]
+        ]
     }
 ]

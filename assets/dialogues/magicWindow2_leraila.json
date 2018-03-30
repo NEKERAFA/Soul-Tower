@@ -1,5 +1,103 @@
 [
     {
-        "text": [["Leraila"]]
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Tus aliados son horribles. Ese rehén", "debe ser liberado inmediatamente."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "hector_shadow.png",
+                "name": "Rehén"
+            },
+            "background": "prison.png"
+        },
+        "text": [
+            ["..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "hector_sad.png",
+                "name": "Héctor"
+            },
+            "background": "prison.png"
+        },
+        "text": [
+            ["Si Leraila o Daric estuvieran aquí..."],
+            ["¿Eh? ¿Una luz?"]
+        ]
+    },
+    {
+        "info": {
+            "background": "prison.png"
+        },
+        "text": [
+            ["Héctor se desvanció en la luz."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "rebel.png",
+                "name": "Rebelde"
+            },
+            "background": "prison.png"
+        },
+        "text": [
+            ["¡Eh! ¡¿Adónde ha ido ese traidor?!", "¡Vamos, buscadlo!"],
+            ["¡No dejéis escapar a esa escoria que", "se cambió al bando de los sangre azul!"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["¿Héc... tor...?"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila3.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["No lo habías reconocido, ¿verdad?", "Supongo que los rebeldes son igual de", "despreciables que su líder."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["¿Crees que... estas imágenes reflejan", "el mundo exterior?"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Espero que no."]
+        ]
     }
 ]

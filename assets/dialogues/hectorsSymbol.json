@@ -1,5 +1,157 @@
 [
     {
-        "text": [["Unlocked"]]
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [["Este emblema... es de la familia de..."]]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila_kid3.png",
+                "name": "Leraila"
+            },
+            "background": "palace-garden.png"
+        },
+        "text": [["¡Héctor! ¡Echo de menos a mi hermano!", "*sollozo*"]]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "hector_kid.png",
+                "name": "Héctor"
+            },
+            "background": "palace-garden.png"
+        },
+        "text": [["Leraila... Tranquila."]]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila_kid2.png",
+                "name": "Leraila"
+            },
+            "background": "palace-garden.png"
+        },
+        "text": [
+            ["¡No!"], ["¿Por qué tuvo que irse?"]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "hector_kid.png",
+                "name": "Héctor"
+            },
+            "background": "palace-garden.png"
+        },
+        "text": [
+            ["Fue a bucar la Torre para conseguir poder", "y así traer prosperidad al reino.", "Lo sabes."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila_kid2.png",
+                "name": "Leraila"
+            },
+            "background": "palace-garden.png"
+        },
+        "text": [
+            ["Sí... Pero fue hace mucho..."], ["Padre me dijo que murió...", "Y que ahora yo soy la heredera."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "hector_kid.png",
+                "name": "Héctor"
+            },
+            "background": "palace-garden.png"
+        },
+        "text": [
+            ["Aunque sea difícil... y el rey te ponga bajo", "mucha presión... Sé que puedes hacerlo."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila_kid3.png",
+                "name": "Leraila"
+            },
+            "background": "palace-garden.png"
+        },
+        "text": [
+            ["No lo sé..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila_kid2.png",
+                "name": "Leraila"
+            },
+            "background": "palace-garden.png"
+        },
+        "text": [
+            ["¡Y ese Daric...!"],
+            ["No para de molestarme. ¡No lo soporto!"]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "hector_kid.png",
+                "name": "Héctor"
+            },
+            "background": "palace-garden.png"
+        },
+        "text": [
+            ["Ya veo.. Hablaré con él, ¿de acuerdo?"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila2.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["«Héctor...»"],
+            ["«Primero perdí a mi hermano, y ahora te he", "dejado atrás...»"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [["Es de la familia de Héctor, ¿no?"]]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric3.png",
+                "name": "Daric"
+            }
+        },
+        "text": [["Me trae buenos recuerdos."]]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["... A mí también."]
+        ]
     }
 ]

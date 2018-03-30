@@ -14,18 +14,22 @@ from src.scenes.Stage import *
 # Interfaz en la primera sala
 
 # Localización de los sprites
-W_SPRITE_LOCATION = os.path.join('interface', 'game', 'tutorial', 'w_placeholder.png')
-A_SPRITE_LOCATION = os.path.join('interface', 'game', 'tutorial', 'a_placeholder.png')
-S_SPRITE_LOCATION = os.path.join('interface', 'game', 'tutorial', 's_placeholder.png')
-D_SPRITE_LOCATION = os.path.join('interface', 'game', 'tutorial', 'd_placeholder.png')
-E_SPRITE_LOCATION = os.path.join('interface', 'game', 'tutorial', 'e_placeholder.png')
-SPACE_SPRITE_LOCATION = os.path.join('interface', 'game', 'tutorial', 'space_placeholder.png')
+W_SPRITE_LOCATION = os.path.join(INTERFACE_GAME_FOLDER, 'tutorial', 'gui_w_key.png')
+A_SPRITE_LOCATION = os.path.join(INTERFACE_GAME_FOLDER, 'tutorial', 'gui_a_key.png')
+S_SPRITE_LOCATION = os.path.join(INTERFACE_GAME_FOLDER, 'tutorial', 'gui_s_key.png')
+D_SPRITE_LOCATION = os.path.join(INTERFACE_GAME_FOLDER, 'tutorial', 'gui_d_key.png')
+E_SPRITE_LOCATION = os.path.join(INTERFACE_GAME_FOLDER, 'tutorial', 'gui_e_key.png')
+SPACE_SPRITE_LOCATION = os.path.join(INTERFACE_GAME_FOLDER, 'tutorial', 'gui_space_key.png')
+Q_SPRITE_LOCATION = os.path.join('interface', 'game', 'tutorial', 'gui_q_key.png')
+MOUSE_SPRITE_LOCATION = os.path.join('interface', 'game', 'tutorial', 'w_placeholder.png')
 
 class GUITutorialScreen(GUIScreen):
     def __init__(self, stage):
         GUIScreen.__init__(self, stage)
 
-        # TODO guardar una referencia a la puerta del final de tutorial, ponerle una llave falsa y al terminar una llave = None
+        # Referencia a la puerta del final de tutorial, le ponemos una llave falsa
+        self.tutorialDoor = stage.rooms[0].unlockedDoors[0]
+        self.tutorialDoor.key = ""
 
         # Contador para eliminar texto según se vayan pulsando las teclas
         self.tutorialKeyCounter = 0
@@ -39,15 +43,12 @@ class GUITutorialScreen(GUIScreen):
         dKey = GUITutorialImage(self, D_SPRITE_LOCATION, (140,140), (40,40), pygame.K_d)
 
         self.onDialogue = False
-        self.dialogues = ['movement.json']
+        self.dialogues = ['movement.json', 'exitTutorial.json']
         self.dialogueIndex = 0
 
         # Cambio de personaje
         self.eKey = GUITutorialImage(self, E_SPRITE_LOCATION, (140,100), (40,40), pygame.K_e)
         self.swapText = GUIText(self, (120, 60), font, 'Cambiar de personaje', 'center')
-
-        # TODO Ataque
-        # self.mouse = GUITutorialImage(self, E_SPRITE_LOCATION, (140, 100), (40, 40), pygame.)
 
         # Dash/Defender
         self.spaceKey = GUITutorialImage(self, SPACE_SPRITE_LOCATION, (100,250), (200,50), pygame.K_SPACE)
@@ -58,6 +59,14 @@ class GUITutorialScreen(GUIScreen):
         self.add_element(sKey)
         self.add_element(dKey)
         self.add_element(self.movementText)
+
+        # Ataque
+        self.mouse = GUITutorialImage(self, MOUSE_SPRITE_LOCATION, (250, 100), (40, 40), None)
+        self.attackText = GUIText(self, (275, 120), font, 'Atacar', 'center')
+
+        # Interactuar
+        self.qKey = GUITutorialImage(self, Q_SPRITE_LOCATION, (75, 100), (40, 40), pygame.K_q)
+        self.actionText = GUIText(self, (100, 60), font, 'Interactuar', 'center')
 
     def update(self, time):
         GUIScreen.update(self, time)
@@ -81,14 +90,21 @@ class GUITutorialScreen(GUIScreen):
                                 self.onDialogue = True
                             elif(self.tutorialKeyCounter == 5):
                                 self.remove_element(self.swapText)
-                                # self.stage.setState(OnDialogueState(self.dialogues[self.dialogueIndex], self.stage))
-                                # self.dialogueIndex += 1
-                                # self.onDialogue = True
                                 self.next_element()
                             elif(self.tutorialKeyCounter == 6):
                                 self.remove_element(self.dashText)
-                                # self.nextElement()
-
+                                self.next_element()
+                                self.tutorialKeyCounter += 1
+                            elif self.tutorialKeyCounter == 9:
+                                self.remove_element(self.actionText)
+                elif event.type == pygame.MOUSEBUTTONDOWN and pygame.mouse.get_pressed()[0]:
+                    if self.tutorialKeyCounter == 7:
+                        self.tutorialKeyCounter += 1
+                        self.mouse.action()
+                        self.remove_element(self.attackText)
+                        self.stage.set_state(OnDialogueState(self.dialogues[self.dialogueIndex], self.stage))
+                        self.dialogueIndex += 1
+                        self.onDialogue = True
 
     def next_element(self):
         if self.tutorialKeyCounter == 4:
@@ -97,3 +113,10 @@ class GUITutorialScreen(GUIScreen):
         elif self.tutorialKeyCounter == 5:
             self.add_element(self.spaceKey)
             self.add_element(self.dashText)
+        elif self.tutorialKeyCounter == 6:
+            self.add_element(self.mouse)
+            self.add_element(self.attackText)
+        elif self.tutorialKeyCounter == 8:
+            self.add_element(self.qKey)
+            self.add_element(self.actionText)
+            self.tutorialDoor.key = None

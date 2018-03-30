@@ -6,14 +6,14 @@
         {
             "x": 576,
             "top": 1896,
-            "bottom": 1872,
+            "bottom": 1857,
             "to": 1,
             "direction": "left"
         },
         {
             "x": 1320,
             "top": 1944,
-            "bottom": 1920,
+            "bottom": 1905,
             "to": 4,
             "direction": "right"
         },
@@ -23,6 +23,13 @@
             "right": 964,
             "to": 7,
             "direction": "up"
+        }
+    ],
+    "lockedDoors": [
+        {
+            "position": [912, 1656],
+            "doorSprite": "forestDoor.png",
+            "doorMask": [932, 1632, 32, 8]
         }
     ],
     "enemies": [

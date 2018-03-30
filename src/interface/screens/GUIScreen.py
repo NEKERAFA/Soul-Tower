@@ -9,6 +9,9 @@ from src.scenes.Scene import *
 # Clase GUIScreen
 # La clase GUIScreen no hereda de Screen, ya que no tiene imagen propia a dibujar
 
+INTERFACE_PLAYER_FOLDER = os.path.join('interface', 'player')
+INTERFACE_GAME_FOLDER = os.path.join('interface', 'game')
+
 class GUIScreen(object):
     def __init__(self, stage):
         # Se tiene una lista de elementos GUI
