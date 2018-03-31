@@ -77,12 +77,6 @@ class Player(Character):
         # Si se está cambiando de personaje o no
         self.changing = Finish()
 
-        # Sonido para cuando se recupera vida
-        #self.heal_sound = ResourceManager.load_effect_sound("heal.wav")
-
-        # Sonido cuando se recibe daño
-        #self.damage_sound = ResourceManager.load_effect_sound("ouch.wav")
-
         # Nivel de las armas
         self.meleeLevel = 1
         self.rangedLevel = 1
@@ -117,11 +111,11 @@ class Player(Character):
         if KeyboardMouseControl.prim_button():
             # Si es sorcerer, el ataque actual es ataque a distancia
             if self.currentCharacter == 'sorcerer' and type(self.attack) is not RangedAttack:
-                self.attack = RangedAttack(self.rangedAttackRadius, self.rangedAttackDelay, self.attack.enemies)
+                self.attack = RangedAttack(self.rangedAttackRadius, self.rangedAttackDelay, self.rangedLevel, self.attack.enemies)
 
             # Si es warrior, el ataque actual es melee
             if self.currentCharacter == 'warrior' and type(self.attack) is not MeleeAttack:
-                self.attack = MeleeAttack(self.meleeAttackRadius, self.meleeAttackDelay, self.attack.enemies)
+                self.attack = MeleeAttack(self.meleeAttackRadius, self.meleeAttackDelay, self.meleeLevel, self.attack.enemies)
 
             # Calcular la posición del centro del sprite (de momento calcula el centro del primer sprite)
             centerPosX, centerPosY = self.rect.center
@@ -184,10 +178,6 @@ class Player(Character):
     # Recibe un daño y se realiza el daño. Si el personaje ha muerto, lo elimina
     # de todos los grupos
     def receive_damage(self, damage, force):
-        #Se reserva canal
-        pygame.mixer.set_reserved(1)
-        chanel_reserved_0 = pygame.mixer.Channel(0)
-        chanel_reserved_0.play(self.damage_sound)
         life = self.stats["hp"]
         self.state.receive_damage(self, damage, force)
         remainLife = self.stats["hp"]
