@@ -28,6 +28,7 @@ El archivo de configuración de la sala debe contener los siguientes datos:
         - "name": Nombre del boss,
         - "position" [x, y]: Posición absoluta de spawn del boss
         - "drops": Lista con los drops del boss. Contiene la misma información que el enemigo
+        - "finalDialogue": Nombre del diálogo final
         - "closeDoor": Puerta que el enemigo cierra cuando se entra a la sala. Se debe aportar la siguiente información:
             - "doorSprite": Sprite de la puerta.
             - "position" [x, y]: Posición de la esquina inferior izquierda de la puerta (no tiene por qué corresponder con la de la conexión).

@@ -104,8 +104,19 @@ class PatrollState(BehaviourState):
                 enemy.change_behaviour(FollowPlayerState(self.range.radius, self))
                 return
 
+        oldPosition = enemy.position
+
         # Llamamos al update de characters
         Character.update(enemy, time, mapRect, mapMask)
+
+        # Esto es para que no se salga de la sala
+        if not mapRect.inflate(-48, -48).contains(enemy.rect):
+            # Volvemos a la posición anterior
+            enemy.change_global_position(oldPosition)
+            # Movimiento aleatorio
+            self.move = random.choice(MOVEMENTS)
+            # Tiempo aleatorio
+            self.delay = random.randint(MIN_DELAY, MAX_DELAY)
 
         # Actualizamos la posición del campo de visión
         (enemyX, enemyY) = enemy.rect.center

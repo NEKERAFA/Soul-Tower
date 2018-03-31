@@ -6,6 +6,7 @@ from src.ResourceManager import *
 from src.scenes.Scene import *
 from src.interface.screens.GUIScreen import *
 from src.interface.GUIButton import *
+from src.sprites.MyStaticAnimatedSprite import *
 
 # -------------------------------------------------
 # Clase GUIMainMenuScreen
@@ -17,6 +18,8 @@ MENU_START_BUTTON_DOWN_LOCATION = os.path.join(INTERFACE_GAME_FOLDER, 'start_dow
 MENU_EXIT_BUTTON_UP_LOCATION = os.path.join(INTERFACE_GAME_FOLDER, 'exit_up.png')
 MENU_EXIT_BUTTON_DOWN_LOCATION = os.path.join(INTERFACE_GAME_FOLDER, 'exit_down.png')
 
+MAINMENU_PATH = 'mainmenu'
+BACKGROUND_PATH = os.path.join('interface', 'mainmenu', 'background.png')
 
 class GUIMainMenuScreen(GUIScreen):
     def __init__(self, stage):
@@ -35,6 +38,19 @@ class GUIMainMenuScreen(GUIScreen):
         self.add_element(self.gameExit)
 
         self.elementClick = None
+
+        # Elementos del fondo
+        self.background = ResourceManager.load_image(BACKGROUND_PATH)
+        bonefirePath = os.path.join(MAINMENU_PATH, 'bonefire')
+        self.bonefire = MyStaticAnimatedSprite(bonefirePath + '.png', bonefirePath + '.json')
+        self.bonefire.change_position((46, 271))
+        lightPath = os.path.join(MAINMENU_PATH, 'light')
+        self.light = MyStaticAnimatedSprite(lightPath + '.png', lightPath + '.json')
+        self.light.change_position((23, 274))
+        shadowPath = os.path.join(MAINMENU_PATH, 'shadow')
+        self.shadow = MyStaticAnimatedSprite(shadowPath + '.png', shadowPath + '.json')
+        self.shadow.change_position((113, 263))
+        self.spritesGroup = pygame.sprite.Group([self.bonefire, self.light, self.shadow])
 
     def events(self, event_list):
         for event in event_list:
@@ -59,3 +75,17 @@ class GUIMainMenuScreen(GUIScreen):
 
     def button_fun_exit(self):
         self.stage.gameManager.program_exit()
+
+    def update(self, time):
+        # Actualizamos los sprites
+        self.spritesGroup.update(time)
+        # Actualiamos la Interfaz
+        GUIScreen.update(self, time)
+
+    def draw(self, screen):
+        # Mostamos el fondo
+        screen.blit(self.background, (0,0))
+        # Mostramos los sprites
+        self.spritesGroup.draw(screen)
+        # Mostramos la interfaz
+        GUIScreen.draw(self, screen)

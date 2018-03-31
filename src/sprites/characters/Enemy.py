@@ -23,7 +23,7 @@ class Enemy(NPC):
     def move_ai(self, player):
         self.state.move_ai(self, player)
 
-        # Comprobamos que el enemigo no esté golpeando al jugador
+        # Comprobamos que el enemigo esté golpeando al jugador
         if pygame.sprite.collide_mask(player, self):
             angle = math.radians(360-EnemyRange.get_angle(self.movement))
             impulse = Force(angle, self.stats["backward"])

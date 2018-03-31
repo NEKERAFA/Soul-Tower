@@ -16,7 +16,7 @@ class OnBossRoomState(StageState):
         currentRoom.boss.animationLoop = False
         # Creamos la puerta que se cierra al entrar en la habitación
         doorConf = stage.rooms[stage.currentRoom].boss.closeDoor
-        door = Door(doorConf["position"], doorConf["doorSprite"], doorConf["doorMask"], stage.mask)
+        door = Door(doorConf["position"], doorConf["doorSprite"], doorConf["doorMask"], stage)
         # Añadimos el sprite
         currentRoom.lockedDoors.append(door)
         currentRoom.doors.add(door)
@@ -53,6 +53,7 @@ class OnBossRoomState(StageState):
             currentRoom.boss.set_drop(currentRoom.collectables)
             currentRoom.lockedDoors[0].open(stage)
             self.killedBoss = True
+            stage.set_state(OnDialogueState(currentRoom.boss.dialogueFile, self))
 
         # Recogibles
         currentRoom.collectables.update(time)
