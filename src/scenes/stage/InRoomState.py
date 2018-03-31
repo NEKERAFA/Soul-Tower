@@ -26,7 +26,7 @@ class InRoomState(StageState):
         # Recogibles
         currentRoom.collectables.update(time)
         # Ventana mágica
-        currentRoom.magicWindowGroup.update(time, stage)
+        currentRoom.magicWindowGroup.update(time)
 
         # Si detecta colisión con un trigger, cambia de estado
         trigger = pygame.sprite.spritecollideany(stage.player, currentRoom.triggers)

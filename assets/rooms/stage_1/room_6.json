@@ -15,12 +15,12 @@
         "daric": {
             "position": [1546, 1336],
             "sprite": "upgradeDaric1.png",
-            "cost": 300
+            "cost": 200
         },
         "leraila": {
             "position": [1380, 1280],
             "sprite": "upgradeLeraila1.png",
-            "cost": 300
+            "cost": 200
         }
     },
     "triggers": [

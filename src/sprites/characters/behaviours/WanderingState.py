@@ -44,10 +44,38 @@ class WanderingState(BehaviourState):
         # Llamamos al update de characters
         Character.update(enemy, time, mapRect, mapMask)
         # Esto es para que no se salga de la sala
-        if not mapRect.inflate(-48, -48).contains(enemy.rect):
+        if not mapRect.inflate(-12, -12).contains(enemy.rect):
+            # Miramos a donde nos tenemos que mover
+            if enemy.rect.top < mapRect.top+6:
+                # Choca arriba
+                if enemy.rect.left < mapRect.left+6:
+                    # Choca arriba a la izquierda
+                    Character.move(enemy, SW)
+                elif enemy.rect.right > mapRect.right-6:
+                    # Choca arriba a la derecha
+                    Character.move(enemy, SE)
+                else:
+                    Character.move(enemy, random.choice([SW, SE, S]))
+            elif enemy.rect.bottom > mapRect.bottom-6:
+                # Choca abajo
+                if enemy.rect.left < mapRect.left+6:
+                    # Choca abajo a la izquierda
+                    Character.move(enemy, NW)
+                elif enemy.rect.right > mapRect.right-6:
+                    # Choca abajo a la derecha
+                    Character.move(enemy, NE)
+                else:
+                    Character.move(enemy, random.choice([NW, NE, N]))
+            # Choca a la izquierda
+            elif enemy.rect.left < mapRect.left+6:
+                Character.move(enemy, random.choice([NE, E, SE]))
+            # Choca a la derecha
+            elif enemy.rect.right > mapRect.right-6:
+                Character.move(enemy, random.choice([SW, W, NW]))
+            else:
+                print "No se que hacer"
+                self.angle = random.randint(0, 356)    
             # Volvemos a la posición anterior
             enemy.change_global_position(oldPosition)
-            # Movimiento aleatorio
-            self.move = random.choice(MOVEMENTS)
             # Tiempo aleatorio
             self.delay = random.randint(MIN_DELAY, MAX_DELAY)

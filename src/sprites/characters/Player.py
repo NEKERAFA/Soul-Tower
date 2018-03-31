@@ -187,10 +187,6 @@ class Player(Character):
 
     # Añade vidas al personaje
     def add_lifes(self, lifes):
-        #Se reserva canal
-        pygame.mixer.set_reserved(1)
-        chanel_reserved_1 = pygame.mixer.Channel(0)
-        chanel_reserved_1.play(self.heal_sound)
         life = self.stats["hp"]
         Character.add_lifes(self, lifes)
         remainLife = self.stats["hp"]
@@ -230,6 +226,10 @@ class Player(Character):
         self.stats["max_nrg"] += 1
         self.stats["nrg"] = self.stats["max_nrg"]
         self.stage.gui.energy.gain_energy_bar()
+
+    # Añade nuevos enemigos en el cambio de fase
+    def set_enemies(self, enemies):
+        self.attack.enemies = enemies
 
     # Cambia de fase al jugador
     def change_stage(self, stage):

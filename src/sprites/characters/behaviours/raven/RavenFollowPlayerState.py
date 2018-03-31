@@ -36,7 +36,7 @@ class RavenFollowPlayerState(RavenBehaviourState):
 
         # Comprobamos si se está colisionando con el enemigo para volver al
         # otro estado
-        if pygame.sprite.collide_rect(player, enemy):
+        if pygame.sprite.collide_mask(player, enemy):
             enemy.change_behaviour(self.previousState)
             self.previousState.angle = int(angle+180)
             if self.previousState.angle > 360:
@@ -45,7 +45,7 @@ class RavenFollowPlayerState(RavenBehaviourState):
     def update(self, enemy, time, mapRect, mapMask):
         # Se actualiza el movimiento del personaje
         Character.update_movement(enemy, time)
-        enemy.speed = (enemy.speed[0]*1.5, enemy.speed[1]*1.5)
+        enemy.speed = (enemy.speed[0]*1.25, enemy.speed[1]*1.25)
         MySprite.update(enemy, time)
 
         self.elapseTime += time

@@ -4,7 +4,7 @@
         "hp": 2,
         "atk": 1,
         "backward": 0.002,
-        "spd": 0.1
+        "spd": 0.125
     },
 
     "sound": "wolf.wav",
