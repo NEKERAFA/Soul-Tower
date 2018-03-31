@@ -16,7 +16,7 @@ if __name__ == '__main__':
     # global gameManager
     gameManager = GameManager()
     # Creamos la escena con la pantalla inicial
-    scene = Stage(3, gameManager)
+    scene = Stage(1, gameManager)
     scene.player.killedFriend = False
     #scene = MainMenuScene(gameManager)
     # Le decimos al director que apile esta escena

@@ -14,9 +14,7 @@ from src.sprites.EnemyRange import *
 class DeathCastState(DeathBehaviourState):
     def __init__(self, previousState):
         DeathBehaviourState.__init__(self)
-        self.previousState = previousState
-        self.orbsCasted = 0
-        self.player = self.previousState.player
+        self.player = previousState.player
         self.delayTime = random.randint(3, 4)*1000
         self.elapseTime = 0
 

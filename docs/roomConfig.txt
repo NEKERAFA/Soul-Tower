@@ -38,7 +38,7 @@ El archivo de configuración de la sala debe contener los siguientes datos:
         - "height": Altura en píxeles del trigger.
         - "width": Ancho en píxeles del trigger.
         - "dialogueFile": Nombre del fichero de diálogo asociado al trigger.
-        - "opens": [room, door] Número de puerta que abre y sala en la que está dicha puerta (opcional). La sala, por lógica, tendrá un número menor o igual al de la sala en la que se encuentra el trigger
+        - "opens" (opcional): [room, door] Número de puerta que abre y sala en la que está dicha puerta (opcional). La sala, por lógica, tendrá un número menor o igual al de la sala en la que se encuentra el trigger
     - "lockedDoors": Lista de puertas cerradas de la sala, si las hay.
         - "doorSprite": Sprite de la puerta.
         - "position" [x, y]: Posición de la esquina inferior izquierda de la puerta (no tiene por qué corresponder con la de la conexión).
