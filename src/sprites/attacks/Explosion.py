@@ -30,9 +30,6 @@ class Explosion(Attack):
         self.attackDict = {-1:-1}
 
     def draw(self, surface):
-        pygame.mixer.set_reserved(1)
-        chanel_reserved_0 = pygame.mixer.Channel(0)
-        chanel_reserved_0.play(self.effect_sound)
         Attack.draw(self, surface)
         # pygame.draw.rect(surface, (0,0,0), self.blastRect)
 

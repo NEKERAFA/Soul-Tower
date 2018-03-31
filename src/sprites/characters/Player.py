@@ -78,10 +78,10 @@ class Player(Character):
         self.changing = Finish()
 
         # Sonido para cuando se recupera vida
-        self.heal_sound = ResourceManager.load_effect_sound("heal.wav")
+        #self.heal_sound = ResourceManager.load_effect_sound("heal.wav")
 
         # Sonido cuando se recibe daño
-        self.damage_sound = ResourceManager.load_effect_sound("ouch.wav")
+        #self.damage_sound = ResourceManager.load_effect_sound("ouch.wav")
 
         # Nivel de las armas
         self.meleeLevel = 1

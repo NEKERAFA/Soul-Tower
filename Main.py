@@ -12,9 +12,6 @@ if __name__ == '__main__':
     random.seed(datetime.now())
     # Inicializamos la libreria de pygame y el mixera
     pygame.init()
-    pygame.mixer.pre_init(44100, 16, 2, 4096)
-    pygame.mixer.init()
-    #pygame.mixer.set_num_channels(40)
     # Creamos el director
     # global gameManager
     gameManager = GameManager()
@@ -25,7 +22,6 @@ if __name__ == '__main__':
     # Le decimos al director que apile esta escena
     gameManager.scene_stack(scene)
     # Y ejecutamos el juego
-    print (pygame.mixer.get_num_channels())
     gameManager.run()
     # Cuando se termine la ejecución, finaliza la librería
     pygame.quit()

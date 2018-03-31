@@ -38,9 +38,6 @@ class RangedAttack(Attack):
     def start_attack(self, characterPos, rotation):
         self.characterPos = characterPos
         self.rotation = rotation
-        pygame.mixer.set_reserved(1)
-        chanel_reserved_0 = pygame.mixer.Channel(0)
-        chanel_reserved_0.play(self.effect_sound)
         self.attacking = True
 
     def end_attack(self):

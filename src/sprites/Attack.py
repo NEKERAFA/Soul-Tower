@@ -56,9 +56,6 @@ class Attack(MySprite):
         # Cargar sheet de sprites
         self.sheet = ResourceManager.load_image(os.path.join('sprites', ATTACK_PATH, imageFile), -1)
 
-        #Cargamos efecto de sonido
-        self.effect_sound = ResourceManager.load_effect_sound(effect_sound)
-
         # Leer coordenadas de fichero
         data = ResourceManager.load_sprite_conf(os.path.join(ATTACK_PATH, spriteSheet))
         self.sheetConf = []
