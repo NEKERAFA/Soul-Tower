@@ -41,7 +41,9 @@ class StageState(object):
         # Recolectables
         currentRoom.collectables.draw(newImage)
         # Enemigos
-        currentRoom.enemies.draw(newImage)
+        for enemy in iter(currentRoom.enemies):
+            enemy.draw(newImage)
+        # currentRoom.enemies.draw(newImage)
         # Puertas
         currentRoom.doors.draw(newImage)
         # Sprites interactivos

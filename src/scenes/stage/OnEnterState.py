@@ -27,7 +27,7 @@ class OnEnterState(StageState):
         # Player
         stage.player.update(time, stage)
         # Enemigos
-        currentRoom.enemies.update(time, currentRoom.rect, stage.mask)
+        currentRoom.enemies.update(time, currentRoom.rect, stage)
 
     def events(self, events, stage):
         pass

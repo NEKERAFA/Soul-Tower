@@ -13,10 +13,10 @@
     ],
     "triggers": [
         {
-            "position": [100, 100],
-            "width": 48,
-            "height": 48,
-            "dialogueFile": ["test.json", "test.json"]
+            "position": [360, 2016],
+            "width": 120,
+            "height": 72,
+            "dialogueFile": "test.json"
         }
     ]
 }

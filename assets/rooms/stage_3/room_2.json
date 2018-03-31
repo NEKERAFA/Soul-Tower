@@ -1,14 +1,21 @@
 {
-    "position": [0, 0],
-    "width": 840,
-    "height": 552,
+    "position": [120, 552],
+    "width": 600,
+    "height": 792,
     "connections": [
         {
-            "y": 528,
+            "y": 1320,
             "left": 404,
             "right": 436,
-            "to": 2,
+            "to": 1,
             "direction": "down"
+        },
+        {
+            "y": 576,
+            "left": 404,
+            "right": 436,
+            "to": 3,
+            "direction": "up"
         }
     ],
     "triggers": [
@@ -16,7 +23,7 @@
             "position": [144, 876],
             "width": 552,
             "height": 60,
-            "dialogueFile": ["test.json", "test.json", "test.json"]
+            "dialogueFile": "test.json"
         }
     ]
 }

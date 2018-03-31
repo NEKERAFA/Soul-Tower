@@ -4,7 +4,7 @@
     "height": 336,
     "connections": [
         {
-            "y": 1296,
+            "y": 1320,
             "left": 932,
             "right": 964,
             "direction": "up",
@@ -31,7 +31,7 @@
                 "amount": 1
             }
         ],
-        "finalDialogue": "test.json",
+        "finalDialogue": "firstBoss.json",
         "closeDoor": {
             "doorSprite": "boss1BottomDoor.png",
             "position": [912, 1632],

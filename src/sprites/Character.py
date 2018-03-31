@@ -117,6 +117,8 @@ class Character(MySprite):
         # Frame inicial
         self.origImage = self.sheet.subsurface(firstFrame['coords'])
         self.image = self.origImage.copy()
+        if self.looking == E:
+            self.image = pygame.transform.flip(self.image, 1, 0)
 
         # El rectangulo del Sprite
         self.rect.size = self.image.get_size()
@@ -290,8 +292,9 @@ class Character(MySprite):
         if self.stats["hp"] <= 0:
             self.killed = True
 
-        # Aplicamos una fuerza de rebote
-        self.apply_force(force)
+        if force!=0:
+            # Aplicamos una fuerza de rebote
+            self.apply_force(force)
 
     # Añade vidas al personaje
     def add_lifes(self, lifes):

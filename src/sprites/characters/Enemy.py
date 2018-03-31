@@ -19,6 +19,7 @@ class Enemy(NPC):
         self.state = BehaviourConstructor.get_behaviour(self.behaviour["type"], self)
         self.wasAlive = True
         self.justDied = False
+        self.attack = None
 
     def move_ai(self, player):
         self.state.move_ai(self, player)
@@ -37,8 +38,17 @@ class Enemy(NPC):
         else:
             self.justDied = False
 
-    def update(self, time, mapRect, mapMask):
-        self.state.update(self, time, mapRect, mapMask)
+    def update(self, time, mapRect, stage):
+        self.state.update(self, time, mapRect, stage.mask)
+        if (self.attack is not None):
+            self.attack.update(self, time, stage)
+
+    def draw(self, screen):
+        # Esta función está para agrupar el mostrar al enemigo y su ataque
+        screen.blit(self.image, self.rect)
+        if (self.attack is not None):
+            # print("drawing enemy attack")
+            self.attack.draw(screen)
 
     def set_drop(self, dropGroup):
         self.drop.change_position(self.rect.midbottom)

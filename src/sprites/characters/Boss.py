@@ -4,6 +4,8 @@ import pygame, random
 from src.sprites.Character import *
 from src.sprites.characters.Enemy import *
 from src.sprites.Drop import *
+from src.sprites.characters.behaviours.raven.RavenFlyAroundStageState import *
+from src.sprites.characters.behaviours.death.DeathMainState import *
 
 class Boss(Enemy):
     def __init__(self, name, drops, closeDoor, dialogueFile):
@@ -15,6 +17,12 @@ class Boss(Enemy):
             self.drops = []
         self.closeDoor = closeDoor
         self.dialogueFile = dialogueFile
+        if (name=="raven"):
+            self.initialState = RavenFlyAroundStageState()
+        elif (name=="death"):
+            self.initialState = DeathMainState()
+        else:
+            raise NotImplementedError('Error: initial boss state not implemented')
 
     def set_drop(self, dropGroup):
         Enemy.set_drop(self, dropGroup)

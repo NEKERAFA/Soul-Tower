@@ -11,8 +11,8 @@ from Normalize import *
 class RangedAttack(Attack):
     def __init__(self, radius, delayTime, enemies):
         # Obtenemos las rutas a los archivos
-        imageFile = os.path.join('sprites', 'attacks', 'ranged.png')
-        spriteSheet = os.path.join('attacks', 'ranged.json')
+        imageFile = 'ranged.png'
+        spriteSheet = 'ranged.json'
 
         # Invocamos al constructor de la clase padre
         Attack.__init__(self, imageFile, spriteSheet, enemies)

@@ -162,23 +162,23 @@
             {
                 "x" : 0,
                 "y" : 0,
-                "width" : 71,
-                "height" : 72,
-                "delay" : 0.5
+                "width" : 161,
+                "height" : 84,
+                "delay" : 1
             },
             {
-                "x" : 73,
+                "x" : 163,
                 "y" : 0,
-                "width" : 71,
-                "height" : 72,
-                "delay" : 0.2
+                "width" : 161,
+                "height" : 84,
+                "delay" : 1
             },
             {
-                "x" : 146,
+                "x" : 326,
                 "y" : 0,
-                "width" : 71,
-                "height" : 72,
-                "delay" : 0.2
+                "width" : 161,
+                "height" : 84,
+                "delay" : 1
             }
         ],
         [
