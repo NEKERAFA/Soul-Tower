@@ -1,0 +1,39 @@
+[
+    [
+        {
+            "x" : 0,
+            "y" : 0,
+            "width" : 32,
+            "height" : 3,
+            "delay" : 0.1
+        },
+        {
+            "x" : 32,
+            "y" : 0,
+            "width" : 32,
+            "height" : 3,
+            "delay" : 0.1
+        },
+        {
+            "x" : 0,
+            "y" : 0,
+            "width" : 32,
+            "height" : 3,
+            "delay" : 0.1
+        },
+        {
+            "x" : 64,
+            "y" : 0,
+            "width" : 32,
+            "height" : 3,
+            "delay" : 0.1
+        },
+        {
+            "x" : 32,
+            "y" : 0,
+            "width" : 32,
+            "height" : 3,
+            "delay" : 0.1
+        }
+    ]
+]
