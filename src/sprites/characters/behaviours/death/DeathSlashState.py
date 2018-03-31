@@ -14,8 +14,7 @@ from src.sprites.EnemyRange import *
 class DeathSlashState(DeathBehaviourState):
     def __init__(self, previousState):
         DeathBehaviourState.__init__(self)
-        self.previousState = previousState
-        self.player = self.previousState.player
+        self.player = previousState.player
 
     def move_ai(self, enemy, player):
         pass

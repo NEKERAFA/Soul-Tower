@@ -78,7 +78,7 @@ class Player(Character):
         self.rangedLevel = 1
 
         # Se cargan los ataques
-        self.attack = RangedAttack(5, 300, self.rangedLevel, enemies)
+        self.attack = RangedAttack(10, 400, self.rangedLevel, enemies)
 
     def move(self, viewport):
         # Indicamos la acción a realizar segun la tecla pulsada para el jugador
@@ -107,7 +107,7 @@ class Player(Character):
         if KeyboardMouseControl.prim_button():
             # Si es sorcerer, el ataque actual es ataque a distancia
             if self.currentCharacter == 'sorcerer' and type(self.attack) is not RangedAttack:
-                self.attack = RangedAttack(5, 300, self.rangedLevel, self.attack.enemies)
+                self.attack = RangedAttack(10, 400, self.rangedLevel, self.attack.enemies)
 
             # Si es warrior, el ataque actual es melee
             if self.currentCharacter == 'warrior' and type(self.attack) is not MeleeAttack:
