@@ -25,9 +25,9 @@
     },
     "triggers": [
         {
-            "position": [24, 1325],
-            "height": 216,
-            "width": 90,
+            "position": [1440, 1440],
+            "height": 24,
+            "width": 24,
             "dialogueFile": "upgradeShop.json"
         }
     ],
