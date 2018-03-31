@@ -6,6 +6,7 @@ from src.sprites.characters.behaviours.WanderingState import *
 from src.sprites.characters.behaviours.PatrollState import *
 from src.sprites.characters.behaviours.StillState import *
 from src.sprites.characters.behaviours.raven.RavenStillState import *
+from src.sprites.characters.behaviours.death.DeathStillState import *
 
 class BehaviourConstructor(object):
     @classmethod
@@ -18,5 +19,7 @@ class BehaviourConstructor(object):
             return StillState(enemy.behaviour["radius"])
         elif behaviourName == 'raven':
             return RavenStillState()
+        elif behaviourName == 'death':  
+            return DeathStillState()
         else:
             raise SystemExit, 'behaviour not permited'

@@ -9,8 +9,8 @@ from src.sprites.Force import *
 class Thunder(Attack):
     def __init__(self, characterPos, rotation, radius, enemies):
         # Obtenemos las rutas a los archivos
-        imageFile = os.path.join('sprites', 'attacks', 'thunder.png')
-        spriteSheet = os.path.join('attacks', 'thunder.json')
+        imageFile = 'thunder.png'
+        spriteSheet = 'thunder.json'
         self.damage = 1
         dispersion = 40
         x,y = characterPos
@@ -52,7 +52,6 @@ class Thunder(Attack):
                     value = self.attackDict.get(id(enemy))
                     if (value is None or value!=self.id):
                         self.attackDict[id(enemy)] = self.id
-                        print("thunder enemy ", id(enemy))
                         angle = random.uniform(0, 2*math.pi)
                         impulse = Force(angle, player.stats["backward"])
                         enemy.receive_damage('magic', player.stats["atk"], impulse)

@@ -19,5 +19,5 @@ class Key(MyStaticSprite, Collectable):
         self.change_position(position)
 
     def collect(self, stage):
-        stage.player.inventary.append(self)
+        stage.player.inventory.append(self)
         self.kill()

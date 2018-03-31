@@ -19,7 +19,7 @@ class SmallRoomState(StageState):
         # Player
         stage.player.update(time, stage)
         # Enemigos
-        currentRoom.enemies.update(time, currentRoom.rect, stage.mask)
+        currentRoom.enemies.update(time, currentRoom.rect, stage)
         # Recogibles
         currentRoom.collectables.update(time)
         # Ventana mágica

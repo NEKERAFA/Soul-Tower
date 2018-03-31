@@ -9,8 +9,8 @@ from src.sprites.Force import *
 class Explosion(Attack):
     def __init__(self, position, enemies):
         # Obtenemos las rutas a los archivos
-        imageFile = os.path.join('sprites', 'attacks', 'explosion.png')
-        spriteSheet = os.path.join('attacks', 'explosion.json')
+        imageFile = 'explosion.png'
+        spriteSheet = 'explosion.json'
         self.damage = 1
         self.position = position
         x,y = position

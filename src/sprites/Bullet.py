@@ -9,7 +9,7 @@ BASE_SPEED = 0.25
 # Clase del proyectil
 
 class Bullet(MySprite):
-    def __init__(self, characterPos, rotation, radius, frameImage):
+    def __init__(self, characterPos, rotation, radius, frameImage, baseSpeed=None):
         # Llamamos a la superclase
         MySprite.__init__(self)
         # Rotamos la imagen
@@ -22,7 +22,8 @@ class Bullet(MySprite):
         # Lo ponemos en el centro
         self.position = (x, y+height)
         self.rect = pygame.Rect((x, y), (width, height))
-        self.speed = (BASE_SPEED * (math.cos(math.radians(rotation))), - BASE_SPEED * (math.sin(math.radians(rotation))))
+        self.baseSpeed = baseSpeed if baseSpeed is not None else BASE_SPEED
+        self.speed = (self.baseSpeed * (math.cos(math.radians(rotation))), - self.baseSpeed * (math.sin(math.radians(rotation))))
         self.rotation = rotation
 
     def update(self, time, stage, frameImage):
