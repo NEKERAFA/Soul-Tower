@@ -62,9 +62,6 @@ class OrbAttack(Attack):
         self.bullets = pygame.sprite.Group()
         # Dirección
         self.looking = looking
-        # Tiempo para acabar
-        self.endDelay = 0
-        self.ending = False
 
     def start_attack(self, pos, enemyPos):
         x,y = pos
@@ -89,8 +86,6 @@ class OrbAttack(Attack):
         self.attacking = True
 
     def end_attack(self):
-        # self.ending = True
-        # self.endDelay = endDelay
         self.attacking = False
 
     def draw(self, surface):
