@@ -56,6 +56,11 @@ class Character(MySprite):
         # Leer el fichero de configuración
         data = ResourceManager.load_sprite_conf(os.path.join(CHARACTER_PATH, spriteSheet))
 
+
+        #Cargamos el sonido del movimiento
+        self.sound_movement = ResourceManager.load_effect_sound(data["sound"])
+
+
         # Cargamos los sprites
         self.sheetConf = []
         for row in range(0, len(data["frames"])):
@@ -173,6 +178,12 @@ class Character(MySprite):
         # (speedX, speedY) = self.speed
         speedX, speedY = 0, 0
 
+        #Se reserva canal
+        pygame.mixer.set_reserved(3)
+        chanel_reserved_0 = pygame.mixer.Channel(0)
+        chanel_reserved_1 = pygame.mixer.Channel(1)
+        chanel_reserved_2 = pygame.mixer.Channel(2)
+
         # Primero diferenciamos quieto y caminando para la animación
         # Después, diferenciamos todas las direcciones para asignarles
         # la velocidad correspondiente a los ejes
@@ -185,16 +196,22 @@ class Character(MySprite):
         elif (self.movement == N):
             if self.animationNum != SPRITE_WALKING_UP:
                 self.animationNum = SPRITE_WALKING_UP
+                chanel_reserved_0.play(self.sound_movement)
+                #self.sound_movement.play()
                 self.currentDelay = 0
                 self.animationFrame = 0
             speedY = -self.stats["spd"]
         elif (self.movement == S):
             if self.animationNum != SPRITE_WALKING_DOWN:
                 self.animationNum = SPRITE_WALKING_DOWN
+                chanel_reserved_1.play(self.sound_movement)
+                #self.sound_movement.play()
                 self.currentDelay = 0
                 self.animationFrame = 0
             speedY = self.stats["spd"]
         else:
+            chanel_reserved_2.play(self.sound_movement)
+            #self.sound_movement.play()
             if self.animationNum != SPRITE_WALKING:
                 self.animationNum = SPRITE_WALKING
                 self.currentDelay = 0

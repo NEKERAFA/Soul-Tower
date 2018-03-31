@@ -70,6 +70,12 @@ class Player(Character):
         # Si se está cambiando de personaje o no
         self.changing = Finish()
 
+        #Sonido para cuando se recupera vida
+        self.heal_sound = ResourceManager.load_effect_sound("heal.wav")
+
+        #Sonido cuando se recive daño
+        self.damage_sound = ResourceManager.load_effect_sound("ouch.wav")
+
     def move(self, viewport):
         # Indicamos la acción a realizar segun la tecla pulsada para el jugador
         if KeyboardMouseControl.left():
@@ -145,6 +151,10 @@ class Player(Character):
     # Recibe un daño y se realiza el daño. Si el personaje ha muerto, lo elimina
     # de todos los grupos
     def receive_damage(self, damage, force):
+        #Se reserva canal
+        pygame.mixer.set_reserved(1)
+        chanel_reserved_0 = pygame.mixer.Channel(0)
+        chanel_reserved_0.play(self.damage_sound)
         life = self.stats["hp"]
         self.state.receive_damage(self, damage, force)
         remainLife = self.stats["hp"]
@@ -154,6 +164,10 @@ class Player(Character):
 
     # Añade vidas al personaje
     def add_lifes(self, lifes):
+        #Se reserva canal
+        pygame.mixer.set_reserved(1)
+        chanel_reserved_1 = pygame.mixer.Channel(0)
+        chanel_reserved_1.play(self.heal_sound)
         life = self.stats["hp"]
         Character.add_lifes(self, lifes)
         remainLife = self.stats["hp"]

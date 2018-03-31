@@ -13,9 +13,10 @@ class RangedAttack(Attack):
         # Obtenemos las rutas a los archivos
         imageFile = 'ranged.png'
         spriteSheet = 'ranged.json'
-
+        effect_sound = 'pew.wav'
+        
         # Invocamos al constructor de la clase padre
-        Attack.__init__(self, imageFile, spriteSheet, enemies)
+        Attack.__init__(self, imageFile, spriteSheet, enemies, effect_sound)
         self.loopAnimation = True
 
         # Radio de acción
@@ -37,6 +38,9 @@ class RangedAttack(Attack):
     def start_attack(self, characterPos, rotation):
         self.characterPos = characterPos
         self.rotation = rotation
+        pygame.mixer.set_reserved(1)
+        chanel_reserved_0 = pygame.mixer.Channel(0)
+        chanel_reserved_0.play(self.effect_sound)
         self.attacking = True
 
     def end_attack(self):
