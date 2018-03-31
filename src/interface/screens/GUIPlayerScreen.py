@@ -36,8 +36,10 @@ class GUIPlayerScreen(GUIScreen):
         self.health = GUIHealth(self, HEART_SPRITE_LOCATION, (55,30), -1)
         self.energy = GUIEnergy(self, ENERGY_BAR_SPRITE_LOCATION, (55,40), None)
         self.charSymb = GUICharacterSymbol(self, (20, 40), None)
-        self.soulsText = GUIText(self, (SCREEN_WIDTH-60, 23), font, str(self.player.souls), 'right', (255, 255, 255))
-        self.soulsSymb = GUIImage(self, SOULS_SPRITE_LOCATION, (SCREEN_WIDTH-100, 30))
+
+        soulsPos = (SCREEN_WIDTH-60, SCREEN_HEIGHT-38)
+        self.soulsText = GUIText(self, soulsPos, font, str(self.player.souls), 'right', (255, 255, 255))
+        self.soulsSymb = GUIImage(self, SOULS_SPRITE_LOCATION, (soulsPos[0]-40, soulsPos[1]+8))
         # Añadir al array de GUIElements para poder dibujar y actualizar
         self.GUIElements.append(self.health)
         self.GUIElements.append(self.energy)

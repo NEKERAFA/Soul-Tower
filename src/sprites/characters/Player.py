@@ -49,7 +49,7 @@ class Player(Character):
         self.souls = 0
 
         # Inventario
-        self.inventary = []
+        self.inventory = []
 
         # Esta variable mira si se puede cambiar de personaje o no
         self.canChange = True
