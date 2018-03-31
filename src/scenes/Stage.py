@@ -96,8 +96,14 @@ class Stage(Scene):
         self.state = OnEnterState()
 
     def update(self, time):
-        # Delegamos en el estado la actualización de la fase
-        self.state.update(time, self)
+
+        if not self.player.killed:
+            # Delegamos en el estado la actualización de la fase
+            self.state.update(time, self)
+        elif (self.guiGameOver is None):
+            self.guiGameOver = GUIGameOverScreen(self)
+        else:
+            self.guiGameOver.update(time)
 
     def events(self, events):
         # Miramos a ver si hay algun evento de salir del programa

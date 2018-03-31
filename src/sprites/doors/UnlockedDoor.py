@@ -11,5 +11,5 @@ class UnlockedDoor(Door, Interactive):
         self.key = key
 
     def activate(self, stage):
-        if self.key is None or self.key in stage.player.inventary:
+        if self.key is None or self.key in stage.player.inventory:
             self.open(stage)
