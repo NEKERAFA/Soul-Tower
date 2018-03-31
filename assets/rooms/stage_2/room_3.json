@@ -10,5 +10,18 @@
             "to": 2,
             "direction": "down"
         }
-    ]
+    ],
+    "upgrades": {
+        "daric": {
+            "position": [1470, 128],
+            "sprite": "upgradeDaric2.png",
+            "cost": 300
+        },
+        "leraila": {
+            "position": [1640, 208],
+            "sprite": "upgradeLeraila2.png",
+            "cost": 300
+        }
+    },
+    "small": "true"
 }

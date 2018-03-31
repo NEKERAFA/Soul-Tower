@@ -8,6 +8,7 @@ from src.sprites.Trigger import *
 from src.sprites.Drop import *
 from src.sprites.Key import *
 from src.sprites.Door import *
+from src.sprites.Upgrade import *
 from src.sprites.doors.UnlockedDoor import *
 from src.sprites.MagicWindow import *
 from src.sprites.ConditionalTrigger import *
@@ -105,6 +106,19 @@ class Room(object):
                 self.unlockedDoors.append(door)
                 self.unlockedDoorsGroup.add(door)
                 self.interactives.add(door)
+
+        # Cargamos las mejoras si existieras
+        self.upgradesGroup = pygame.sprite.Group()
+        if "upgrades" in data:
+            # Upgrade de Daric
+            daricUpg = data["upgrades"]["daric"]
+            daricUpgSprite = Upgrade(daricUpg["position"], daricUpg["sprite"], daricUpg["cost"], "melee")
+            # Upgrade de Leraila
+            lerailaUpg = data["upgrades"]["leraila"]
+            lerailaUpgSprite = Upgrade(lerailaUpg["position"], lerailaUpg["sprite"], lerailaUpg["cost"], "ranged")
+            # Añadimos los upgrades a su grupo correspondiente
+            self.upgradesGroup.add([daricUpgSprite, lerailaUpgSprite])
+            self.interactives.add([daricUpgSprite, lerailaUpgSprite])
 
         # Cargamos la ventana mágica si existera
         self.magicWindowGroup = pygame.sprite.Group()

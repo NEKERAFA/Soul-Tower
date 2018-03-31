@@ -11,7 +11,6 @@ from src.sprites.EnemyRange import *
 
 class RavenFollowPlayerState(RavenBehaviourState):
     def __init__(self, previousState):
-        print "RavenFollowPlayerState"
         RavenBehaviourState.__init__(self)
         self.delayTime = random.randint(4, 6)*1000
         self.elapseTime = 0

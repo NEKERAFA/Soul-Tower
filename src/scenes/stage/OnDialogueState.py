@@ -7,9 +7,12 @@ from src.interface.GUIDialog import *
 
 class OnDialogueState(StageState):
     # Recibe un trigger y la stage (de la que se saca el estado anterior y la GUI), lanza un diálogo (init)
-    def __init__(self, dialogue, stage):
+    def __init__(self, dialogue, stage, isFile=True):
         self.previousState = stage.state
-        self.dialogue = ResourceManager.load_dialogue(dialogue)
+        if isFile:
+            self.dialogue = ResourceManager.load_dialogue(dialogue)
+        else:
+            self.dialogue = dialogue
         self.spacePressed = False
         self.intervention = 0
 
