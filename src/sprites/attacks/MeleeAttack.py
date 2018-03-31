@@ -46,9 +46,9 @@ class MeleeAttack(Attack):
 
     def start_attack(self, characterPos, rotation):
         self.attacking = True
-        pygame.mixer.set_reserved(1)
-        chanel_reserved_0 = pygame.mixer.Channel(0)
-        chanel_reserved_0.play(self.effect_sound)
+        #pygame.mixer.set_reserved(1)
+        #chanel_reserved_0 = pygame.mixer.Channel(0)
+        #chanel_reserved_0.play(self.effect_sound)
         self.position = Attack.calc_rot_pos(rotation, self.radius, self.rect.width, self.rect.height, characterPos)
         self.rect.left = self.position[0]
         self.rect.top = self.position[1]
@@ -61,6 +61,8 @@ class MeleeAttack(Attack):
     def update(self, player, time, stage):
         # Si ha pasado el tiempo suficiente y estamos intentando atacar
         if (self.elapsedTime > self.delayTime) and self.attacking:
+            #Se llama al channel_effect
+            self.channel_effect.sound_update(time)
             self.drawAnimation = True
             # Y reiniciar el contador
             self.elapsedTime = 0

@@ -35,12 +35,13 @@ class RangedAttack(Attack):
         self.probLvl2 = 0.7
         self.probLvl3 = 0.2
 
+
     def start_attack(self, characterPos, rotation):
         self.characterPos = characterPos
         self.rotation = rotation
-        pygame.mixer.set_reserved(1)
-        chanel_reserved_0 = pygame.mixer.Channel(0)
-        chanel_reserved_0.play(self.effect_sound)
+        #pygame.mixer.set_reserved(1)
+        #chanel_reserved_0 = pygame.mixer.Channel(0)
+        #chanel_reserved_0.play(self.effect_sound)
         self.attacking = True
 
     def end_attack(self):
@@ -55,6 +56,8 @@ class RangedAttack(Attack):
 
         # Si ha pasado el tiempo suficiente y estamos intentando atacar
         if (self.elapsedTime > self.delayTime) and self.attacking:
+            #Se llama a la funcion sound_update del channel_effect
+            self.channel_effect.sound_update(time)
             # Se crea una bala y se guarda en el grupo de balas
             bullet = Bullet(self.characterPos, self.rotation, self.radius, self.image)
             self.bullets.add(bullet)

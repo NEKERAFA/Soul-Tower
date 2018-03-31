@@ -11,7 +11,7 @@
         "spd": 0.2
     },
 
-    "sound": "step.wav",
+    "sound": "null.wav",
 
     "frames": [
         [

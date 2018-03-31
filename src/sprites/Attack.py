@@ -4,6 +4,7 @@ import pygame, sys, os, math
 
 from src.ResourceManager import *
 from src.sprites.MySprite import *
+from src.Channel_Effect import *
 
 # -------------------------------------------------
 # Sprites de ataques
@@ -57,6 +58,13 @@ class Attack(MySprite):
 
         #Cargamos efecto de sonido
         self.effect_sound = ResourceManager.load_effect_sound(effect_sound)
+        #Reservamos un Canal
+        pygame.mixer.set_reserved(1)
+        chanel_reserved_0 = pygame.mixer.Channel(0)
+        #Establecemos delay
+        delay_sound = 1
+        #Lo pasamos al channel_effect
+        self.channel_effect = Channel_Effect(self.effect_sound,chanel_reserved_0, delay_sound)
 
         # Leer coordenadas de fichero
         data = ResourceManager.load_sprite_conf(spriteSheet)
