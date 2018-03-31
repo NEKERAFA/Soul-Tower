@@ -19,7 +19,7 @@
         }
     ],
     "boss": {
-        "name": "raven",
+        "name": "death",
         "position": [960, 180],
         "drops": [
             {

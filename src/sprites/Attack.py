@@ -5,6 +5,7 @@ import pygame, sys, os, math
 from src.ResourceManager import *
 from src.sprites.MySprite import *
 
+ATTACK_PATH = 'attacks'
 # -------------------------------------------------
 # Sprites de ataques
 class Attack(MySprite):
@@ -53,10 +54,10 @@ class Attack(MySprite):
         MySprite.__init__(self)
 
         # Cargar sheet de sprites
-        self.sheet = ResourceManager.load_image(imageFile, -1)
+        self.sheet = ResourceManager.load_image(os.path.join('sprites', ATTACK_PATH, imageFile), -1)
 
         # Leer coordenadas de fichero
-        data = ResourceManager.load_sprite_conf(spriteSheet)
+        data = ResourceManager.load_sprite_conf(os.path.join(ATTACK_PATH, spriteSheet))
         self.sheetConf = []
 
         # Cargamos los sprites

@@ -4,7 +4,6 @@ from src.controls.KeyboardMouseControl import *
 from src.scenes.stage.StageState import *
 from src.scenes.stage.OnLeaveState import *
 from src.scenes.stage.OnDialogueState import *
-from src.sprites.characters.behaviours.raven.RavenFlyAroundStageState import *
 from src.sprites.characters.Enemy import *
 from src.sprites.Door import *
 
@@ -16,7 +15,7 @@ class OnBossRoomState(StageState):
         currentRoom.boss.animationLoop = False
         # Creamos la puerta que se cierra al entrar en la habitación
         doorConf = stage.rooms[stage.currentRoom].boss.closeDoor
-        door = Door(doorConf["position"], doorConf["doorSprite"], doorConf["doorMask"], stage.mask)
+        door = Door(doorConf["position"], doorConf["doorSprite"], doorConf["doorMask"], stage)
         # Añadimos el sprite
         currentRoom.lockedDoors.append(door)
         currentRoom.doors.add(door)
@@ -28,8 +27,8 @@ class OnBossRoomState(StageState):
 
         # Actualizamos los sprites
         # Player
-        if currentRoom.boss.animationLoop:
-            stage.player.update(time, stage)
+        # if currentRoom.boss.animationLoop:
+        stage.player.update(time, stage)
 
         # Boss
         if not currentRoom.boss.killed:
@@ -38,14 +37,14 @@ class OnBossRoomState(StageState):
                 currentRoom.boss.move_ai(stage.player)
 
             # Actualiamos la animación
-            currentRoom.boss.update(time, currentRoom.rect, stage.mask)
+            currentRoom.boss.update(time, currentRoom.rect, stage)
 
             # Compruebo si el enemigo ha termina la animación
             if currentRoom.boss.animationFinish:
                 currentRoom.boss.animationLoop = True
                 currentRoom.boss.animationFinish = False
                 currentRoom.boss.set_initial_frame(0)
-                currentRoom.boss.change_behaviour(RavenFlyAroundStageState())
+                currentRoom.boss.change_behaviour(currentRoom.boss.initialState)
 
         # Compruebo si ha muerto el boss para dropear el bo
         if currentRoom.boss.killed and not self.killedBoss:

@@ -11,8 +11,8 @@ from src.sprites.attacks.Explosion import *
 class MeleeAttack(Attack):
     def __init__(self, radius, delayTime, enemies):
         # Obtenemos las rutas a los archivos
-        imageFile = os.path.join('sprites', 'attacks', 'melee.png')
-        spriteSheet = os.path.join('attacks', 'melee.json')
+        imageFile = 'melee.png'
+        spriteSheet = 'melee.json'
 
         # Invocamos al constructor de la clase padre
         Attack.__init__(self, imageFile, spriteSheet, enemies)
