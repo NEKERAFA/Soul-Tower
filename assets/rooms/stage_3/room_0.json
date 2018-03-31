@@ -13,10 +13,12 @@
     ],
     "triggers": [
         {
+            "conditional": true,
+            "type": "HectorTrigger",
             "position": [360, 2016],
             "width": 120,
             "height": 72,
-            "dialogueFile": "test.json"
+            "dialogueList": ["hector.json", "relative.json"]
         }
     ]
 }

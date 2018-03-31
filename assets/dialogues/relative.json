@@ -1,0 +1,65 @@
+[
+    {
+        "text": [
+            ["Leraila... Daric..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["..."],
+            ["Esa voz se parece a la de..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["... Héctor."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "relative.png",
+                "name": "Familiar"
+            }
+        },
+        "text": [
+            ["Siento abordaros de esta forma. Soy el padre", "de Héctor. Quería agradeceros que lo salvarais", "antes."],
+            ["Sois un dúo curioso. Entre los dos, creo que ", "podríais traer una época de prosperidad", "al reino como nunca se ha visto."],
+            ["Plateaos si vale la pena seguir peleando de esta", "forma."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["..."]
+        ]
+    }
+]

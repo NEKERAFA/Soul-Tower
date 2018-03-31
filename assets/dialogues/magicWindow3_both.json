@@ -1,0 +1,75 @@
+[
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            },
+            "right": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["¿Y si... pusiéramos la zona en cuanrentena?"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["El reino tiene recursos suficientes para", "buscar una cura... Incluso en otros reinos si", "es necesario."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Estoy de acuerdo. Aunque, con la guerra..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Ya... Entiendo lo que quieres decir."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "soldier.png",
+                "name": "Soldado"
+            },
+            "background": "village2.png"
+        },
+        "text": [
+            ["La zona está en cuarentena. Se va a buscar un", "remedio para la plaga. Ve a casa y descansa,", "mujer. Tus familiares estarán atendidos."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "villager3.png",
+                "name": "Aldeana"
+            },
+            "background": "village2.png"
+        },
+        "text": [
+            ["Yo... De acuerdo."],
+            ["Ojalá encuentren una cura pronto..."]
+        ]
+    }
+]

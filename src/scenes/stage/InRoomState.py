@@ -6,6 +6,9 @@ from src.scenes.stage.OnLeaveState import *
 from src.scenes.stage.OnTransitionState import *
 from src.scenes.stage.OnDialogueState import *
 from src.sprites.characters.Enemy import *
+from src.sprites.ConditionalTrigger import *
+
+import sys
 
 class InRoomState(StageState):
     def update(self, time, stage):
@@ -29,7 +32,10 @@ class InRoomState(StageState):
         trigger = pygame.sprite.spritecollideany(stage.player, currentRoom.triggers)
 
         if trigger is not None:
-            trigger.open_door(stage)
+            if getattr(sys.modules[__name__], "ConditionalTrigger") in trigger.__class__.__bases__:
+                trigger.activate(stage.player)
+            else:
+                trigger.open_door(stage)
             stage.state = OnDialogueState(trigger.dialogueFile, stage)
             trigger.kill() # Eliminamos el trigger
             return

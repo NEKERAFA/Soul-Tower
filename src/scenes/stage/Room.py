@@ -10,6 +10,9 @@ from src.sprites.Key import *
 from src.sprites.Door import *
 from src.sprites.doors.UnlockedDoor import *
 from src.sprites.MagicWindow import *
+from src.sprites.ConditionalTrigger import *
+from src.sprites.HectorTrigger import *
+from src.sprites.PreEndingTrigger import *
 
 # -------------------------------------------------
 # Clase Room
@@ -119,13 +122,19 @@ class Room(object):
                 width = triggerData["width"]
                 height = triggerData["height"]
                 door = None
+                trigger = None
 
                 if "opens" in triggerData:
                     otherRoomNum = triggerData["opens"][0]
                     doorNum  = triggerData["opens"][1]
                     door = stage.rooms[otherRoomNum].lockedDoors[doorNum] if otherRoomNum != roomNum else self.lockedDoors[doorNum]
 
-                trigger = Trigger(pygame.Rect((x, y), (width, height)), triggerData["dialogueFile"], door)
+                if "conditional" in triggerData:
+                    trigger = ConditionalTrigger(pygame.Rect((x, y), (width, height)), triggerData["dialogueList"])
+                    trigger.__class__ = getattr(sys.modules[__name__], triggerData["type"])
+                else:
+                    trigger = Trigger(pygame.Rect((x, y), (width, height)), triggerData["dialogueFile"], door)
+
                 trigger.change_position((x, y))
                 self.triggers.add(trigger)
 
