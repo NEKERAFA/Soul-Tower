@@ -112,7 +112,8 @@ class Stage(Scene):
             if event.type == pygame.QUIT:
                 self.gameManager.program_exit()
                 return
-
+        if(self.guiGameOver is not None):
+            self.guiGameOver.events(events)
         # Delegamos en el estado la acción a realizar para el Jugador
         self.state.events(events, self)
 
