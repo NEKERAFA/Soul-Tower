@@ -1,0 +1,22 @@
+{
+    "position": [216, 1920],
+    "width": 408,
+    "height": 456,
+    "connections": [
+        {
+            "y": 1944,
+            "left": 404,
+            "right": 436,
+            "to": 1,
+            "direction": "up"
+        }
+    ],
+    "triggers": [
+        {
+            "position": [100, 100],
+            "width": 48,
+            "height": 48,
+            "dialogueFile": ["test.json", "test.json"]
+        }
+    ]
+}
