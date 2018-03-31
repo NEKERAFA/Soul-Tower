@@ -35,6 +35,7 @@ class Player(Character):
         # Cargamos las sprite sheets
         self.sorcererSheet = self.sheet.copy()
         self.warriorSheet = ResourceManager.load_image(WARRIOR_PATH, (-1))
+        self.shield = ShieldSprite('shield.png', 'shield.json')
 
         # Guardo la fase actual
         self.stage = stage
@@ -59,6 +60,9 @@ class Player(Character):
 
         # Si se está cambiando de personaje o no
         self.changing = Finish()
+
+        # Si se está utilizando el escudo o no
+        self.usingShield = False
 
     def move(self, viewport):
         # Indicamos la acción a realizar segun la tecla pulsada para el jugador
@@ -122,6 +126,8 @@ class Player(Character):
     def draw(self, screen):
         # Esta función está para agrupar el mostrar al jugador y su ataque
         screen.blit(self.image, self.rect)
+        if self.usingShield:
+            screen.blit(self.shield.image, self.shield.rect)
         self.attack.draw(screen)
 
     ############################################################################
