@@ -1,4 +1,5 @@
 {
     "player_pos": [132, 72],
-    "rooms": 8
+    "music": "level2.mp3",
+    "rooms": 9
 }

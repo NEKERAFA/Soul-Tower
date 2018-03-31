@@ -1,0 +1,28 @@
+{
+    "position": [168, 1344],
+    "width": 504,
+    "height": 576,
+    "connections": [
+        {
+            "y": 1896,
+            "left": 404,
+            "right": 436,
+            "to": 0,
+            "direction": "down"
+        },
+        {
+            "y": 1368,
+            "left": 404,
+            "right": 436,
+            "to": 2,
+            "direction": "up"
+        }
+    ],
+    "magicWindow": {
+        "position": [450, 1496],
+        "initialDialog": "magicWindow2.json",
+        "selectionFile": "magicWindow_menu.json",
+        "endDialog": ["magicWindow2_leraila.json", "magicWindow2_daric.json", "magicWindow2_both.json"],
+        "collision": [438, 1440, 60, 60]
+    }
+}

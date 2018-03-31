@@ -58,6 +58,7 @@ El archivo de configuración de la sala debe contener los siguientes datos:
         - "selectionFile": Nombre del archivo de selecciones
         - "endDialog": Lista con los nombres de los diálogos finales
         - "collision" [x, y, width, height]: Rectángulo donde se hace la comprobación
+        - "door" [room, lockedDoor]: Puerta que abre al seleccionar el diálogo
 
 Cómo engañar al scroll:
     En salas en las que se vería parcialmente el fondo al entrar por algún lado, el scroll daría un salto para centrarse al entrar. Para engañar al scroll y que no dé dicho salto hay que indicar que las dimensiones de la sala son mayores de lo que realmente son, de tal modo que el scroll piense que la parte de fondo negro que se ve forma parte de la sala.

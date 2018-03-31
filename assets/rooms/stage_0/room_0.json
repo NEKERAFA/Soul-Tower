@@ -21,13 +21,5 @@
 
     "enemies":  [
 
-    ],
-
-    "magicWindow": {
-        "position": [120, 94],
-        "initialDialog": "test.json",
-        "selectionFile": null,
-        "endDialog": "test.json",
-        "collision": [120, 94, 58, 24]
-    }
+    ]
 }

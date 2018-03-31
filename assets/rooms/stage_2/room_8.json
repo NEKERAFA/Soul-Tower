@@ -1,0 +1,41 @@
+{
+    "position": [48, 1296],
+    "width": 1008,
+    "height": 504,
+    "connections": [
+        {
+            "y": 1776,
+            "left": 528,
+            "right": 576,
+            "direction": "down",
+            "next": true
+        }
+    ],
+    "lockedDoors": [
+        {
+            "doorSprite": "boss2Door.png",
+            "position": [504, 1800],
+            "doorMask": [528, 1776, 48, 24]
+        }
+    ],
+    "boss": {
+        "name": "death",
+        "position": [528, 1560],
+        "drops": [
+            {
+                "type": "soul",
+                "amount": 10
+            },
+            {
+                "type": "heart",
+                "amount": 1
+            }
+        ],
+        "finalDialogue": "",
+        "closeDoor": {
+            "doorSprite": "boss2TopDoor.png",
+            "position": [504, 1296],
+            "doorMask": [528, 1296, 48, 24]
+        }
+    }
+}

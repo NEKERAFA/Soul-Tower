@@ -55,6 +55,11 @@ class Stage(Scene):
         for i in range(0, data["rooms"]):
             self.rooms.append(Room(stageNum, i, self))
 
+        #Cargamos la musica
+        music_path = os.path.join('',data["music"])
+        ResourceManager.load_music(music_path)
+        pygame.mixer.music.play(-1,0.0)
+
         # Metemos las llaves en su sitio
         for room in self.rooms:
             for door in room.unlockedDoors:
@@ -96,8 +101,14 @@ class Stage(Scene):
         self.state = OnEnterState()
 
     def update(self, time):
-        # Delegamos en el estado la actualización de la fase
-        self.state.update(time, self)
+
+        if not self.player.killed:
+            # Delegamos en el estado la actualización de la fase
+            self.state.update(time, self)
+        elif (self.guiGameOver is None):
+            self.guiGameOver = GUIGameOverScreen(self)
+        else:
+            self.guiGameOver.update(time)
 
     def events(self, events):
         # Miramos a ver si hay algun evento de salir del programa

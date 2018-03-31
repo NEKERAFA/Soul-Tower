@@ -37,14 +37,21 @@ class Player(Character):
         self.warriorSheet = ResourceManager.load_image(WARRIOR_PATH, (-1))
         self.shield = ShieldSprite('shield.png', 'shield.json')
 
+        # Control de opciones escogidas en las ventanas mágicas
+        #  Si se ha escogido alguna opción de sorceress O warrior
+        self.choseAnythingNotShared = False
+        #  Si se ha escogido la opción 5
+        self.killedFriend = False
+        #  Sumador de las opciones escogidas: cada opción de sorceress +1,
+        #  cada opción de warrior -1. Si el número termina siendo 0 después de
+        #  la tercera opción significa que se han escogido 3-1-2 o 3-2-1
+        self.choiceAdder = 0
+
         # Guardo la fase actual
         self.stage = stage
 
         # Atributo de estado del jugador (patrón estado)
         self.state = Normal()
-
-        # Se cargan los ataques
-        self.attack = RangedAttack(10, 400, enemies)
 
         # Número de almas
         self.souls = 0
@@ -63,6 +70,18 @@ class Player(Character):
 
         # Si se está utilizando el escudo o no
         self.usingShield = False
+        # Sonido para cuando se recupera vida
+        self.heal_sound = ResourceManager.load_effect_sound("heal.wav")
+
+        # Sonido cuando se recibe daño
+        self.damage_sound = ResourceManager.load_effect_sound("ouch.wav")
+
+        # Nivel de las armas
+        self.meleeLevel = 1
+        self.rangedLevel = 1
+
+        # Se cargan los ataques
+        self.attack = RangedAttack(10, 400, self.rangedLevel, enemies)
 
     def move(self, viewport):
         # Indicamos la acción a realizar segun la tecla pulsada para el jugador
@@ -91,11 +110,11 @@ class Player(Character):
         if KeyboardMouseControl.prim_button():
             # Si es sorcerer, el ataque actual es ataque a distancia
             if self.currentCharacter == 'sorcerer' and type(self.attack) is not RangedAttack:
-                self.attack = RangedAttack(10, 400, self.attack.enemies)
+                self.attack = RangedAttack(10, 400, self.rangedLevel, self.attack.enemies)
 
             # Si es warrior, el ataque actual es melee
             if self.currentCharacter == 'warrior' and type(self.attack) is not MeleeAttack:
-                self.attack = MeleeAttack(15, 500, self.attack.enemies)
+                self.attack = MeleeAttack(15, 500, self.meleeLevel, self.attack.enemies)
 
             # Calcular la posición del centro del sprite (de momento calcula el centro del primer sprite)
             centerPosX, centerPosY = self.rect.center
@@ -132,15 +151,29 @@ class Player(Character):
 
     ############################################################################
 
+    # Llama a la interfaz a actualizar la cantidad de almas
+    def update_souls(self):
+        self.stage.gui.soulsText.change_text(str(self.souls))
+
     # Incrementa el número de almas del jugador
     def increase_souls(self, souls):
         self.souls += souls
         # Actualizo la GUI
-        self.stage.gui.soulsText.change_text(str(self.souls))
+        self.update_souls()
+
+    # Decrementa el número de almas del jugador
+    def decrement_souls(self, souls):
+        self.souls -= souls
+        # Actualizo la GUI
+        self.update_souls()
 
     # Recibe un daño y se realiza el daño. Si el personaje ha muerto, lo elimina
     # de todos los grupos
     def receive_damage(self, damage, force):
+        #Se reserva canal
+        pygame.mixer.set_reserved(1)
+        chanel_reserved_0 = pygame.mixer.Channel(0)
+        chanel_reserved_0.play(self.damage_sound)
         life = self.stats["hp"]
         self.state.receive_damage(self, damage, force)
         remainLife = self.stats["hp"]
@@ -150,6 +183,10 @@ class Player(Character):
 
     # Añade vidas al personaje
     def add_lifes(self, lifes):
+        #Se reserva canal
+        pygame.mixer.set_reserved(1)
+        chanel_reserved_1 = pygame.mixer.Channel(0)
+        chanel_reserved_1.play(self.heal_sound)
         life = self.stats["hp"]
         Character.add_lifes(self, lifes)
         remainLife = self.stats["hp"]

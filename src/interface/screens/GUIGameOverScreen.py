@@ -35,7 +35,7 @@ class GUIGameOverScreen(GUIScreen):
 
     def update(self, time):
         GUIScreen.update(self, time)
-        self.alpha = min(self.alpha + time*0.08, 255)
+        self.alpha = min(self.alpha + time*0.1, 255)
 
     def draw(self, screen):
         self.black.set_alpha(int(self.alpha))

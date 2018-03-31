@@ -7,9 +7,11 @@
         "spd": 0.1
     },
 
+    "sound": "spider.wav",
+
     "behaviour" : {
         "type": "patrolling",
-        "radius": 100,
+        "radius": 300,
         "angle": 360
     },
 

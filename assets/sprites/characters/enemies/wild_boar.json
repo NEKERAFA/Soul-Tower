@@ -4,13 +4,15 @@
         "hp": 2,
         "atk": 1,
         "backward": 0.001,
-        "spd": 0.1
+        "spd": 0.08
     },
+
+    "sound": "wild_boar.wav",
 
     "behaviour" : {
         "type": "patrolling",
-        "radius": 150,
-        "angle": 45
+        "radius": 250,
+        "angle": 90
     },
 
     "frames": [
