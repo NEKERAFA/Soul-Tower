@@ -21,8 +21,8 @@ WINDOW_BOTH_LOCATION = os.path.join('interface', 'game', 'button_both.png')
 class GUIWindowDialogScreen(GUIScreen):
     def __init__(self, stage, selectionFile):
         GUIScreen.__init__(self, stage)
-        self.selectionFile = ["Texto 1", "Texto 2", "Texto 3", "Texto 4", "Texto 5", "Texto 6", "Texto 7", "Texto 8", "Texto 9"]
-        #self.selectionFile = ResourceManager.load_dialogue(selectionFile)
+        #self.selectionFile = ["Texto 1", "Texto 2", "Texto 3", "Texto 4", "Texto 5", "Texto 6", "Texto 7", "Texto 8", "Texto 9"]
+        self.selectionFile = ResourceManager.load_dialogue(selectionFile)
         self.choice = -1
         self.elementClick = None
         iniVal = 3*(self.stage.stageNum-1)
@@ -63,7 +63,7 @@ class GUIWindowDialogScreen(GUIScreen):
                         elif(element == self.elementClick):
                             element.swap()
 
-    #TODO terminar bonuses de stats
+    #TODO testear bonuses de stats
     def button_fun_0(self):
         self.choice = 0
         self.stage.player.choiceAdder += 1
@@ -84,22 +84,37 @@ class GUIWindowDialogScreen(GUIScreen):
     def button_fun_3(self):
         self.choice = 0
         self.stage.player.choiceAdder += 1
+        self.stage.player.add_max_energy()
+        self.stage.player.stats["rng_del"] = 100
 
     def button_fun_4(self):
         self.choice = 1
         self.stage.player.choiceAdder -= 1
         self.stage.player.killedFriend = True
+        self.stage.player.add_max_life()
+        self.stage.player.stats["mel_del"] = 200
 
     def button_fun_5(self):
         self.choice = 2
+        self.stage.player.stats["nrg_reg"] = 0.002
+        self.stage.player.stats["nrg_reg_bck"] = 0.001
 
     def button_fun_6(self):
         self.choice = 0
         self.stage.player.choiceAdder += 1
+        self.stage.player.add_max_energy()
+        self.stage.player.stats["atk"] = 2
+
 
     def button_fun_7(self):
         self.choice = 1
         self.stage.player.choiceAdder -= 1
+        self.stage.player.add_max_life()
+        self.stage.player.stats["spd"] = 0.6
 
     def button_fun_8(self):
         self.choice = 2
+        self.stage.player.add_max_life()
+        self.stage.player.add_max_energy()
+        self.stage.player.stats["atk"] = 2
+        self.stage.player.stats["spd"] = 0.6

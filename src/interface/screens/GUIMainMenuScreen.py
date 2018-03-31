@@ -29,10 +29,10 @@ class GUIMainMenuScreen(GUIScreen):
 
         #Botón de inicio de juego
         self.gameStart = GUIButton(self, MENU_START_BUTTON_UP_LOCATION, MENU_START_BUTTON_DOWN_LOCATION, getattr(self, 'button_fun_start'), (0,0))
-        self.gameStart.set_position((SCREEN_WIDTH/2, SCREEN_HEIGHT/2-30), 'center')
+        self.gameStart.set_position((SCREEN_WIDTH/2+80, SCREEN_HEIGHT/2-30), 'center')
         #Botón para salir del juego
         self.gameExit = GUIButton(self, MENU_EXIT_BUTTON_UP_LOCATION, MENU_EXIT_BUTTON_DOWN_LOCATION, getattr(self, 'button_fun_exit'), (0,0))
-        self.gameExit.set_position((SCREEN_WIDTH/2, SCREEN_HEIGHT/2+30), 'center')
+        self.gameExit.set_position((SCREEN_WIDTH/2+80, SCREEN_HEIGHT/2+30), 'center')
 
         self.add_element(self.gameStart)
         self.add_element(self.gameExit)

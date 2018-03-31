@@ -36,6 +36,16 @@ class Player(Character):
         self.sorcererSheet = self.sheet.copy()
         self.warriorSheet = ResourceManager.load_image(WARRIOR_PATH, (-1))
 
+        # Coste de energía de los ataques
+        self.rangedAttackEnergyCost = 1.5
+        self.meleeAttackEnergyCost = 1
+
+        # Radios y delays de ataques
+        self.rangedAttackRadius = 1
+        self.rangedAttackDelay = self.stats["rng_del"]
+        self.meleeAttackRadius = 15
+        self.meleeAttackDelay = self.stats["mel_del"]
+
         # Control de opciones escogidas en las ventanas mágicas
         #  Si se ha escogido alguna opción de sorceress O warrior
         self.choseAnythingNotShared = False
@@ -53,7 +63,7 @@ class Player(Character):
         self.state = Normal()
 
         # Se cargan los ataques
-        self.attack = RangedAttack(20, 300, enemies)
+        self.attack = RangedAttack(self.rangedAttackRadius, self.rangedAttackDelay, enemies)
 
         # Número de almas
         self.souls = 0
@@ -97,18 +107,27 @@ class Player(Character):
         if KeyboardMouseControl.prim_button():
             # Si es sorcerer, el ataque actual es ataque a distancia
             if self.currentCharacter == 'sorcerer' and type(self.attack) is not RangedAttack:
-                self.attack = RangedAttack(20, 300, self.attack.enemies)
+                self.attack = RangedAttack(self.rangedAttackRadius, self.rangedAttackDelay, self.attack.enemies)
 
             # Si es warrior, el ataque actual es melee
             if self.currentCharacter == 'warrior' and type(self.attack) is not MeleeAttack:
-                self.attack = MeleeAttack(15, 500, self.attack.enemies)
+                self.attack = MeleeAttack(self.meleeAttackRadius, self.meleeAttackDelay, self.attack.enemies)
 
             # Calcular la posición del centro del sprite (de momento calcula el centro del primer sprite)
             centerPosX, centerPosY = self.rect.center
             centerPosX -= viewport.left
             centerPosY -= viewport.top
             centerPos = centerPosX, centerPosY
-            self.attack.start_attack(self.rect.center, KeyboardMouseControl.angle(centerPos))
+
+            if(type(self.attack) is RangedAttack and self.stats["nrg"] >= self.rangedAttackEnergyCost and self.attack.elapsedTime > self.rangedAttackDelay):
+                self.add_energy(-self.rangedAttackEnergyCost)
+                self.attack.start_attack(self.rect.center, KeyboardMouseControl.angle(centerPos))
+            elif(type(self.attack) is MeleeAttack and self.stats["nrg"] >= self.meleeAttackEnergyCost and self.attack.elapsedTime > self.meleeAttackDelay):
+                self.add_energy(-self.meleeAttackEnergyCost)
+                self.attack.start_attack(self.rect.center, KeyboardMouseControl.angle(centerPos))
+            else:
+                self.attack.end_attack()
+
         # Finalizamos el ataque
         else:
             self.attack.end_attack()
@@ -171,11 +190,10 @@ class Player(Character):
     # Añadir (o disminuír) energía
     def add_energy(self, value):
         self.stats["nrg"] += value
-        #if(self.stats["nrg"]>self.stats["max_nrg"]):
-        #    self.stats["nrg"] = self.stats["max_nrg"]
-        #elif(self.stats["nrg"]<0):
-        #    self.stats["nrg"] = 0
-
+        if(self.stats["nrg"]>self.stats["max_nrg"]):
+            self.stats["nrg"] = self.stats["max_nrg"]
+        elif(self.stats["nrg"]<0):
+            self.stats["nrg"] = 0
         self.stage.gui.energy.set_energy(self.stats["nrg"])
 
     # Fijar energía a un valor
