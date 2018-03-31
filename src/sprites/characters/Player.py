@@ -36,6 +36,16 @@ class Player(Character):
         self.sorcererSheet = self.sheet.copy()
         self.warriorSheet = ResourceManager.load_image(WARRIOR_PATH, (-1))
 
+        # Control de opciones escogidas en las ventanas mágicas
+        #  Si se ha escogido alguna opción de sorceress O warrior
+        self.choseAnythingNotShared = False
+        #  Si se ha escogido la opción 5
+        self.killedFriend = False
+        #  Sumador de las opciones escogidas: cada opción de sorceress +1,
+        #  cada opción de warrior -1. Si el número termina siendo 0 después de
+        #  la tercera opción significa que se han escogido 3-1-2 o 3-2-1
+        self.choiceAdder = 0
+
         # Guardo la fase actual
         self.stage = stage
 
