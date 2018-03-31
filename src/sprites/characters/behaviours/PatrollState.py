@@ -110,7 +110,7 @@ class PatrollState(BehaviourState):
         Character.update(enemy, time, mapRect, mapMask)
 
         # Esto es para que no se salga de la sala
-        if not mapRect.inflate(-48, -48).contains(enemy.rect):
+        if not mapRect.inflate(-40, -40).contains(enemy.rect):
             # Volvemos a la posición anterior
             enemy.change_global_position(oldPosition)
             # Movimiento aleatorio

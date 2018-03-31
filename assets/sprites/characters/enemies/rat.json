@@ -4,12 +4,14 @@
         "hp": 2,
         "atk": 1,
         "backward": 0.001,
-        "spd": 0.075
+        "spd": 0.040
     },
+
+    "sound": "rat.wav",
 
     "behaviour" : {
         "type": "patrolling",
-        "radius": 50,
+        "radius": 200,
         "angle": 90
     },
 

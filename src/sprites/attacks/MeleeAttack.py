@@ -9,13 +9,14 @@ from src.sprites.attacks.Explosion import *
 # -------------------------------------------------
 # Sprites de ataques
 class MeleeAttack(Attack):
-    def __init__(self, radius, delayTime, enemies):
+    def __init__(self, radius, delayTime, level, enemies):
         # Obtenemos las rutas a los archivos
         imageFile = 'melee.png'
         spriteSheet = 'melee.json'
+        effect_sound = 'slash.wav'
 
         # Invocamos al constructor de la clase padre
-        Attack.__init__(self, imageFile, spriteSheet, enemies)
+        Attack.__init__(self, imageFile, spriteSheet, enemies, effect_sound)
 
         # Tiempo entre ataques melee
         self.delayTime = delayTime
@@ -29,7 +30,7 @@ class MeleeAttack(Attack):
         # Grupo de explosiones
         self.explosions = pygame.sprite.Group()
         # Nivel de mejora
-        self.level = 3
+        self.level = level
         self.probLvl2 = 0.7
         self.probLvl3 = 0.45
         # Diccionario de ataque-enemigos
@@ -45,6 +46,9 @@ class MeleeAttack(Attack):
 
     def start_attack(self, characterPos, rotation):
         self.attacking = True
+        pygame.mixer.set_reserved(1)
+        chanel_reserved_0 = pygame.mixer.Channel(0)
+        chanel_reserved_0.play(self.effect_sound)
         self.position = Attack.calc_rot_pos(rotation, self.radius, self.rect.width, self.rect.height, characterPos)
         self.rect.left = self.position[0]
         self.rect.top = self.position[1]

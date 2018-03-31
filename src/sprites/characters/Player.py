@@ -62,9 +62,6 @@ class Player(Character):
         # Atributo de estado del jugador (patrón estado)
         self.state = Normal()
 
-        # Se cargan los ataques
-        self.attack = RangedAttack(self.rangedAttackRadius, self.rangedAttackDelay, enemies)
-
         # Número de almas
         self.souls = 0
 
@@ -79,6 +76,19 @@ class Player(Character):
 
         # Si se está cambiando de personaje o no
         self.changing = Finish()
+
+        # Sonido para cuando se recupera vida
+        self.heal_sound = ResourceManager.load_effect_sound("heal.wav")
+
+        # Sonido cuando se recibe daño
+        self.damage_sound = ResourceManager.load_effect_sound("ouch.wav")
+
+        # Nivel de las armas
+        self.meleeLevel = 1
+        self.rangedLevel = 1
+
+        # Se cargan los ataques
+        self.attack = RangedAttack(self.rangedAttackRadius, self.rangedAttackDelay, self.rangedLevel, enemies)
 
     def move(self, viewport):
         # Indicamos la acción a realizar segun la tecla pulsada para el jugador
@@ -155,15 +165,29 @@ class Player(Character):
 
     ############################################################################
 
+    # Llama a la interfaz a actualizar la cantidad de almas
+    def update_souls(self):
+        self.stage.gui.soulsText.change_text(str(self.souls))
+
     # Incrementa el número de almas del jugador
     def increase_souls(self, souls):
         self.souls += souls
         # Actualizo la GUI
-        self.stage.gui.soulsText.change_text(str(self.souls))
+        self.update_souls()
+
+    # Decrementa el número de almas del jugador
+    def decrement_souls(self, souls):
+        self.souls -= souls
+        # Actualizo la GUI
+        self.update_souls()
 
     # Recibe un daño y se realiza el daño. Si el personaje ha muerto, lo elimina
     # de todos los grupos
     def receive_damage(self, damage, force):
+        #Se reserva canal
+        pygame.mixer.set_reserved(1)
+        chanel_reserved_0 = pygame.mixer.Channel(0)
+        chanel_reserved_0.play(self.damage_sound)
         life = self.stats["hp"]
         self.state.receive_damage(self, damage, force)
         remainLife = self.stats["hp"]
@@ -173,6 +197,10 @@ class Player(Character):
 
     # Añade vidas al personaje
     def add_lifes(self, lifes):
+        #Se reserva canal
+        pygame.mixer.set_reserved(1)
+        chanel_reserved_1 = pygame.mixer.Channel(0)
+        chanel_reserved_1.play(self.heal_sound)
         life = self.stats["hp"]
         Character.add_lifes(self, lifes)
         remainLife = self.stats["hp"]

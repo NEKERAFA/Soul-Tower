@@ -110,7 +110,7 @@ class Room(object):
         self.magicWindowGroup = pygame.sprite.Group()
         if "magicWindow" in data:
             windowData = data["magicWindow"]
-            magicWindow = MagicWindow(windowData["position"], windowData["initialDialog"], windowData["selectionFile"], windowData["endDialog"], windowData["collision"])
+            magicWindow = MagicWindow(windowData["position"], windowData["initialDialog"], windowData["selectionFile"], windowData["endDialog"], windowData["collision"], windowData["door"])
             self.magicWindowGroup.add(magicWindow)
             self.interactives.add(magicWindow)
 
