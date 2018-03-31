@@ -32,7 +32,7 @@ class GUIWindowDialogScreen(GUIScreen):
 
         initPosition = (int((SCREEN_WIDTH-scale[0])/2), int(SCREEN_HEIGHT/2)-scale[1]*1.5)
 
-        choiceSymbolsLocations = [WINDOW_WARRIOR_LOCATION, WINDOW_SORCERESS_LOCATION, WINDOW_BOTH_LOCATION]
+        choiceSymbolsLocations = [WINDOW_SORCERESS_LOCATION, WINDOW_WARRIOR_LOCATION, WINDOW_BOTH_LOCATION]
 
         for i in range(iniVal,finVal):
             text = self.selectionFile[i]
@@ -60,12 +60,18 @@ class GUIWindowDialogScreen(GUIScreen):
 
     def button_fun_0(self):
         self.choice = 0
+        self.stage.player.add_max_energy()
+        self.stage.player.add_max_energy()
 
     def button_fun_1(self):
         self.choice = 1
+        self.stage.player.add_max_life()
+        self.stage.player.add_max_life()
 
     def button_fun_2(self):
         self.choice = 2
+        self.stage.player.add_max_life()
+        self.stage.player.add_max_energy()
 
     def button_fun_3(self):
         self.choice = 0

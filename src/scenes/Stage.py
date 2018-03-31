@@ -16,7 +16,6 @@ from src.scenes.stage.SmallRoomState import *
 from src.interface.screens.GUIPlayerScreen import *
 from src.interface.screens.GUIWindowDialogScreen import *
 from src.interface.screens.GUIGameOverScreen import *
-from src.interface.screens.GUIStartMenuScreen import *
 
 # -------------------------------------------------
 # Clase Stage
@@ -111,6 +110,8 @@ class Stage(Scene):
         # Delegamos en el estado la acción a realizar para el Jugador
         self.state.events(events, self)
 
+        #if(self.guiWindow is not None):
+        #    self.guiWindow.events(events)
 
     def draw(self, screen):
         # Delegamos en el estado el dibujado de la fase
