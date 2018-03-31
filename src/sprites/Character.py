@@ -260,7 +260,7 @@ class Character(MySprite):
 
     def update(self, time, mapRect, mapMask):
         #Actualizamos el sonido
-        self.channel_effect.sound_update(time)
+        self.channel_effect.soundUpdate(time)
         # Actualizamos todo lo del movimiento y la animación
         self.update_movement(time)
 

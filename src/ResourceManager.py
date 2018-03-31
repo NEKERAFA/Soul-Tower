@@ -34,8 +34,8 @@ class ResourceManager(object):
             try:
                 sound_effect=pygame.mixer.Sound(fullname)
                 #sound_effect.set_volume(0.7);
-                print(fullname)
-                print(sound_effect.get_volume())
+                #print(fullname)
+                #print(sound_effect.get_volume())
             except pygame.error, message:
                 print 'Cannot load sound effect file:', fullname
                 raise SystemExit, message

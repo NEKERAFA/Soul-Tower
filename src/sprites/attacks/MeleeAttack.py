@@ -62,7 +62,7 @@ class MeleeAttack(Attack):
         # Si ha pasado el tiempo suficiente y estamos intentando atacar
         if (self.elapsedTime > self.delayTime) and self.attacking:
             #Se llama al channel_effect
-            self.channel_effect.sound_update(time)
+            self.channel_effect.soundUpdate(time)
             self.drawAnimation = True
             # Y reiniciar el contador
             self.elapsedTime = 0

@@ -18,11 +18,11 @@ class Channel_Effect():
         self.delay = delay
 
         #Current delay
-        self.currentDelay = 0
+        self.current_delay = 0
 
-    def sound_update(self, time):
-        self.currentDelay -= time
-        print(self.currentDelay)
-        if self.currentDelay < 0:
+    def soundUpdate(self, time):
+        self.current_delay -= time
+        #print(self.current_delay)
+        if self.current_delay < 0:
             self.reserved_channel.play(self.sound_effect)
-            self.currentDelay = self.delay
+            self.current_delay = self.delay

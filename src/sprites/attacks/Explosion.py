@@ -42,7 +42,7 @@ class Explosion(Attack):
         Attack.update(self, time)
         # Colisiones
         if self.animationFrame>3:
-            self.channel_effect.sound_update(time)
+            self.channel_effect.soundUpdate(time)
             for enemy in self.enemies:
                 if self.rect.colliderect(enemy.rect):
                     value = self.attackDict.get(id(enemy))

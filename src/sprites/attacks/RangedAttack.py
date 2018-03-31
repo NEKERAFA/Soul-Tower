@@ -57,7 +57,7 @@ class RangedAttack(Attack):
         # Si ha pasado el tiempo suficiente y estamos intentando atacar
         if (self.elapsedTime > self.delayTime) and self.attacking:
             #Se llama a la funcion sound_update del channel_effect
-            self.channel_effect.sound_update(time)
+            self.channel_effect.soundUpdate(time)
             # Se crea una bala y se guarda en el grupo de balas
             bullet = Bullet(self.characterPos, self.rotation, self.radius, self.image)
             self.bullets.add(bullet)

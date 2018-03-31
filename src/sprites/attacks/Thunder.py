@@ -49,7 +49,7 @@ class Thunder(Attack):
         self.image = pygame.transform.rotate(self.origImage, 90)
         # Colisiones
         if self.animationFrame>3:
-            self.channel_effect.sound_update(time)
+            self.channel_effect.soundUpdate(time)
             blastRect = Rect(0,0,self.rect.height-self.shrink*2,self.rect.height-self.shrink*2)
             blastRect.left = self.rect.left + self.shrink
             blastRect.bottom = self.rect.bottom + self.rect.width - self.rect.height - self.shrink
