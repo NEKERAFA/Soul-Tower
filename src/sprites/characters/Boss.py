@@ -6,6 +6,7 @@ from src.sprites.characters.Enemy import *
 from src.sprites.Drop import *
 from src.sprites.characters.behaviours.raven.RavenFlyAroundStageState import *
 from src.sprites.characters.behaviours.death.DeathMainState import *
+from src.sprites.characters.behaviours.master.MasterMainState import *
 
 class Boss(Enemy):
     def __init__(self, name, drops, closeDoor, dialogueFile):
@@ -21,6 +22,8 @@ class Boss(Enemy):
             self.initialState = RavenFlyAroundStageState()
         elif (name=="death"):
             self.initialState = DeathMainState()
+        elif (name=="master"):
+            self.initialState = MasterMainState()
         else:
             raise NotImplementedError('Error: initial boss state not implemented')
 

@@ -19,7 +19,7 @@
         }
     ],
     "boss": {
-        "name": "raven",
+        "name": "master",
         "position": [960, 180],
         "drops": [
             {

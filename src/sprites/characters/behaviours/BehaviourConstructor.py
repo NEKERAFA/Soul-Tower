@@ -7,6 +7,7 @@ from src.sprites.characters.behaviours.PatrollState import *
 from src.sprites.characters.behaviours.StillState import *
 from src.sprites.characters.behaviours.raven.RavenStillState import *
 from src.sprites.characters.behaviours.death.DeathStillState import *
+from src.sprites.characters.behaviours.master.MasterStillState import *
 
 class BehaviourConstructor(object):
     @classmethod
@@ -21,5 +22,7 @@ class BehaviourConstructor(object):
             return RavenStillState()
         elif behaviourName == 'death':  
             return DeathStillState()
+        elif behaviourName == 'master':
+            return MasterStillState()
         else:
             raise SystemExit, 'behaviour not permited'
