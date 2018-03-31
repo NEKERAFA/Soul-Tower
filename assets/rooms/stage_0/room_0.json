@@ -20,17 +20,7 @@
     ],
 
     "enemies":  [
-        
-    ],
 
-    "unlockedDoors": [
-        {
-            "position": [696, 264],
-            "doorSprite": "door_0.png",
-            "collision": [672, 216, 48, 24],
-            "doorMask": [696, 200, 24, 41],
-            "key": [2, 0]
-        }
     ],
 
     "magicWindow": {

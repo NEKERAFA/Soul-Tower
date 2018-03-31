@@ -22,8 +22,8 @@ class RavenFlyAroundStageState(RavenBehaviourState):
         pass
 
     def update(self, enemy, time, mapRect, mapMask):
-        # Miramos si el enemigo se sale del area de vuelo
-        if not mapRect.inflate(-96, -96).contains(enemy.rect):
+        # Miramos si el enemigo se sale del área de vuelo
+        if not mapRect.inflate(-48, -48).contains(enemy.rect):
             self.angle = random.randint(0, 359)
 
         # Calculamos hacia donde tiene que moverse el personaje
@@ -51,8 +51,8 @@ class RavenFlyAroundStageState(RavenBehaviourState):
                 x, y = mapRect.topleft
                 width, height = mapRect.size
                 # Posicion random para posarse
-                posX = random.randint(x+48, x+width-48)
-                posY = random.randint(y+48, y+height-48)
+                posX = random.randint(x+24, x+width-24)
+                posY = random.randint(y+24, y+height-24)
                 # Cambio de estado
                 enemy.change_behaviour(RavenLandState((posX, posY), self))
 

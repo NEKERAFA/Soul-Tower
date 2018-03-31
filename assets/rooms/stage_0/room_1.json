@@ -19,7 +19,7 @@
         }
     ],
     "boss": {
-        "name": "death",
+        "name": "raven",
         "position": [960, 180],
         "drops": [
             {
@@ -31,6 +31,7 @@
                 "amount": 10
             }
         ],
+        "finalDialogue": "test.json",
         "closeDoor": {
             "position": [720, 264],
             "doorSprite": "door_2.png",

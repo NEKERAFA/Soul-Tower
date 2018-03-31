@@ -12,7 +12,7 @@ from src.sprites.EnemyRange import *
 class RavenFollowPlayerState(RavenBehaviourState):
     def __init__(self, previousState):
         RavenBehaviourState.__init__(self)
-        self.delayTime = random.randint(2, 4)*1000
+        self.delayTime = random.randint(3, 6)*1000
         self.elapseTime = 0
         self.previousState = previousState
 
@@ -49,5 +49,5 @@ class RavenFollowPlayerState(RavenBehaviourState):
         MySprite.update(enemy, time)
 
         self.elapseTime += time
-        if self.elapseTime > self.delayTime:
+        if self.elapseTime > self.delayTime or not mapRect.inflate(-96, -96).contains(enemy.rect):
             enemy.change_behaviour(self.previousState)

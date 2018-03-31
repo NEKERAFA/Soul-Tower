@@ -27,7 +27,6 @@ class OnBossRoomState(StageState):
 
         # Actualizamos los sprites
         # Player
-        # if currentRoom.boss.animationLoop:
         stage.player.update(time, stage)
 
         # Boss
