@@ -33,7 +33,7 @@ class GUICreditsScreen(GUIScreen):
         self.add_element(self.soulTowerImage)
 
         # Texto de créditos
-        creditsContent = ["Rafael Alcalde Azpiazu", "Diego Martínez Cela", "Eva Suárez García", "Iago Otero Coto", "Jorge Viteri Letamendía"]
+        creditsContent = [u"Rafael Alcalde Azpiazu", u"Diego Martínez Cela", u"Eva Suárez García", u"Iago Otero Coto", u"Jorge Viteri Letamendía"]
         self.creditsContents = []
         font = ResourceManager.load_font(DEFAULT_FONT, DEFAULT_FONT_SIZE)
         for i in range(0, len(creditsContent)):
