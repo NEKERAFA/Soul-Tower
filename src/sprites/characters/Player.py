@@ -12,6 +12,7 @@ from src.sprites.attacks.MeleeAttack import *
 from src.sprites.attacks.RangedAttack import *
 from src.controls.KeyboardMouseControl import *
 from src.ResourceManager import *
+from src.sprites.MyStaticAnimatedSprite import *
 
 # -------------------------------------------------
 # -------------------------------------------------
@@ -36,6 +37,7 @@ class Player(Character):
         self.sorcererSheet = self.sheet.copy()
         self.warriorSheet = ResourceManager.load_image(WARRIOR_PATH, (-1))
         self.shield = ShieldSprite('shield.png', 'shield.json')
+        self.stunParticles = MyStaticAnimatedSprite('stun_particles.png', 'stun_particles.json')
 
         # Coste de energía de los ataques
         self.rangedAttackEnergyCost = 1.5
@@ -80,6 +82,9 @@ class Player(Character):
 
         # Si se está utilizando el escudo o no
         self.usingShield = False
+
+        # Si hay que dibujar partículas de aturdido
+        self.drawStun = False
 
         #Se reservan 3 canales
         pygame.mixer.set_reserved(3)
@@ -178,6 +183,8 @@ class Player(Character):
         screen.blit(self.image, self.rect)
         if self.usingShield:
             screen.blit(self.shield.image, self.shield.rect)
+        if (self.drawStun):
+            screen.blit(self.stunParticles.image, self.stunParticles.rect)
         self.attack.draw(screen)
 
     ############################################################################
