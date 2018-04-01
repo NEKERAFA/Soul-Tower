@@ -262,7 +262,6 @@ class Player(Character):
     def change_stage(self, stage):
         self.stage = stage
 
-    # TODO pal UML
     def change_character(self):
         self.canChange = False
         #TODO: esta línea es un cáncer pero tampoco sé cómo ponerla bien

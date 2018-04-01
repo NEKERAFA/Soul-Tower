@@ -1,0 +1,219 @@
+[
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["¿Lo hemos... logrado...?"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Hah... Uf..."],
+            ["¿Este... es el objeto... que nos dará el poder", "para salvar el reino...?"]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "towerMaster.png",
+                "name": "Amo"
+            }
+        },
+        "text": [
+            ["No... No debéis... cogerlo..."],
+            ["Dejad el... Twin Souls..."],
+            ["No lo toques, hermana..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["¿Hermano...? ¿Eres tú...?"],
+            ["Eres tú..."],
+            ["¡¿Por qué desapareciste?! ¡¿Te das cuenta", "de lo que he tenido que pasar?!"]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "towerMaster.png",
+                "name": "Amo"
+            }
+        },
+        "text": [
+            ["En mi camino aquí... descubrí una profecía...", "Sabía que hablaba de ti, de vosotros...", "No de mí..."],
+            ["Pero sólo uno podía poseer el Twin Souls...", "Me quedé aquí para asegurarme de que la", "profecía se cumplía."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["No le hagas caso, Leraila. Tomemos el anillo.", "Aún tenemos una guerra que detener."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Supongo que sí...", "Luego tendremos una charla tú yo, hermano."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "towerMaster.png",
+                "name": "Amo"
+            }
+        },
+        "text": [
+            ["..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Mira, Daric... Son como dos anillos", "entrelazados... Encajan perfectamente en", "nuestro dedo."]
+        ]
+    },
+    {
+        "text": [
+            ["En cuanto nuestros héroes se ponen el Twin", "Souls, una luz los envuelve y, cuando se disipa", "cada uno cuenta con un cuerpo propio."],
+            ["El anillo se ha divido en dos, y cada mitad", "permanece en el dedo de uno de ellos."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "daric.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["¡!"],
+            ["¡Leraila! ¡Puedo verte sin mirar en un espejo!", "Esto es... genial. ¡Jajaja!"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Increíble..."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "towerMaster_dying.png",
+                "name": "Amo"
+            }
+        },
+        "text": [
+            ["I-Imposible..."],
+            ["¿He interpretado mal la profecía todo este", "tiempo...?"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["¡Hermano! ¡¿Qué te ocurre?!"]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "towerMaster_dying.png",
+                "name": "Amo"
+            }
+        },
+        "text": [
+            ["Ese anillo es la fuente de poder de", "la Torre..."],
+            ["También era su energía la que me mantenía con", "vida."],
+            ["Usad bien su poder..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila2.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["¡No...! Hermano... Ahora que nos habíamos", "reencontrado... Hermano..."],
+            ["No te vayas..."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "daric4.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["..."]
+        ]
+    },
+    {
+        "info": {
+            "background": "soul_tower_background.png"
+        },
+        "text": [
+            ["Leraila y Daric abandonaron la Torre con", "una sensación agridulce."],
+            ["Cuando regresaron al reino, convencieron a", "sus respectivos bandos para que detuvieran", "la contienda."],
+            ["Entre los dos, reformaron el orden social", "para que todos pudieran llevar una vida mejor."],
+            ["Leraila fue recordada como la reina más grande", "de la historia del reino, humilde y generosa."],
+            ["Daric se convirtió en el mejor guerrero y", "consejero que cualquier gobernante podría", "pedir."],
+            ["Nunca se vio a otras dos personas entenderse", "tan bien como nuestros héroes."]
+        ]
+    }
+]
