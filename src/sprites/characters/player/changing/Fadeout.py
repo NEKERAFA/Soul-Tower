@@ -10,8 +10,9 @@ from src.sprites.characters.player.changing.Finish import *
 MAX_TIME = 250.0
 
 class Fadeout(ChangingState):
-    def __init__(self):
+    def __init__(self, canChange):
         self.width = 0
+        self.canChange = canChange
 
     def update(self, player, time, stage):
         # Obtenemos el frame actual
@@ -20,7 +21,7 @@ class Fadeout(ChangingState):
         # Si el tamaño de la imagen ha llegado a 0 se cambia a la siguiente
         if self.width == maxWidth:
             # Cambiamos de estado
-            player.canChange = True
+            player.canChange = self.canChange
             player.changing = Finish()
         else:
             # Vamos aumentando poco a poco el tamaño del sprite

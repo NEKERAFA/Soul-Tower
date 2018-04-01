@@ -19,6 +19,7 @@ class Finish(ChangingState):
 
         # Si se pulsa el botón de cambio de jugador
         if KeyboardMouseControl.select_button() and player.canChange:
+            oldChange = player.canChange
             player.canChange = False
             #TODO: esta línea es un cáncer pero tampoco sé cómo ponerla bien
             player.stage.gui.charSymb.action()
@@ -35,6 +36,6 @@ class Finish(ChangingState):
             self.currentDelay = player.sheetConf[0][0]['delay']
 
             # Cambiamos de estado
-            player.changing = Fadein(player.origImage.get_width())
+            player.changing = Fadein(player.origImage.get_width(), oldChange)
 
 from src.sprites.characters.player.changing.Fadein import *
