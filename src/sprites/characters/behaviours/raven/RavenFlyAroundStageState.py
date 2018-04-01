@@ -45,10 +45,10 @@ class RavenFlyAroundStageState(RavenBehaviourState):
                 else:
                     self.angle = random.randint(45, 135)
             # Choca a la izquierda
-            elif enemy.rect.left < mapRect.left+25:
+            elif enemy.rect.left < mapRect.left+24:
                 self.angle = random.randint(315, 405) % 360
             # Choca a la derecha
-            elif enemy.rect.right > mapRect.right-25:
+            elif enemy.rect.right > mapRect.right-24:
                 self.angle = random.randint(135, 225)
             else:
                 print "No se que hacer"

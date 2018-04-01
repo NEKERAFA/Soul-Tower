@@ -227,6 +227,10 @@ class Player(Character):
         self.stats["nrg"] = self.stats["max_nrg"]
         self.stage.gui.energy.gain_energy_bar()
 
+    # Añade nuevos enemigos en el cambio de fase
+    def set_enemies(self, enemies):
+        self.attack.enemies = enemies
+
     # Cambia de fase al jugador
     def change_stage(self, stage):
         self.stage = stage

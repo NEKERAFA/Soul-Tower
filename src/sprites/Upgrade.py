@@ -39,5 +39,5 @@ class Upgrade(MyStaticSprite, Interactive):
             # Quitamos el sprite de todos los grupos
             self.kill()
         else:
-            dialogue = [{"text": [["Necesitas " + str(self.cost) + " almas para obtener esta"], ["mejora."]]}]
+            dialogue = [{"text": [["Necesitas " + str(self.cost) + " almas para obtener esta", "mejora."]]}]
             stage.set_state(OnDialogueState(dialogue, stage, False))

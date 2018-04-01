@@ -53,7 +53,7 @@ class Room(object):
                     offset = enemySprite.rect.topleft
 
                     # Comprobamos que no colisiona con la máscara
-                    while enemySprite.mask.overlap(stage.mask, offset):
+                    while stage.mask.overlap(enemySprite.mask, offset):
                         posX = random.randint(self.position[0]+24, self.position[0]+self.width-48)
                         posY = random.randint(self.position[1]+24, self.position[1]+self.height-48)
                         enemySprite.change_global_position((posX, posY))

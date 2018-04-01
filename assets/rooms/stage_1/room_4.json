@@ -36,26 +36,10 @@
     "enemies": [
         {
             "type": "bee",
-            "position": [1416, 1968],
+            "position": [1896, 1896],
             "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "wild_boar",
-            "position": [1536, 1872],
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "wild_boar",
-            "position": [1512, 1752],
-            "drop": {
-                "type": "soul",
-                "amount": 10
+                "type": "heart",
+                "amount": 1
             }
         },
         {
@@ -67,43 +51,38 @@
             }
         },
         {
-            "type": "bee",
-            "position": [1440, 1560],
+            "type": "wild_boar",
             "drop": {
-                "type": "heart",
-                "amount": 1
+                "type": "soul",
+                "amount": 20
             }
         },
         {
             "type": "wild_boar",
-            "position": [1584, 1608],
             "drop": {
                 "type": "soul",
-                "amount": 10
+                "amount": 20
             }
         },
         {
             "type": "wild_boar",
-            "position": [1752, 1752],
             "drop": {
                 "type": "soul",
-                "amount": 10
+                "amount": 20
             }
         },
         {
-            "type": "wolf",
-            "position": [1896, 1872],
+            "type": "wild_boar",
             "drop": {
                 "type": "soul",
-                "amount": 10
+                "amount": 20
             }
         },
         {
-            "type": "bee",
-            "position": [1800, 1968],
+            "type": "wild_boar",
             "drop": {
-                "type": "heart",
-                "amount": 1
+                "type": "soul",
+                "amount": 20
             }
         }
     ]
