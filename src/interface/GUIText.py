@@ -9,7 +9,7 @@ from src.interface.GUIElement import *
 #  fuente, contenido, alineación o color
 
 class GUIText(GUIElement):
-    def __init__(self, guiScreen, position, font, text='', alignment='left', color=(0,0,0)):
+    def __init__(self, position, font, text='', alignment='left', color=(0,0,0)):
         # Propiedades del texto
         self.font = font
         self.text = text
@@ -18,7 +18,7 @@ class GUIText(GUIElement):
         self.position = position
         self.textSurface = self.font.render(self.text, False, self.color)
         # Se llama al método de la clase padre con el rectángulo del texto
-        GUIElement.__init__(self, guiScreen, self.textSurface.get_rect())
+        GUIElement.__init__(self, self.textSurface.get_rect())
         # Se coloca el rectangulo en su posicion
         self.set_position(position)
 

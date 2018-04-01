@@ -36,7 +36,7 @@ class GUITutorialScreen(GUIScreen):
         font = ResourceManager.load_font(DEFAULT_FONT, DEFAULT_FONT_SIZE)
 
         # Movimiento
-        self.movementText = GUIText(self, (120, 60), font, 'Moverse', 'center')
+        self.movementText = GUIText((120, 60), font, 'Moverse', 'center')
         wKey = GUITutorialImage(self, W_SPRITE_LOCATION, (100,100), (40,40), pygame.K_w)
         aKey = GUITutorialImage(self, A_SPRITE_LOCATION, (60,140), (40,40), pygame.K_a)
         sKey = GUITutorialImage(self, S_SPRITE_LOCATION, (100,140), (40,40), pygame.K_s)
@@ -54,19 +54,19 @@ class GUITutorialScreen(GUIScreen):
 
         # Cambio de personaje
         self.eKey = GUITutorialImage(self, E_SPRITE_LOCATION, (140,100), (40,40), pygame.K_e)
-        self.swapText = GUIText(self, (120, 60), font, 'Cambiar de personaje', 'center')
+        self.swapText = GUIText((120, 60), font, 'Cambiar de personaje', 'center')
 
         # Dash/Defender
         self.spaceKey = GUITutorialImage(self, SPACE_SPRITE_LOCATION, (100,250), (200,50), pygame.K_SPACE)
-        self.dashText = GUIText(self, (200, 200), font, 'Defenderse (Daric)/Sprint (Leraila)', 'center')
+        self.dashText = GUIText((200, 200), font, 'Defenderse (Daric)/Sprint (Leraila)', 'center')
 
         # Ataque
         self.mouse = GUITutorialImage(self, MOUSE_SPRITE_LOCATION, (250, 100), None, None, -1)
-        self.attackText = GUIText(self, (275, 120), font, 'Atacar', 'center')
+        self.attackText = GUIText((275, 120), font, 'Atacar', 'center')
 
         # Interactuar
         self.qKey = GUITutorialImage(self, Q_SPRITE_LOCATION, (75, 100), (40, 40), pygame.K_q)
-        self.actionText = GUIText(self, (100, 60), font, 'Interactuar', 'center')
+        self.actionText = GUIText((100, 60), font, 'Interactuar', 'center')
 
     def update(self, time):
         GUIScreen.update(self, time)

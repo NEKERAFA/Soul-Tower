@@ -1,10 +1,6 @@
 {
     "player_pos": [132, 72],
-<<<<<<< HEAD
-    "music": "level2.mp3",
-    "rooms": 9
-=======
+
     "music": "level2.ogg",
     "rooms": 8
->>>>>>> origin/animations_sound
 }

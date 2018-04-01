@@ -13,7 +13,7 @@ class GUITutorialImage(GUIImage):
         self.associatedKey = associatedKey
 
         self.guiScreen = guiScreen
-        GUIImage.__init__(self, self.guiScreen, name, position, scale, colorkey)
+        GUIImage.__init__(self, name, position, scale, colorkey)
 
         # Porcentaje de tamaño de la imagen; 1 -> la imagen se dibuja a tamaño normal
         self.percent = 1

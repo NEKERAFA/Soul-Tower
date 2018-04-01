@@ -51,10 +51,8 @@ class Stage(Scene):
         # Cargamos la configuración del nivel
         data = ResourceManager.load_stage(fullname + '.json')
 
-        #Cargamos la musica
-        music_path = os.path.join('',data["music"])
-        ResourceManager.load_music(music_path)
-        pygame.mixer.music.play(-1,0.0)
+        # Cargamos la musica
+        self.bgmFile = data["music"]
 
         # Cargamos las salas
         self.rooms = []
@@ -151,6 +149,11 @@ class Stage(Scene):
     def set_state(self, state):
         self.state = state
 
+    # Reproduce la música del nivel
+    def play_bgm(self):
+        ResourceManager.load_music(self.bgmFile)
+        pygame.mixer.music.play(-1, 0.0)
+
     # Crear diálogo para las ventanas
     def create_window_dialog(self, selectionFile):
         self.guiWindow = GUIWindowDialogScreen(self, selectionFile)
@@ -160,13 +163,15 @@ class Stage(Scene):
     def remove_window_dialog(self):
         self.guiWindow = None
 
-    # Crea la fase siguient
+    # Crea la fase siguiente
     def next_stage(self):
         return Stage(self.stageNum+1, self.gameManager, self.player)
 
+    # Creo de nuevo la fase
     def new_stage(self, data):
         return Stage(self.stageNum, self.gameManager, None, data)
 
+    # Guardo los datos del juego
     def save_data(self, data):
         self.savedData = self.player.stats.copy()
         self.savedData["player_pos"] = (data["player_pos"][0], data["player_pos"][1])
