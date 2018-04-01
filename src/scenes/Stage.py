@@ -96,6 +96,7 @@ class Stage(Scene):
 
         # Pantalla de créditos
         self.guiCredits = None
+        self.guiCredits = GUICreditsScreen(self)
 
         # Inicializamos el viewport, que es un rectángulo del tamaño de la
         # pantalla que indicará qué porción de la sala se debe mostrar
