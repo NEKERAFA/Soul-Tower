@@ -27,7 +27,8 @@ class OnBossRoomState(StageState):
         boss = currentRoom.boss
 
         # Solo muevo al boss si no ha muerto ni está en una animación
-        if not boss.killed and not boss.animationLoop:
+        # if not boss.killed and not boss.animationLoop:
+        if not boss.killed:
             boss.move_ai(stage.player)
 
         # Actualizamos los sprites
@@ -36,7 +37,7 @@ class OnBossRoomState(StageState):
         # Boss
         boss.update(time, currentRoom.rect, stage)
 
-        # Compruebo si el enemigo ha termina la animación
+        # Compruebo si el enemigo ha terminado la animación
         if boss.animationFinish and self.startAnimation:
             boss.animationLoop = True
             boss.animationFinish = False
@@ -46,6 +47,7 @@ class OnBossRoomState(StageState):
 
         # Compruebo si ha muerto el boss para dropear
         if boss.killed and not self.killedBoss:
+            boss.attack = None
             boss.kill()
             boss.set_drop(currentRoom.collectables)
             currentRoom.lockedDoors[0].open(stage)

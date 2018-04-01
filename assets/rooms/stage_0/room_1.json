@@ -19,7 +19,7 @@
         }
     ],
     "boss": {
-        "name": "master",
+        "name": "death",
         "position": [960, 180],
         "drops": [
             {
@@ -37,7 +37,7 @@
             "doorSprite": "door_2.png",
             "doorMask": [720, 200, 24, 41]
         },
-        "deathAnimation": 6
+        "deathAnimation": 10
     },
     "lockedDoors": [
         {

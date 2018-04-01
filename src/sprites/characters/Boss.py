@@ -28,6 +28,7 @@ class Boss(Enemy):
             self.stillState = RavenStillState()
         elif (name=="death"):
             self.initialState = DeathMainState()
+            self.stillState = DeathStillState()
         elif (name=="master"):
             self.initialState = MasterMainState()
             self.stillState = RavenStillState()

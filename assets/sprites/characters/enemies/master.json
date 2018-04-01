@@ -145,21 +145,21 @@
                 "y" : 322,
                 "width" : 104,
                 "height" : 102,
-                "delay" : 0.1
+                "delay" : 0.4
             },
             {
                 "x" : 110,
                 "y" : 322,
                 "width" : 104,
                 "height" : 102,
-                "delay" : 0.1
+                "delay" : 0.6
             },
             {
                 "x" : 218,
                 "y" : 322,
                 "width" : 104,
                 "height" : 102,
-                "delay" : 0.1
+                "delay" : 0.4
             }
         ]
     ]

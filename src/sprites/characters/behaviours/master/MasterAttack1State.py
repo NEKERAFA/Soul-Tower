@@ -25,6 +25,7 @@ class MasterAttack1State(MasterBehaviourState):
         # Se actualiza la animación del personaje
         Character.update_animation(enemy, time)
         MySprite.update(enemy, time)
+        # print(enemy.animationFinish)
 
         # # Si se acaba la primera parte de la animación
         # # se comienza en loop la siguiente
@@ -39,7 +40,6 @@ class MasterAttack1State(MasterBehaviourState):
         #     self.elapseTime += time
 
         if (enemy.animationFrame==3):
-            #dosomefuckery
             y = enemy.rect.bottom
             x = enemy.rect.left + enemy.rect.width/2
             # Indicamos que se puede atacar
@@ -48,8 +48,7 @@ class MasterAttack1State(MasterBehaviourState):
             if (enemy.animationFinish == True):
                 # self.elapseTime += time
                 # Si se pasan los segundos, cambio de estado
-                # if self.elapseTime > self.delayTime:
-                #     self.delayTime = random.randint(1, 3)*1000
-                #     self.elapseTime = 0
+                enemy.animationFinish = False
+                enemy.animationLoop = True
                 enemy.attack.end_attack()
                 enemy.change_behaviour(self.previousState)

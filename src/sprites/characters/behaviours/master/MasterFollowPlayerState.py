@@ -57,16 +57,15 @@ class MasterFollowPlayerState(MasterBehaviourState):
         self.elapseTime += time
         if self.elapseTime > self.delayTime or self.colliding:
             self.colliding = False
+            self.delayTime = random.randint(2, 4)*1000
+            self.elapseTime = 0
             Character.move(enemy, STILL)
             Character.update_movement(enemy, time)
             enemy.animationLoop = False
             enemy.animationFinish = False
-            jump = random.randint(0, 1)
-            jump = 0
-            if (jump == 0):
-                enemy.set_initial_frame(5)
-                enemy.attack = SemicircleAttack(5, 250, pygame.sprite.Group(self.player), enemy.looking)
-                enemy.change_behaviour(MasterAttack1State(self))
+            enemy.set_initial_frame(5)
+            enemy.attack = SemicircleAttack(5, 250, pygame.sprite.Group(self.player), enemy.looking)
+            enemy.change_behaviour(MasterAttack1State(self))
             # else:
             #     enemy.set_initial_frame(7)
             #     enemy.attack = OrbAttack(1, 500, pygame.sprite.Group(self.player), enemy.looking)
