@@ -9,7 +9,7 @@
 
     "sound": "wolf.ogg",
 
-    "dead_sound": "wild_wolf_dead.ogg",
+    "dead_sound": "wild_wolf_death.ogg",
 
     "behaviour" : {
         "type": "patrolling",
