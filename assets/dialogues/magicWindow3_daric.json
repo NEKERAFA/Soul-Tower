@@ -33,5 +33,10 @@
             ["Encontrarán una solución... Lo sé."],
             ["«O eso espero...»"]
         ]
+    },
+    {
+        "text": [
+            ["Velocidad aumentada."]
+        ]
     }
 ]

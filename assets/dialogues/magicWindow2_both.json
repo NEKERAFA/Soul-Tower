@@ -138,5 +138,10 @@
             ["..."],
             ["No lo sé. Sólo espero que, esté donde esté", "Héctor, se encuentre bien..."]
         ]
+    },
+    {
+        "text": [
+            ["Velocidad de regeneración de energía", "aumentada."]
+        ]
     }
 ]
