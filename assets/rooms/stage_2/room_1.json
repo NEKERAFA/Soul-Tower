@@ -155,7 +155,7 @@
     "lockedDoors": [
         {
             "position": [504, 1296],
-            "doorSprite": "prisonDoor.png",
+            "doorSprite": "prisonDoorBoss.png",
             "doorMask": [528, 1272, 48, 24]
         }
     ],
