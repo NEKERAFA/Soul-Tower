@@ -18,6 +18,9 @@ class MainMenuScene(Scene):
         # Primera fase
         self.startStage = InitialStage(gameManager)
 
+    def new_menu(self, gameManager):
+        return MainMenuScene(gameManager)
+
     def update(self, time):
         self.guiMenu.update(time)
 

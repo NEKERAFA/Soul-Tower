@@ -1,0 +1,171 @@
+[
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Uf... Por fin..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Con este anillo podré llevar al pueblo a la", "victoria."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "towerMaster.png",
+                "name": "Amo"
+            }
+        },
+        "text": [
+            ["Así es... Ese anillo dotará a su portador de un", "poder inigualable... Es la fuente de poder", "de la Torre..."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "towerMaster_dying.png",
+                "name": "Amo"
+            }
+        },
+        "text": [
+            ["También era su energía la que me mantenía con", "vida."],
+            ["Usa bien su poder..."]
+        ]
+    },
+    {
+        "info": {
+            "background": "soul_tower_background.png"
+        },
+        "text": [
+            ["Daric abandonó la Torre habiendo salido", "victorioso de la contienda, eufórico por tener", "en sus manos su sueño de crear un reino mejor."],
+            ["Sin una heredera a la que seguir, los nobles", "perdieron su camino y fueron derrotados."],
+            ["Daric fue aclamado por el pueblo como un", "verdadero héroe."],
+            ["Poco a poco, el orden social fue cambiando.","Los nobles ya no tenían ningún poder."],
+            ["Los campesinos, sedientos de venganza,", "terminaron por convertirse en los nuevos", "nobles."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            },
+            "background": "village2.png"
+        },
+        "text": [
+            ["Esto... no es lo que buscaba."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "villager.png",
+                "name": "Mujer"
+            },
+            "background": "village2.png"
+        },
+        "text": [
+            ["¡Vamos, \"gran señor feudal\"! ¡La tierra no va a", "labrarse sola! Y se acerca la temporada de", "pago."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            },
+            "background": "village2.png"
+        },
+        "text": [
+            ["Oye... No creo que esté bien tratarlos así..."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "villager.png",
+                "name": "Mujer"
+            },
+            "background": "village2.png"
+        },
+        "text": [
+            ["Es lo que se merecen. Por todo lo que nos", "hicieron."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            },
+            "background": "village2.png"
+        },
+        "text": [
+            ["..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            },
+            "background": "forest.png"
+        },
+        "text": [
+            ["..."],
+            ["«Nada de esto tiene sentido. He conseguido", "lo contrario de lo que buscaba»"],
+            ["«Quería un lugar donde todos pudieran vivir en", "igualdad, pero sólo he invertido los papeles»"],
+            ["«...»"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_disappearing2.png",
+                "name": "Daric"
+            },
+            "background": "forest.png"
+        },
+        "text": [
+            ["«No tiene sentido que siga adelante...»"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_dying.png",
+                "name": "Daric"
+            },
+            "background": "forest.png"
+        },
+        "text": [
+            ["«...»"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_dying2.png",
+                "name": "Daric"
+            },
+            "background": "forest.png"
+        },
+        "text": [
+            ["«...»"],
+            ["..."]
+        ]
+    }
+]

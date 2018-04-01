@@ -101,6 +101,7 @@ class Stage(Scene):
 
         # Pantalla de créditos
         self.guiCredits = None
+        #self.guiCredits = GUICreditsScreen(self)
 
         # Inicializamos el viewport, que es un rectángulo del tamaño de la
         # pantalla que indicará qué porción de la sala se debe mostrar
@@ -121,9 +122,6 @@ class Stage(Scene):
         else:
             self.guiGameOver.update(time)
 
-        if(self.guiCredits is not None):
-            self.guiCredits.update(time)
-
     def events(self, events):
         # Miramos a ver si hay algun evento de salir del programa
         for event in events:
@@ -143,13 +141,11 @@ class Stage(Scene):
         # Delegamos en el estado el dibujado de la fase
         self.state.draw(screen, self)
         #TODO: gui debería estar en un array, como Rooms
-        self.gui.draw(screen)
+
         if(self.guiWindow is not None):
             self.guiWindow.draw(screen)
         if(self.guiGameOver is not None):
             self.guiGameOver.draw(screen)
-        if(self.guiCredits is not None):
-            self.guiCredits.draw(screen)
 
     # Cambia el estado que controla el comportamiento del scroll
     def set_state(self, state):

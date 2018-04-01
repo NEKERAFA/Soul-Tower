@@ -14,10 +14,18 @@ class Stunned(PlayerState):
         # Debug:
         # print("Changing state from ", self.name, " to ", state.name)
         if not self.stunned:
+            player.drawStun = False
             self.__class__ = state
 
     def update_state(self, player, time, mapRect, mapMask):
         # self.debug()
+        player.drawStun = True
+        x,y = player.position
+        x += player.rect.width/4
+        y -= player.rect.height/8
+        player.stunParticles.change_position((x,y))
+        player.stunParticles.update(time)
+       
         # Se controla el tiempo de invencibilidad (método heredado)
         self.update_inv_time(time)
         # Se actualiza el tiempo transcurrido desde que está aturdido

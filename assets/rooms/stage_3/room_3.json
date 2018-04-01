@@ -27,12 +27,8 @@
         "finalDialogue": "",
         "drops": [
             {
-                "type": "heart",
-                "amount": 1
-            },
-            {
-                "type": "soul",
-                "amount": 10
+                "type": "ring",
+                "dialogueList": ["endingLeraila.json", "endingDaric.json", "trueEnding.json"]
             }
         ],
         "closeDoor": {

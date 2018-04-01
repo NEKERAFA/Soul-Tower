@@ -22,7 +22,7 @@ ENERGY_BAR_SPRITE_LOCATION = os.path.join(INTERFACE_PLAYER_FOLDER, 'gui_energy_b
 SOULS_SPRITE_LOCATION = os.path.join(INTERFACE_PLAYER_FOLDER, 'gui_souls_box.png')
 
 DEFAULT_FONT = 'PixelOperatorHB.ttf'
-DEFAULT_FONT_SIZE = 12
+DEFAULT_FONT_SIZE = 14
 
 class GUIPlayerScreen(GUIScreen):
     def __init__(self, stage):
@@ -35,11 +35,11 @@ class GUIPlayerScreen(GUIScreen):
         #TODO: posiciones y escalas relativas a la pantalla
         self.health = GUIHealth(self, HEART_SPRITE_LOCATION, (55,30), -1)
         self.energy = GUIEnergy(self, ENERGY_BAR_SPRITE_LOCATION, (55,40), None)
-        self.charSymb = GUICharacterSymbol(self, (20, 40), None)
+        self.charSymb = GUICharacterSymbol((20, 40), None)
 
         soulsPos = (SCREEN_WIDTH-60, SCREEN_HEIGHT-38)
-        self.soulsText = GUIText(self, soulsPos, font, str(self.player.souls), 'right', (255, 255, 255))
-        self.soulsSymb = GUIImage(self, SOULS_SPRITE_LOCATION, (soulsPos[0]-40, soulsPos[1]+8))
+        self.soulsText = GUIText(soulsPos, font, str(self.player.souls), 'right', (255, 255, 255))
+        self.soulsSymb = GUIImage(SOULS_SPRITE_LOCATION, (soulsPos[0]-40, soulsPos[1]+8))
         # Añadir al array de GUIElements para poder dibujar y actualizar
         self.GUIElements.append(self.health)
         self.GUIElements.append(self.energy)
@@ -47,9 +47,5 @@ class GUIPlayerScreen(GUIScreen):
         self.GUIElements.append(self.soulsSymb)
         self.GUIElements.append(self.soulsText)
 
-
     def events(self, event_list):
-        #for event in event_list:
-        #    if event.type == KEYDOWN and event.key == pygame.K_e:
-        #        self.charSymb.action()
-        return
+        pass

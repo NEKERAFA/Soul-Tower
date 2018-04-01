@@ -1,0 +1,162 @@
+[
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Hah... Uf..."],
+            ["¿Este... es el objeto... que me dará el poder", "para salvar el reino...?"]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "towerMaster.png",
+                "name": "Amo"
+            }
+        },
+        "text": [
+            ["Así es... Ese anillo dotará a su portador de un", "poder inigualable... Es la fuente de poder", "de la Torre..."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "towerMaster_dying.png",
+                "name": "Amo"
+            }
+        },
+        "text": [
+            ["También era su energía la que me mantenía con", "vida."],
+            ["Usa bien su poder..."],
+            ["Te has convertido en una gran heredera...", "hermana."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["¿Her... mano?"]
+        ]
+    },
+    {
+        "info": {
+            "background": "soul_tower_background.png"
+        },
+        "text": [
+            ["Leraila abandonó la Torre habiendo salido", "victoriosa de la contienda, pero con un gran", "pesar en su corazón."],
+            ["¿De verdad era el Amo de la Torre su hermano", "perdido hace tiempo? Y si era así, ¿por qué", "había hecho aquello?"],
+            ["Leraila no tenía respuesta para estas", "cuestiones."]
+        ]
+    },
+    {
+        "info": {
+            "background": "soul_tower_background.png"
+        },
+        "text": [
+            ["Las semanas pasaron. Leraila y su ejército de", "nobles lograron suprimir por la fuerza la", "rebelión campesina."],
+            ["Pronto llegó el día en el que Leraila dejaría de", "ser una princesa para convertirse en reina."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            },
+            "background": "palace-garden.png"
+        },
+        "text": [
+            ["..."],
+            ["Por fin ha vuelto la paz al reino..."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "soldier.png",
+                "name": "Soldado"
+            },
+            "background": "palace-garden.png"
+        },
+        "text": [
+            ["Alteza, todo está listo para la ceremonia."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            },
+            "background": "palace-garden.png"
+        },
+        "text": [
+            ["Enseguida voy."],
+            ["..."],
+            ["«¿Qué es esta sensación...?»"],
+            ["«Todo ha acabado bien, así que...»"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila_disappearing2.png",
+                "name": "Leraila"
+            },
+            "background": "palace-garden.png"
+        },
+        "text": [
+            ["A-Ah..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "rebel.png",
+                "name": "Rebelde"
+            },
+            "background": "palace-garden.png"
+        },
+        "text": [
+            ["Nos perseguisteis como a ratas, como siempre.", "Pero no nos damos por vencidos tan fácilmente."],
+            ["Nos ocultamos bien. Y ahora resurgimos para", "acabar con la nobleza de una vez por todas.", "Aunque hayamos perdido a nuestro líder."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila_dying.png",
+                "name": "Leraila"
+            },
+            "background": "palace-garden.png"
+        },
+        "text": [
+            ["..."],
+            ["«¿No ha servido de nada...?»"],
+            ["«Padre, hermano... Seguí vuestras enseñanzas...", "Siempre me he preocupado por el reino...", "¿Por qué está pasando esto?»"],
+            ["«¿Es este mi final...?»"],
+            ["«...»"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila_dying2.png",
+                "name": "Leraila"
+            },
+            "background": "palace-garden.png"
+        },
+        "text": [
+            ["«...»"],
+            ["..."]
+        ]
+    }
+]

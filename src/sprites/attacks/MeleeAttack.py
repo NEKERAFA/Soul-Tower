@@ -57,7 +57,7 @@ class MeleeAttack(Attack):
 
     def update(self, player, time, stage):
         # Si ha pasado el tiempo suficiente y estamos intentando atacar
-        if (self.elapsedTime > self.delayTime) and self.attacking:
+        if (self.elapsedTime >= self.delayTime) and self.attacking:
             #Se llama al channel_effect
             self.channel_effect.soundUpdate(time)
             self.drawAnimation = True

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import pygame, os
+import math as m
 from pygame.locals import *
 from src.ResourceManager import *
 from src.scenes.Scene import *
@@ -40,7 +41,7 @@ class GUIWindowDialogScreen(GUIScreen):
         for i in range(iniVal,finVal):
             text = self.selectionFile[i]
             nextPosition = (initPosition[0], initPosition[1]+(i%3)*(scale[1]+10)+40)
-            button = GUIWindowButton(self, text, WINDOW_BUTTON_UP_LOCATION, WINDOW_BUTTON_DOWN_LOCATION, choiceSymbolsLocations[(i%3)], getattr(self, 'button_fun_'+str(i)), nextPosition, scale)
+            button = GUIWindowButton(text, WINDOW_BUTTON_UP_LOCATION, WINDOW_BUTTON_DOWN_LOCATION, choiceSymbolsLocations[(i%3)], getattr(self, 'button_fun_'+str(i)), nextPosition, scale)
             self.add_element(button)
 
     def events(self, event_list):
@@ -63,7 +64,6 @@ class GUIWindowDialogScreen(GUIScreen):
                         elif(element == self.elementClick):
                             element.swap()
 
-    #TODO testear bonuses de stats, y añadir diálogos
     def button_fun_0(self):
         self.choice = 0
         self.stage.player.choiceAdder += 1
@@ -110,11 +110,13 @@ class GUIWindowDialogScreen(GUIScreen):
         self.choice = 1
         self.stage.player.choiceAdder -= 1
         self.stage.player.add_max_life()
-        self.stage.player.stats["spd"] = 0.6
+        self.stage.player.stats["spd"] = 0.3
+        self.stage.player.diagonalSpeed = m.sqrt((self.stage.player.stats["spd"] * self.stage.player.stats["spd"])/2.0)
 
     def button_fun_8(self):
         self.choice = 2
         self.stage.player.add_max_life()
         self.stage.player.add_max_energy()
         self.stage.player.stats["atk"] = 2
-        self.stage.player.stats["spd"] = 0.6
+        self.stage.player.stats["spd"] = 0.3
+        self.stage.player.diagonalSpeed = m.sqrt((self.stage.player.stats["spd"] * self.stage.player.stats["spd"])/2.0)
