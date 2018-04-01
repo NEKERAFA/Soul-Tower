@@ -33,7 +33,7 @@ class RangedAttack(Attack):
         # Nivel de mejora
         self.level = level
         self.probLvl2 = 0.7
-        self.probLvl3 = 0.2
+        self.probLvl3 = 0.5
 
 
     def start_attack(self, characterPos, rotation):
