@@ -10,7 +10,8 @@ from src.scenes.MainMenuScene import *
 if __name__ == '__main__':
     # Iniciamos la semilla
     random.seed(datetime.now())
-    # Inicializamos la libreria de pygame y el mixera
+    # Inicializamos la libreria de pygame y el mixer
+    pygame.mixer.pre_init(44100, 16, 2, 4096)
     pygame.init()
     # Creamos el director
     # global gameManager

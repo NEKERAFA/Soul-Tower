@@ -51,6 +51,11 @@ class Stage(Scene):
         # Cargamos la configuración del nivel
         data = ResourceManager.load_stage(fullname + '.json')
 
+        #Cargamos la musica
+        music_path = os.path.join('',data["music"])
+        ResourceManager.load_music(music_path)
+        pygame.mixer.music.play(-1,0.0)
+
         # Cargamos las salas
         self.rooms = []
         for i in range(0, data["rooms"]):
