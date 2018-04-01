@@ -254,4 +254,4 @@ class Player(Character):
         self.changing.currentDelay = self.sheetConf[0][0]['delay']
 
         # Cambiamos de estado
-        self.changing = Fadein(self.origImage.get_width())
+        self.changing = Fadein(self.origImage.get_width(), self.canChange)

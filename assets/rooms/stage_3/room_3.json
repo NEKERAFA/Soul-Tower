@@ -13,10 +13,12 @@
     ],
     "triggers": [
         {
-            "position": [240, 96],
-            "width": 360,
-            "height": 12,
-            "dialogueFile": "test.json"
+            "position": [384, 528],
+            "width": 72,
+            "height": 24,
+            "conditional": true,
+            "type": "FinalBossTrigger",
+            "dialogueList": ["lerailaBoss.json", "daricBoss.json", "trueBoss.json"]
         }
     ]
 }

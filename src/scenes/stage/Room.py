@@ -14,6 +14,7 @@ from src.sprites.MagicWindow import *
 from src.sprites.ConditionalTrigger import *
 from src.sprites.HectorTrigger import *
 from src.sprites.PreEndingTrigger import *
+from src.sprites.FinalBossTrigger import *
 
 # -------------------------------------------------
 # Clase Room
