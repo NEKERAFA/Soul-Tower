@@ -9,7 +9,7 @@
 
     "sound": "rat.ogg",
 
-    "dead_sound": "rat_bat_dead.ogg",
+    "dead_sound": "bat_rat_dead.ogg",
 
     "behaviour" : {
         "type": "patrolling",
