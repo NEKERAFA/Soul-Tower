@@ -97,7 +97,7 @@ class RangedAttack(Attack):
                 (atkX, atkY) = bullet.position
                 (enemyX, enemyY) = enemy.position
                 # atkY -= self.image.get_height()
-                enemyY -= enemy.image.get_height()
+                enemyY -= enemy.image.get_height()/2
                 offset = (int(enemyX - atkX), int(enemyY - atkY))
                 self.mask = pygame.mask.from_surface(self.image)
                 collision = self.mask.overlap(enemy.mask, offset)
