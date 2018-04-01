@@ -7,9 +7,9 @@
         "spd": 0.1
     },
 
-    "sound": "spider.wav",
+    "sound": "spider.ogg",
 
-    "dead_sound": "insect_dead.wav",
+    "dead_sound": "insect_dead.ogg",
 
     "behaviour" : {
         "type": "patrolling",

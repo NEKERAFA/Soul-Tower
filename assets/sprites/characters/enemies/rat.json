@@ -7,9 +7,9 @@
         "spd": 0.075
     },
 
-    "sound": "rat.wav",
+    "sound": "rat.ogg",
 
-    "dead_sound": "rat_bat_dead.wav",
+    "dead_sound": "rat_bat_dead.ogg",
 
     "behaviour" : {
         "type": "patrolling",

@@ -7,9 +7,9 @@
         "spd": 0.02
     },
 
-    "sound": "slime_move.wav",
+    "sound": "slime_move.ogg",
 
-    "dead_sound": "slime_dead.wav",
+    "dead_sound": "slime_dead.ogg",
 
     "behaviour" : {
         "type": "wandering"

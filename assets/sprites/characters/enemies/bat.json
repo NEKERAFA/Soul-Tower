@@ -7,9 +7,9 @@
         "spd": 0.05
     },
 
-    "sound": "bat.wav",
+    "sound": "bat.ogg",
 
-    "dead_sound": "bat_rat_dead.wav",
+    "dead_sound": "bat_rat_dead.ogg",
 
     "behaviour" : {
         "type": "waiting",

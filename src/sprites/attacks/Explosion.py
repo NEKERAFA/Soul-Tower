@@ -9,7 +9,7 @@ from src.sprites.Force import *
 class Explosion(Attack):
     def __init__(self, position, enemies):
         # Obtenemos las rutas a los archivos
-        effect_sound = 'explosion.wav'
+        effect_sound = 'explosion.ogg'
         imageFile = os.path.join('sprites', 'attacks', 'explosion.png')
         spriteSheet = os.path.join('attacks', 'explosion.json')
         self.damage = 1

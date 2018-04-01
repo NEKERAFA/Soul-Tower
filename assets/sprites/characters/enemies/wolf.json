@@ -7,9 +7,9 @@
         "spd": 0.15
     },
 
-    "sound": "wolf.wav",
+    "sound": "wolf.ogg",
 
-    "dead_sound": "wild_wolf_dead.wav",
+    "dead_sound": "wild_wolf_dead.ogg",
 
     "behaviour" : {
         "type": "patrolling",

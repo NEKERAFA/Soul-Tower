@@ -61,13 +61,13 @@ class Player(Character):
         self.changing = Finish()
 
         #Sonido para cuando se recupera vida
-        self.heal_sound = ResourceManager.load_effect_sound("heal.wav")
+        self.heal_sound = ResourceManager.load_effect_sound("heal.ogg")
 
         #Sonido cuando se recive daño
-        self.damage_sound = ResourceManager.load_effect_sound("ouch.wav")
+        self.damage_sound = ResourceManager.load_effect_sound("ouch.ogg")
 
         #Sonido al recoger almas
-        self.souls_sound = ResourceManager.load_effect_sound("soul_get.wav")
+        self.souls_sound = ResourceManager.load_effect_sound("soul_get.ogg")
 
 
 

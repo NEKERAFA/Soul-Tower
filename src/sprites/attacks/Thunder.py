@@ -9,7 +9,7 @@ from src.sprites.Force import *
 class Thunder(Attack):
     def __init__(self, characterPos, rotation, radius, enemies):
         # Obtenemos las rutas a los archivos
-        effect_sound = 'thunder.wav'
+        effect_sound = 'thunder.ogg'
         imageFile = os.path.join('sprites', 'attacks', 'thunder.png')
         spriteSheet = os.path.join('attacks', 'thunder.json')
         self.damage = 1

@@ -36,7 +36,7 @@ class ResourceManager(object):
         else:
             fullname = os.path.join(EFFECT_PATH, name)
             try:
-                sound_effect=pygame.mixer.Sound(fullname)
+                sound_effect = pygame.mixer.Sound(fullname)
                 #sound_effect.set_volume(0.7);
                 #print(fullname)
                 #print(sound_effect.get_volume())

@@ -7,9 +7,9 @@
         "spd": 0.2
     },
 
-    "sound": "raven.wav",
+    "sound": "raven.ogg",
 
-    "dead_sound": "raven_dead.wav",
+    "dead_sound": "raven_dead.ogg",
 
     "frames": [
         [

@@ -11,7 +11,7 @@ from src.sprites.attacks.Explosion import *
 class MeleeAttack(Attack):
     def __init__(self, radius, delayTime, enemies):
         # Obtenemos las rutas a los archivos
-        effect_sound = 'slash.wav'
+        effect_sound = 'slash.ogg'
         imageFile = os.path.join('sprites', 'attacks', 'melee.png')
         spriteSheet = os.path.join('attacks', 'melee.json')
 

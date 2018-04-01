@@ -11,9 +11,9 @@
         "spd": 0.2
     },
 
-    "sound": "Null.wav",
+    "sound": "Null.ogg",
 
-    "dead_sound": "Null.wav",
+    "dead_sound": "Null.ogg",
 
     "frames": [
         [

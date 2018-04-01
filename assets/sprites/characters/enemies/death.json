@@ -7,9 +7,9 @@
         "spd": 0.15
     },
 
-    "sound": "death.wav",
+    "sound": "death.ogg",
 
-    "dead_sound": "death_dead.wav",
+    "dead_sound": "death_dead.ogg",
 
     "frames": [
         [
