@@ -18,6 +18,7 @@ class OrbAttack(Attack):
         # Obtenemos las rutas a los archivos
         castingFile = os.path.join('attacks', 'orb.png')
         castingSheet = os.path.join('attacks', 'castingOrb.json')
+        effect_sound = 'slash.ogg'
 
         self.castingAnim = MyStaticAnimatedSprite(castingFile, castingSheet)
         self.castingAnim.animationLoop = False
@@ -25,7 +26,7 @@ class OrbAttack(Attack):
         orbFile = 'orb.png'
         orbSheet = 'orb.json'
         # Invocamos al constructor de la clase padre
-        Attack.__init__(self, orbFile, orbSheet, enemies)
+        Attack.__init__(self, orbFile, orbSheet, enemies, effect_sound)
 
         # Rutas de las balas
         imageFile = os.path.join('sprites', 'attacks', 'laser.png')

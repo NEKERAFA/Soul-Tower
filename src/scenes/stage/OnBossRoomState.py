@@ -27,6 +27,28 @@ class OnBossRoomState(StageState):
         # Para cuando vuelva del diálogo
         self.dialogueReturned = False
 
+    def drop_and_open(self, boss, stage):
+        boss.kill()
+        boss.set_drop(stage.rooms[stage.currentRoom].collectables)
+        stage.rooms[stage.currentRoom].lockedDoors[0].open(stage)
+
+    def start_behaviour(self, boss):
+        boss.animationLoop = True
+        boss.animationFinish = False
+        boss.set_initial_frame(STILL)
+        boss.change_behaviour(boss.initialState)
+        self.startAnimation = False
+
+    def start_death_animation(self, boss):
+        boss.change_behaviour(boss.stillState)
+        boss.animationLoop = False
+        boss.set_initial_frame(boss.deathAnimation)
+        self.animatingDeath = True
+
+    def start_dialogue(self, boss, stage):
+        stage.set_state(OnDialogueState(boss.dialogueFile, stage))
+        self.dialogueReturned = True
+
     def update(self, time, stage):
         currentRoom = stage.rooms[stage.currentRoom]
         boss = currentRoom.boss
@@ -40,41 +62,43 @@ class OnBossRoomState(StageState):
         # Player
         stage.player.update(time, stage)
         # Boss
-        boss.update(time, currentRoom.rect, stage)
+        if not boss.killed or self.animatingDeath:
+            boss.update(time, currentRoom.rect, stage)
 
         # Compruebo si el enemigo ha terminado la animación
         if boss.animationFinish and self.startAnimation:
-            boss.animationLoop = True
-            boss.animationFinish = False
-            boss.set_initial_frame(STILL)
-            boss.change_behaviour(boss.initialState)
-            self.startAnimation = False
+            self.start_behaviour(boss)
 
         # Compruebo si ha muerto el boss para dropear
         if boss.killed and not self.killedBoss:
-            boss.attack = None
             self.killedBoss = True
+            boss.attack = None
 
-            # Si hay una animación de muerte, lo deja quieto y lo muestra
             if boss.hasDeathAnimation:
-                boss.movement = STILL
-                boss.speed = (0, 0)
-                boss.change_behaviour(boss.stillState)
-                boss.animationLoop = False
-                boss.set_initial_frame(boss.deathAnimation)
-                self.deathAnimation = True
+                # Si hay una animación de muerte, lo deja quieto y lo muestra
+                self.start_death_animation(boss)
+            elif currentRoom.boss.dialogueFile != "":
+                # Si tiene un diálogo lo lanza
+                self.start_dialogue(boss, stage)
+            else:
+                # Droppeamos y abrimos la puerta
+                self.drop_and_open(boss, stage)
 
+        # Ha terminado su animación de muerte
         if self.animatingDeath and boss.animationFinish:
             self.animatingDeath = False
-            if currentRoom.boss.dialogueFile != "":
-                stage.set_state(OnDialogueState(boss.dialogueFile, stage))
-                self.dialogueReturned = True
 
+            if currentRoom.boss.dialogueFile != "":
+                # Si tiene un diálogo lo lanza
+                self.start_dialogue(boss, stage)
+            else:
+                # Droppeamos y abrimos la puerta
+                self.drop_and_open(boss, stage)
+
+        # Hemos vuelto del diálogo
         if self.dialogueReturned:
-            boss.kill()
-            boss.set_drop(currentRoom.collectables)
-            currentRoom.lockedDoors[0].open(stage)
             self.dialogueReturned = False
+            self.drop_and_open(boss, stage)
 
         # Recogibles
         currentRoom.collectables.update(time)
@@ -127,7 +151,8 @@ class OnBossRoomState(StageState):
         # Luego los Sprites sobre una copia del mapa de la sala
         newImage = stage.image.copy()
         # Boss
-        currentRoom.boss.draw(newImage)
+        if not currentRoom.boss.killed or currentRoom.boss.hasDeathAnimation:
+            currentRoom.boss.draw(newImage)
         # Recolectables
         currentRoom.collectables.draw(newImage)
         # Puertas
@@ -138,3 +163,5 @@ class OnBossRoomState(StageState):
         stage.player.draw(newImage)
         # Se pinta la porción de la sala que coincide con el viewport
         screen.blit(newImage, (0,0), stage.viewport)
+
+        stage.gui.draw(screen)

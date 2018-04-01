@@ -19,9 +19,10 @@ class DeathSlashAttack(Attack):
 
         imageFile = 'death_slash.png'
         spriteSheet = 'death_slash.json'
+        effect_sound = 'slash.ogg'
 
         # Invocamos al constructor de la clase padre
-        Attack.__init__(self, imageFile, spriteSheet, enemies)
+        Attack.__init__(self, imageFile, spriteSheet, enemies, effect_sound)
 
         # Dirección
         self.looking = looking
