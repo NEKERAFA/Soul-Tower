@@ -13,11 +13,16 @@ from src.sprites.EnemyRange import *
 class MasterStillState(MasterBehaviourState):
     def __init__(self):
         MasterBehaviourState.__init__(self)
+        # self.starting = True
 
     def move_ai(self, enemy, player):
         pass
 
     def update(self, enemy, time, mapRect, mapMask):
+        # if self.starting:
+        #     print("setting frame 4")
+        #     enemy.set_initial_frame(4)
+        #     self.starting = False
         # Se actualiza la animación del personaje
         Character.update_animation(enemy, time)
         MySprite.update(enemy, time)
