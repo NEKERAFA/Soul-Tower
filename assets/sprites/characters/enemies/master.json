@@ -1,7 +1,8 @@
 {
     "stats": {
-        "max_hp": 60,
-        "hp": 1,
+
+        "max_hp": 20,
+        "hp": 20,
         "atk": 1,
         "backward": 0.02,
         "spd": 0.08
