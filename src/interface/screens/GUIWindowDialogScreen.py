@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import pygame, os
+import math as m
 from pygame.locals import *
 from src.ResourceManager import *
 from src.scenes.Scene import *
@@ -111,7 +112,7 @@ class GUIWindowDialogScreen(GUIScreen):
         self.stage.player.choiceAdder -= 1
         self.stage.player.add_max_life()
         self.stage.player.stats["spd"] = 0.3
-        self.stage.player.diagonalSpeed = m.sqrt((self.stats["spd"] * self.stats["spd"])/2.0)
+        self.stage.player.diagonalSpeed = m.sqrt((self.stage.player.stats["spd"] * self.stage.player.stats["spd"])/2.0)
 
     def button_fun_8(self):
         self.choice = 2
@@ -119,4 +120,4 @@ class GUIWindowDialogScreen(GUIScreen):
         self.stage.player.add_max_energy()
         self.stage.player.stats["atk"] = 2
         self.stage.player.stats["spd"] = 0.3
-        self.stage.player.diagonalSpeed = m.sqrt((self.stats["spd"] * self.stats["spd"])/2.0)
+        self.stage.player.diagonalSpeed = m.sqrt((self.stage.player.stats["spd"] * self.stage.player.stats["spd"])/2.0)
