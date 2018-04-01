@@ -48,9 +48,10 @@ class DeathFollowPlayerState(DeathBehaviourState):
             # enemy.animationFinish = False
             # enemy.set_initial_frame(5)
             # enemy.change_behaviour(DeathSlashState(self))
-            
+
 
     def update(self, enemy, time, mapRect, mapMask):
+        enemy.channel_effect.soundUpdate(time)
         # Se actualiza el movimiento del personaje
         Character.update_movement(enemy, time)
         enemy.speed = (enemy.speed[0]*1.5, enemy.speed[1]*1.5)

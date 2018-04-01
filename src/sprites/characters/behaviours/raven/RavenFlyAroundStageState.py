@@ -22,6 +22,7 @@ class RavenFlyAroundStageState(RavenBehaviourState):
         pass
 
     def update(self, enemy, time, mapRect, mapMask):
+        enemy.channel_effect.soundUpdate(time)
         # Miramos si el enemigo se sale del área de vuelo
         if not mapRect.inflate(-48, -48).contains(enemy.rect):
             if enemy.rect.top < mapRect.top+24:

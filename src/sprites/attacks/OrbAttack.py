@@ -18,7 +18,7 @@ class OrbAttack(Attack):
         # Obtenemos las rutas a los archivos
         castingFile = os.path.join('attacks', 'orb.png')
         castingSheet = os.path.join('attacks', 'castingOrb.json')
-        effect_sound = 'slash.ogg'
+        effect_sound = 'pew.ogg'
 
         self.castingAnim = MyStaticAnimatedSprite(castingFile, castingSheet)
         self.castingAnim.animationLoop = False
@@ -107,6 +107,8 @@ class OrbAttack(Attack):
         else:
             # Si ha pasado el tiempo suficiente y estamos intentando atacar
             if (self.elapsedTime > self.delayTime) and self.attacking:
+                #Se llama a la funcion sound_update del channel_effect
+                self.channel_effect.soundUpdate(time)
                 # Se crea una bala y se guarda en el grupo de balas
                 bullet = Bullet(self.bulletPos, self.rotation, self.radius, self.bulletImage, 0.15)
                 self.bullets.add(bullet)

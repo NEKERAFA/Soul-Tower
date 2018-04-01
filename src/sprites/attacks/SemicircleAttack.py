@@ -18,9 +18,10 @@ class SemicircleAttack(Attack):
         # Obtenemos las rutas a los archivos
         imageFile = 'semicircle.png'
         spriteSheet = 'semicircle.json'
+        effect_sound = 'slash.ogg'
 
         # Invocamos al constructor de la clase padre
-        Attack.__init__(self, imageFile, spriteSheet, enemies, None) # TODO cambiar None
+        Attack.__init__(self, imageFile, spriteSheet, enemies, effect_sound) # TODO cambiar None
         self.image = pygame.transform.scale(self.origImage, (int(self.rect.width*2), int(self.rect.height*2)))
         self.loopAnimation = True
 
@@ -65,6 +66,8 @@ class SemicircleAttack(Attack):
 
         # Si ha pasado el tiempo suficiente y estamos intentando atacar
         if (self.elapsedTime > self.delayTime) and self.attacking:
+            #Se llama a la funcion sound_update del channel_effect
+            self.channel_effect.soundUpdate(time)
             # Se crea una bala y se guarda en el grupo de balas
             bullet = Bullet(self.pos, self.rotation, self.radius, self.image, 0.15)
             self.bullets.add(bullet)
