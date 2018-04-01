@@ -34,8 +34,8 @@
         "finalDialogue": "",
         "closeDoor": {
             "doorSprite": "boss2TopDoor.png",
-            "position": [504, 1296],
-            "doorMask": [528, 1296, 48, 24]
+            "position": [504, 1320],
+            "doorMask": [528, 1296, 48, 12]
         }
     }
 }

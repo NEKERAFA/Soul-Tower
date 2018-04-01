@@ -13,7 +13,7 @@
 
     "behaviour" : {
         "type": "patrolling",
-        "radius": 300,
+        "radius": 200,
         "angle": 360
     },
 
