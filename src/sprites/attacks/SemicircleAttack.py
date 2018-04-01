@@ -13,7 +13,7 @@ E = 2
 
 # -------------------------------------------------
 # Sprites de ataques
-class OrbAttack(Attack):
+class SemicircleAttack(Attack):
     def __init__(self, radius, delayTime, enemies, looking):
         # Obtenemos las rutas a los archivos
         imageFile = 'semicircle.png'
@@ -21,6 +21,7 @@ class OrbAttack(Attack):
 
         # Invocamos al constructor de la clase padre
         Attack.__init__(self, imageFile, spriteSheet, enemies)
+        self.image = pygame.transform.scale(self.origImage, (int(self.rect.width*2), int(self.rect.height*2)))
         self.loopAnimation = True
 
         # Radio de acción
@@ -29,13 +30,15 @@ class OrbAttack(Attack):
         self.delayTime = delayTime
         self.elapsedTime = 0
         # Comprueba si está atacando
-        self.attacking = True
+        self.attacking = False
+        self.ended = False
         # Grupo de disparos
         self.bullets = pygame.sprite.Group()
         # Dirección
         self.looking = looking
 
     def start_attack(self, pos, enemyPos):
+        self.pos = pos
         bulletX,bulletY = pos
         (enemyX, enemyY) = enemyPos
         # Obtenemos el ángulo entre el orbe y el enemigo
@@ -49,49 +52,43 @@ class OrbAttack(Attack):
 
     def end_attack(self):
         self.attacking = False
+        self.ended = True
 
     def draw(self, surface):
-        if not self.castingAnim.animationFinish:
-            surface.blit(self.castingAnim.image, self.castingAnim.rect)
-        else:
-            surface.blit(self.image, self.rect)
-            self.bullets.draw(surface)
+        surface.blit(self.image, self.rect)
+        self.bullets.draw(surface)
 
     def update(self, boss, time, stage):
 
         # Actualizamos el ataque
         Attack.update(self, time)
 
-        if not self.castingAnim.animationFinish:
-            self.castingAnim.update(time)
+        # Si ha pasado el tiempo suficiente y estamos intentando atacar
+        if (self.elapsedTime > self.delayTime) and self.attacking:
+            # Se crea una bala y se guarda en el grupo de balas
+            bullet = Bullet(self.pos, self.rotation, self.radius, self.image, 0.15)
+            self.bullets.add(bullet)
 
+            # Y reiniciar el contador
+            self.elapsedTime = 0
         else:
-            # Si ha pasado el tiempo suficiente y estamos intentando atacar
-            if (self.elapsedTime > self.delayTime) and self.attacking:
-                # Se crea una bala y se guarda en el grupo de balas
-                bullet = Bullet(self.bulletPos, self.rotation, self.radius, self.bulletImage, 0.15)
-                self.bullets.add(bullet)
+            self.elapsedTime += time
 
-                # Y reiniciar el contador
-                self.elapsedTime = 0
-            else:
-                self.elapsedTime += time
+        # Actualizamos las balas
+        self.bullets.update(time, stage, self.image)
 
-            # Actualizamos las balas
-            self.bullets.update(time, stage, self.bulletImage)
+        # Comprobamos que enemigos colisionan con que grupos
+        collides = pygame.sprite.groupcollide(self.bullets, self.enemies, True, False)
 
-            # Comprobamos que enemigos colisionan con que grupos
-            collides = pygame.sprite.groupcollide(self.bullets, self.enemies, True, False)
+        # Si hay una colisión, hacemos daño al enemigo y matamos la bala
+        for bullet in collides:
+            enemies = collides[bullet]
+            # Cogemos el primero en hacer la colisión para que reciba daño
+            enemy = enemies[0]
+            enemyPos = enemy.position
+            impulse = Force(bullet.rotation, boss.stats["backward"])
+            enemy.receive_damage(boss.stats["atk"], impulse)
 
-            # Si hay una colisión, hacemos daño al enemigo y matamos la bala
-            for bullet in collides:
-                enemies = collides[bullet]
-                # Cogemos el primero en hacer la colisión para que reciba daño
-                enemy = enemies[0]
-                enemyPos = enemy.position
-                impulse = Force(bullet.rotation, boss.stats["backward"])
-                enemy.receive_damage(boss.stats["atk"], impulse)
-
-        if not self.attacking and len(self.bullets.sprites())==0:
+        if self.ended and len(self.bullets.sprites())==0:
             boss.attack = None
             self.kill()

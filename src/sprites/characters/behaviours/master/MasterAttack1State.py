@@ -10,12 +10,13 @@ from src.sprites.EnemyRange import *
 # ------------------------------------------------------------------------------
 # Clase MasterCastState
 
-class MasterCastState(MasterBehaviourState):
+class MasterAttack1State(MasterBehaviourState):
     def __init__(self, previousState):
         MasterBehaviourState.__init__(self)
+        self.previousState = previousState
         self.player = previousState.player
-        self.delayTime = random.randint(3, 4)*1000
-        self.elapseTime = 0
+        # self.delayTime = random.randint(3, 4)*1000
+        # self.elapseTime = 0
 
     def move_ai(self, enemy, player):
         pass
@@ -39,16 +40,16 @@ class MasterCastState(MasterBehaviourState):
 
         if (enemy.animationFrame==3):
             #dosomefuckery
-            y = rect.bottom
-            x = rect.left + rect.width
+            y = enemy.rect.bottom
+            x = enemy.rect.left + enemy.rect.width/2
             # Indicamos que se puede atacar
-            enemy.attack.start_attack(x,y, self.player.rect.center)
+            enemy.attack.start_attack((x,y), self.player.rect.center)
 
             if (enemy.animationFinish == True):
-                self.elapseTime += time
+                # self.elapseTime += time
                 # Si se pasan los segundos, cambio de estado
-                if self.elapseTime > self.delayTime:
-                    self.delayTime = random.randint(1, 3)*1000
-                    self.elapseTime = 0
-                    enemy.attack.end_attack()
-                    enemy.change_behaviour(MasterMainState())
+                # if self.elapseTime > self.delayTime:
+                #     self.delayTime = random.randint(1, 3)*1000
+                #     self.elapseTime = 0
+                enemy.attack.end_attack()
+                enemy.change_behaviour(self.previousState)
