@@ -9,6 +9,9 @@ STAGE_CONF_PATH = os.path.join('assets', 'stages')
 ROOM_CONF_PATH = os.path.join('assets', 'rooms')
 DIALOGUE_CONF_PATH = os.path.join('assets', 'dialogues')
 FONT_PATH = os.path.join('assets', 'fonts')
+SOUND_PATH = os.path.join('assets', 'sounds')
+MUSIC_PATH = os.path.join(SOUND_PATH,'music')
+EFFECT_PATH = os.path.join(SOUND_PATH,'effects')
 
 # -------------------------------------------------
 # Clase ResourceManager
@@ -20,7 +23,8 @@ class ResourceManager(object):
 
     @classmethod
     def load_music(cls, name):
-        fullname = os.path.join('assets/sounds/music', name)
+        fullname = os.path.join(MUSIC_PATH, name)
+        print(fullname)
         pygame.mixer.music.load(fullname)
 
 
@@ -30,7 +34,7 @@ class ResourceManager(object):
         if name in cls.resources:
             return cls.resources[name]
         else:
-            fullname = os.path.join('assets/sounds/effects', name)
+            fullname = os.path.join(EFFECT_PATH, name)
             try:
                 sound_effect=pygame.mixer.Sound(fullname)
                 #sound_effect.set_volume(0.7);
