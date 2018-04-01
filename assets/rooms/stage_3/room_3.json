@@ -20,5 +20,25 @@
             "type": "FinalBossTrigger",
             "dialogueList": ["lerailaBoss.json", "daricBoss.json", "trueBoss.json"]
         }
-    ]
+    ],
+    "boss": {
+        "name": "master",
+        "position": [360, 384],
+        "finalDialogue": "",
+        "drops": [
+            {
+                "type": "heart",
+                "amount": 1
+            },
+            {
+                "type": "soul",
+                "amount": 10
+            }
+        ],
+        "closeDoor": {
+            "doorSprite": "boss3Door.png",
+            "position": [384, 552],
+            "doorMask": [404, 528, 32, 24]
+        }
+    }
 }
