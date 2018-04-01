@@ -24,7 +24,6 @@ class ResourceManager(object):
     @classmethod
     def load_music(cls, name):
         fullname = os.path.join(MUSIC_PATH, name)
-        print(fullname)
         pygame.mixer.music.load(fullname)
 
 

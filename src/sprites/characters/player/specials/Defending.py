@@ -36,14 +36,14 @@ class Defending(PlayerState):
     def receive_damage_aux(self, player, damage, force):
         # Si no tiene suficiente energía, entrar en estado de "stun"
         if (player.stats["nrg"]-self.defendCost<0):
-            print("Energía insuficiente. Jugador aturdido")
             #player.stats["nrg"] = 0
+            player.channel_damage.play(player.damage_sound)
             player.set_energy(0)
             self.change(player, Stunned)
             player.state.receive_damage(player, damage, force)
         else:
+            player.channel_damage.play(player.block_sound)
             player.add_energy(-self.defendCost)
-            print("Daño defendido")
 
     def debug(self):
         print("PlayerState = ", self.name)

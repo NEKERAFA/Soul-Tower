@@ -95,6 +95,9 @@ class Player(Character):
         #Sonido al recoger almas
         self.souls_sound = ResourceManager.load_effect_sound("soul_get.ogg")
 
+        #Sonido al bloquear con exito
+        self.block_sound =  ResourceManager.load_effect_sound("shield.ogg")
+
         # Nivel de las armas
         self.meleeLevel = 1
         self.rangedLevel = 1
@@ -200,7 +203,7 @@ class Player(Character):
     # Recibe un daño y se realiza el daño. Si el personaje ha muerto, lo elimina
     # de todos los grupos
     def receive_damage(self, damage, force):
-        self.channel_damage.play(self.damage_sound)
+        #self.channel_damage.play(self.damage_sound)
         life = self.stats["hp"]
         self.state.receive_damage(self, damage, force)
         remainLife = self.stats["hp"]

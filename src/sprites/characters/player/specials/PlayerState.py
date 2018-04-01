@@ -24,6 +24,7 @@ class PlayerState(object):
             self.receive_damage_aux(player, damage, force)
 
     def receive_damage_aux(self, player, damage, force):
+        player.channel_damage.play(player.damage_sound)
         Character.receive_damage(player, damage, force)
 
     def update_inv_time(self, time):
