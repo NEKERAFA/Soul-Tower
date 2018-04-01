@@ -26,7 +26,7 @@ class Stage(Scene):
     inRoomState = InRoomState()
     smallRoomState = SmallRoomState()
 
-    def __init__(self, stageNum, gameManager, player=None):
+    def __init__(self, stageNum, gameManager, player=None, playerStats=None):
         # Primero invocamos al constructor de la clase padre
         Scene.__init__(self, gameManager)
 
@@ -69,11 +69,17 @@ class Stage(Scene):
 
         # Cargamos el sprite del jugador
         if player is None:
-            self.player = Player(enemiesGroup, self)
+            self.player = Player(enemiesGroup, self, playerStats)
         else:
             self.player = player
         # Lo ponemos en su posición final
-        self.player.change_global_position((data["player_pos"][0], data["player_pos"][1]))
+        if(playerStats is not None):
+            self.player.change_global_position((playerStats["player_pos"][0], playerStats["player_pos"][1]))
+        else:
+            self.player.change_global_position((data["player_pos"][0], data["player_pos"][1]))
+
+        self.saveData = None
+        self.save_data(data)
 
         # Cargamos la interfaz del jugador
         # TODO: meter datos de la interfaz en json, y hacerlo dependiente de la sala en la que se encuentre el jugador
@@ -146,3 +152,18 @@ class Stage(Scene):
     # Crea la fase siguient
     def next_stage(self):
         return Stage(self.stageNum+1, self.gameManager, self.player)
+
+    def new_stage(self, data):
+        return Stage(self.stageNum, self.gameManager, None, data)
+
+    def save_data(self, data):
+        self.savedData = self.player.stats.copy()
+        self.savedData["player_pos"] = (data["player_pos"][0], data["player_pos"][1])
+        self.savedData["rng_del"] = self.player.rangedAttackDelay
+        self.savedData["mel_del"] = self.player.meleeAttackDelay
+
+        self.savedData["chose_not_shared"] = self.player.choseAnythingNotShared
+        self.savedData["killed_friend"] = self.player.killedFriend
+        self.savedData["choice_adder"] = self.player.choiceAdder
+
+        self.savedData["souls"] = self.player.souls

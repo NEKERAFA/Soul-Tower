@@ -9,6 +9,7 @@ from src.sprites.characters.Enemy import *
 
 class InRoomState(StageState):
     def update(self, time, stage):
+        
         currentRoom = stage.rooms[stage.currentRoom]
 
         # Movemos los enemigos

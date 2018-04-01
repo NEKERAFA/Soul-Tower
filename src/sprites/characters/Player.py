@@ -28,9 +28,9 @@ PLAYER_CONF_PATH = os.path.join(PLAYER_PATH, 'info.json')
 # -------------------------------------------------
 # Clase del Character jugable
 class Player(Character):
-    def __init__(self, enemies, stage):
+    def __init__(self, enemies, stage, loadStats=None):
         # Invocamos al constructor de la clase padre con la configuracion de este Character concreto
-        Character.__init__(self, SORCERER_PATH, PLAYER_CONF_PATH)
+        Character.__init__(self, SORCERER_PATH, PLAYER_CONF_PATH, loadStats)
 
         # Cargamos las sprite sheets
         self.sorcererSheet = self.sheet.copy()
@@ -48,13 +48,13 @@ class Player(Character):
 
         # Control de opciones escogidas en las ventanas mágicas
         #  Si se ha escogido alguna opción de sorceress O warrior
-        self.choseAnythingNotShared = False
+        self.choseAnythingNotShared = self.stats["chose_not_shared"]
         #  Si se ha escogido la opción 5
-        self.killedFriend = False
+        self.killedFriend = self.stats["killed_friend"]
         #  Sumador de las opciones escogidas: cada opción de sorceress +1,
         #  cada opción de warrior -1. Si el número termina siendo 0 después de
         #  la tercera opción significa que se han escogido 3-1-2 o 3-2-1
-        self.choiceAdder = 0
+        self.choiceAdder = self.stats["choice_adder"]
 
         # Guardo la fase actual
         self.stage = stage
@@ -66,7 +66,7 @@ class Player(Character):
         self.attack = RangedAttack(self.rangedAttackRadius, self.rangedAttackDelay, enemies)
 
         # Número de almas
-        self.souls = 0
+        self.souls = self.stats["souls"]
 
         # Inventario
         self.inventory = []
@@ -119,10 +119,10 @@ class Player(Character):
             centerPosY -= viewport.top
             centerPos = centerPosX, centerPosY
 
-            if(type(self.attack) is RangedAttack and self.stats["nrg"] >= self.rangedAttackEnergyCost and self.attack.elapsedTime > self.rangedAttackDelay):
+            if(type(self.attack) is RangedAttack and self.stats["nrg"] >= self.rangedAttackEnergyCost and self.attack.elapsedTime >= self.rangedAttackDelay):
                 self.add_energy(-self.rangedAttackEnergyCost)
                 self.attack.start_attack(self.rect.center, KeyboardMouseControl.angle(centerPos))
-            elif(type(self.attack) is MeleeAttack and self.stats["nrg"] >= self.meleeAttackEnergyCost and self.attack.elapsedTime > self.meleeAttackDelay):
+            elif(type(self.attack) is MeleeAttack and self.stats["nrg"] >= self.meleeAttackEnergyCost and self.attack.elapsedTime >= self.meleeAttackDelay):
                 self.add_energy(-self.meleeAttackEnergyCost)
                 self.attack.start_attack(self.rect.center, KeyboardMouseControl.angle(centerPos))
             else:
@@ -157,9 +157,10 @@ class Player(Character):
 
     # Incrementa el número de almas del jugador
     def increase_souls(self, souls):
+        self.stats["souls"] += souls
         self.souls += souls
         # Actualizo la GUI
-        self.stage.gui.soulsText.change_text(str(self.souls))
+        self.stage.gui.soulsText.change_text(str(self.stats["souls"]))
 
     # Recibe un daño y se realiza el daño. Si el personaje ha muerto, lo elimina
     # de todos los grupos

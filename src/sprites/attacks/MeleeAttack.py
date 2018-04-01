@@ -19,7 +19,7 @@ class MeleeAttack(Attack):
 
         # Tiempo entre ataques melee
         self.delayTime = delayTime
-        self.elapsedTime = 0
+        self.elapsedTime = self.delayTime
         # Radio del ataque
         self.radius = radius
         # Comprueba si está atacando
@@ -56,7 +56,7 @@ class MeleeAttack(Attack):
 
     def update(self, player, time, stage):
         # Si ha pasado el tiempo suficiente y estamos intentando atacar
-        if (self.elapsedTime > self.delayTime) and self.attacking:
+        if (self.elapsedTime >= self.delayTime) and self.attacking:
             self.drawAnimation = True
             # Y reiniciar el contador
             self.elapsedTime = 0

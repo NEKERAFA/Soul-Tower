@@ -3,6 +3,7 @@
 import pygame
 from pygame.locals import *
 from src.ResourceManager import *
+from src.scenes.Stage import *
 from src.interface.screens.GUIScreen import *
 from src.interface.GUIImage import *
 from src.interface.GUIButton import *
@@ -74,4 +75,6 @@ class GUIGameOverScreen(GUIScreen):
         self.stage.gameManager.program_exit()
 
     def button_fun_continue(self):
-        print("continue")
+        #scene = Stage(self.stage.stageNum, gameManager, None, self.stage.savedData)
+        scene = self.stage.new_stage(self.stage.savedData)
+        self.stage.gameManager.scene_change(scene)
