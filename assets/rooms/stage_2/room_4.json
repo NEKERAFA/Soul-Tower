@@ -33,15 +33,15 @@
             "position": [1138, 1876],
             "drop": {
                 "type": "soul",
-                "amount": 10
+                "amount": 20
             }
         },
         {
             "type": "rat",
             "position": [1441, 1848],
             "drop": {
-                "type": "soul",
-                "amount": 10
+                "type": "heart",
+                "amount": 1
             }
         },
         {
@@ -49,15 +49,7 @@
             "position": [1437, 1602],
             "drop": {
                 "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "rat",
-            "position": [1431, 1798],
-            "drop": {
-                "type": "soul",
-                "amount": 10
+                "amount": 20
             }
         }
     ],

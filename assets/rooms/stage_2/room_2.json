@@ -44,84 +44,35 @@
             "type": "rat",
             "drop": {
                 "type": "soul",
-                "amount": 10
+                "amount": 20
             }
         },
         {
             "type": "rat",
             "drop": {
                 "type": "soul",
-                "amount": 10
+                "amount": 20
             }
         },
         {
             "type": "rat",
             "drop": {
                 "type": "soul",
-                "amount": 10
+                "amount": 20
             }
         },
         {
             "type": "rat",
             "drop": {
                 "type": "soul",
-                "amount": 10
+                "amount": 20
             }
         },
         {
             "type": "rat",
             "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "rat",
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "rat",
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "rat",
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "rat",
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "rat",
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "rat",
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "rat",
-            "drop": {
-                "type": "soul",
-                "amount": 10
+                "type": "heart",
+                "amount": 1
             }
         },
         {
@@ -143,7 +94,7 @@
             "position": [1560, 625],
             "drop": {
                 "type": "soul",
-                "amount": 20
+                "amount": 40
             }
         },
         {
@@ -151,7 +102,7 @@
             "position": [1560, 1130],
             "drop": {
                 "type": "soul",
-                "amount": 20
+                "amount": 40
             }
         }
     ]

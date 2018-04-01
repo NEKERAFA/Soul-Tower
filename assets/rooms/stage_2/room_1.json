@@ -56,7 +56,7 @@
             "position": [98, 1264],
             "drop": {
                 "type": "soul",
-                "amount": 20
+                "amount": 30
             }
         },
         {
@@ -64,15 +64,7 @@
             "position": [660, 1260],
             "drop": {
                 "type": "soul",
-                "amount": 20
-            }
-        },
-        {
-            "type": "spider",
-            "position": [168, 1047],
-            "drop": {
-                "type": "soul",
-                "amount": 20
+                "amount": 30
             }
         },
         {
@@ -88,15 +80,7 @@
             "position": [648, 1130],
             "drop": {
                 "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "rat",
-            "position": [912, 1250],
-            "drop": {
-                "type": "soul",
-                "amount": 10
+                "amount": 20
             }
         }
     ],

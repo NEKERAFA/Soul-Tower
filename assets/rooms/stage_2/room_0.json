@@ -23,8 +23,8 @@
             "type": "bat",
             "position": [216, 528],
             "drop": {
-                "type": "soul",
-                "amount": 10
+                "type": "heart",
+                "amount": 1
             }
         },
         {
@@ -56,15 +56,15 @@
             "position": [792, 432],
             "drop": {
                 "type": "soul",
-                "amount": 10
+                "amount": 20
             }
         },
         {
             "type": "rat",
             "position": [216, 528],
             "drop": {
-                "type": "soul",
-                "amount": 10
+                "type": "heart",
+                "amount": 1
             }
         },
         {
@@ -72,7 +72,7 @@
             "position": [360, 456],
             "drop": {
                 "type": "soul",
-                "amount": 10
+                "amount": 20
             }
         },
         {
@@ -88,15 +88,15 @@
             "position": [96, 312],
             "drop": {
                 "type": "soul",
-                "amount": 10
+                "amount": 20
             }
         },
         {
             "type": "rat",
             "position": [216, 528],
             "drop": {
-                "type": "soul",
-                "amount": 10
+                "type": "heart",
+                "amount": 1
             }
         }
     ],
