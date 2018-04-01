@@ -21,6 +21,7 @@ class Enemy(NPC):
         self.justDied = False
         self.attack = None
 
+
     def move_ai(self, player):
         self.state.move_ai(self, player)
 

@@ -23,7 +23,9 @@
             "position": [144, 876],
             "width": 552,
             "height": 60,
-            "dialogueFile": "test.json"
+            "conditional": true,
+            "type": "PreEndingTrigger",
+            "dialogueList": ["test.json", "test.json", "test.json"]
         }
     ]
 }

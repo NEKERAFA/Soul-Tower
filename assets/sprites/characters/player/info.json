@@ -20,6 +20,8 @@
         "player_pos": [-1, -1]
     },
 
+    "sound": "step.wav",
+
     "frames": [
         [
             {

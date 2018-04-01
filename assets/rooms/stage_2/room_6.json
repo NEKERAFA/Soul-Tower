@@ -16,7 +16,8 @@
         "initialDialog": "magicWindow2.json",
         "selectionFile": "magicWindow_menu.json",
         "endDialog": ["magicWindow2_leraila.json", "magicWindow2_daric.json", "magicWindow2_both.json"],
-        "collision": [3192, 384, 72, 72]
+        "collision": [3192, 384, 72, 72],
+        "door": [1, 0]
     },
     "unlockedDoors": [
         {

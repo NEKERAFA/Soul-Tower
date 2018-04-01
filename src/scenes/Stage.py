@@ -72,6 +72,7 @@ class Stage(Scene):
             self.player = Player(enemiesGroup, self, playerStats)
         else:
             self.player = player
+            self.player.set_enemies(enemiesGroup)
         # Lo ponemos en su posición final
         if(playerStats is not None):
             self.player.change_global_position((playerStats["player_pos"][0], playerStats["player_pos"][1]))

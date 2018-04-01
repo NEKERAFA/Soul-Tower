@@ -1,0 +1,99 @@
+[
+    {
+        "text": [
+            ["Leraila... Daric..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["..."],
+            ["Suena como..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["... Héctor."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "hector_ghost.png",
+                "name": "Héctor"
+            }
+        },
+        "text": [
+            ["Siento venir a veros de esta forma. Tuve un...", "pequeño incidente."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila3.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["..."],
+            ["«Lo siento, Héctor... No pude salvarte»"]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "hector_ghost.png",
+                "name": "Héctor"
+            }
+        },
+        "text": [
+            ["Sólo quería deciros una última cosa antes de", "irme."],
+            ["Por favor, dejad de pelear. Entre los dos,", "sé que podríais traer una época de prosperidad", "al reino como nunca se ha visto."],
+            ["Cuidaos... amigos míos."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["¡HÉCTOR!"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila3.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Espero que seas consciente de que esto es", "culpa tuya."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric4.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["..."]
+        ]
+    }
+]

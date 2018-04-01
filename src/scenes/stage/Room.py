@@ -8,8 +8,12 @@ from src.sprites.Trigger import *
 from src.sprites.Drop import *
 from src.sprites.Key import *
 from src.sprites.Door import *
+from src.sprites.Upgrade import *
 from src.sprites.doors.UnlockedDoor import *
 from src.sprites.MagicWindow import *
+from src.sprites.ConditionalTrigger import *
+from src.sprites.HectorTrigger import *
+from src.sprites.PreEndingTrigger import *
 
 # -------------------------------------------------
 # Clase Room
@@ -49,7 +53,7 @@ class Room(object):
                     offset = enemySprite.rect.topleft
 
                     # Comprobamos que no colisiona con la máscara
-                    while enemySprite.mask.overlap(stage.mask, offset):
+                    while stage.mask.overlap(enemySprite.mask, offset):
                         posX = random.randint(self.position[0]+24, self.position[0]+self.width-48)
                         posY = random.randint(self.position[1]+24, self.position[1]+self.height-48)
                         enemySprite.change_global_position((posX, posY))
@@ -103,11 +107,24 @@ class Room(object):
                 self.unlockedDoorsGroup.add(door)
                 self.interactives.add(door)
 
+        # Cargamos las mejoras si existieras
+        self.upgradesGroup = pygame.sprite.Group()
+        if "upgrades" in data:
+            # Upgrade de Daric
+            daricUpg = data["upgrades"]["daric"]
+            daricUpgSprite = Upgrade(daricUpg["position"], daricUpg["sprite"], daricUpg["cost"], "melee")
+            # Upgrade de Leraila
+            lerailaUpg = data["upgrades"]["leraila"]
+            lerailaUpgSprite = Upgrade(lerailaUpg["position"], lerailaUpg["sprite"], lerailaUpg["cost"], "ranged")
+            # Añadimos los upgrades a su grupo correspondiente
+            self.upgradesGroup.add([daricUpgSprite, lerailaUpgSprite])
+            self.interactives.add([daricUpgSprite, lerailaUpgSprite])
+
         # Cargamos la ventana mágica si existera
         self.magicWindowGroup = pygame.sprite.Group()
         if "magicWindow" in data:
             windowData = data["magicWindow"]
-            magicWindow = MagicWindow(windowData["position"], windowData["initialDialog"], windowData["selectionFile"], windowData["endDialog"], windowData["collision"])
+            magicWindow = MagicWindow(windowData["position"], windowData["initialDialog"], windowData["selectionFile"], windowData["endDialog"], windowData["collision"], windowData["door"])
             self.magicWindowGroup.add(magicWindow)
             self.interactives.add(magicWindow)
 
@@ -119,13 +136,19 @@ class Room(object):
                 width = triggerData["width"]
                 height = triggerData["height"]
                 door = None
+                trigger = None
 
                 if "opens" in triggerData:
                     otherRoomNum = triggerData["opens"][0]
                     doorNum  = triggerData["opens"][1]
                     door = stage.rooms[otherRoomNum].lockedDoors[doorNum] if otherRoomNum != roomNum else self.lockedDoors[doorNum]
 
-                trigger = Trigger(pygame.Rect((x, y), (width, height)), triggerData["dialogueFile"], door)
+                if "conditional" in triggerData:
+                    trigger = ConditionalTrigger(pygame.Rect((x, y), (width, height)), triggerData["dialogueList"])
+                    trigger.__class__ = getattr(sys.modules[__name__], triggerData["type"])
+                else:
+                    trigger = Trigger(pygame.Rect((x, y), (width, height)), triggerData["dialogueFile"], door)
+
                 trigger.change_position((x, y))
                 self.triggers.add(trigger)
 

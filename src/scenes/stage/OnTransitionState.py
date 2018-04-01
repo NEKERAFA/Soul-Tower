@@ -108,6 +108,8 @@ class OnTransitionState(StageState):
         # Sprites interactivos
         currentRoom.unlockedDoorsGroup.draw(newImage)
         nextRoom.unlockedDoorsGroup.draw(newImage)
+        currentRoom.upgradesGroup.draw(newImage)
+        nextRoom.upgradesGroup.draw(newImage)
         # Player
         stage.player.draw(newImage)
         # Se pinta la porción de la sala que coincide con el viewport

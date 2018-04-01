@@ -78,13 +78,13 @@
             "position": [1104, 1920],
             "doorSprite": "cell3b.png",
             "doorMask": [1172, 1728, 32, 24],
-            "collision": [1172, 1728, 32, 24]
+            "collision": [1172, 1716, 32, 24]
         },
         {
             "position": [1392, 1920],
             "doorSprite": "cell3b.png",
             "doorMask": [1460, 1728, 32, 24],
-            "collision": [1460, 1728, 32, 24]
+            "collision": [1460, 1716, 32, 24]
         }
     ]
 }

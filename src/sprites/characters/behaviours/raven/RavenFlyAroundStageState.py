@@ -24,7 +24,35 @@ class RavenFlyAroundStageState(RavenBehaviourState):
     def update(self, enemy, time, mapRect, mapMask):
         # Miramos si el enemigo se sale del área de vuelo
         if not mapRect.inflate(-48, -48).contains(enemy.rect):
-            self.angle = random.randint(0, 359)
+            if enemy.rect.top < mapRect.top+24:
+                # Choca arriba
+                if enemy.rect.left < mapRect.left+24:
+                    # Choca arriba a la izquierda
+                    self.angle = 315
+                elif enemy.rect.right > mapRect.right-24:
+                    # Choca arriba a la derecha
+                    self.angle = 225
+                else:
+                    self.angle = random.randint(225, 315)
+            elif enemy.rect.bottom > mapRect.bottom-24:
+                # Choca abajo
+                if enemy.rect.left < mapRect.left+24:
+                    # Choca abajo a la izquierda
+                    self.angle = 45
+                elif enemy.rect.right > mapRect.right-24:
+                    # Choca abajo a la derecha
+                    self.angle = 135
+                else:
+                    self.angle = random.randint(45, 135)
+            # Choca a la izquierda
+            elif enemy.rect.left < mapRect.left+24:
+                self.angle = random.randint(315, 405) % 360
+            # Choca a la derecha
+            elif enemy.rect.right > mapRect.right-24:
+                self.angle = random.randint(135, 225)
+            else:
+                print "No se que hacer"
+                self.angle = random.randint(0, 356)
 
         # Calculamos hacia donde tiene que moverse el personaje
         lookAt, move = EnemyRange.discretice_angle(self.angle)

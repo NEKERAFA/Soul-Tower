@@ -11,6 +11,7 @@ class Thunder(Attack):
         # Obtenemos las rutas a los archivos
         imageFile = 'thunder.png'
         spriteSheet = 'thunder.json'
+        effect_sound = 'thunder.wav'
         self.damage = 1
         dispersion = 40
         x,y = characterPos
@@ -24,7 +25,7 @@ class Thunder(Attack):
         self.rotation = rotation
 
         # Invocamos al constructor de la clase padre
-        Attack.__init__(self, imageFile, spriteSheet, enemies)
+        Attack.__init__(self, imageFile, spriteSheet, enemies, effect_sound)
         self.image = pygame.transform.rotate(self.origImage, 90)
         self.rect.bottomleft = x-self.rect.height/2,y-self.rect.width-36
         # self.rect.bottomleft = x-self.rect.height/2,y-self.rect.width-16

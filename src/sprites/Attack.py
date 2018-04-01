@@ -49,7 +49,7 @@ class Attack(MySprite):
             newP = (x+ladoB*paramX, y+ladoA*paramY)
         return newP
 
-    def __init__(self, imageFile, spriteSheet, enemies):
+    def __init__(self, imageFile, spriteSheet, enemies, effect_sound):
         # Primero invocamos al constructor de la clase padre
         MySprite.__init__(self)
 

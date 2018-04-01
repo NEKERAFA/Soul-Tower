@@ -38,7 +38,7 @@ El archivo de configuración de la sala debe contener los siguientes datos:
         - "height": Altura en píxeles del trigger.
         - "width": Ancho en píxeles del trigger.
         - "dialogueFile": Nombre del fichero de diálogo asociado al trigger.
-        - "opens": [room, door] Número de puerta que abre y sala en la que está dicha puerta (opcional). La sala, por lógica, tendrá un número menor o igual al de la sala en la que se encuentra el trigger
+        - "opens" (opcional): [room, door] Número de puerta que abre y sala en la que está dicha puerta (opcional). La sala, por lógica, tendrá un número menor o igual al de la sala en la que se encuentra el trigger
     - "lockedDoors": Lista de puertas cerradas de la sala, si las hay.
         - "doorSprite": Sprite de la puerta.
         - "position" [x, y]: Posición de la esquina inferior izquierda de la puerta (no tiene por qué corresponder con la de la conexión).
@@ -58,6 +58,16 @@ El archivo de configuración de la sala debe contener los siguientes datos:
         - "selectionFile": Nombre del archivo de selecciones
         - "endDialog": Lista con los nombres de los diálogos finales
         - "collision" [x, y, width, height]: Rectángulo donde se hace la comprobación
+        - "door" [room, lockedDoor]: Puerta que abre al seleccionar el diálogo.
+    - "upgrades": Contiene una lista de la situación de los sprites si es una sala de tienda
+        - "dirac": Mejora para Dirac, contiene la siguiente información:
+            - "position" [x, y]: Posición de la esquina inferior izquierda de la mejora para Dirac.
+            - "sprite": Nombre del sprite de la mejora.
+            - "cost": Coste de la mejora.
+        - "leraila": Mejora para Leraila, contiene la siguiente información:
+            - "position" [x, y]: Posición de la esquina inferior izquierda de la mejora de Leraila.
+            - "sprite": Nombre del sprite de la mejora.
+            - "cost": Coste de la mejora.
 
 Cómo engañar al scroll:
     En salas en las que se vería parcialmente el fondo al entrar por algún lado, el scroll daría un salto para centrarse al entrar. Para engañar al scroll y que no dé dicho salto hay que indicar que las dimensiones de la sala son mayores de lo que realmente son, de tal modo que el scroll piense que la parte de fondo negro que se ve forma parte de la sala.

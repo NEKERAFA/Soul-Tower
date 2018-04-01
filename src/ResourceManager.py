@@ -17,6 +17,45 @@ FONT_PATH = os.path.join('assets', 'fonts')
 class ResourceManager(object):
     resources = {}
 
+
+    @classmethod
+    def load_music(cls, name):
+        #Si ya está presente en los resources
+        if name in cls.resources:
+            #Se devuelve de los recursos
+            return cls.resources[name]
+        #Si no se cargó anteriormente
+        else:
+            fullname = os.path.join('assets', 'sounds', 'music', name)
+            try:
+                music=pygame.mixer.music.load(fullname)
+            except pygame.error, message:
+                print 'Cannot load music file: ', fullname
+                raise SystemExit, message
+            #Se almacena
+            cls.resources[name] = music
+            return music
+
+
+    @classmethod
+    def load_effect_sound(cls, name):
+        if name in cls.resources:
+            return cls.resources[name]
+        else:
+            fullname = os.path.join('assets/sounds/effects', name)
+            try:
+                sound_effect=pygame.mixer.Sound(fullname)
+                #sound_effect.set_volume(0.7);
+                print(fullname)
+                print(sound_effect.get_volume())
+            except pygame.error, message:
+                print 'Cannot load sound effect file:', fullname
+                raise SystemExit, message
+            #Se almacena
+            cls.resources[name] = sound_effect
+            return sound_effect
+
+
     @classmethod
     def load_image(cls, name, colorkey=None):
         fullname = os.path.join(IMAGE_PATH, name)

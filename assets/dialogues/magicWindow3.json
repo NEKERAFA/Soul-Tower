@@ -1,0 +1,125 @@
+[
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Otra vez no..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "soldier.png",
+                "name": "Soldado"
+            },
+            "background": "village2.png"
+        },
+        "text": [
+            ["¡La plaga se extiende!", "¡Esta zona ya no es segura!", "No puedo dejarte pasar, chica."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "villager3.png",
+                "name": "Aldeana"
+            },
+            "background": "village2.png"
+        },
+        "text": [
+            ["¡Por favor...! Mi familia vive en esa aldea...", "Me llegaron noticias de que se contagiaron.", "Tengo que cuidar de ellos..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Cielos..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila3.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila2.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Una enfermedad letal, ¿eh...?"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric4.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Esto es... mucha responsabilidad."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila2.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Lo siento por los aldeanos, pero... debería", "purgarse la zona. Eso impediría que se", "extendiera a otros lugares."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["¡Eso es una locura! ¡No puedes matar a tanta", "gente!"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila2.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["¿Prefieres que todo el reino acabe", "contaminado? ¿Tienes una idea mejor?"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric4.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["T-Todavía no... Pero eso no significa que", "puedas..."]
+        ]
+    }
+]

@@ -48,6 +48,7 @@ class StageState(object):
         currentRoom.doors.draw(newImage)
         # Sprites interactivos
         currentRoom.unlockedDoorsGroup.draw(newImage)
+        currentRoom.upgradesGroup.draw(newImage)
         # Player
         stage.player.draw(newImage)
         # Se pinta la porción de la sala que coincide con el viewport

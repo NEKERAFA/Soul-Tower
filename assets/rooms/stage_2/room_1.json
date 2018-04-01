@@ -132,25 +132,25 @@
             "position": [48, 1296],
             "doorSprite": "cell5.png",
             "doorMask": [140, 1152, 32, 24],
-            "collision": [140, 1152, 32, 24]
+            "collision": [140, 1140, 32, 24]
         },
         {
             "position": [264, 1296],
             "doorSprite": "cell5.png",
             "doorMask": [356, 1152, 32, 24],
-            "collision": [356, 1152, 32, 24]
+            "collision": [356, 1140, 32, 24]
         },
         {
             "position": [624, 1296],
             "doorSprite": "cell5.png",
             "doorMask": [716, 1152, 32, 24],
-            "collision": [716, 1152, 32, 24]
+            "collision": [716, 1140, 32, 24]
         },
         {
             "position": [840, 1296],
             "doorSprite": "cell5.png",
             "doorMask": [932, 1152, 32, 24],
-            "collision": [932, 1152, 32, 24]
+            "collision": [932, 1140, 32, 24]
         }
     ],
     "lockedDoors": [

@@ -62,9 +62,6 @@ class Player(Character):
         # Atributo de estado del jugador (patrón estado)
         self.state = Normal()
 
-        # Se cargan los ataques
-        self.attack = RangedAttack(self.rangedAttackRadius, self.rangedAttackDelay, enemies)
-
         # Número de almas
         self.souls = self.stats["souls"]
 
@@ -79,6 +76,13 @@ class Player(Character):
 
         # Si se está cambiando de personaje o no
         self.changing = Finish()
+
+        # Nivel de las armas
+        self.meleeLevel = 1
+        self.rangedLevel = 1
+
+        # Se cargan los ataques
+        self.attack = RangedAttack(self.rangedAttackRadius, self.rangedAttackDelay, self.rangedLevel, enemies)
 
     def move(self, viewport):
         # Indicamos la acción a realizar segun la tecla pulsada para el jugador
@@ -107,11 +111,11 @@ class Player(Character):
         if KeyboardMouseControl.prim_button():
             # Si es sorcerer, el ataque actual es ataque a distancia
             if self.currentCharacter == 'sorcerer' and type(self.attack) is not RangedAttack:
-                self.attack = RangedAttack(self.rangedAttackRadius, self.rangedAttackDelay, self.attack.enemies)
+                self.attack = RangedAttack(self.rangedAttackRadius, self.rangedAttackDelay, self.rangedLevel, self.attack.enemies)
 
             # Si es warrior, el ataque actual es melee
             if self.currentCharacter == 'warrior' and type(self.attack) is not MeleeAttack:
-                self.attack = MeleeAttack(self.meleeAttackRadius, self.meleeAttackDelay, self.attack.enemies)
+                self.attack = MeleeAttack(self.meleeAttackRadius, self.meleeAttackDelay, self.meleeLevel, self.attack.enemies)
 
             # Calcular la posición del centro del sprite (de momento calcula el centro del primer sprite)
             centerPosX, centerPosY = self.rect.center
@@ -155,12 +159,22 @@ class Player(Character):
 
     ############################################################################
 
+    # Llama a la interfaz a actualizar la cantidad de almas
+    def update_souls(self):
+        self.stage.gui.soulsText.change_text(str(self.souls))
+
     # Incrementa el número de almas del jugador
     def increase_souls(self, souls):
         self.stats["souls"] += souls
         self.souls += souls
         # Actualizo la GUI
-        self.stage.gui.soulsText.change_text(str(self.stats["souls"]))
+        self.update_souls()
+
+    # Decrementa el número de almas del jugador
+    def decrement_souls(self, souls):
+        self.souls -= souls
+        # Actualizo la GUI
+        self.update_souls()
 
     # Recibe un daño y se realiza el daño. Si el personaje ha muerto, lo elimina
     # de todos los grupos
@@ -213,6 +227,10 @@ class Player(Character):
         self.stats["max_nrg"] += 1
         self.stats["nrg"] = self.stats["max_nrg"]
         self.stage.gui.energy.gain_energy_bar()
+
+    # Añade nuevos enemigos en el cambio de fase
+    def set_enemies(self, enemies):
+        self.attack.enemies = enemies
 
     # Cambia de fase al jugador
     def change_stage(self, stage):

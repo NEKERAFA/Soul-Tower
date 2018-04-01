@@ -4,13 +4,15 @@
         "hp": 2,
         "atk": 1,
         "backward": 0.002,
-        "spd": 0.15
+        "spd": 0.125
     },
+
+    "sound": "wolf.wav",
 
     "behaviour" : {
         "type": "patrolling",
         "radius": 250,
-        "angle": 45
+        "angle": 90
     },
 
     "frames": [
