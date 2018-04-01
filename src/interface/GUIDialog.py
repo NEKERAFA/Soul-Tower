@@ -40,8 +40,8 @@ DEFAULT_NAME_SIZE = 14
 # TODO poner fuentes en json maybe
 
 class GUIDialog(GUIImage):
-    def __init__(self, guiScreen, intervention, dialogBox=DEFAULT_DIALOG_BOX, font=DEFAULT_FONT, fontSize=DEFAULT_FONT_SIZE):
-        GUIImage.__init__(self, guiScreen, dialogBox, (DIALOG_LEFT, DIALOG_BOTTOM), None)
+    def __init__(self, intervention, dialogBox=DEFAULT_DIALOG_BOX, font=DEFAULT_FONT, fontSize=DEFAULT_FONT_SIZE):
+        GUIImage.__init__(self, dialogBox, (DIALOG_LEFT, DIALOG_BOTTOM), None)
         pygame.font.init()
 
         # Texto a escribir

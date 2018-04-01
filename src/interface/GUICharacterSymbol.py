@@ -12,7 +12,7 @@ WARRIOR_SYMBOL_SPRITE = 'interface/player/warrior_symbol.png'
 # Clase para mostrar un símbolo que represente al personaje activo
 
 class GUICharacterSymbol(GUIElement):
-    def __init__(self, guiScreen, position, scale, colorkey=-1):
+    def __init__(self, position, scale = None, colorkey=-1):
         self.switching = False
         self.restoring = False
         # Una imagen para cada personaje
@@ -30,7 +30,7 @@ class GUICharacterSymbol(GUIElement):
         self.drawnImage = self.activeImage
 
         # Se llama al método de la clase padre con el rectángulo que ocupa la imagen
-        GUIElement.__init__(self, guiScreen, self.drawnImage.get_rect())
+        GUIElement.__init__(self, self.drawnImage.get_rect())
         # Se coloca el rectangulo en su posicion
         self.set_position(position)
 

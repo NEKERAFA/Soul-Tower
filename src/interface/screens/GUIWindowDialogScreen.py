@@ -41,7 +41,7 @@ class GUIWindowDialogScreen(GUIScreen):
         for i in range(iniVal,finVal):
             text = self.selectionFile[i]
             nextPosition = (initPosition[0], initPosition[1]+(i%3)*(scale[1]+10)+40)
-            button = GUIWindowButton(self, text, WINDOW_BUTTON_UP_LOCATION, WINDOW_BUTTON_DOWN_LOCATION, choiceSymbolsLocations[(i%3)], getattr(self, 'button_fun_'+str(i)), nextPosition, scale)
+            button = GUIWindowButton(text, WINDOW_BUTTON_UP_LOCATION, WINDOW_BUTTON_DOWN_LOCATION, choiceSymbolsLocations[(i%3)], getattr(self, 'button_fun_'+str(i)), nextPosition, scale)
             self.add_element(button)
 
     def events(self, event_list):
@@ -64,7 +64,6 @@ class GUIWindowDialogScreen(GUIScreen):
                         elif(element == self.elementClick):
                             element.swap()
 
-    #TODO testear bonuses de stats, y añadir diálogos
     def button_fun_0(self):
         self.choice = 0
         self.stage.player.choiceAdder += 1

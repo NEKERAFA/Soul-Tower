@@ -25,16 +25,16 @@ class GUIGameOverScreen(GUIScreen):
     def __init__(self, stage):
         GUIScreen.__init__(self, stage)
         # Texto de muerte
-        self.gameOverText = GUIImage(self, GAME_OVER_TEXT_LOCATION, (0,SCREEN_HEIGHT/2-50))
+        self.gameOverText = GUIImage(GAME_OVER_TEXT_LOCATION, (0,SCREEN_HEIGHT/2-50))
 
         # Botones para continuar / salir
-        self.continueButton = GUIButton(self, MENU_CONTINUE_BUTTON_UP_LOCATION, MENU_CONTINUE_BUTTON_DOWN_LOCATION, getattr(self, 'button_fun_continue'), (0,0))
+        self.continueButton = GUIButton(MENU_CONTINUE_BUTTON_UP_LOCATION, MENU_CONTINUE_BUTTON_DOWN_LOCATION, getattr(self, 'button_fun_continue'), (0,0))
         self.continueButton.set_position((SCREEN_WIDTH/2, SCREEN_HEIGHT/2+25), 'center')
-        self.gameExit = GUIButton(self, MENU_EXIT_BUTTON_UP_LOCATION, MENU_EXIT_BUTTON_DOWN_LOCATION, getattr(self, 'button_fun_exit'), (0,0))
+        self.gameExit = GUIButton(MENU_EXIT_BUTTON_UP_LOCATION, MENU_EXIT_BUTTON_DOWN_LOCATION, getattr(self, 'button_fun_exit'), (0,0))
         self.gameExit.set_position((SCREEN_WIDTH/2, SCREEN_HEIGHT/2+75), 'center')
 
         # Sprite del personaje muerto
-        self.deadCharacter = GUIImage(self, DEAD_CHARACTER_SPRITE_LOCATION, (SCREEN_WIDTH/2-20, SCREEN_HEIGHT-35))
+        self.deadCharacter = GUIImage(DEAD_CHARACTER_SPRITE_LOCATION, (SCREEN_WIDTH/2-20, SCREEN_HEIGHT-35))
 
         # Surface para hacer un fadeout
         self.alpha = 0
@@ -44,6 +44,8 @@ class GUIGameOverScreen(GUIScreen):
         self.add_element(self.continueButton)
         self.add_element(self.gameExit)
         self.add_element(self.deadCharacter)
+
+        self.elementClick = None
 
     def update(self, time):
         GUIScreen.update(self, time)
