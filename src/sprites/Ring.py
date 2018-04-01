@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from src.sprites.ConditionalDrop import *
+from src.scenes.stage.OnDialogueState import *
 
 class Ring(ConditionalDrop):
     def collect(self, stage):

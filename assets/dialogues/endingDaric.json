@@ -40,7 +40,7 @@
             }
         },
         "text": [
-            ["También era su energía la que me mantenía con vida."],
+            ["También era su energía la que me mantenía con", "vida."],
             ["Usa bien su poder..."]
         ]
     },
@@ -49,7 +49,7 @@
             "background": "soul_tower_background.png"
         },
         "text": [
-            ["Daric abandonó la Torre habiendo salido victorioso", "de la contienda, eufórico por tener en sus manos", "su sueño de crear un reino mejor."],
+            ["Daric abandonó la Torre habiendo salido", "victorioso de la contienda, eufórico por tener en", "sus manos su sueño de crear un reino mejor."],
             ["Sin una heredera a la que seguir, los nobles perdieron", "su camino y fueron derrotados."],
             ["Daric fue aclamado por el pueblo como un verdadero héroe."],
             ["Poco a poco, el orden social fue cambiando. Los nobles", "ya no tenían ningún poder."],
