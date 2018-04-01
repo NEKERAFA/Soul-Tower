@@ -20,6 +20,7 @@ class Fadeout(ChangingState):
         # Si el tamaño de la imagen ha llegado a 0 se cambia a la siguiente
         if self.width == maxWidth:
             # Cambiamos de estado
+            player.canChange = True
             player.changing = Finish()
         else:
             # Vamos aumentando poco a poco el tamaño del sprite

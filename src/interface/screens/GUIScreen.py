@@ -3,7 +3,7 @@
 import pygame
 from pygame.locals import *
 from src.ResourceManager import *
-from src.scenes.Scene import *
+#from src.scenes.Scene import *
 
 # -------------------------------------------------
 # Clase GUIScreen

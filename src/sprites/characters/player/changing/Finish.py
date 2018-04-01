@@ -19,6 +19,9 @@ class Finish(ChangingState):
 
         # Si se pulsa el botón de cambio de jugador
         if KeyboardMouseControl.select_button() and player.canChange:
+            player.canChange = False
+            #TODO: esta línea es un cáncer pero tampoco sé cómo ponerla bien
+            player.stage.gui.charSymb.action()
             # Ponemos la posición de parado
             Character.move(player, STILL)
 

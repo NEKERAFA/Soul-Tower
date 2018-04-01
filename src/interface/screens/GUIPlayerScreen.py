@@ -47,13 +47,9 @@ class GUIPlayerScreen(GUIScreen):
         self.GUIElements.append(self.soulsSymb)
         self.GUIElements.append(self.soulsText)
 
+
     def events(self, event_list):
-        for event in event_list:
-            if event.type == KEYDOWN and event.key == pygame.K_e:
-                self.charSymb.action()
-                #for element in self.GUIElements:
-                #    if element.__class__.__name__ == 'GUICharacterSymbol':
-                #        self.elementClick = element
-                #        element.action()
-            #if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-            #    self.health.gain_life()
+        #for event in event_list:
+        #    if event.type == KEYDOWN and event.key == pygame.K_e:
+        #        self.charSymb.action()
+        return

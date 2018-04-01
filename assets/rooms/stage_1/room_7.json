@@ -24,7 +24,39 @@
         "drops": [
             {
                 "type": "soul",
-                "amount": 10
+                "amount": 5
+            },
+            {
+                "type": "soul",
+                "amount": 5
+            },
+            {
+                "type": "soul",
+                "amount": 5
+            },
+            {
+                "type": "soul",
+                "amount": 5
+            },
+            {
+                "type": "soul",
+                "amount": 5
+            },
+            {
+                "type": "soul",
+                "amount": 5
+            },
+            {
+                "type": "soul",
+                "amount": 5
+            },
+            {
+                "type": "soul",
+                "amount": 5
+            },
+            {
+                "type": "heart",
+                "amount": 1
             },
             {
                 "type": "heart",

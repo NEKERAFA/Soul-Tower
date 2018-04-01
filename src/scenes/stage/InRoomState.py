@@ -12,6 +12,7 @@ import sys
 
 class InRoomState(StageState):
     def update(self, time, stage):
+        
         currentRoom = stage.rooms[stage.currentRoom]
 
         # Movemos los enemigos

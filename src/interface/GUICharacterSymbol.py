@@ -39,7 +39,7 @@ class GUICharacterSymbol(GUIElement):
         # Porcentaje de tamaño de la imagen; 1 -> la imagen se dibuja a tamaño normal
         self.percent = 1.
         # Velocidad de escalado de la imagen: 100% de la imagen/1000ms = 100% en 1s
-        self.speed = self.originalWidth/MAX_TIME
+        self.speed = (self.originalWidth)/MAX_TIME
 
 
     def update(self, time):
