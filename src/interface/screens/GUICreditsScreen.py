@@ -7,6 +7,7 @@ from src.scenes.Stage import *
 from src.interface.screens.GUIScreen import *
 from src.interface.GUIImage import *
 from src.interface.GUIButton import *
+from src.interface.GUIText import *
 
 
 # -------------------------------------------------
