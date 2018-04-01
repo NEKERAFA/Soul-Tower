@@ -17,15 +17,15 @@
             "position": [1296, 1727],
             "drop": {
                 "type": "soul",
-                "amount": 10
+                "amount": 20
             }
         },
         {
             "type": "bat",
-            "position": [1128, 1536],
+            "position": [1176, 1560],
             "drop": {
-                "type": "soul",
-                "amount": 10
+                "type": "heart",
+                "amount": 1
             }
         },
         {

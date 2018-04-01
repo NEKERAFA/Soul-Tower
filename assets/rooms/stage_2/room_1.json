@@ -22,10 +22,18 @@
         },
         {
             "type": "bat",
-            "position": [600, 769],
+            "position": [650, 790],
             "drop": {
-                "type": "soul",
-                "amount": 10
+                "type": "heart",
+                "amount": 1
+            }
+        },
+        {
+            "type": "bat",
+            "position": [600, 1032],
+            "drop": {
+                "type": "heart",
+                "amount": 1
             }
         },
         {
@@ -33,15 +41,31 @@
             "position": [504, 1260],
             "drop": {
                 "type": "soul",
-                "amount": 10
+                "amount": 20
             }
         },
         {
-            "type": "bat",
-            "position": [600, 1032],
+            "type": "spider",
+            "position": [98, 1264],
             "drop": {
                 "type": "soul",
-                "amount": 10
+                "amount": 20
+            }
+        },
+        {
+            "type": "spider",
+            "position": [660, 1260],
+            "drop": {
+                "type": "soul",
+                "amount": 20
+            }
+        },
+        {
+            "type": "spider",
+            "position": [168, 1047],
+            "drop": {
+                "type": "soul",
+                "amount": 20
             }
         },
         {
@@ -54,7 +78,7 @@
         },
         {
             "type": "rat",
-            "position": [649, 1105],
+            "position": [648, 1130],
             "drop": {
                 "type": "soul",
                 "amount": 10
@@ -62,23 +86,7 @@
         },
         {
             "type": "rat",
-            "position": [985, 1248],
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "spider",
-            "position": [98, 1264],
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "spider",
-            "position": [744, 1260],
+            "position": [912, 1250],
             "drop": {
                 "type": "soul",
                 "amount": 10

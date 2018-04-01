@@ -32,35 +32,14 @@
             "type": "wolf",
             "drop": {
                 "type": "soul",
-                "amount": 20
+                "amount": 40
             }
         },
         {
             "type": "wolf",
             "drop": {
                 "type": "soul",
-                "amount": 20
-            }
-        },
-        {
-            "type": "wolf",
-            "drop": {
-                "type": "soul",
-                "amount": 20
-            }
-        },
-        {
-            "type": "wolf",
-            "drop": {
-                "type": "soul",
-                "amount": 20
-            }
-        },
-        {
-            "type": "wolf",
-            "drop": {
-                "type": "soul",
-                "amount": 20
+                "amount": 40
             }
         }
     ]
