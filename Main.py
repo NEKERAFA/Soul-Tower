@@ -17,6 +17,7 @@ if __name__ == '__main__':
     gameManager = GameManager()
     # Creamos la escena con la pantalla inicial
     scene = Stage(2, gameManager)
+    # TODO BORRAAAR
     scene.player.meleeLevel = 2
     scene.player.rangedLevel = 2
     scene.player.add_max_life()

@@ -63,7 +63,7 @@ class GUIWindowDialogScreen(GUIScreen):
                         elif(element == self.elementClick):
                             element.swap()
 
-    #TODO testear bonuses de stats
+    #TODO testear bonuses de stats, y añadir diálogos
     def button_fun_0(self):
         self.choice = 0
         self.stage.player.choiceAdder += 1

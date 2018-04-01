@@ -40,7 +40,7 @@ class Character(MySprite):
         Parámetros pasados al constructor de esta clase:
             * Nombre del sprite
     '''
-    def __init__(self, imageFile, spriteSheet):
+    def __init__(self, imageFile, spriteSheet, loadStats=None):
         # Primero invocamos al constructor de la clase padre
         MySprite.__init__(self)
 
@@ -70,7 +70,10 @@ class Character(MySprite):
                 tmp.append({'coords': coords, 'delay': delay})
 
         # Cargamos los stats
-        self.stats = data["stats"].copy()
+        if(loadStats is not None):
+            self.stats = loadStats
+        else:
+            self.stats = data["stats"].copy()
 
         # Cargamos los estados de comportamiento posibles
         if "behaviour" in data:
