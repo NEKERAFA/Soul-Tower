@@ -39,6 +39,7 @@
             "doorSprite": "boss3Door.png",
             "position": [384, 552],
             "doorMask": [404, 528, 32, 24]
-        }
+        },
+        "deathAnimation": 6
     }
 }

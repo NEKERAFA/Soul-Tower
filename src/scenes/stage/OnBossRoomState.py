@@ -22,6 +22,8 @@ class OnBossRoomState(StageState):
         self.killedBoss = False
         # Para controlar la animación de entrada
         self.startAnimation = True
+        # Para controlar el diálogo después de la animación de muerte
+        self.animatingDeath = False
 
     def update(self, time, stage):
         currentRoom = stage.rooms[stage.currentRoom]
@@ -54,9 +56,6 @@ class OnBossRoomState(StageState):
             currentRoom.lockedDoors[0].open(stage)
             self.killedBoss = True
 
-            if currentRoom.boss.dialogueFile != "":
-                stage.set_state(OnDialogueState(boss.dialogueFile, stage))
-
             # Si hay una animación de muerte, lo deja quieto y lo muestra
             if boss.hasDeathAnimation:
                 boss.movement = STILL
@@ -65,6 +64,12 @@ class OnBossRoomState(StageState):
                 boss.animationLoop = False
                 boss.set_initial_frame(boss.deathAnimation)
                 self.deathAnimation = True
+                self.animatingDeath = True
+
+        if self.animatingDeath and boss.animationFinish:
+            self.animatingDeath = False
+            if currentRoom.boss.dialogueFile != "":
+                stage.set_state(OnDialogueState(boss.dialogueFile, stage))
 
         # Recogibles
         currentRoom.collectables.update(time)
