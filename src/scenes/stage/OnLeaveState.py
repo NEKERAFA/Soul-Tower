@@ -19,6 +19,7 @@ class OnLeaveState(StageState):
             stage.player.move(STILL)
             stage.player.change_stage(nextStage)
             stage.gameManager.scene_change(nextStage)
+            nextStage.play_bgm()
 
     def events(self, events, stage):
         pass

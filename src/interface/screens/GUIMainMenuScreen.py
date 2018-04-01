@@ -72,6 +72,7 @@ class GUIMainMenuScreen(GUIScreen):
 
     def button_fun_start(self):
         self.stage.gameManager.scene_change(self.stage.startStage)
+        self.stage.startStage.play_bgm()
 
     def button_fun_exit(self):
         self.stage.gameManager.program_exit()

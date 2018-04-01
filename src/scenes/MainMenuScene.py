@@ -5,10 +5,10 @@ import pygame
 from src.scenes.Scene import *
 from src.scenes.InitialStage import *
 from src.interface.screens.GUIMainMenuScreen import *
+from src.ResourceManager import *
 
 class MainMenuScene(Scene):
     #TODO añadir fondo
-
     def __init__(self, gameManager):
         Scene.__init__(self, gameManager)
 
@@ -17,6 +17,10 @@ class MainMenuScene(Scene):
 
         # Primera fase
         self.startStage = InitialStage(gameManager)
+
+        # Música de la pantalla inicial
+        ResourceManager.load_music('Menu_principal.ogg')
+        pygame.mixer.music.play(-1, 0.0)
 
     def update(self, time):
         self.guiMenu.update(time)
