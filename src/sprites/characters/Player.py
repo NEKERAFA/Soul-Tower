@@ -68,6 +68,7 @@ class Player(Character):
         # Si se está cambiando de personaje o no
         self.changing = Finish()
 
+<<<<<<< HEAD
         # Si se está utilizando el escudo o no
         self.usingShield = False
         # Sonido para cuando se recupera vida
@@ -75,6 +76,18 @@ class Player(Character):
 
         # Sonido cuando se recibe daño
         self.damage_sound = ResourceManager.load_effect_sound("ouch.wav")
+=======
+        #Sonido para cuando se recupera vida
+        self.heal_sound = ResourceManager.load_effect_sound("heal.ogg")
+
+        #Sonido cuando se recive daño
+        self.damage_sound = ResourceManager.load_effect_sound("ouch.ogg")
+
+        #Sonido al recoger almas
+        self.souls_sound = ResourceManager.load_effect_sound("soul_get.ogg")
+
+
+>>>>>>> origin/animations_sound
 
         # Nivel de las armas
         self.meleeLevel = 1
@@ -157,6 +170,9 @@ class Player(Character):
 
     # Incrementa el número de almas del jugador
     def increase_souls(self, souls):
+        pygame.mixer.set_reserved(1)
+        chanel_reserved_0 = pygame.mixer.Channel(0)
+        chanel_reserved_0.play(self.souls_sound)
         self.souls += souls
         # Actualizo la GUI
         self.update_souls()

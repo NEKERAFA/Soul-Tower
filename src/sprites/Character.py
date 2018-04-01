@@ -2,11 +2,13 @@
 
 import pygame, sys, os
 import math as m
+import random
 
 from pygame.locals import *
 from src.ResourceManager import *
 from src.sprites.MySprite import *
 from src.sprites.Force import *
+from src.Channel_Effect import *
 
 # -------------------------------------------------
 # -------------------------------------------------
@@ -59,7 +61,16 @@ class Character(MySprite):
 
         #Cargamos el sonido del movimiento
         self.sound_movement = ResourceManager.load_effect_sound(data["sound"])
-
+        #Cargamos el sonido de la muerte
+        self.dead_sound = ResourceManager.load_effect_sound(data["dead_sound"])
+        #Reservamos un canal
+        pygame.mixer.set_reserved(2)
+        chanel_reserved_0 = pygame.mixer.Channel(0)
+        self.dead_chanel = pygame.mixer.Channel(1)
+        #Establecemos delay
+        delay_sound = random.randint(3, 4)*1000
+        #Lo pasamos al channel_effect
+        self.channel_effect = Channel_Effect(self.sound_movement,chanel_reserved_0, delay_sound)
 
         # Cargamos los sprites
         self.sheetConf = []
@@ -179,11 +190,6 @@ class Character(MySprite):
         speedX, speedY = 0, 0
 
         #Se reserva canal
-        pygame.mixer.set_reserved(3)
-        chanel_reserved_0 = pygame.mixer.Channel(0)
-        chanel_reserved_1 = pygame.mixer.Channel(1)
-        chanel_reserved_2 = pygame.mixer.Channel(2)
-
         # Primero diferenciamos quieto y caminando para la animación
         # Después, diferenciamos todas las direcciones para asignarles
         # la velocidad correspondiente a los ejes
@@ -196,7 +202,7 @@ class Character(MySprite):
         elif (self.movement == N):
             if self.animationNum != SPRITE_WALKING_UP:
                 self.animationNum = SPRITE_WALKING_UP
-                chanel_reserved_0.play(self.sound_movement)
+                #chanel_reserved_0.play(self.sound_movement)
                 #self.sound_movement.play()
                 self.currentDelay = 0
                 self.animationFrame = 0
@@ -204,13 +210,13 @@ class Character(MySprite):
         elif (self.movement == S):
             if self.animationNum != SPRITE_WALKING_DOWN:
                 self.animationNum = SPRITE_WALKING_DOWN
-                chanel_reserved_1.play(self.sound_movement)
+                #chanel_reserved_1.play(self.sound_movement)
                 #self.sound_movement.play()
                 self.currentDelay = 0
                 self.animationFrame = 0
             speedY = self.stats["spd"]
         else:
-            chanel_reserved_2.play(self.sound_movement)
+            #chanel_reserved_2.play(self.sound_movement)
             #self.sound_movement.play()
             if self.animationNum != SPRITE_WALKING:
                 self.animationNum = SPRITE_WALKING
@@ -258,6 +264,8 @@ class Character(MySprite):
         self.speed = (speedX, speedY)
 
     def update(self, time, mapRect, mapMask):
+        #Actualizamos el sonido
+        self.channel_effect.soundUpdate(time)
         # Actualizamos todo lo del movimiento y la animación
         self.update_movement(time)
 

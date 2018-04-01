@@ -11,9 +11,15 @@ from src.sprites.attacks.Explosion import *
 class MeleeAttack(Attack):
     def __init__(self, radius, delayTime, level, enemies):
         # Obtenemos las rutas a los archivos
+<<<<<<< HEAD
         imageFile = 'melee.png'
         spriteSheet = 'melee.json'
         effect_sound = 'slash.wav'
+=======
+        effect_sound = 'slash.ogg'
+        imageFile = os.path.join('sprites', 'attacks', 'melee.png')
+        spriteSheet = os.path.join('attacks', 'melee.json')
+>>>>>>> origin/animations_sound
 
         # Invocamos al constructor de la clase padre
         Attack.__init__(self, imageFile, spriteSheet, enemies, effect_sound)
@@ -46,9 +52,9 @@ class MeleeAttack(Attack):
 
     def start_attack(self, characterPos, rotation):
         self.attacking = True
-        pygame.mixer.set_reserved(1)
-        chanel_reserved_0 = pygame.mixer.Channel(0)
-        chanel_reserved_0.play(self.effect_sound)
+        #pygame.mixer.set_reserved(1)
+        #chanel_reserved_0 = pygame.mixer.Channel(0)
+        #chanel_reserved_0.play(self.effect_sound)
         self.position = Attack.calc_rot_pos(rotation, self.radius, self.rect.width, self.rect.height, characterPos)
         self.rect.left = self.position[0]
         self.rect.top = self.position[1]
@@ -61,6 +67,8 @@ class MeleeAttack(Attack):
     def update(self, player, time, stage):
         # Si ha pasado el tiempo suficiente y estamos intentando atacar
         if (self.elapsedTime > self.delayTime) and self.attacking:
+            #Se llama al channel_effect
+            self.channel_effect.soundUpdate(time)
             self.drawAnimation = True
             # Y reiniciar el contador
             self.elapsedTime = 0

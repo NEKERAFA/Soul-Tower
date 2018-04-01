@@ -7,7 +7,9 @@
         "spd": 0.02
     },
 
-    "sound": "banshee.wav",
+    "sound": "banshee.ogg",
+
+    "dead_sound": "banshee_dead.ogg",
 
     "behaviour" : {
         "type": "patrolling",

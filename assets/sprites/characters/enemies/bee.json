@@ -7,7 +7,9 @@
         "spd": 0.05
     },
 
-    "sound": "bee.wav",
+    "sound": "bee.ogg",
+
+    "dead_sound": "insect_dead.ogg",
 
     "behaviour" : {
         "type": "wandering"

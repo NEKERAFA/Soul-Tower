@@ -11,9 +11,15 @@ from Normalize import *
 class RangedAttack(Attack):
     def __init__(self, radius, delayTime, level, enemies):
         # Obtenemos las rutas a los archivos
+<<<<<<< HEAD
         imageFile = 'ranged.png'
         spriteSheet = 'ranged.json'
         effect_sound = 'pew.wav'
+=======
+        effect_sound = 'pew.ogg'
+        imageFile = os.path.join('sprites', 'attacks', 'ranged.png')
+        spriteSheet = os.path.join('attacks', 'ranged.json')
+>>>>>>> origin/animations_sound
 
         # Invocamos al constructor de la clase padre
         Attack.__init__(self, imageFile, spriteSheet, enemies, effect_sound)
@@ -35,12 +41,13 @@ class RangedAttack(Attack):
         self.probLvl2 = 0.7
         self.probLvl3 = 0.2
 
+
     def start_attack(self, characterPos, rotation):
         self.characterPos = characterPos
         self.rotation = rotation
-        pygame.mixer.set_reserved(1)
-        chanel_reserved_0 = pygame.mixer.Channel(0)
-        chanel_reserved_0.play(self.effect_sound)
+        #pygame.mixer.set_reserved(1)
+        #chanel_reserved_0 = pygame.mixer.Channel(0)
+        #chanel_reserved_0.play(self.effect_sound)
         self.attacking = True
 
     def end_attack(self):
@@ -55,6 +62,8 @@ class RangedAttack(Attack):
 
         # Si ha pasado el tiempo suficiente y estamos intentando atacar
         if (self.elapsedTime > self.delayTime) and self.attacking:
+            #Se llama a la funcion sound_update del channel_effect
+            self.channel_effect.soundUpdate(time)
             # Se crea una bala y se guarda en el grupo de balas
             bullet = Bullet(self.characterPos, self.rotation, self.radius, self.image)
             self.bullets.add(bullet)

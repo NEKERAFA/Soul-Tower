@@ -7,6 +7,7 @@ from src.sprites.Force import *
 from src.sprites.characters.NPC import *
 from src.sprites.characters.behaviours.BehaviourConstructor import *
 from src.ResourceManager import *
+from src.Channel_Effect import *
 
 ENEMY_PATH = 'enemies'
 
@@ -20,6 +21,7 @@ class Enemy(NPC):
         self.wasAlive = True
         self.justDied = False
         self.attack = None
+
 
 
     def move_ai(self, player):
@@ -36,6 +38,7 @@ class Enemy(NPC):
         if self.killed and self.wasAlive:
             self.justDied = True
             self.wasAlive = False
+            self.dead_chanel.play (self.dead_sound)
         else:
             self.justDied = False
 

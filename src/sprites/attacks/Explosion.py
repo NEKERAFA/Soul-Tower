@@ -9,9 +9,15 @@ from src.sprites.Force import *
 class Explosion(Attack):
     def __init__(self, position, enemies):
         # Obtenemos las rutas a los archivos
+<<<<<<< HEAD
         imageFile = 'explosion.png'
         spriteSheet = 'explosion.json'
         effect_sound = 'explosion.wav'
+=======
+        effect_sound = 'explosion.ogg'
+        imageFile = os.path.join('sprites', 'attacks', 'explosion.png')
+        spriteSheet = os.path.join('attacks', 'explosion.json')
+>>>>>>> origin/animations_sound
         self.damage = 1
         self.position = position
         x,y = position
@@ -42,6 +48,7 @@ class Explosion(Attack):
         Attack.update(self, time)
         # Colisiones
         if self.animationFrame>3:
+            self.channel_effect.soundUpdate(time)
             for enemy in self.enemies:
                 if self.rect.colliderect(enemy.rect):
                     value = self.attackDict.get(id(enemy))

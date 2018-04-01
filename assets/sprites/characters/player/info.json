@@ -11,7 +11,9 @@
         "spd": 0.2
     },
 
-    "sound": "step.wav",
+    "sound": "Null.ogg",
+
+    "dead_sound": "Null.ogg",
 
     "frames": [
         [
