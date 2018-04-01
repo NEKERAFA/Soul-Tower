@@ -19,10 +19,10 @@ if __name__ == '__main__':
     # global gameManager
     gameManager = GameManager()
     # Creamos la escena con la pantalla inicial
-    scene = Stage(0, gameManager)
+    scene = Stage(1, gameManager)
     # Le decimos al director que apile esta escena
     gameManager.scene_stack(scene)
-    # Y ejecutamos el juego
+    # Y ejecutamos el juegow
     print (pygame.mixer.get_num_channels())
     gameManager.run()
     # Cuando se termine la ejecución, finaliza la librería

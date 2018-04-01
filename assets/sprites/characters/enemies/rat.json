@@ -9,6 +9,8 @@
 
     "sound": "rat.wav",
 
+    "dead_sound": "rat_bat_dead.wav",
+
     "behaviour" : {
         "type": "patrolling",
         "radius": 50,

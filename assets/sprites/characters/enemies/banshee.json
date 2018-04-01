@@ -9,6 +9,8 @@
 
     "sound": "banshee.wav",
 
+    "dead_sound": "banshee_dead.wav",
+
     "behaviour" : {
         "type": "patrolling",
         "radius": 50,

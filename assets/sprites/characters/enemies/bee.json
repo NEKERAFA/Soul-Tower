@@ -9,6 +9,8 @@
 
     "sound": "bee.wav",
 
+    "dead_sound": "insect_dead.wav",
+
     "behaviour" : {
         "type": "wandering"
     },

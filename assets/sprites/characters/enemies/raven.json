@@ -9,6 +9,8 @@
 
     "sound": "raven.wav",
 
+    "dead_sound": "raven_dead.wav",
+
     "frames": [
         [
             {

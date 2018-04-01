@@ -9,6 +9,8 @@
 
     "sound": "wild_boar.wav",
 
+    "dead_sound": "wild_wolf_dead.wav",
+
     "behaviour" : {
         "type": "patrolling",
         "radius": 150,

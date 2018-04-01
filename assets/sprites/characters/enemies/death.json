@@ -9,6 +9,8 @@
 
     "sound": "death.wav",
 
+    "dead_sound": "death_dead.wav",
+
     "frames": [
         [
             {

@@ -9,6 +9,8 @@
 
     "sound": "bat.wav",
 
+    "dead_sound": "bat_rat_dead.wav",
+
     "behaviour" : {
         "type": "waiting",
         "radius": 200

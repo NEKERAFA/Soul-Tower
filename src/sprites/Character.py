@@ -61,9 +61,12 @@ class Character(MySprite):
 
         #Cargamos el sonido del movimiento
         self.sound_movement = ResourceManager.load_effect_sound(data["sound"])
-        #Reservamos un Canal
-        pygame.mixer.set_reserved(3)
+        #Cargamos el sonido de la muerte
+        self.dead_sound = ResourceManager.load_effect_sound(data["dead_sound"])
+        #Reservamos un canal
+        pygame.mixer.set_reserved(2)
         chanel_reserved_0 = pygame.mixer.Channel(0)
+        self.dead_chanel = pygame.mixer.Channel(1)
         #Establecemos delay
         delay_sound = random.randint(3, 4)*1000
         #Lo pasamos al channel_effect

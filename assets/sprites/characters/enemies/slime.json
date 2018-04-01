@@ -9,6 +9,8 @@
 
     "sound": "slime_move.wav",
 
+    "dead_sound": "slime_dead.wav",
+
     "behaviour" : {
         "type": "wandering"
     },

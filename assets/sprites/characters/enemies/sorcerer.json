@@ -10,7 +10,9 @@
         "spd": 0.2
     },
 
-    "sound": "step.wav",
+    "sound": "Null.wav",
+
+    "dead_sound": "ouch_she.wav",
 
     "frames": [
         [

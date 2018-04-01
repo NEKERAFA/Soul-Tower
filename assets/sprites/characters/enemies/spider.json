@@ -9,6 +9,8 @@
 
     "sound": "spider.wav",
 
+    "dead_sound": "insect_dead.wav",
+
     "behaviour" : {
         "type": "patrolling",
         "radius": 100,
