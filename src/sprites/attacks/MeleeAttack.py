@@ -93,6 +93,7 @@ class MeleeAttack(Attack):
                     # Comprobamos si aun no hemos dañado al enemigo
                     value = self.attackDict.get(id(enemy))
                     if (value is None or value!=self.id):
+                        print(enemy, id(enemy), self.id)
                         self.attackDict[id(enemy)] = self.id
                         enemyPos = enemy.rect.center
                         impulse = Force(self.rotation, player.stats["backward"])
@@ -101,8 +102,6 @@ class MeleeAttack(Attack):
                             explosion = Explosion(enemyPos, self.enemies)
                             self.explosions.add(explosion)
                             del self.attackDict[id(enemy)]
-                        impulse = Force(self.rotation, player.stats["backward"])
-                        enemy.receive_damage('physic', player.stats["atk"], impulse)
 
         self.thunders.update(player, time, stage)
         self.explosions.update(player, time, stage)
