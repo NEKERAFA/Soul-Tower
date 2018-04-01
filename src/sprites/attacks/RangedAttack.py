@@ -85,18 +85,37 @@ class RangedAttack(Attack):
         self.bullets.update(time, stage, self.image)
 
         # Comprobamos que enemigos colisionan con que grupos
-        collides = pygame.sprite.groupcollide(self.bullets, self.enemies, True, False)
+        # collides = pygame.sprite.groupcollide(self.bullets, self.enemies, True, False)
 
-        # Si hay una colisión, hacemos daño al enemigo y matamos la bala
-        for bullet in collides:
-            enemies = collides[bullet]
-            # Cogemos el primero en hacer la colisión para que reciba daño
-            enemy = enemies[0]
-            enemyPos = enemy.position
-            impulse = Force(bullet.rotation, player.stats["backward"])
-            enemy.receive_damage('magic', player.stats["atk"], impulse)
-            if (self.level>1 and enemy.justDied and random.random()<=self.probLvl2):
-                # enemy.kill()
-                angle = random.uniform(-180,180)
-                bulletExtra = Bullet(enemyPos, angle, self.radius, self.image)
-                self.bullets.add(bulletExtra)
+        # # Si hay una colisión, hacemos daño al enemigo y matamos la bala
+        # for bullet in collides:
+        #     enemies = collides[bullet]
+        #     # Cogemos el primero en hacer la colisión para que reciba daño
+        #     enemy = enemies[0]
+        #     enemyPos = enemy.position
+        #     impulse = Force(bullet.rotation, player.stats["backward"])
+        #     enemy.receive_damage('magic', player.stats["atk"], impulse)
+        #     if (self.level>1 and enemy.justDied and random.random()<=self.probLvl2):
+        #         # enemy.kill()
+        #         angle = random.uniform(-180,180)
+        #         bulletExtra = Bullet(enemyPos, angle, self.radius, self.image)
+        #         self.bullets.add(bulletExtra)
+
+        for bullet in iter(self.bullets):
+            for enemy in iter(self.enemies):
+                (atkX, atkY) = bullet.position
+                (enemyX, enemyY) = enemy.position
+                # atkY -= self.image.get_height()
+                enemyY -= enemy.image.get_height()
+                offset = (int(enemyX - atkX), int(enemyY - atkY))
+                self.mask = pygame.mask.from_surface(self.image)
+                collision = self.mask.overlap(enemy.mask, offset)
+                if collision is not None:
+                    impulse = Force(bullet.rotation, player.stats["backward"])
+                    enemy.receive_damage('magic', player.stats["atk"], impulse)
+                    bullet.kill()
+                    if (self.level>1 and enemy.justDied and random.random()<=self.probLvl2):
+                        # enemy.kill()
+                        angle = random.uniform(-180,180)
+                        bulletExtra = Bullet(enemy.position, angle, self.radius, self.image)
+                        self.bullets.add(bulletExtra)

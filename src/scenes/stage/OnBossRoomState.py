@@ -4,15 +4,13 @@ from src.controls.KeyboardMouseControl import *
 from src.scenes.stage.StageState import *
 from src.scenes.stage.OnLeaveState import *
 from src.scenes.stage.OnDialogueState import *
-from src.sprites.characters.Enemy import *
+from src.sprites.Character import *
 from src.sprites.Door import *
+from src.sprites.characters.Enemy import *
 
 class OnBossRoomState(StageState):
     def __init__(self, stage):
         currentRoom = stage.rooms[stage.currentRoom]
-        # Iniciamos la animación del boss
-        currentRoom.boss.set_initial_frame(4)
-        currentRoom.boss.animationLoop = False
         # Creamos la puerta que se cierra al entrar en la habitación
         doorConf = stage.rooms[stage.currentRoom].boss.closeDoor
         door = Door(doorConf["position"], doorConf["doorSprite"], doorConf["doorMask"], stage)
@@ -21,38 +19,48 @@ class OnBossRoomState(StageState):
         currentRoom.doors.add(door)
         # Para comprobar si el boss a muerto
         self.killedBoss = False
+        # Para controlar la animación de entrada
+        self.startAnimation = True
 
     def update(self, time, stage):
         currentRoom = stage.rooms[stage.currentRoom]
+        boss = currentRoom.boss
+
+        # Solo muevo al boss si no ha muerto ni está en una animación
+        # if not boss.killed and not boss.animationLoop:
+        if not boss.killed:
+            boss.move_ai(stage.player)
 
         # Actualizamos los sprites
         # Player
         stage.player.update(time, stage)
-
         # Boss
-        if not currentRoom.boss.killed:
-            # Actualizamos el movimiento solo si la animación está en loop
-            if currentRoom.boss.animationLoop:
-                currentRoom.boss.move_ai(stage.player)
+        boss.update(time, currentRoom.rect, stage)
 
-            # Actualiamos la animación
-            currentRoom.boss.update(time, currentRoom.rect, stage)
+        # Compruebo si el enemigo ha terminado la animación
+        if boss.animationFinish and self.startAnimation:
+            boss.animationLoop = True
+            boss.animationFinish = False
+            boss.set_initial_frame(STILL)
+            boss.change_behaviour(boss.initialState)
+            self.startAnimation = False
 
-            # Compruebo si el enemigo ha termina la animación
-            if currentRoom.boss.animationFinish:
-                currentRoom.boss.animationLoop = True
-                currentRoom.boss.animationFinish = False
-                currentRoom.boss.set_initial_frame(0)
-                currentRoom.boss.change_behaviour(currentRoom.boss.initialState)
-
-        # Compruebo si ha muerto el boss para dropear el bo
-        if currentRoom.boss.killed and not self.killedBoss:
-            currentRoom.boss.kill()
-            currentRoom.boss.set_drop(currentRoom.collectables)
+        # Compruebo si ha muerto el boss para dropear
+        if boss.killed and not self.killedBoss:
+            boss.attack = None
+            boss.kill()
+            boss.set_drop(currentRoom.collectables)
             currentRoom.lockedDoors[0].open(stage)
             self.killedBoss = True
-            if currentRoom.boss.dialogueFile != "":
-                stage.set_state(OnDialogueState(currentRoom.boss.dialogueFile, stage))
+            stage.set_state(OnDialogueState(boss.dialogueFile, stage))
+            # Si hay una animación de muerte, lo deja quieto y lo muestra
+            if boss.hasDeathAnimation:
+                boss.movement = STILL
+                boss.speed = (0, 0)
+                boss.change_behaviour(boss.stillState)
+                boss.animationLoop = False
+                boss.set_initial_frame(boss.deathAnimation)
+                self.deathAnimation = True
 
         # Recogibles
         currentRoom.collectables.update(time)
@@ -93,3 +101,23 @@ class OnBossRoomState(StageState):
 
         # Actualizamos los eventos de la interfaz
         stage.gui.events(events)
+
+    def draw(self, screen, stage):
+        currentRoom = stage.rooms[stage.currentRoom]
+
+        # Muestro un color de fondo
+        screen.fill((0, 0, 0))
+        # Luego los Sprites sobre una copia del mapa de la sala
+        newImage = stage.image.copy()
+        # Boss
+        currentRoom.boss.draw(newImage)
+        # Recolectables
+        currentRoom.collectables.draw(newImage)
+        # Puertas
+        currentRoom.doors.draw(newImage)
+        # Sprites interactivos
+        currentRoom.unlockedDoorsGroup.draw(newImage)
+        # Player
+        stage.player.draw(newImage)
+        # Se pinta la porción de la sala que coincide con el viewport
+        screen.blit(newImage, (0,0), stage.viewport)

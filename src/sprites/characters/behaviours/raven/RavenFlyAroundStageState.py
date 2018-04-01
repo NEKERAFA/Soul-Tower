@@ -75,7 +75,8 @@ class RavenFlyAroundStageState(RavenBehaviourState):
             jump = random.randint(0, 1)
             if jump == 1:
                 # Cambio de estado
-                enemy.change_behaviour(RavenFollowPlayerState(self))
+                # enemy.change_behaviour(RavenFollowPlayerState(self))
+                pass
             else:
                 # Posiciones del mapa
                 x, y = mapRect.topleft
@@ -84,7 +85,7 @@ class RavenFlyAroundStageState(RavenBehaviourState):
                 posX = random.randint(x+24, x+width-24)
                 posY = random.randint(y+24, y+height-24)
                 # Cambio de estado
-                enemy.change_behaviour(RavenLandState((posX, posY), self))
+                # enemy.change_behaviour(RavenLandState((posX, posY), self))
 
     def receive_damage(self, enemy, attack, damage, force):
         if attack == 'magic':
