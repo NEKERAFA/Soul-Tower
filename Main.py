@@ -10,11 +10,10 @@ from src.scenes.InitialStage import *
 if __name__ == '__main__':
     # Iniciamos la semilla
     random.seed(datetime.now())
-    # Inicializamos la libreria de pygame y el mixera
-    pygame.init()
+    # Se prepara el mixer e inicializamos la libreria de pygame
     pygame.mixer.pre_init(44100, 16, 2, 4096)
-    pygame.mixer.init()
-    #pygame.mixer.set_num_channels(40)
+    pygame.init()
+    #pygame.mixer.init()
     # Creamos el director
     # global gameManager
     gameManager = GameManager()
