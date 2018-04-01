@@ -22,8 +22,9 @@ El archivo de configuración de la sala debe contener los siguientes datos:
         - "position" [x, y]: Posición de spawn del enemigo. Si no está, se define una posición aleatoria.
         - "type": Nombre del tipo de enemigo. Corresponde con el nombre del sprite.
         - "drop": Objeto que droppea, contiene la siguiente información:
-            - "type": Tipo de drop ("heart" o "soul")
-            - "amount": Cantidad del drop una vez cogido
+            - "type": Tipo de drop ("heart", "soul" o "ring")
+            - "amount": Cantidad del drop una vez cogido (Solo para heart o soul)
+            - "dialogueList": Diálogos condicionales (Solo para ring)
     - "boss": Con esto se le indica a la habitación que contiene un boss, más la siguiente información:
         - "name": Nombre del boss,
         - "position" [x, y]: Posición absoluta de spawn del boss

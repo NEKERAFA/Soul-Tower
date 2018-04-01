@@ -5,7 +5,7 @@ from src.ResourceManager import *
 from src.sprites.characters.Enemy import *
 from src.sprites.characters.Boss import *
 from src.sprites.Trigger import *
-from src.sprites.Drop import *
+from src.sprites.DropConstructor import *
 from src.sprites.Key import *
 from src.sprites.Door import *
 from src.sprites.Upgrade import *
@@ -39,7 +39,7 @@ class Room(object):
         if "enemies" in data:
             for enemy in data["enemies"]:
                 # Cargamos el drop
-                drop = Drop(enemy["drop"]["type"], enemy["drop"]["amount"])
+                drop = DropConstructor.get_drop(enemy["drop"])
                 # Cargamos el sprite
                 enemySprite = Enemy(enemy["type"], drop)
                 # Ponemos al enemigo en su posición
@@ -67,7 +67,7 @@ class Room(object):
             boss = data["boss"]
             drops = []
             for drop in boss["drops"]:
-                drops.append(Drop(drop["type"], drop["amount"]))
+                drops.append(DropConstructor.get_drop(drop))
             bossSprite = Boss(boss["name"], drops, boss["closeDoor"], boss["finalDialogue"])
             bossSprite.change_global_position(boss["position"])
             self.boss = bossSprite
