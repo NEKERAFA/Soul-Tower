@@ -10,9 +10,6 @@ from src.sprites.Door import *
 class OnBossRoomState(StageState):
     def __init__(self, stage):
         currentRoom = stage.rooms[stage.currentRoom]
-        # Iniciamos la animación del boss
-        currentRoom.boss.set_initial_frame(4)
-        currentRoom.boss.animationLoop = False
         # Creamos la puerta que se cierra al entrar en la habitación
         doorConf = stage.rooms[stage.currentRoom].boss.closeDoor
         door = Door(doorConf["position"], doorConf["doorSprite"], doorConf["doorMask"], stage)

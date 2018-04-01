@@ -12,6 +12,9 @@ class Boss(Enemy):
     def __init__(self, name, drops, closeDoor, dialogueFile):
         self.behaviour = {"type": name}
         Enemy.__init__(self, name, drops[0])
+        # Iniciamos la animación del boss
+        self.set_initial_frame(4)
+        self.animationLoop = False
         if len(drops) > 1:
             self.drops = drops[1:]
         else:
