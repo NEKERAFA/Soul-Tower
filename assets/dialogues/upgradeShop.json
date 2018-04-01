@@ -1,13 +1,71 @@
 [
     {
         "info": {
+            "right": {
+                "image": "ghost1.png",
+                "name": "Fantasma"
+            }
+        },
+        "text": [
+            ["Bienvenidos, viajeros."]
+        ]
+    },
+    {
+        "info": {
             "left": {
-                "image": "leraila.png",
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["¿U-Un fantasma?"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila4.png",
                 "name": "Leraila"
             }
         },
         "text": [
-            ["Ohh, ¿Qué serán esos objetos resplandecientes?..."]
+            ["Se nota que no estás acostumbrado a la magia."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "ghost1.png",
+                "name": "Fantasma"
+            }
+        },
+        "text": [
+            ["No temáis. Los que hemos pasado a mejor vida", "tratamos de ayudar a los que todavía viven."],
+            ["En estas salas podréis tomaros un descanso y", "mejorar vuestras habilidades."],
+            ["Puedo traer armas desde el Más Allá para", "vosotros, pero necesitaré almas de los", "monstruos de esta Torre para materializarlas."],
+            ["Haced buen uso de ellas."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Muchas gracias, bella dama."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila2.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["¿No puedes controlar tu estupidez ni un minuto?"]
         ]
     }
 ]

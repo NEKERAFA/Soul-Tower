@@ -25,7 +25,7 @@
             "height": 60,
             "conditional": true,
             "type": "PreEndingTrigger",
-            "dialogueList": ["test.json", "test.json", "test.json"]
+            "dialogueList": ["killDaric.json", "killLeraila.json", "goForth.json"]
         }
     ]
 }

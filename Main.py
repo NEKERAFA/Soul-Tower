@@ -16,12 +16,7 @@ if __name__ == '__main__':
     # global gameManager
     gameManager = GameManager()
     # Creamos la escena con la pantalla inicial
-    scene = Stage(2, gameManager)
-    # TODO BORRAAAR
-    scene.player.meleeLevel = 2
-    scene.player.rangedLevel = 2
-    scene.player.add_max_life()
-    scene.player.add_max_energy()
+    scene = Stage(1, gameManager)
     #scene = MainMenuScene(gameManager)
     # Le decimos al director que apile esta escena
     gameManager.scene_stack(scene)

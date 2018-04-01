@@ -30,7 +30,7 @@
         "initialDialog": "magicWindow3.json",
         "selectionFile": "magicWindow_menu.json",
         "endDialog": ["magicWindow3_leraila.json", "magicWindow3_daric.json", "magicWindow3_both.json"],
-        "collision": [410, 1628, 60, 60],
+        "collision": [410, 1588, 60, 60],
         "door": [1, 0]
     }
 }

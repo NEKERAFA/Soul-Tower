@@ -1,0 +1,93 @@
+[
+    {
+        "info": {
+            "left": {
+                "image": "leraila3.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Ya es suficiente."],
+            ["Daric, tu viaje termina aquí."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["..."],
+            ["Sabes que no puedes matarme."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Ahora sí. Durante el ascenso he ido ganando", "fuerza. No voy a aguantar tus locuras ni un", "momento más."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_disappearing2.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["I-Imposible..."],
+            ["No puedes hacer esto..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Puedo, y lo haré. Vuelve a la oscuridad de la que", "saliste. No volverás a atormentarme jamás."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_disappearing.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["¡NOOOOOOO!"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila3.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Hasta nunca, Daric."]
+        ]
+    }
+]

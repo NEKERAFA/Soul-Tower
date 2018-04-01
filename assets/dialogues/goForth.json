@@ -1,0 +1,100 @@
+[
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["..."],
+            ["Daric."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["¿Sí?"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Este viaje... me ha hecho pensar mucho."],
+            ["Me he dado cuenta de que... no todo es como yo", "pensaba. El pueblo no vive tan bien como me han", "hecho creer."],
+            ["Y he llegado a entender tus motivos. Incluso...", "Hasta diría que me caes bien."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Leraila..."],
+            ["Yo... también he empezado a entender tu", "postura. Las cosas no son tan sencillas", "como yo pensaba."],
+            ["Creía que vivías aislada de la realidad, pero yo", "mismo ignoraba muchos aspectos sobre cómo", "dirigir un reino."],
+            ["..."],
+            ["No eres una mala persona. Debajo de esa capa", "de indiferencia, hay un buen corazón."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila2.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["..."],
+            ["Cuando \"naciste\" dentro de mí, como una", "personalidad separada debido al estrés al que", "estaba sometida tras la muerte de mi hermano..."],
+            ["Te odiaba con todas mis fuerzas. Nunca pensé", "que llegaría este día."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Yo tampoco, pero me alegro de que haya llegado."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila6.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Sigamos adelante. Con el poder que se guarda", "en esta Torre, podremos solucionar los", "problemas del reino."],
+            ["Juntos."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Juntos."]
+        ]
+    }
+]
