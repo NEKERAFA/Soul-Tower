@@ -3,12 +3,21 @@
         "max_hp": 3,
         "hp": 3,
         "atk": 1,
+        "rng_del": 300,
+        "mel_del":500,
         "backward": 0.0125,
-        "max_nrg": 5,
-        "nrg": 5,
+        "max_nrg": 3,
+        "nrg": 3,
         "nrg_reg": 0.001,
         "nrg_reg_bck": 0.0005,
-        "spd": 0.2
+        "spd": 0.2,
+
+        "souls": 0,
+        "chose_not_shared": false,
+        "killed_friend": false,
+        "choice_adder": 0,
+
+        "player_pos": [-1, -1]
     },
 
     "sound": "Null.ogg",

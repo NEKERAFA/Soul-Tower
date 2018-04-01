@@ -12,7 +12,6 @@ from src.sprites.EnemyRange import *
 class RavenStillState(RavenBehaviourState):
     def __init__(self):
         RavenBehaviourState.__init__(self)
-        print "Raven: Still"
 
     def move_ai(self, enemy, player):
         pass

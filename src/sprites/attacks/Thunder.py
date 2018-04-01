@@ -9,15 +9,9 @@ from src.sprites.Force import *
 class Thunder(Attack):
     def __init__(self, characterPos, rotation, radius, enemies):
         # Obtenemos las rutas a los archivos
-<<<<<<< HEAD
         imageFile = 'thunder.png'
         spriteSheet = 'thunder.json'
-        effect_sound = 'thunder.wav'
-=======
         effect_sound = 'thunder.ogg'
-        imageFile = os.path.join('sprites', 'attacks', 'thunder.png')
-        spriteSheet = os.path.join('attacks', 'thunder.json')
->>>>>>> origin/animations_sound
         self.damage = 1
         dispersion = 40
         x,y = characterPos
@@ -44,9 +38,6 @@ class Thunder(Attack):
         self.attackDict = {-1:-1}
 
     def draw(self, surface):
-        #pygame.mixer.set_reserved(1)
-        #chanel_reserved_0 = pygame.mixer.Channel(0)
-        #chanel_reserved_0.play(self.effect_sound)
         Attack.draw(self, surface)
         # pygame.draw.rect(surface, (0,0,0), self.blastRect)
 

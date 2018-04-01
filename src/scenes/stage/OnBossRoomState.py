@@ -7,6 +7,7 @@ from src.scenes.stage.OnDialogueState import *
 from src.sprites.Character import *
 from src.sprites.Door import *
 from src.sprites.characters.Enemy import *
+from src.sprites.ConditionalTrigger import *
 
 class OnBossRoomState(StageState):
     def __init__(self, stage):
@@ -21,6 +22,8 @@ class OnBossRoomState(StageState):
         self.killedBoss = False
         # Para controlar la animación de entrada
         self.startAnimation = True
+        # Para controlar el diálogo después de la animación de muerte
+        self.animatingDeath = False
 
     def update(self, time, stage):
         currentRoom = stage.rooms[stage.currentRoom]
@@ -52,7 +55,7 @@ class OnBossRoomState(StageState):
             boss.set_drop(currentRoom.collectables)
             currentRoom.lockedDoors[0].open(stage)
             self.killedBoss = True
-            stage.set_state(OnDialogueState(boss.dialogueFile, stage))
+
             # Si hay una animación de muerte, lo deja quieto y lo muestra
             if boss.hasDeathAnimation:
                 boss.movement = STILL
@@ -61,6 +64,12 @@ class OnBossRoomState(StageState):
                 boss.animationLoop = False
                 boss.set_initial_frame(boss.deathAnimation)
                 self.deathAnimation = True
+                self.animatingDeath = True
+
+        if self.animatingDeath and boss.animationFinish:
+            self.animatingDeath = False
+            if currentRoom.boss.dialogueFile != "":
+                stage.set_state(OnDialogueState(boss.dialogueFile, stage))
 
         # Recogibles
         currentRoom.collectables.update(time)
@@ -69,7 +78,10 @@ class OnBossRoomState(StageState):
         trigger = pygame.sprite.spritecollideany(stage.player, currentRoom.triggers)
 
         if trigger is not None:
-            trigger.open_door(stage)
+            if getattr(sys.modules[__name__], "ConditionalTrigger") in trigger.__class__.__bases__:
+                trigger.activate(stage.player)
+            else:
+                trigger.open_door(stage)
             stage.state = OnDialogueState(trigger.dialogueFile, stage)
             trigger.kill() # Eliminamos el trigger
             return

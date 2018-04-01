@@ -11,5 +11,25 @@
             "direction": "down"
         }
     ],
+    "upgrades": {
+        "daric": {
+            "position": [1546, 1336],
+            "sprite": "upgradeDaric1.png",
+            "cost": 200
+        },
+        "leraila": {
+            "position": [1380, 1280],
+            "sprite": "upgradeLeraila1.png",
+            "cost": 200
+        }
+    },
+    "triggers": [
+        {
+            "position": [1440, 1440],
+            "height": 24,
+            "width": 24,
+            "dialogueFile": "upgradeShop.json"
+        }
+    ],
     "small": true
 }

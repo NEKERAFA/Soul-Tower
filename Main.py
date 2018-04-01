@@ -10,10 +10,8 @@ from src.scenes.MainMenuScene import *
 if __name__ == '__main__':
     # Iniciamos la semilla
     random.seed(datetime.now())
-    # Se prepara el mixer e inicializamos la libreria de pygame
-    pygame.mixer.pre_init(44100, 16, 2, 4096)
+    # Inicializamos la libreria de pygame y el mixera
     pygame.init()
-    #pygame.mixer.init()
     # Creamos el director
     # global gameManager
     gameManager = GameManager()
@@ -21,8 +19,7 @@ if __name__ == '__main__':
     scene = MainMenuScene(gameManager)
     # Le decimos al director que apile esta escena
     gameManager.scene_stack(scene)
-    # Y ejecutamos el juegow
-    print (pygame.mixer.get_num_channels())
+    # Y ejecutamos el juego
     gameManager.run()
     # Cuando se termine la ejecución, finaliza la librería
     pygame.quit()

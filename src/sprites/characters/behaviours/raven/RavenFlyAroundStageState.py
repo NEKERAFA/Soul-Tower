@@ -13,7 +13,6 @@ from src.sprites.EnemyRange import *
 
 class RavenFlyAroundStageState(RavenBehaviourState):
     def __init__(self):
-        print "Raven: Fly Around"
         RavenBehaviourState.__init__(self)
         self.delayTime = random.randint(2, 5)*1000
         self.elapseTime = 0
@@ -25,7 +24,6 @@ class RavenFlyAroundStageState(RavenBehaviourState):
     def update(self, enemy, time, mapRect, mapMask):
         # Miramos si el enemigo se sale del área de vuelo
         if not mapRect.inflate(-48, -48).contains(enemy.rect):
-            print "Raven: Me voy"
             if enemy.rect.top < mapRect.top+24:
                 # Choca arriba
                 if enemy.rect.left < mapRect.left+24:
@@ -47,10 +45,10 @@ class RavenFlyAroundStageState(RavenBehaviourState):
                 else:
                     self.angle = random.randint(45, 135)
             # Choca a la izquierda
-            elif enemy.rect.left < mapRect.left+25:
+            elif enemy.rect.left < mapRect.left+24:
                 self.angle = random.randint(315, 405) % 360
             # Choca a la derecha
-            elif enemy.rect.right > mapRect.right-25:
+            elif enemy.rect.right > mapRect.right-24:
                 self.angle = random.randint(135, 225)
             else:
                 print "No se que hacer"

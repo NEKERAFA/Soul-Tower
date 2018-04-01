@@ -42,7 +42,6 @@
     "enemies":  [
         {
             "type": "rat",
-            "position": [1176, 672],
             "drop": {
                 "type": "soul",
                 "amount": 10
@@ -50,7 +49,6 @@
         },
         {
             "type": "rat",
-            "position": [1344, 572],
             "drop": {
                 "type": "soul",
                 "amount": 10
@@ -58,74 +56,102 @@
         },
         {
             "type": "rat",
-            "position": [1560, 432],
             "drop": {
                 "type": "soul",
                 "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "drop": {
+                "type": "soul",
+                "amount": 10
+            }
+        },
+        {
+            "type": "rat",
+            "drop": {
+                "type": "heart",
+                "amount": 1
+            }
+        },
+        {
+            "type": "rat",
+            "drop": {
+                "type": "heart",
+                "amount": 1
             }
         },
         {
             "type": "spider",
-            "position": [1536, 624],
+            "position": [1560, 625],
             "drop": {
                 "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "rat",
-            "position": [2016, 672],
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "rat",
-            "position": [1176, 600],
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "rat",
-            "position": [1488, 816],
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "rat",
-            "position": [1608, 960],
-            "drop": {
-                "type": "soul",
-                "amount": 10
+                "amount": 20
             }
         },
         {
             "type": "spider",
-            "position": [1560, 1150],
+            "position": [1560, 1130],
             "drop": {
                 "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "rat",
-            "position": [1944, 1130],
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "rat",
-            "position": [1296, 1342],
-            "drop": {
-                "type": "soul",
-                "amount": 10
+                "amount": 20
             }
         }
     ]

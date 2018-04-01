@@ -1,0 +1,37 @@
+[
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["No podemos permitir una masacre."],
+            ["No te permitiré una masacre."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Así que dejarás que el reino se contamine.", "Eres un desgraciado."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Encontrarán una solución... Lo sé."],
+            ["«O eso espero...»"]
+        ]
+    }
+]

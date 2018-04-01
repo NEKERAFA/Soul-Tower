@@ -1,0 +1,48 @@
+[
+    {
+        "info": {
+            "left": {
+                "image": "leraila3.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Lo siento, Daric, pero se hará lo que yo diga.", "Debemos elegir el mal menor."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "soldier.png",
+                "name": "Soldado"
+            },
+            "background": "village2.png"
+        },
+        "text": [
+            ["¡Esta zona será purgada, mujer! ¡Márchate!"]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "villager3.png",
+                "name": "Aldeana"
+            },
+            "background": "village2.png"
+        },
+        "text": [
+            ["¡NO! ¡No podéis hacer eso! ¡NO PODÉIS!"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric4.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["¿Cómo puedes ser tan fría...?"]
+        ]
+    }
+]

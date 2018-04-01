@@ -11,7 +11,6 @@ from src.sprites.EnemyRange import *
 
 class RavenLandState(RavenBehaviourState):
     def __init__(self, position, previousState):
-        print "Raven: Land", position
         RavenBehaviourState.__init__(self)
         self.position = position
         self.distance = 0

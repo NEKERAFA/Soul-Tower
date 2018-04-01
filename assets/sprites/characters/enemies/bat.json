@@ -1,7 +1,7 @@
 {
     "stats": {
-        "max_hp": 1,
-        "hp": 1,
+        "max_hp": 2,
+        "hp": 2,
         "atk": 1,
         "backward": 0.00125,
         "spd": 0.05
@@ -13,7 +13,7 @@
 
     "behaviour" : {
         "type": "waiting",
-        "radius": 250
+        "radius": 200
     },
 
     "frames": [

@@ -11,8 +11,9 @@ from src.sprites.characters.player.changing.Fadeout import *
 MAX_TIME = 250.0
 
 class Fadein(ChangingState):
-    def __init__(self, width):
+    def __init__(self, width, canChange):
         self.width = width
+        self.canChange = canChange
 
     def update(self, player, time, stage):
         # Cogemos el rectángulo del frame de estar quieto
@@ -33,7 +34,7 @@ class Fadein(ChangingState):
             player.origImage = player.sheet.subsurface(currentRect)
 
             # Cambiamos de estado
-            player.changing = Fadeout()
+            player.changing = Fadeout(self.canChange)
         else:
             # Vamos disminuyendo poco a poco el tamaño del sprite
             # Calculamos el decremento

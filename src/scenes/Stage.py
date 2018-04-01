@@ -16,6 +16,7 @@ from src.scenes.stage.SmallRoomState import *
 from src.interface.screens.GUIPlayerScreen import *
 from src.interface.screens.GUIWindowDialogScreen import *
 from src.interface.screens.GUIGameOverScreen import *
+from src.interface.screens.GUICreditsScreen import *
 
 # -------------------------------------------------
 # Clase Stage
@@ -26,7 +27,7 @@ class Stage(Scene):
     inRoomState = InRoomState()
     smallRoomState = SmallRoomState()
 
-    def __init__(self, stageNum, gameManager, player=None):
+    def __init__(self, stageNum, gameManager, player=None, playerStats=None):
         # Primero invocamos al constructor de la clase padre
         Scene.__init__(self, gameManager)
 
@@ -55,11 +56,6 @@ class Stage(Scene):
         for i in range(0, data["rooms"]):
             self.rooms.append(Room(stageNum, i, self))
 
-        #Cargamos la musica
-        music_path = os.path.join('',data["music"])
-        ResourceManager.load_music(music_path)
-        pygame.mixer.music.play(-1,0.0)
-
         # Metemos las llaves en su sitio
         for room in self.rooms:
             for door in room.unlockedDoors:
@@ -74,11 +70,18 @@ class Stage(Scene):
 
         # Cargamos el sprite del jugador
         if player is None:
-            self.player = Player(enemiesGroup, self)
+            self.player = Player(enemiesGroup, self, playerStats)
         else:
             self.player = player
+            self.player.set_enemies(enemiesGroup)
         # Lo ponemos en su posición final
-        self.player.change_global_position((data["player_pos"][0], data["player_pos"][1]))
+        if(playerStats is not None):
+            self.player.change_global_position((playerStats["player_pos"][0], playerStats["player_pos"][1]))
+        else:
+            self.player.change_global_position((data["player_pos"][0], data["player_pos"][1]))
+
+        self.saveData = None
+        self.save_data(data)
 
         # Cargamos la interfaz del jugador
         # TODO: meter datos de la interfaz en json, y hacerlo dependiente de la sala en la que se encuentre el jugador
@@ -90,6 +93,9 @@ class Stage(Scene):
 
         # Pantalla de game over
         self.guiGameOver = None
+
+        # Pantalla de créditos
+        self.guiCredits = None
 
         # Inicializamos el viewport, que es un rectángulo del tamaño de la
         # pantalla que indicará qué porción de la sala se debe mostrar
@@ -110,6 +116,9 @@ class Stage(Scene):
         else:
             self.guiGameOver.update(time)
 
+        if(self.guiCredits is not None):
+            self.guiCredits.update(time)
+
     def events(self, events):
         # Miramos a ver si hay algun evento de salir del programa
         for event in events:
@@ -117,7 +126,8 @@ class Stage(Scene):
             if event.type == pygame.QUIT:
                 self.gameManager.program_exit()
                 return
-
+        if(self.guiGameOver is not None):
+            self.guiGameOver.events(events)
         # Delegamos en el estado la acción a realizar para el Jugador
         self.state.events(events, self)
 
@@ -133,6 +143,8 @@ class Stage(Scene):
             self.guiWindow.draw(screen)
         if(self.guiGameOver is not None):
             self.guiGameOver.draw(screen)
+        if(self.guiCredits is not None):
+            self.guiCredits.draw(screen)
 
     # Cambia el estado que controla el comportamiento del scroll
     def set_state(self, state):
@@ -150,3 +162,18 @@ class Stage(Scene):
     # Crea la fase siguient
     def next_stage(self):
         return Stage(self.stageNum+1, self.gameManager, self.player)
+
+    def new_stage(self, data):
+        return Stage(self.stageNum, self.gameManager, None, data)
+
+    def save_data(self, data):
+        self.savedData = self.player.stats.copy()
+        self.savedData["player_pos"] = (data["player_pos"][0], data["player_pos"][1])
+        self.savedData["rng_del"] = self.player.rangedAttackDelay
+        self.savedData["mel_del"] = self.player.meleeAttackDelay
+
+        self.savedData["chose_not_shared"] = self.player.choseAnythingNotShared
+        self.savedData["killed_friend"] = self.player.killedFriend
+        self.savedData["choice_adder"] = self.player.choiceAdder
+
+        self.savedData["souls"] = self.player.souls

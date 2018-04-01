@@ -91,6 +91,7 @@ class Attack(MySprite):
         # Frame inicial
         self.origImage = self.sheet.subsurface(self.sheetConf[0]['coords'])
         self.image = self.origImage.copy()
+        self.rotation = 0
 
         # Máscara de la animación
         self.mask = pygame.mask.from_surface(self.origImage)

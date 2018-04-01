@@ -1,0 +1,137 @@
+[
+    {
+        "info": {
+            "left": {
+                "image": "daric4.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["..."],
+            ["Se acabó."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Hemos llegado muy lejos. Pero no puedo dejar", "que continúes. El pueblo necesita ganar esta", "guerra."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["No puedes deshacerte de mí. Lo sabes", "perfectamente."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Nunca fui capaz. Pero ahora lo seré. Ya estoy", "harto de tu tiranía de princesita aislada del", "mundo."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila_disappearing2.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["¿Q-Qué es esto...? No..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric2.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["¿Asustada?"],
+            ["Empezaba a pensar que nada podía darte miedo."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila_disappearing.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["¡No! ¡Para! ¡Déjame!"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric4.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Lo siento, Leraila. Se acabó. Esta vez para", "siempre."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila_disappearing3.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Hermano... Estoy en camino..."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric_serious.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["..."],
+            ["Soledad, al fin."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric4.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Se hace extraño, después de tanto tiempo..."]
+        ]
+    }
+]

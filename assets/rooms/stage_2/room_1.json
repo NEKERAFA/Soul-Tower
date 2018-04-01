@@ -9,6 +9,13 @@
             "right": 292,
             "to": 0,
             "direction": "up"
+        },
+        {
+            "y": 1272,
+            "left": 260,
+            "right": 292,
+            "to": 8,
+            "direction": "down"
         }
     ],
     "enemies":  [
@@ -22,10 +29,18 @@
         },
         {
             "type": "bat",
-            "position": [600, 769],
+            "position": [650, 790],
             "drop": {
-                "type": "soul",
-                "amount": 10
+                "type": "heart",
+                "amount": 1
+            }
+        },
+        {
+            "type": "bat",
+            "position": [600, 1032],
+            "drop": {
+                "type": "heart",
+                "amount": 1
             }
         },
         {
@@ -33,15 +48,31 @@
             "position": [504, 1260],
             "drop": {
                 "type": "soul",
-                "amount": 10
+                "amount": 20
             }
         },
         {
-            "type": "bat",
-            "position": [600, 1032],
+            "type": "spider",
+            "position": [98, 1264],
             "drop": {
                 "type": "soul",
-                "amount": 10
+                "amount": 20
+            }
+        },
+        {
+            "type": "spider",
+            "position": [660, 1260],
+            "drop": {
+                "type": "soul",
+                "amount": 20
+            }
+        },
+        {
+            "type": "spider",
+            "position": [168, 1047],
+            "drop": {
+                "type": "soul",
+                "amount": 20
             }
         },
         {
@@ -54,7 +85,7 @@
         },
         {
             "type": "rat",
-            "position": [649, 1105],
+            "position": [648, 1130],
             "drop": {
                 "type": "soul",
                 "amount": 10
@@ -62,23 +93,7 @@
         },
         {
             "type": "rat",
-            "position": [985, 1248],
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "spider",
-            "position": [98, 1264],
-            "drop": {
-                "type": "soul",
-                "amount": 10
-            }
-        },
-        {
-            "type": "spider",
-            "position": [744, 1260],
+            "position": [912, 1250],
             "drop": {
                 "type": "soul",
                 "amount": 10
@@ -132,25 +147,25 @@
             "position": [48, 1296],
             "doorSprite": "cell5.png",
             "doorMask": [140, 1152, 32, 24],
-            "collision": [140, 1152, 32, 24]
+            "collision": [140, 1140, 32, 24]
         },
         {
             "position": [264, 1296],
             "doorSprite": "cell5.png",
             "doorMask": [356, 1152, 32, 24],
-            "collision": [356, 1152, 32, 24]
+            "collision": [356, 1140, 32, 24]
         },
         {
             "position": [624, 1296],
             "doorSprite": "cell5.png",
             "doorMask": [716, 1152, 32, 24],
-            "collision": [716, 1152, 32, 24]
+            "collision": [716, 1140, 32, 24]
         },
         {
             "position": [840, 1296],
             "doorSprite": "cell5.png",
             "doorMask": [932, 1152, 32, 24],
-            "collision": [932, 1152, 32, 24]
+            "collision": [932, 1140, 32, 24]
         }
     ],
     "lockedDoors": [

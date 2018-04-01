@@ -28,24 +28,34 @@ PLAYER_CONF_PATH = os.path.join(PLAYER_PATH, 'info.json')
 # -------------------------------------------------
 # Clase del Character jugable
 class Player(Character):
-    def __init__(self, enemies, stage):
+    def __init__(self, enemies, stage, loadStats=None):
         # Invocamos al constructor de la clase padre con la configuracion de este Character concreto
-        Character.__init__(self, SORCERER_PATH, PLAYER_CONF_PATH)
+        Character.__init__(self, SORCERER_PATH, PLAYER_CONF_PATH, loadStats)
 
         # Cargamos las sprite sheets
         self.sorcererSheet = self.sheet.copy()
         self.warriorSheet = ResourceManager.load_image(WARRIOR_PATH, (-1))
         self.shield = ShieldSprite('shield.png', 'shield.json')
 
+        # Coste de energía de los ataques
+        self.rangedAttackEnergyCost = 1.5
+        self.meleeAttackEnergyCost = 1
+
+        # Radios y delays de ataques
+        self.rangedAttackRadius = 1
+        self.rangedAttackDelay = self.stats["rng_del"]
+        self.meleeAttackRadius = 15
+        self.meleeAttackDelay = self.stats["mel_del"]
+
         # Control de opciones escogidas en las ventanas mágicas
         #  Si se ha escogido alguna opción de sorceress O warrior
-        self.choseAnythingNotShared = False
+        self.choseAnythingNotShared = self.stats["chose_not_shared"]
         #  Si se ha escogido la opción 5
-        self.killedFriend = False
+        self.killedFriend = self.stats["killed_friend"]
         #  Sumador de las opciones escogidas: cada opción de sorceress +1,
         #  cada opción de warrior -1. Si el número termina siendo 0 después de
         #  la tercera opción significa que se han escogido 3-1-2 o 3-2-1
-        self.choiceAdder = 0
+        self.choiceAdder = self.stats["choice_adder"]
 
         # Guardo la fase actual
         self.stage = stage
@@ -54,7 +64,7 @@ class Player(Character):
         self.state = Normal()
 
         # Número de almas
-        self.souls = 0
+        self.souls = self.stats["souls"]
 
         # Inventario
         self.inventory = []
@@ -68,15 +78,9 @@ class Player(Character):
         # Si se está cambiando de personaje o no
         self.changing = Finish()
 
-<<<<<<< HEAD
         # Si se está utilizando el escudo o no
         self.usingShield = False
-        # Sonido para cuando se recupera vida
-        self.heal_sound = ResourceManager.load_effect_sound("heal.wav")
 
-        # Sonido cuando se recibe daño
-        self.damage_sound = ResourceManager.load_effect_sound("ouch.wav")
-=======
         #Sonido para cuando se recupera vida
         self.heal_sound = ResourceManager.load_effect_sound("heal.ogg")
 
@@ -86,15 +90,12 @@ class Player(Character):
         #Sonido al recoger almas
         self.souls_sound = ResourceManager.load_effect_sound("soul_get.ogg")
 
-
->>>>>>> origin/animations_sound
-
         # Nivel de las armas
         self.meleeLevel = 1
         self.rangedLevel = 1
 
         # Se cargan los ataques
-        self.attack = RangedAttack(10, 400, self.rangedLevel, enemies)
+        self.attack = RangedAttack(self.rangedAttackRadius, self.rangedAttackDelay, self.rangedLevel, enemies)
 
     def move(self, viewport):
         # Indicamos la acción a realizar segun la tecla pulsada para el jugador
@@ -123,18 +124,27 @@ class Player(Character):
         if KeyboardMouseControl.prim_button():
             # Si es sorcerer, el ataque actual es ataque a distancia
             if self.currentCharacter == 'sorcerer' and type(self.attack) is not RangedAttack:
-                self.attack = RangedAttack(10, 400, self.rangedLevel, self.attack.enemies)
+                self.attack = RangedAttack(self.rangedAttackRadius, self.rangedAttackDelay, self.rangedLevel, self.attack.enemies)
 
             # Si es warrior, el ataque actual es melee
             if self.currentCharacter == 'warrior' and type(self.attack) is not MeleeAttack:
-                self.attack = MeleeAttack(15, 500, self.meleeLevel, self.attack.enemies)
+                self.attack = MeleeAttack(self.meleeAttackRadius, self.meleeAttackDelay, self.meleeLevel, self.attack.enemies)
 
             # Calcular la posición del centro del sprite (de momento calcula el centro del primer sprite)
             centerPosX, centerPosY = self.rect.center
             centerPosX -= viewport.left
             centerPosY -= viewport.top
             centerPos = centerPosX, centerPosY
-            self.attack.start_attack(self.rect.center, KeyboardMouseControl.angle(centerPos))
+
+            if(type(self.attack) is RangedAttack and self.stats["nrg"] >= self.rangedAttackEnergyCost and self.attack.elapsedTime >= self.rangedAttackDelay):
+                self.add_energy(-self.rangedAttackEnergyCost)
+                self.attack.start_attack(self.rect.center, KeyboardMouseControl.angle(centerPos))
+            elif(type(self.attack) is MeleeAttack and self.stats["nrg"] >= self.meleeAttackEnergyCost and self.attack.elapsedTime >= self.meleeAttackDelay):
+                self.add_energy(-self.meleeAttackEnergyCost)
+                self.attack.start_attack(self.rect.center, KeyboardMouseControl.angle(centerPos))
+            else:
+                self.attack.end_attack()
+
         # Finalizamos el ataque
         else:
             self.attack.end_attack()
@@ -173,6 +183,7 @@ class Player(Character):
         pygame.mixer.set_reserved(1)
         chanel_reserved_0 = pygame.mixer.Channel(0)
         chanel_reserved_0.play(self.souls_sound)
+        self.stats["souls"] += souls
         self.souls += souls
         # Actualizo la GUI
         self.update_souls()
@@ -186,10 +197,6 @@ class Player(Character):
     # Recibe un daño y se realiza el daño. Si el personaje ha muerto, lo elimina
     # de todos los grupos
     def receive_damage(self, damage, force):
-        #Se reserva canal
-        pygame.mixer.set_reserved(1)
-        chanel_reserved_0 = pygame.mixer.Channel(0)
-        chanel_reserved_0.play(self.damage_sound)
         life = self.stats["hp"]
         self.state.receive_damage(self, damage, force)
         remainLife = self.stats["hp"]
@@ -199,10 +206,6 @@ class Player(Character):
 
     # Añade vidas al personaje
     def add_lifes(self, lifes):
-        #Se reserva canal
-        pygame.mixer.set_reserved(1)
-        chanel_reserved_1 = pygame.mixer.Channel(0)
-        chanel_reserved_1.play(self.heal_sound)
         life = self.stats["hp"]
         Character.add_lifes(self, lifes)
         remainLife = self.stats["hp"]
@@ -220,11 +223,10 @@ class Player(Character):
     # Añadir (o disminuír) energía
     def add_energy(self, value):
         self.stats["nrg"] += value
-        #if(self.stats["nrg"]>self.stats["max_nrg"]):
-        #    self.stats["nrg"] = self.stats["max_nrg"]
-        #elif(self.stats["nrg"]<0):
-        #    self.stats["nrg"] = 0
-
+        if(self.stats["nrg"]>self.stats["max_nrg"]):
+            self.stats["nrg"] = self.stats["max_nrg"]
+        elif(self.stats["nrg"]<0):
+            self.stats["nrg"] = 0
         self.stage.gui.energy.set_energy(self.stats["nrg"])
 
     # Fijar energía a un valor
@@ -244,6 +246,30 @@ class Player(Character):
         self.stats["nrg"] = self.stats["max_nrg"]
         self.stage.gui.energy.gain_energy_bar()
 
+    # Añade nuevos enemigos en el cambio de fase
+    def set_enemies(self, enemies):
+        self.attack.enemies = enemies
+
     # Cambia de fase al jugador
     def change_stage(self, stage):
         self.stage = stage
+
+    # TODO pal UML
+    def change_character(self):
+        self.canChange = False
+        #TODO: esta línea es un cáncer pero tampoco sé cómo ponerla bien
+        self.stage.gui.charSymb.action()
+        # Ponemos la posición de parado
+        Character.move(self, STILL)
+
+        # Cogemos el rectángulo de vista frontal
+        currentRect = self.sheetConf[0][0]['coords']
+        # Actualizamos el sprite con el nuevo sprite sheet
+        self.origImage = self.sheet.subsurface(currentRect)
+        # Actualizamos el sprite que se dibuja
+        self.image = self.origImage.copy()
+        # Actualizamos el delay
+        self.changing.currentDelay = self.sheetConf[0][0]['delay']
+
+        # Cambiamos de estado
+        self.changing = Fadein(self.origImage.get_width(), self.canChange)

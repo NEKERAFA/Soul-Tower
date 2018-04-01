@@ -13,10 +13,33 @@
     ],
     "triggers": [
         {
-            "position": [240, 96],
-            "width": 360,
-            "height": 12,
-            "dialogueFile": "test.json"
+            "position": [384, 528],
+            "width": 72,
+            "height": 24,
+            "conditional": true,
+            "type": "FinalBossTrigger",
+            "dialogueList": ["lerailaBoss.json", "daricBoss.json", "trueBoss.json"]
         }
-    ]
+    ],
+    "boss": {
+        "name": "master",
+        "position": [360, 384],
+        "finalDialogue": "",
+        "drops": [
+            {
+                "type": "heart",
+                "amount": 1
+            },
+            {
+                "type": "soul",
+                "amount": 10
+            }
+        ],
+        "closeDoor": {
+            "doorSprite": "boss3Door.png",
+            "position": [384, 552],
+            "doorMask": [404, 528, 32, 24]
+        },
+        "deathAnimation": 6
+    }
 }

@@ -20,7 +20,7 @@ class SemicircleAttack(Attack):
         spriteSheet = 'semicircle.json'
 
         # Invocamos al constructor de la clase padre
-        Attack.__init__(self, imageFile, spriteSheet, enemies)
+        Attack.__init__(self, imageFile, spriteSheet, enemies, None) # TODO cambiar None
         self.image = pygame.transform.scale(self.origImage, (int(self.rect.width*2), int(self.rect.height*2)))
         self.loopAnimation = True
 

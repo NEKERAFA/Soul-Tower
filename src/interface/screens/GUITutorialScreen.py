@@ -42,6 +42,12 @@ class GUITutorialScreen(GUIScreen):
         sKey = GUITutorialImage(self, S_SPRITE_LOCATION, (100,140), (40,40), pygame.K_s)
         dKey = GUITutorialImage(self, D_SPRITE_LOCATION, (140,140), (40,40), pygame.K_d)
 
+        self.add_element(wKey)
+        self.add_element(aKey)
+        self.add_element(sKey)
+        self.add_element(dKey)
+        self.add_element(self.movementText)
+
         self.onDialogue = False
         self.dialogues = ['movement.json', 'exitTutorial.json']
         self.dialogueIndex = 0
@@ -53,12 +59,6 @@ class GUITutorialScreen(GUIScreen):
         # Dash/Defender
         self.spaceKey = GUITutorialImage(self, SPACE_SPRITE_LOCATION, (100,250), (200,50), pygame.K_SPACE)
         self.dashText = GUIText(self, (200, 200), font, 'Defenderse (Daric)/Sprint (Leraila)', 'center')
-
-        self.add_element(wKey)
-        self.add_element(aKey)
-        self.add_element(sKey)
-        self.add_element(dKey)
-        self.add_element(self.movementText)
 
         # Ataque
         self.mouse = GUITutorialImage(self, MOUSE_SPRITE_LOCATION, (250, 100), None, None, -1)
@@ -94,7 +94,8 @@ class GUITutorialScreen(GUIScreen):
                             elif(self.tutorialKeyCounter == 6):
                                 self.remove_element(self.dashText)
                                 self.next_element()
-                                self.tutorialKeyCounter += 1
+                                #TODO: si pulsas dos veces rápido la barra espaciadora el juego se queda atascado en este punto
+                                # Esto se debe a que la llamada a events no está sincronizada
                             elif self.tutorialKeyCounter == 9:
                                 self.remove_element(self.actionText)
                 elif event.type == pygame.MOUSEBUTTONDOWN and pygame.mouse.get_pressed()[0]:
@@ -116,6 +117,7 @@ class GUITutorialScreen(GUIScreen):
         elif self.tutorialKeyCounter == 6:
             self.add_element(self.mouse)
             self.add_element(self.attackText)
+            self.tutorialKeyCounter += 1
         elif self.tutorialKeyCounter == 8:
             self.add_element(self.qKey)
             self.add_element(self.actionText)

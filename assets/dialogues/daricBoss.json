@@ -1,0 +1,37 @@
+[
+    {
+        "info": {
+            "right": {
+                "image": "towerMaster.png",
+                "name": "Amo"
+            }
+        },
+        "text": [
+            ["Bienvenido."],
+            ["Yo soy el Amo de la Torre, y esta es su cima.", "Tu largo periplo casi ha terminado."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["La verdad es que no ha sido nada fácil.", "Pero ya se sabe lo que se dice: \"El que algo",  "quiere, algo le cuesta\"."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "towerMaster.png",
+                "name": "Amo"
+            }
+        },
+        "text": [
+            ["Sólo debes superar un obstáculo más, joven", "guerrero."],
+            ["Demuéstrame que eres digno que usar el poder", "que aquí se custodia."]
+        ]
+    }
+]

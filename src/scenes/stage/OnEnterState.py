@@ -29,8 +29,11 @@ class OnEnterState(StageState):
         # Enemigos
         currentRoom.enemies.update(time, currentRoom.rect, stage)
 
+        # Actualizamos la interfaz
+        stage.gui.update(time)
+
     def events(self, events, stage):
-        pass
+        stage.gui.events(events)
 
     def draw(self, screen, stage):
         StageState.draw(self, screen, stage)
