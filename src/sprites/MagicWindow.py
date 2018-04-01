@@ -23,8 +23,14 @@ class MagicWindow(MyStaticAnimatedSprite, Interactive):
         self.endDialogs = endDialogs
         # Guardamos la puerta
         self.door = door
+        #Se carga el sonido del espejo al romperse
+        self.sound = ResourceManager.load_effect_sound("glass.ogg")
+        #Se reserva canal para el sonido
+        pygame.mixer.set_reserved(1)
+        self.chanel = pygame.mixer.Channel(0)
 
     def destruct(self, stage):
+        self.chanel.play(self.sound)
         self.animationLoop = False
         self.animationNum = 1
         self.animationFrame = -1

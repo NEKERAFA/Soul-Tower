@@ -81,6 +81,11 @@ class Player(Character):
         # Si se está utilizando el escudo o no
         self.usingShield = False
 
+        #Se reservan 3 canales
+        pygame.mixer.set_reserved(3)
+        self.channel_heal = pygame.mixer.Channel(0)
+        self.channel_damage = pygame.mixer.Channel(1)
+        self.channel_souls = pygame.mixer.Channel(2)
         #Sonido para cuando se recupera vida
         self.heal_sound = ResourceManager.load_effect_sound("heal.ogg")
 
@@ -180,9 +185,7 @@ class Player(Character):
 
     # Incrementa el número de almas del jugador
     def increase_souls(self, souls):
-        pygame.mixer.set_reserved(1)
-        chanel_reserved_0 = pygame.mixer.Channel(0)
-        chanel_reserved_0.play(self.souls_sound)
+        self.channel_souls.play(self.souls_sound)
         self.stats["souls"] += souls
         self.souls += souls
         # Actualizo la GUI
@@ -197,6 +200,7 @@ class Player(Character):
     # Recibe un daño y se realiza el daño. Si el personaje ha muerto, lo elimina
     # de todos los grupos
     def receive_damage(self, damage, force):
+        self.channel_damage.play(self.damage_sound)
         life = self.stats["hp"]
         self.state.receive_damage(self, damage, force)
         remainLife = self.stats["hp"]
@@ -206,6 +210,7 @@ class Player(Character):
 
     # Añade vidas al personaje
     def add_lifes(self, lifes):
+        self.channel_heal.play(self.heal_sound)
         life = self.stats["hp"]
         Character.add_lifes(self, lifes)
         remainLife = self.stats["hp"]
