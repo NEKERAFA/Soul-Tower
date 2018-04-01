@@ -71,5 +71,10 @@
             ["Yo... De acuerdo."],
             ["Ojalá encuentren una cura pronto..."]
         ]
+    },
+    {
+        "text": [
+            ["Ataque y velocidad aumentados."]
+        ]
     }
 ]

@@ -32,7 +32,7 @@ class MeleeAttack(Attack):
         # Nivel de mejora
         self.level = level
         self.probLvl2 = 0.7
-        self.probLvl3 = 0.45
+        self.probLvl3 = 0.5
         # Diccionario de ataque-enemigos
         # (para el mismo ataque no hacer daño más de una vez al mismo enemigo)
         self.attackDict = {-1:-1}
