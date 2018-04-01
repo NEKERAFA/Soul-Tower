@@ -17,7 +17,7 @@ class OnDialogueState(StageState):
         self.intervention = 0
 
         # TODO añadir caja de diálogo a la pantalla GUI
-        self.dialogueBox = GUIDialog(stage.gui, self.dialogue[0])
+        self.dialogueBox = GUIDialog(self.dialogue[0])
         stage.gui.add_element(self.dialogueBox)
 
     # TODO modo automático con otra tecla
@@ -38,7 +38,7 @@ class OnDialogueState(StageState):
                 elif self.intervention < len(self.dialogue) - 1:
                     self.intervention += 1
                     stage.gui.remove_element(self.dialogueBox)
-                    self.dialogueBox = GUIDialog(stage.gui, self.dialogue[self.intervention])
+                    self.dialogueBox = GUIDialog(self.dialogue[self.intervention])
                     stage.gui.add_element(self.dialogueBox)
                 # Terminamos el diálogo
                 else:

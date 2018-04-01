@@ -11,6 +11,9 @@ from src.interface.GUIImage import *
 class GUIHealth(GUIElement):
     def __init__(self, guiScreen, name, position, scale, colorkey=-1):
 
+        # GUI contenedora
+        self.guiScreen = guiScreen
+
         # String de la imagen del corazón
         self.name = name
         self.scale = scale
@@ -24,7 +27,7 @@ class GUIHealth(GUIElement):
         heart = None
 
         # Se llama al método de la clase padre con un rectángulo arbitrario (ya que este objeto no tiene imagen propia)
-        GUIElement.__init__(self, guiScreen, pygame.Rect((0,0),(0,0)))
+        GUIElement.__init__(self, pygame.Rect((0,0),(0,0)))
         # Se coloca el rectangulo en su posicion
         self.set_position(position)
 
@@ -56,7 +59,7 @@ class GUIHealth(GUIElement):
     def gain_life(self):
         if(self.lifeCounter < self.maxLifeCounter):
             # Crear corazón y meterlo en array
-            heart = GUIImage(self.guiScreen, self.name, self.heartPos, self.scale, self.colorkey)
+            heart = GUIImage(self.name, self.heartPos, self.scale, self.colorkey)
             self.heartArray.append(heart)
             # Actualizar posiciones del resto de corazones
             self.heartPos = (self.heartPos[0] + heart.image.get_rect().right+2, self.heartPos[1])

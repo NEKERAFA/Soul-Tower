@@ -25,11 +25,11 @@ class GUICreditsScreen(GUIScreen):
     def __init__(self, stage):
         GUIScreen.__init__(self, stage)
         # Fondo
-        self.creditsImage = GUIImage(self, CREDITS_SPRITE_LOCATION, (0,SCREEN_HEIGHT), None, None)
+        self.creditsImage = GUIImage(CREDITS_SPRITE_LOCATION, (0,SCREEN_HEIGHT), None, None)
         self.add_element(self.creditsImage)
 
         # Título
-        self.soulTowerImage = GUIImage(self, SOUL_TOWER_SPRITE_LOCATION, (SCREEN_WIDTH/2,SCREEN_HEIGHT-50))
+        self.soulTowerImage = GUIImage(SOUL_TOWER_SPRITE_LOCATION, (SCREEN_WIDTH/2,SCREEN_HEIGHT-50))
 
         self.add_element(self.soulTowerImage)
 
@@ -38,9 +38,9 @@ class GUICreditsScreen(GUIScreen):
         self.creditsContents = []
         font = ResourceManager.load_font(DEFAULT_FONT, DEFAULT_FONT_SIZE)
         for i in range(0, len(creditsContent)):
-            self.creditsText = GUIText(self, (SCREEN_WIDTH/2,SCREEN_HEIGHT+15*i), font, creditsContent[i],'center', (255, 255, 255))
-            self.creditsContents.append(self.creditsText)
-            self.GUIElements.append(self.creditsText)
+            creditsText = GUIText((SCREEN_WIDTH/2,SCREEN_HEIGHT+15*i), font, creditsContent[i],'center', (255, 255, 255))
+            self.creditsContents.append(creditsText)
+            self.GUIElements.append(creditsText)
 
         # Surface para hacer un fadeout
         self.alpha = 255

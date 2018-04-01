@@ -15,18 +15,18 @@ DEFAULT_FONT = 'PixelOperatorHB.ttf'
 DEFAULT_FONT_SIZE = 16
 
 class GUIWindowButton(GUIButton):
-    def __init__(self, guiScreen, text, upName, downName, symbolName, onClickFunction, position, scale=None, colorkey=-1):
+    def __init__(self, text, upName, downName, symbolName, onClickFunction, position, scale=None, colorkey=-1):
 
         # Crear botón
-        GUIButton.__init__(self, guiScreen, upName, downName, onClickFunction, position, scale, colorkey)
+        GUIButton.__init__(self, upName, downName, onClickFunction, position, scale, colorkey)
 
         # Crear texto
         self.font = ResourceManager.load_font(DEFAULT_FONT, DEFAULT_FONT_SIZE)
         self.textPosition = (self.rect.center[0], self.rect.center[1]+DEFAULT_FONT_SIZE/2)
-        self.text = GUIText(guiScreen, self.textPosition, self.font, text, 'center', (255, 255, 255))
+        self.text = GUIText(self.textPosition, self.font, text, 'center', (255, 255, 255))
 
         self.imagePosition = (self.rect.midleft[0]+10, self.rect.midleft[1]+11)
-        self.symbol = GUIImage(guiScreen, symbolName, self.imagePosition)
+        self.symbol = GUIImage(symbolName, self.imagePosition)
 
         self.swapHeight = 0
 
