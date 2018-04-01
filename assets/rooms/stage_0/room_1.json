@@ -36,7 +36,8 @@
             "position": [720, 264],
             "doorSprite": "door_2.png",
             "doorMask": [720, 200, 24, 41]
-        }
+        },
+        "deathAnimation": 6
     },
     "lockedDoors": [
         {

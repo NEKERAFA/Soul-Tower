@@ -46,7 +46,7 @@ class MasterFollowPlayerState(MasterBehaviourState):
             # enemy.animationFinish = False
             # enemy.set_initial_frame(5)
             # enemy.change_behaviour(MasterSlashState(self))
-            
+
 
     def update(self, enemy, time, mapRect, mapMask):
         # Se actualiza el movimiento del personaje
