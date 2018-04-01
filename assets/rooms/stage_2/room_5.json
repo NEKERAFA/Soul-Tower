@@ -134,15 +134,7 @@
             "position": [2400, 1056],
             "drop": {
                 "type": "soul",
-                "amount": 40
-            }
-        },
-        {
-            "type": "spider",
-            "position": [2400, 1280],
-            "drop": {
-                "type": "soul",
-                "amount": 20
+                "amount": 80
             }
         }
     ]

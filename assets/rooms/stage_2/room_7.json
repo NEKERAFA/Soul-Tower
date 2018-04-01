@@ -31,15 +31,7 @@
             "position": [3120, 1032],
             "drop": {
                 "type": "soul",
-                "amount": 20
-            }
-        },
-        {
-            "type": "spider",
-            "position": [2830, 1276],
-            "drop": {
-                "type": "soul",
-                "amount": 20
+                "amount": 40
             }
         }
     ]
