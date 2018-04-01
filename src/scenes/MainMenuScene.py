@@ -18,14 +18,11 @@ class MainMenuScene(Scene):
         # Primera fase
         self.startStage = InitialStage(gameManager)
 
-<<<<<<< HEAD
         # Música de la pantalla inicial
         ResourceManager.load_music('Menu_principal.ogg')
         pygame.mixer.music.play(-1, 0.0)
-=======
     def new_menu(self, gameManager):
         return MainMenuScene(gameManager)
->>>>>>> 377f47b11653a858a3c434bb7267ee969feecba2
 
     def update(self, time):
         self.guiMenu.update(time)
