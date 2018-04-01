@@ -1,0 +1,75 @@
+[
+    {
+        "info": {
+            "right": {
+                "image": "towerMaster.png",
+                "name": "Amo"
+            }
+        },
+        "text": [
+            ["Bienvenid-"],
+            ["¿... Qué es esto? ¿Por qué los dos permanecéis", "en el mismo cuerpo?"]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Hemos superado nuestras diferencias."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            }
+        },
+        "text": [
+            ["Y hemos aprendido a convivir."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "towerMaster.png",
+                "name": "Amo"
+            }
+        },
+        "text": [
+            ["..."],
+            ["No es así como debía suceder. Sólo uno de", "vosotros debía permanecer vivo."],
+            ["Lo habéis arruinado todo."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "daric.png",
+                "name": "Daric"
+            },
+            "right": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["¿...?"]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "towerMaster.png",
+                "name": "Amo"
+            }
+        },
+        "text": [
+            ["Como Amo de la Torre, no permitiré que el poder", "aquí custodiado caiga en las manos de unos", "no-elegidos."]
+        ]
+    }
+]

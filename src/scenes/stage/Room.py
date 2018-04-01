@@ -14,6 +14,7 @@ from src.sprites.MagicWindow import *
 from src.sprites.ConditionalTrigger import *
 from src.sprites.HectorTrigger import *
 from src.sprites.PreEndingTrigger import *
+from src.sprites.FinalBossTrigger import *
 
 # -------------------------------------------------
 # Clase Room
@@ -68,7 +69,10 @@ class Room(object):
             drops = []
             for drop in boss["drops"]:
                 drops.append(DropConstructor.get_drop(drop))
-            bossSprite = Boss(boss["name"], drops, boss["closeDoor"], boss["finalDialogue"])
+            deathAnimation = None
+            if "deathAnimation" in boss:
+                deathAnimation = boss["deathAnimation"]
+            bossSprite = Boss(boss["name"], drops, boss["closeDoor"], boss["finalDialogue"], deathAnimation)
             bossSprite.change_global_position(boss["position"])
             self.boss = bossSprite
             self.enemies.add(bossSprite)

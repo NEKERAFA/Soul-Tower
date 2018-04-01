@@ -1,0 +1,37 @@
+[
+    {
+        "info": {
+            "right": {
+                "image": "towerMaster.png",
+                "name": "Amo"
+            }
+        },
+        "text": [
+            ["Bienvenida."],
+            ["Yo soy el Amo de la Torre, y esta es su cima.", "Tu largo periplo casi ha terminado."]
+        ]
+    },
+    {
+        "info": {
+            "left": {
+                "image": "leraila.png",
+                "name": "Leraila"
+            }
+        },
+        "text": [
+            ["Me siento honrada por estar ante vos."]
+        ]
+    },
+    {
+        "info": {
+            "right": {
+                "image": "towerMaster.png",
+                "name": "Amo"
+            }
+        },
+        "text": [
+            ["Sólo debes superar un obstáculo más, joven", "princesa."],
+            ["Demuéstrame que eres digna que usar el poder", "que aquí se custodia."]
+        ]
+    }
+]

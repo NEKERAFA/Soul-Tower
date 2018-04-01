@@ -235,3 +235,23 @@ class Player(Character):
     # Cambia de fase al jugador
     def change_stage(self, stage):
         self.stage = stage
+
+    # TODO pal UML
+    def change_character(self):
+        self.canChange = False
+        #TODO: esta línea es un cáncer pero tampoco sé cómo ponerla bien
+        self.stage.gui.charSymb.action()
+        # Ponemos la posición de parado
+        Character.move(self, STILL)
+
+        # Cogemos el rectángulo de vista frontal
+        currentRect = self.sheetConf[0][0]['coords']
+        # Actualizamos el sprite con el nuevo sprite sheet
+        self.origImage = self.sheet.subsurface(currentRect)
+        # Actualizamos el sprite que se dibuja
+        self.image = self.origImage.copy()
+        # Actualizamos el delay
+        self.changing.currentDelay = self.sheetConf[0][0]['delay']
+
+        # Cambiamos de estado
+        self.changing = Fadein(self.origImage.get_width(), self.canChange)

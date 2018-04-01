@@ -19,7 +19,7 @@
         }
     ],
     "boss": {
-        "name": "raven",
+        "name": "death",
         "position": [960, 180],
         "drops": [
             {
@@ -37,7 +37,8 @@
             "doorSprite": "door_2.png",
             "doorMask": [720, 200, 24, 41]
         },
-        "finalDialogue": "test.json"
+        "finalDialogue": "test.json",
+        "deathAnimation": 10
     },
     "lockedDoors": [
         {
