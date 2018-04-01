@@ -22,7 +22,7 @@ ENERGY_BAR_SPRITE_LOCATION = os.path.join(INTERFACE_PLAYER_FOLDER, 'gui_energy_b
 SOULS_SPRITE_LOCATION = os.path.join(INTERFACE_PLAYER_FOLDER, 'gui_souls_box.png')
 
 DEFAULT_FONT = 'PixelOperatorHB.ttf'
-DEFAULT_FONT_SIZE = 12
+DEFAULT_FONT_SIZE = 14
 
 class GUIPlayerScreen(GUIScreen):
     def __init__(self, stage):
