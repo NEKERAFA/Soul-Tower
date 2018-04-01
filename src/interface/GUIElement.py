@@ -6,8 +6,7 @@ import pygame
 # Clase abstracta GUIElement
 
 class GUIElement(object):
-    def __init__(self, guiScreen, rect):
-        self.guiScreen = guiScreen
+    def __init__(self, rect):
         self.rect = rect
 
     def set_position(self, position, alignment='left'):

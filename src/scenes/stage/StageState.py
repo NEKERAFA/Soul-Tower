@@ -54,5 +54,7 @@ class StageState(object):
         # Se pinta la porción de la sala que coincide con el viewport
         screen.blit(newImage, (0,0), stage.viewport)
 
+        stage.gui.draw(screen)
+
     def events(self, events, stage):
         raise NotImplemented("Tiene que implementar el metodo events.")

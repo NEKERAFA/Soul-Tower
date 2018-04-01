@@ -21,10 +21,9 @@ class GUIScreen(object):
 
         self.stage = stage
 
-    # TODO añadir a UML
     def add_element(self, element):
         self.GUIElements.append(element)
-    # TODO añadir a UML
+
     def remove_element(self, element):
         self.GUIElements.remove(element)
 

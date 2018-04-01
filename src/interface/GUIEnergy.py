@@ -12,6 +12,9 @@ from src.interface.GUIChargeBar import *
 class GUIEnergy(GUIElement):
     def __init__(self, guiScreen, name, position, scale, colorkey=-1):
 
+        # GUI contenedora de la barra
+        self.guiScreen = guiScreen
+
         # String de la imagen de las barras de energía
         self.name = name
         self.scale = scale
@@ -25,7 +28,7 @@ class GUIEnergy(GUIElement):
         bar = None
 
         # Se llama al método de la clase padre con un rectángulo arbitrario (ya que este objeto no tiene imagen propia)
-        GUIElement.__init__(self, guiScreen, pygame.Rect((0,0),(0,0)))
+        GUIElement.__init__(self, pygame.Rect((0,0),(0,0)))
         # Se coloca el rectangulo en su posicion
         self.set_position(position)
 
@@ -39,7 +42,7 @@ class GUIEnergy(GUIElement):
 
         for i in range(0, int(self.maxEnergyCounter)):
             # Crear barra y meterlo en array
-            bar = GUIChargeBar(self.guiScreen, self.name, self.barPos, self.scale, self.colorkey)
+            bar = GUIChargeBar(self.name, self.barPos, self.scale, self.colorkey)
             self.barArray.append(bar)
             # Actualizar posiciones del resto de barras
             self.barPos = (self.barPos[0] + bar.image.get_rect().right+self.inbetween, self.barPos[1])
@@ -66,7 +69,7 @@ class GUIEnergy(GUIElement):
 
     def gain_energy_bar(self):
         # Crear barra y meterlo en array
-        bar = GUIChargeBar(self.guiScreen, self.name, self.barPos, self.scale, self.colorkey)
+        bar = GUIChargeBar(self.name, self.barPos, self.scale, self.colorkey)
         #bar.set_fill_speed(self.energyRegen)
         self.barArray.append(bar)
         # Actualizar posiciones del resto de barras
